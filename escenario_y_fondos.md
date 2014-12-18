@@ -78,7 +78,7 @@ en los que aparecen enemigos, o el punto en el que se debe situar nuestro person
 Vamos a ver cada uno de estos tipos de capas con más detenimiento.
 
 
-## Capas de patrones
+### Capas de patrones
 
 Como hemos indicado anteriormente, las capas de patrones nos permiten definir el aspecto del nivel
 mediante un mosaico, utilizando un conjunto de patrones para fijar el contenido de cada celda del mosaico.
@@ -124,7 +124,7 @@ CCTMXLayer *capa = fondo->layerNamed("muros");
 
 
 
-## Colisiones con el mapa
+### Colisiones con el mapa
 
 La detección de colisiones con los muros del fondo será muy útil en juegos de tipo RPG o de plataformas. 
 Para hacer esto lo primero que debemos hacer es obtener la capa que define los elementos que se comportan
@@ -291,7 +291,7 @@ posicionamos al _sprite_ pegado a la derecha o a la izquierda del muro respectiv
 
 
 
-## Modificación del mapa
+### Modificación del mapa
 
 En muchos casos nos interesará tener en el mapa objetos que podamos modificar. Por ejemplo, monedas u otros
 items que podamos recolectar, u objetos que podemos destruir. Para conseguir esto podemos definir una capa
@@ -344,7 +344,7 @@ Si el personaje fuese de mayor tamaño deberíamos comprobar todas las celdas de
 
 
 
-## Capas de objetos
+### Capas de objetos
 
 Hasta el momento hemos visto las capas de patrones, que se construyen como un mosaico de celdas que definirá el
 aspecto del fondo. Existe otro tipo de capa que podemos incluir en nuestro diseño del fondo que no se limita
@@ -536,7 +536,7 @@ y calculamos el desplazamiento _(x,y)_ necesario para que el _sprite_ quede situ
 en el punto central.
 
 
-## Límites del escenario
+### Límites del escenario
 
 El problema de la implementación anterior es que el escenario no es infinito, y cuando lleguemos a sus
 límites normalmente querremos no salirnos de ellos para no dejar en la pantalla espacio vacío. Deberemos
@@ -584,7 +584,7 @@ en la pantalla, el mapa permanecerá fijo y el personaje se moverá sobre él.
 
 
 
-## Scroll parallax
+### Scroll parallax
 
 En juegos 2D podemos crear una ilusión de profundidad creando varias capas de fondo y haciendo que
 las capas más lejanas se muevan a velocidad más lenta que las más cercanas al hacer _scroll_. Esto
@@ -634,7 +634,7 @@ SimpleAudioEngine *audio =
 ```
 
 
-## Música de fondo
+### Música de fondo
 
 Podemos reproducir como música de fondo cualquier formato soportado por el dispositivo (MP3, M4A, etc).
 Para ello utilizaremos el método `playBackgroundMusic` del objeto _audio engine_: 
@@ -663,7 +663,7 @@ audio->setBackgroundMusicVolume(0.9);
 
 
 
-## Efectos de sonido
+### Efectos de sonido
 
 Los efectos de sonido sonarán cuando suceda un determinado evento (disparo, explosión, pulsación de un 
 botón), y será normalmente una reproducción de corta duración. Una característica de estos efectos es
