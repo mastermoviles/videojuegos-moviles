@@ -614,7 +614,7 @@ http://cocosbuilder.com
 ```
 
 
-## Creación de un proyecto
+### Creación de un proyecto
 
 Una vez ejecutamos la aplicación, deberemos crear un nuevo proyecto. Crearemos en el disco un nuevo directorio
 para el proyecto, y dentro de CocosBuilder seleccionaremos la opción _File > New > New Project ..._, 
@@ -647,7 +647,7 @@ con la opción _View > Resolution_.
 
 
 
-## Añadir nodos
+### Añadir nodos
 
 En la parte superior del editor vemos los distintos tipos de objetos que podemos añadir a la pantalla:
 
@@ -689,7 +689,7 @@ de los nodos.
 
 
 
-## Animar nodos
+### Animar nodos
 
 Con CocosBuilder también podemos definir animaciones basadas en fotogramas clave. Para crear estas animaciones
 estableceremos los valores de las diferentes propiedades de los objetos en distintos instantes de tiempo
@@ -717,7 +717,7 @@ un menú desde el cual podremos cambiar su duración o definir diferentes _timel
 
 
 
-## Conexiones con el código
+### Conexiones con el código
 
 Antes de poder probar la pantalla en nuestro juego Cocos2D, deberemos establecer la relación entre la
 pantalla creada y las clases de nuestro juego, de forma similar al _File's Owner_ de iOS. Para ello
@@ -753,7 +753,7 @@ class UAMainMenuLayer : public CCLayer
 
 
 
-## Cargar el diseño en el juego
+### Cargar el diseño en el juego
 
 Cuando queramos trasladar el diseño que hemos creado con CocosBuilder a nuestro juego Cocos2D, deberemos
 publicarlo con la opción _File > Publish_. Esto generará en el directorio del proyecto un fichero
