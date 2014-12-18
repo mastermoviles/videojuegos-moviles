@@ -1,10 +1,7 @@
 # Ejercicios
 
-## Desarrollo de un videojuego con Cocos2d-x
 
-Vamos a realizar un ejercicio guiado en el que desarrollaremos paso a paso un videojuego
-con el motor Cocos2d-x. Partiremos de las plantillas del proyecto `SpaceAsteroids`, 
-en las que inicialmente sólo tenemos una pantalla inicial inicial estática.
+Vamos a realizar un ejercicio guiado en el que desarrollaremos paso a paso un videojuego con el motor Cocos2d-x. Partiremos de las plantillas del proyecto `SpaceAsteroids`, en las que inicialmente sólo tenemos una pantalla inicial inicial estática.
       
 
 ## Creación del menú principal del juego
@@ -306,8 +303,38 @@ la puntuación actualizaremos la etiqueta del HUD, con la nueva puntuación con 
 ![Aspecto final del juego](imagenes/ej/ej_game.jpg)
 
 
+## Uso del motor de físicas
 
- al asteroide rebotar contra el suelo.
+Vamos a añadir algunos elementos al juego _Space Asteroids_ gestionados por el motor de físicas Box2D. Deberemos:
+
+_a)_ En primer lugar deberemos crear el mundo en el método `init`, con gravedad (0, -10). En el método `update` deberemos actualizar la física del mundo y limpiar las
+fuerzas tras cada iteración.
+
+_b)_ Tras crear el mundo en `init`, a partir de él crearemos un cuerpo dinámico para un asteroide. 
+Se tratará de un asteroide especial, independiente de los creados en sesiones anteriores. Para distinguirlo
+del resto, vamos a tintarlo de rojo. Nos crearemos un nuevo _sprite_ a partir del _frame_
+`roca.png`, y le asignaremos a su propiedad `color` el color rojo 
+(creado con la macro `ccc3`). Una vez hecho esto, definiremos el cuerpo dinámico, dándole
+una velocidad inicial de 1 m/s en el eje _x_, una posición inicial (240px, 320px) convertida a metros,
+y asignando a su propiedad `userData` el _sprite_ que acabamos de crear. Con esto deberemos
+crear el cuerpo en la variable `_bodyRoca`. Ahora deberemos definir en el cuerpo una forma de
+tipo circular con 16px de radio mediante una _fixture_, a la que también le daremos un valor
+de _restitution_ de 1.0 para que rebote.
+
+En `update` haremos que el _sprite_ se muestre en la posición actual del cuerpo.
+Para ello obtendremos el _sprite_ asociado a `_bodyRoca` mediante la propiedad
+`GetUserData()`, y estableceremos la posición y rotación del _sprite_ a partir de 
+las del cuerpo (convertidas a píxeles y grados respectivamente). Con esto veremos la roca caer, pero 
+desaparecerá de la pantalla al no haber ninguna superficio sobre la que rebotar.
+
+![Asteroide rojo con físicas](imagenes/ej/ej_physics.jpg)
+
+
+_c)_ Vamos a añadir ahora un cuerpo estático para el suelo del escenario. Lo añadiremos
+con forma de tipo arista (_edge_). Calcularemos el punto inicial y final de la arista a partir
+de las dimensiones del mapa y de los _tiles_ (debe coincidir con la superficie del suelo).
+Con esto veremos al asteroide rebotar contra el suelo.
+
 
 _d)_ Ahora vamos a hacer que los disparos se comporten como cuerpos cinemáticos, de forma 
 que al impactar con el asteroide harán que rebote. En este caso el cuerpo lo añadiremos cuando se
