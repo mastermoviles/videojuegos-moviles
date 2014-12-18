@@ -22,7 +22,7 @@ El _sprite_ podrá ser añadido a la escena como cualquier otro nodo, añadiénd
 como hijo de alguna de las capas con `addChild:`.
 
 
-## Posición
+### Posición
 
 Al igual que cualquier nodo, un _sprite_ tiene una posición en pantalla
 representada por su propiedad `position`, de tipo `CGPoint`. Dado
@@ -54,7 +54,7 @@ aplicables a cualquier nodo, aunque tienen un especial interés en el caso de lo
 
 
 
-## Fotogramas
+### Fotogramas
 
 Estos objetos pueden estar animados. Para ello deberemos definir los distintos 
   fotogramas (o _frames_) de la animación. Podemos definir varias 
@@ -198,7 +198,7 @@ y `boundingBoxInPixels` respectivamente.
  -->
 
 
-## Animación
+### Animación
 
 Podremos definir determinadas secuencias de _frames_ para crear animaciones. Las animaciones se
 representan mediante la clase `CCAnimation`, y se pueden crear a partir de la secuencia de
@@ -244,7 +244,7 @@ reproducir animaciones de forma automática.
 
 
 
-## _Sprite batch_
+### _Sprite batch_
 
 En OpenGL los _sprites_ se dibujan realmente en un contexto 3D. Es decir, son texturas que se 
 mapean sobre polígonos 3D (concretamente con una geometría rectángular). Muchas veces encontramos en
@@ -285,7 +285,7 @@ De no pertenecer a dicha textura no podría cargarse dentro del _batch_.
 
 
 
-## Colisiones
+### Colisiones
 
 Otro aspecto de los _sprites_ es la interacción entre ellos. 
   Nos interesará saber cuándo somos tocados por un enemigo o una bala para 
@@ -326,7 +326,7 @@ El componente básico del motor de un videojuego es lo que se conoce como ciclo 
 
 
 
-## Ciclo del juego
+### Ciclo del juego
 
 Se trata de un bucle infinito en el que tendremos el código 
   que implementa el funcionamiento del juego. Dentro de este bucle se efectúan 
@@ -375,7 +375,7 @@ Podemos modelar esto como una máquina de estados, en la que en cada
 
 
 
-## Actualización de la escena
+### Actualización de la escena
 
 En Cocos2D no deberemos preocuparnos de implementar el ciclo del juego, ya que de esto
 se encarga el _singleton_ `CCDirector`. Los estados del juego se
@@ -424,7 +424,7 @@ el `CCDirector`. Así es como se controla el estado del juego.
 
 
 
-## Acciones
+### Acciones
 
 En el punto anterior hemos visto cómo actualizar la escena de forma manual como se hace habitualmente
 en el ciclo del juego. Sin embargo, con Cocos2D tenemos formas más sencillas de animar los nodos de 
@@ -524,7 +524,7 @@ rotación, escalado), e incluso podríamos crear nuestras propias acciones media
 
 
 
-## Entrada de usuario
+### Entrada de usuario
 
 El último punto que nos falta por ver del motor es cómo leer la entrada de usuario. Una forma básica será 
 responder a los contactos en la pantalla táctil. Para ello al inicializar nuestra capa principal deberemos indicar
