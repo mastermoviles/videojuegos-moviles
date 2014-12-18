@@ -28,7 +28,7 @@ Vamos ahora a estudiar el motor de físicas Box2D. Es importante destacar que es
 	Comenzaremos viendo los principales componentes de esta librería.
 
 	
-	## Componentes de Box2D
+### Componentes de Box2D
 	
 Los componentes básicos que nos permiten realizar la simulación física con Box2D son:
 	
@@ -71,7 +71,7 @@ b2World *world = new b2World(gravity);
 ```
 
 	
-	## Unidades de medida
+### Unidades de medida
 	
 Antes de crear cuerpos en el mundo, debemos entender el sistema de coordenadas de Box2D y sus unidades
 	de medida. Los objetos de Box2D se miden en metros, y la librería está optimizada para objetos de 1m, por lo que
@@ -95,7 +95,7 @@ Para todas las unidades de medida Box2D utiliza el sistema métrico. Por ejemplo
 	
 	
 	
-	## Tipos de cuerpos
+### Tipos de cuerpos
 	
 Encontramos tres tipos diferentes de cuerpos en Box2D según la forma en la que queremos que se realice 
 	la simulación con ellos:
@@ -117,7 +117,7 @@ Encontramos tres tipos diferentes de cuerpos en Box2D según la forma en la que 
 	
 	
 	
-	## Creación de cuerpos
+### Creación de cuerpos
 	
 Con todo lo visto anteriormente ya podemos crear distintos cuerpos. Para crear un cuerpo
 	primero debemos crear un objeto de tipo `BodyDef` con las propiedades del cuerpo
@@ -201,7 +201,7 @@ De esta forma, cuando realicemos la simulación podemos obtener
 	
 	
 	
-	## Simulación
+### Simulación
 	
 Ya hemos visto cómo crear el mundo 2D y los cuerpos rígidos. Vamos a ver ahora cómo realizar
 	la simulación física dentro de este mundo. Para realizar la simulación deberemos llamar al
@@ -236,7 +236,7 @@ sprite->setRotation(rot);
 	
 	
 	
-	## Detección de colisiones
+### Detección de colisiones
 	
 Hemos comentado que dentro de la simulación física existen interacciones entre los diferentes
 	objetos del mundo. Podemos recibir notificaciones cada vez que se produzca un contacto entre objetos,
