@@ -1,7 +1,7 @@
 # Summary
 
 * [Introducción](README.md)
-* Videojuegos para móviles
+* [Videojuegos para móviles](videojuegos_para_moviles.md)
 * [El motor Cocos2d-x](introduccion_a_cocos2d-x.md)
 * [Sprites e interacción](sprites_e_interaccion.md)
 * [Escenario y fondos](escenario_y_fondos.md)
