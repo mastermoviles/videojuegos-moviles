@@ -22,17 +22,24 @@ Si queremos implementar un juego cuyo manejo esté basado en _control pad_, ser�
 
 ## Soporte de mandos físicos
 
-### Controladores iCade para iOS
-
-http://www.ionaudio.com/downloads/ION%20Arcade%20Dev%20Resource%20v1.5.pdf
-http://www.raywenderlich.com/8618/adding-icade-support-to-your-game
+Vamos a ver en esta sección cómo integrar soporte para diferentes tipos de mandos _hardware_ en nuestros videojuegos.
 
 ### Controladores oficiales iOS
 
-https://developer.apple.com/library/ios/documentation/ServicesDiscovery/Conceptual/GameControllerPG/Introduction/Introduction.html#//apple_ref/doc/uid/TP40013276-CH1-SW1
+La especificación de mandos para dispositivos iOS aparece a partir de iOS 7. En dicha versión del SDK se incorpora el _framework_ `GameController` que nos permitirá añadir soporte para este tipo de mandos, que llevan la etiqueta MFI (_Made for iPhone/iPod/iPad_), la cual se refiere a todos los dispositivos _hardware_ diseñados para estos dispositivos iOS. 
+
+https://developer.apple.com/library/ios/documentation/ServicesDiscovery/Conceptual/GameControllerPG/Introduction/Introduction.html
 
 ### Controladores oficiales Android
 
+El soporte para controladores de juego en Android está presente a partir de la API 9, aunque se han ido incorporando mejoras en APIs sucesivas.
+
 http://developer.android.com/training/game-controllers/index.html
 
+### Controladores iCade
+
+Estos controladores no utilizan la API oficial, ya que salieron a la venta antes de que ésta existiese. Se comportan como un teclado _bluetooth_, por lo que para utilizarlos simplemente deberemos conocer a qué tecla está mapeado cada botón. Está diseñado para ser utilizado con el iPad, pero puede utilizarse en cualquier dispositivo móvil que lo reconozca como teclado _bluetooth_.
+
+http://www.ionaudio.com/downloads/ION%20Arcade%20Dev%20Resource%20v1.5.pdf
+http://www.raywenderlich.com/8618/adding-icade-support-to-your-game
 
