@@ -24,6 +24,7 @@ Si queremos implementar un juego cuyo manejo est√© basado en _control pad_, ser√
 
 ### Controladores iCade para iOS
 
+http://www.ionaudio.com/downloads/ION%20Arcade%20Dev%20Resource%20v1.5.pdf
 http://www.raywenderlich.com/8618/adding-icade-support-to-your-game
 
 ### Controladores oficiales iOS
