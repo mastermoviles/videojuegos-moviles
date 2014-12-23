@@ -6,6 +6,6 @@
 * [Sprites e interacción](sprites_e_interaccion.md)
 * [Escenario y fondos](escenario_y_fondos.md)
 * [Motor de físicas](motor_de_fisicas.md)
-* Mandos
+* [Mandos](mandos.md)
 * [Ejercicios](ejercicios.md)
 
