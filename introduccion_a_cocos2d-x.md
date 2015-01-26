@@ -12,31 +12,32 @@ La familia de Cocos2D la completa **Cocos2D-html5**, que nos permite crear juego
 Vamos a comenzar estudiando la forma de crear los diferentes componentes de un videojuego mediante
 el motor Cocos2d-x.
 
-Al descargar y descomprimir Cocos2d-x, veremos en el directorio `tools/project-creator` 
-un _script Python_ llamado `create-project.py`.
-Este comando permitirá crear la plantilla para un nuevo proyecto Cocos2d-x multiplataforma. 
+Al descargar y descomprimir Cocos2d-x, veremos en el directorio raiz de la libreria un script llamado `setup.py`. Este hay que ejecutarlo una vez después de haber descomprimido la libreria. Este mismo script nos introducira en nuestro fichero `~/p.profile` las rutas necesarias para utilizar la libreria desde línea de comandos, con lo que debemos ejecutar de manera manual (o introducir esta línea en el `.bashrc`) el comando `source ~/.profile` cada vez que abramos una nueva terminal. 
+
+
+De esta manera tendremos acceso a un script llamado `cocos`que permite entre otras cosas crear la plantilla para un nuevo proyecto Cocos2d-x multiplataforma. 
 Deberemos proporcionar la siguiente información:
 
 ```bash
-python create_project.py -project MiJuego 
-                         -package es.ua.dccia 
-                         -language cpp
+cocos new MiJuego   -p es.ua.dccia 
+                    -l cpp
+                    -d MisProyectosCocos
 ```
 
-Esto nos creará un en la subcarpeta `projects` del directorio de instalación de
-Cocos2d-x la plantilla del nuevo proyecto en todos los sistema soportados. Por ejemplo, si queremos
+Esto nos creará un proyecto (carpeta) `MiJuego` en la subcarpeta `MisProyectosCocos` del directorio de instalación de
+Cocos2d-x. El lenguaje utilizado será C++ (`-l cpp`). La plantilla del nuevo proyecto será la misma para todos los sistema soportados. Por ejemplo, si queremos
 trabajar con la versión de iOS, dentro del directorio de nuestro proyecto entraremos en la
-subcarpeta `proj.ios` y abriremos el proyecto Xcode. Todas las plataformas
+subcarpeta `proj.ios_mac` y abriremos el proyecto Xcode. Todas las plataformas
 comparten los mismos directorio de clases (`Classes`) y recursos (`Resources`) 
 de nuestro juego. Sólo cambian los ficheros de configuración del proyecto que los "envuelve".
 
 Podremos de esta forma crear un nuevo proyecto que contendrá la base para implementar un videojuego
-que utilice las librerías de Cocos2d-x. Todas las clases de esta librería tienen el prefijo `CC`.
-El elemento central de este motor es un _singleton_ de tipo `CCDirector`, al que 
+que utilice las librerías de Cocos2d-x. 
+El elemento central de este motor es un _singleton_ de tipo `Director`, al que 
 podemos acceder de la siguiente forma:
 
 ```cpp
-CCDirector::sharedDirector()
+Director::getInstance()
 ```
 
 
@@ -49,23 +50,14 @@ a sus tipos de datos.
 Por este motivo Cocos2d-x implementa sus propios tipos de datos equivalentes a los de 
 Cocoa Touch para poder trabajar de la misma forma. Vamos a ver cuáles son estos tipos de datos.
 
-Por un lado tenemos la clase `CCObject`. Todos los objetos de la librería
+Por un lado tenemos la clase `Ref`. Todos los objetos de la librería
 heredan en última instancia de esta clase. En ella se define por ejemplo el mecanismo de
 gestión de memoria que utilizan todos los objetos de la librería.
 
-Por otro lado tenemos la clase `CCString`, con la que podemos representar
-cadenas de texto, como alternativa a las cadenas de C de tipo `const char *`. 
+Tenemos una serie de colecciones como `Vector<>`, `Map<>` especiales de Cocos2d-x que tienen en cuenta su modelo particular de memoria. 
 
-También tenemos una serie de colecciones: `CCArray`, `CCDictionary` y
-`CCSet`. En estas colecciones podemos almacenar cualquier objeto derivado de
-`CCObject`. Si queremos almacenar tipos básicos, como `int`, 
-`bool`, `float`, o `double`, deberemos utilizar los
-llamados _wrappers_: `CCInteger`, `CCBool`, `CCFloat`
-y `CCDouble`. Estos son objetos derivados de `CCObject` que "envuelven"
-a los tipos básicos, permitiendo así introducirlos en las colecciones.
-
-Por último, encontramos una serie de tipos de datos geométricos: `CCPoint`, 
-`CCRect` y `CCSize`. Estos tipos de datos incorporan también algunas
+Encontramos también una serie de tipos de datos geométricos: `Point`, 
+`Rect` y `Size`. Estos tipos de datos incorporan también algunas
 operaciones, por ejemplo para comprobar si dos rectángulos intersectan.
 
 
