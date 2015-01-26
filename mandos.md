@@ -40,6 +40,8 @@ http://developer.android.com/training/game-controllers/index.html
 
 Estos controladores no utilizan la API oficial, ya que salieron a la venta antes de que ésta existiese. Se comportan como un teclado _bluetooth_, por lo que para utilizarlos simplemente deberemos conocer a qué tecla está mapeado cada botón. Está diseñado para ser utilizado con el iPad, pero puede utilizarse en cualquier dispositivo móvil que lo reconozca como teclado _bluetooth_.
 
+En los siguientes enlaces se puede encontrar documentación para integrar estos controladores en nuestras aplicaciones:
+
 http://www.ionaudio.com/downloads/ION%20Arcade%20Dev%20Resource%20v1.5.pdf
 http://www.raywenderlich.com/8618/adding-icade-support-to-your-game
 
