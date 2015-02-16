@@ -94,8 +94,7 @@ else { // iPhone
 CCFileUtils::sharedFileUtils()->setSearchPaths(searchPaths);
 pDirector->setContentScaleFactor(resourceSize.width / designSize.width);
 
-CCEGLView::sharedOpenGLView()->setDesignResolutionSize(designSize.width, 
-                               designSize.height, kResolutionFixedWidth);
+cocos2d::Director::getInstance()->getOpenGLView()->setDesignResolutionSize(320, 480, ResolutionPolicy::FIXED_WIDTH);
 ```
 
 En este caso, además de configurar los directorios de recursos fijamos dos ajustes más:
