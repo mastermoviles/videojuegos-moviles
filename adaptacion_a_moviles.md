@@ -129,18 +129,40 @@ Para comprobar que nuestra aplicación se adapta de forma correcta podemos utili
 
 Para resolver este problema podemos utilizar la función `GLView::setFrameZoomFactor`. Con esta función podemos aplicar un factor de _zoom_ al contenido de la ventana. De esta forma podemos tener altas resoluciones, como los 2048x1536 pixeles de un iPad retina, dentro del espacio de nuestra pantalla.
 
-Esta función deberá invocarse únicamente en el código específico de la plataforma de desarrollo (Windows, Linux o Mac). Por ejemplo, en el caso de Mac añadiremos las siguientes líneas al fichero `main.cpp`:
+Esta función deberá invocarse únicamente en el código específico de la plataforma de desarrollo (Windows, Linux o Mac). Por ejemplo, en el caso de Mac añadiremos las siguientes líneas al fichero `AppDelegate.cpp`:
 
 ```cpp
-int main(int argc, char *argv[])
-{
-    AppDelegate app;
-    
+bool AppDelegate::applicationDidFinishLaunching() {
+    // initialize director
+    auto director = Director::getInstance();
+    auto glview = director->getOpenGLView();
+    if(!glview) {
+        glview = GLViewImpl::create("Mi Juego");
+        director->setOpenGLView(glview);
+    }
+
+    // Depuracion multi-resolucion
     GLView* eglView = Director::getInstance()->getOpenGLView();
-    eglView->setFrameSize(2048, 1536);
+    eglView->setFrameSize(1536, 2048);
     eglView->setFrameZoomFactor(0.4f);
     
-    return Application::getInstance()->run();
+    // Soporte multi-resolucion
+    cocos2d::Director::getInstance()->getOpenGLView()->setDesignResolutionSize(768, 1024, ResolutionPolicy::FIXED_WIDTH);
+    
+    // turn on display FPS
+    director->setDisplayStats(true);
+
+    // set FPS. the default value is 1.0/60 if you don't call this
+    director->setAnimationInterval(1.0 / 60);
+
+    // create a scene. it's an autorelease object
+    auto scene = TitleScene::createScene();
+
+    // run
+    director->runWithScene(scene);
+
+    return true;
 }
+
 ```
 
