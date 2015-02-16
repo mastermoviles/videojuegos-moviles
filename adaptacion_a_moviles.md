@@ -110,4 +110,25 @@ el mismo espacio en pantalla que en otros dispositivos con distinta definición.
 en el juego. Además el tercer parámetro permite definir la forma de adaptarse a
 diferentes relaciones de aspecto (recortar, añadir borde, o estirar).
 
+### Depuración del cambio de densidad de pantalla
+
+Para comprobar que nuestra aplicación se adapta de forma correcta podemos utilizar diferentes tamaños de ventana durante el desarrollo. Sin embargo, también será necesario comprobar lo que ocurre al tener diferentes densidades de pantalla, teniendo algunos dispositivos resoluciones superiores a la de nuestra máquina de desarrollo. 
+
+
+Para resolver este problema podemos utilizar la función `GLView::setFrameZoomFactor`. Con esta función podemos aplicar un factor de _zoom_ al contenido de la ventana. De esta forma podemos tener altas resoluciones, como los 2048x1536 pixeles de un iPad retina, dentro del espacio de nuestra pantalla.
+
+Esta función deberá invocarse únicamente en el código específico de la plataforma de desarrollo (Windows, Linux o Mac). Por ejemplo, en el caso de Mac añadiremos las siguientes líneas al fichero `main.cpp`:
+
+```cpp
+int main(int argc, char *argv[])
+{
+    AppDelegate app;
+    
+    GLView* eglView = Director::getInstance()->getOpenGLView();
+    eglView->setFrameSize(2048, 1536);
+    eglView->setFrameZoomFactor(0.4f);
+    
+    return Application::getInstance()->run();
+}
+```
 
