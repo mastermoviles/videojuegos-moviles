@@ -109,6 +109,19 @@ el mismo espacio en pantalla que en otros dispositivos con distinta definición.
 en el juego. Además el tercer parámetro permite definir la forma de adaptarse a
 diferentes relaciones de aspecto (recortar, añadir borde, o estirar).
 
+### Estrategias de adaptación
+
+Hemos visto que el tercer parámetro de `setDesignResolutionSize` nos permite indicar la forma de adaptar la resolución de diseño a la resolución de pantalla cuando la relación de aspecto de ambas resoluciones no coincida. Encontramos las siguientes estrategias:
+
+* `kResolutionShowAll`: Hace que todo el contenido de la resolución de diseño quede dentro de la pantalla, dejando franjas negras en los laterales si la relación de aspecto no es la misma. Estas franjas negras hacen que desperdiciemos espacio de pantalla y causan un efecto bastante negativo, por lo que a pesar de la sencillez de esta estrategia, **no será recomendable** si buscamos un producto con un buen acabado.
+* `kResolutionExactFit`: Hace que el contenido dentro de la resolución de diseño se estire para adaptarse a la resolución de pantalla, deformando el contenido si la relación de aspecto no es la misma. Aunque en este caso se llene la pantalla, la deformación de la imagen también causará muy mal efecto y por lo tanto debemos **evitar utilizar esta técnica**.
+* `kResolutionNoBorder`: Ajusta el contenido de la resolución de diseño a la resolución de pantalla, sin dejar borde y sin deformar el contenido, pero dejando parte de éste fuera de la pantalla si la relación de aspecto no coincide. En este caso no habrá problema si implementamos el juego de forma correcta, ayudándonos de los métodos `Director::getInstance()->getVisibleSize()` y `Director::getInstance()->getVisibleOrigin()` que nos darán el tamaño y el origen, respectivamente, de la zona visible de nuestra resolución de diseño. De esta forma deberemos asegurarnos de dibujar todos los componentes del HUD dentro de esta zona, y a la hora de implementar _scroll_ lo alinearemos de forma correcta con el origen de la zona visible. 
+* `kResolutionFixedHeight`, `kResolutionFixedWidth` modifican la resolución de diseño para que tenga la misma relación de aspecto que la resolución de pantalla, manteniendo fija la altura o la anchura de diseño respectivamente. Podremos consultar la resolución de diseño con `Director::getInstance()->getWinSize()`. En estos casos toda la resolución de diseño es visible en pantalla, pero ésta puede variar en altura o en anchura, según la estrategia indicada. 
+
+¿Qué estrategia debemos utilizar? Dependerá de lo que busquemos en nuestro juego, pero normalmente nos quedaremos con `kResolutionNoBorder`, `kResolutionFixedHeight` o `kResolutionFixedWidth`. Por ejemplo, si tenemos un plataformas de avance lateral, normalmente querremos que la altura sea fija, por lo que `kResolutionFixedHeight` podría ser la opción más adecuada. Si por el contrario es un juego de naves que avanza hacia arriba, será más adecuado `kResolutionFixedWidth`. En un juego de rol con vista cenital con _scroll_ en cualquier dirección y el personaje centrado en pantalla podría venir bien `kResolutionNoBorder`, nos da igual la parte que quede cortada siempre que en el caso de haber HUD nos aseguremos de dibujarlo dentro de la zona visible. 
+
+
+
 ### Depuración del cambio de densidad de pantalla
 
 Para comprobar que nuestra aplicación se adapta de forma correcta podemos utilizar diferentes tamaños de ventana durante el desarrollo. Sin embargo, también será necesario comprobar lo que ocurre al tener diferentes densidades de pantalla, teniendo algunos dispositivos resoluciones superiores a la de nuestra máquina de desarrollo. 
