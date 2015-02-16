@@ -150,12 +150,12 @@ todos estos detalles.
 
 ## Escena 2D
 
-En Cocos2D cada pantalla se representa mediante un objeto de tipo `CCScene`.
+En Cocos2D cada pantalla se representa mediante un objeto de tipo `Scene`.
   En la pantalla del juego se dibujarán todos los elementos necesarios (fondos, _sprites_, etc) para construir 
   la escena del juego. De esta manera tendremos el fondo, nuestro personaje, los 
   enemigos y otros objetos que aparezcan durante el juego, además de marcadores 
   con el número de vidas, puntuación, etc. Todos estos elementos se representan
-  en Cocos2D como nodos del tipo `CCNode`. La escena se compondrá de una
+  en Cocos2D como nodos del tipo `Node`. La escena se compondrá de una
   serie de nodos organizados de forma jerárquica. Entre estos nodos podemos encontrar
   diferentes tipos de elementos para construir la interfaz del videojuego, como etiquetas
   de texto, menús, _sprites_, fondos, etc. Otro de estos tipos de nodos son las capas.
@@ -166,7 +166,7 @@ La escena se podrá componer de una o varias capas. Los _sprites_ y fondos
   todo su contenido en la pantalla. Pondremos varios elementos en una misma capa
   cuando queramos poder moverlos de forma conjunta.
 
-Las capas en Cocos2D se representan mediante la clase `CCLayer`. Las escenas
+Las capas en Cocos2D se representan mediante la clase `Layer` o `Node` (en las últimas versiones del motor las diferencias entre ambas clases son mínimas, y se recomienda organizar el juego mediante nodos). Las escenas
 podrán componerse de una o varias capas, y estas capas contendrán los distintos nodos
 a mostrar en pantalla, que podrían ser a su vez otras capas. Es decir, la escena
 se representará como un grafo, en el que tenemos una jerarquía de nodos, en la que
@@ -178,15 +178,15 @@ Este tipo de representación se conoce como **escena 2D**.
 
 
 Normalmente para cada pantalla del juego tendremos una capa principal, y encapsularemos
-el funcionamiento de dicha pantalla en una subclase de `CCLayer`, por ejemplo:
+el funcionamiento de dicha pantalla en una subclase de `Layer`, por ejemplo:
 
 ```cpp
-class MenuPrincipal : public cocos2d::CCLayer
+class MenuPrincipal : public cocos2d::Layer
 {
 public:
     virtual bool init();
     
-    static cocos2d::CCScene* scene();
+    static cocos2d::Scene* scene();
     
     CREATE_FUNC(MenuPrincipal);
 };
@@ -199,9 +199,9 @@ ese motivo está declarada en la interfaz de clase anterior. Podemos añadir
 un nodo como hijo de otro nodo con el método `addChild`:
 
 ```cpp
-CCScene* MenuPrincipal::scene()
+Scene* MenuPrincipal::scene()
 {
-    CCScene *scene = CCScene::create();
+    Scene *scene = Scene::create();
     MenuPrincipal *layer = MenuPrincipal::create();
     scene->addChild(layer, 0);    
     return scene;
@@ -216,7 +216,7 @@ podremos definir la forma en la que se inicializa:
 bool MenuPrincipal::init()
 {
     // Inicializar primero la superclase
-    if ( !CCLayer::init() )
+    if ( !Layer::init() )
     {
         return false;
     }
@@ -242,7 +242,7 @@ El orden en el que se mostrarán las capas es lo que se conoce como orden Z,
 Mostraremos la escena inicial del juego con el método `runWithScene` del director:
 
 ```cpp
-CCDirector::sharedDirector()->runWithScene(MenuPrincipal::scene());
+Director::getInstance()->runWithScene(MenuPrincipal::scene());
 ```
 
 Con esto pondremos en marcha el motor del juego mostrando la escena indicada. Si el motor
@@ -250,19 +250,19 @@ ya está en marcha y queremos cambiar de escena, deberemos hacerlo con el métod
 `replaceScene`:
 
 ```cpp
-CCDirector::sharedDirector()->replaceScene(Puntuaciones::scene());
+Director::getInstance()->replaceScene(Puntuaciones::scene());
 ```
 
 También podemos implementar transiciones entre escenas de forma animada utilizando como escena
-una serie de clases todas ellas con prefijo `CCTransition-`, que heredan de `CCTransitionScene`,
-que a su vez hereda de `CCScene`. Podemos mostrar una transición animada reemplazando la
+una serie de clases todas ellas con prefijo `Transition-`, que heredan de `TransitionScene`,
+que a su vez hereda de `Scene`. Podemos mostrar una transición animada reemplazando la
 escena actual por una escena de transición:
 
 ```cpp
-CCScene *puntuacionesScene = Puntuaciones::scene();
-CCTransitionCrossFade *transition = 
-    CCTransitionCrossFade::create(0.5, gameScene);
-CCDirector::sharedDirector()->replaceScene(transition);
+Scene *puntuacionesScene = Puntuaciones::scene();
+TransitionCrossFade *transition = 
+    TransitionCrossFade::create(0.5, gameScene);
+Director::getInstance()->replaceScene(transition);
 ```
 
 Podemos observar que la escena de transición se construye a partir de la duración de la 
@@ -286,10 +286,10 @@ Tenemos dos formas alternativas de crear una etiqueta de texto:
 
 La primera opción es la más sencilla, ya que podemos crear la cadena directamente a partir de un tipo
 de fuente ya existen y añadirla a la escena con `addChild` (por ejemplo añadiéndola como hija
-de la capa principal de la escena). Se define mediante la clase `CCLabelTTF`:
+de la capa principal de la escena). Se define mediante la clase `LabelTTF`:
 
 ```cpp
-CCLabelTTF* label = CCLabelTTF::create("Game Over", "Arial", 24);
+LabelTTF* label = LabelTTF::create("Game Over", "Arial", 24);
 this->addChild(label);
 ```
 
@@ -299,10 +299,10 @@ videojuegos soportan el formato `.fnt`, con el que podemos definir fuentes de ti
 _bitmap_ personalizadas. Para crear una fuente con dicho formato podemos utilizar herramientas
 como **Angel Code** o **Hiero** (http://www.n4te.com/hiero/hiero.jnlp).
 Una vez creada la fuente con este formato, podemos mostrar una cadena con dicha fuente mediante
-la clase `CCLabelBMFont`:
+la clase `LabelBMFont`:
 
 ```cpp
-CCLabelBMFont *label = CCLabelBMFont::create("Game Over", "fuente.fnt");
+LabelBMFont *label = LabelBMFont::create("Game Over", "fuente.fnt");
 this->addChild(label);
 ```
 
