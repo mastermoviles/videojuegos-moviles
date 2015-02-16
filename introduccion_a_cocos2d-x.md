@@ -24,8 +24,7 @@ cocos new MiJuego   -p es.ua.dccia
                     -d MisProyectosCocos
 ```
 
-Esto nos creará un proyecto (carpeta) `MiJuego` en la subcarpeta `MisProyectosCocos` del directorio de instalación de
-Cocos2d-x. El lenguaje utilizado será C++ (`-l cpp`). La plantilla del nuevo proyecto será la misma para todos los sistema soportados. Por ejemplo, si queremos
+Esto nos creará un proyecto (carpeta) `MiJuego` en la subcarpeta `MisProyectosCocos` del directorio donde nos encontremos. El lenguaje utilizado será C++ (`-l cpp`). La plantilla del nuevo proyecto será la misma para todos los sistema soportados. Por ejemplo, si queremos
 trabajar con la versión de iOS, dentro del directorio de nuestro proyecto entraremos en la
 subcarpeta `proj.ios_mac` y abriremos el proyecto Xcode. Todas las plataformas
 comparten los mismos directorio de clases (`Classes`) y recursos (`Resources`) 
