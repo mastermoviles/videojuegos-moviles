@@ -45,3 +45,6 @@ En los siguientes enlaces se puede encontrar documentación para integrar estos 
 http://www.ionaudio.com/downloads/ION%20Arcade%20Dev%20Resource%20v1.5.pdf
 http://www.raywenderlich.com/8618/adding-icade-support-to-your-game
 
+### Controladores en Cocos2d-x
+
+En Cocos2d-x encontramos el _listener_ `EventListenerController` que nos permite incorporar soporte para mandos físicos de forma sencilla. 
