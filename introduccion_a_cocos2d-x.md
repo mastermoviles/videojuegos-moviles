@@ -318,19 +318,16 @@ podemos utilizar imágenes para darles un aspecto más vistoso. El menú se aña
 otro tipo de _item_:
 
 ```cpp
-CCMenuItemImage *item1 = CCMenuItemImage::create(
-      "nuevo_juego.png", "nuevo_juego_selected.png", this, 
-      menu_selector(MenuPrincipal::menuNuevoJuegoCallback));
+MenuItemImage *item1 = MenuItemImage::create(
+      "nuevo_juego.png", "nuevo_juego_selected.png", CC_CALLBACK_1(MenuPrincipal::menuNuevoJuegoCallback, this));
       
-CCMenuItemImage *item2 = CCMenuItemImage::create(
-      "continuar.png", "continuar_selected.png", this, 
-      menu_selector(MenuPrincipal::menuContinuarCallback));
+MenuItemImage *item2 = MenuItemImage::create(
+      "continuar.png", "continuar_selected.png", CC_CALLBACK_1(MenuPrincipal::menuContinuarCallback, this));
 
-CCMenuItemImage *item3 = CCMenuItemImage::create(
-      "opciones.png", "opciones_selected.png", this, 
-      menu_selector(MenuPrincipal::menuOpcionesCallback));
+MenuItemImage *item3 = MenuItemImage::create(
+      "opciones.png", "opciones_selected.png", CC_CALLBACK_1(MenuPrincipal::menuOpcionesCallback, this));
   
-CCMenu* menu = CCMenu::create(item1, item2, item3, NULL);
+Menu* menu = Menu::create(item1, item2, item3, NULL);
 menu->alignItemsVertically();    
 
 this->addChild(menu);  
@@ -344,9 +341,9 @@ el método al que se va a invocar. Los métodos indicados como _selectores_ de t
 deberán tener la siguiente forma:
 
 ```cpp
-void MenuPrincipal::menuNuevoJuegoCallback(CCObject* pSender)
+void MenuPrincipal::menuNuevoJuegoCallback(Ref* pSender)
 {
-    CCDirector::sharedDirector()->replaceScene(Game::scene());
+    Director::getInstance()->replaceScene(Game::scene());
 }
 ```
 
