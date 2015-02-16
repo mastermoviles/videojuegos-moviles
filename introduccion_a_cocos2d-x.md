@@ -364,7 +364,7 @@ añadimos el menú a la escena.
 La memoria en Cocos2d-x se gestiona mediante cuenta de referencias, siguiendo el mismo
 mecanismo de gestión de memoria que utiliza Cocos2d al estar implementado en Objective-C. 
 Este mecanismo consiste en que los objetos de la librería (todos aquellos derivan de
-`CCObject`) tienen un contador de referencias que existen hacia ellos. 
+`Ref`) tienen un contador de referencias que existen hacia ellos. 
 Cuando el contador de referencias llegue a cero, el objeto se eliminará de memoria.
 
 Al instanciar un objeto (con `new`) el objeto se crea con 1 referencia.
