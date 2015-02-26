@@ -5,12 +5,12 @@ para móviles son aquellos juegos basados en físicas. Estos juegos son aquellos
 el motor realiza una simulación física de los objetos en pantalla, siguiendo las leyes
 de la cinemática y la dinámica. Es decir, los objetos de la pantalla están sujetos a 
 gravedad, cada uno de ellos tiene una masa, y cuando se produce una colisión entre ellos
-se produce una fuerza que dependerá de su velocidad y su masa. El motor físico se 
+se produce una fuerza de reacción que dependerá de su velocidad y su masa. El motor de físicas se 
 encarga de realizar toda esta simulación, y nosotros sólo deberemos encargarnos de
-proporcionar las propiedades de los objetos en pantalla. Uno de los motores físicos más
+proporcionar las propiedades de los objetos del mundo. Uno de los motores físicos más
 utilizados es Box2D, originalmente implementado en C++. Se ha utilizado para implementar juegos tan conocidos y exitosos
 como Angry Birds. Podemos encontrar ports de este motor para las distintas
-plataformas móviles. Motores como Cocos2D y libgdx incluyen una implementación de este
+plataformas móviles. Motores como Cocos2D, libgdx y Unity incluyen una implementación de este
 motor de físicas.
 
 
@@ -38,10 +38,9 @@ Los componentes básicos que nos permiten realizar la simulación física con Bo
 	la gravedad del mundo, y por la interacción con los otros cuerpos. Cada cuerpo tendrá una serie de
 	propiedades físicas, como su masa o su centro de gravedad.
 	
-* `Fixture`: Es el objeto que se encarga de fijar las propiedades de un cuerpo, como
-	por ejemplo su forma, coeficiente de rozamiento o densidad. 
+* `Fixture`: Es el objeto que se encarga de fijar las propiedades de un cuerpo, como su forma, coeficiente de rozamiento o densidad. Un cuerpo podría contener varias _fixtures_, para así poder crear formas más complejas combinando formas básicas.
 	
-* `Shape`: Sirve para especificar la forma de un cuerpo. Hay distintos tipos de formas (subclases de
+* `Shape`: Sirve para especificar la forma de una _fixture_. Hay distintos tipos de formas (subclases de
 	`Shape`), como por ejemplo `CircleShape` y `PolygonShape`, para crear cuerpos
 	con formar circulares o poligonales respectivamente.
 	
@@ -104,10 +103,9 @@ Encontramos tres tipos diferentes de cuerpos en Box2D según la forma en la que 
 * **Dinámicos**: Están sometidos a las leyes físicas, y tienen una masa concreta y finita. Estos
 	cuerpos se ven afectados por la gravedad y por la interacción con los demás cuerpos.
 * **Estáticos**: Son cuerpos que permanecen siempre en la misma posición. Equivalen a cuerpos
-	con masa infinita. Por ejemplo, podemos hacer que el escenario sea estático.
+	con masa infinita. Por ejemplo, podemos hacer que el escenario sea estático. Es importante no mover aquellos cuerpos que hayan sido marcados como estáticos, ya que el motor podría no responder de forma correcta.
 * **Cinemáticos**: Al igual que los cuerpos estáticos tienen masa infinita y no se ven afectados
-	por otros cuerpos ni por la gravedad. Sin embargo, en esta caso no tienen una posición fija, sino que tienen
-	una velocidad constante. Nos son útiles por ejemplo para proyectiles.
+	por otros cuerpos ni por la gravedad. Sin embargo, en esta caso no tienen una posición fija, sino que podemos moverlos por el mundo. Nos son útiles por ejemplo para proyectiles.
 	
 	
 ![Tipos de cuerpos en Box2D](imagenes/fisicas/box2d_cuerpos.jpg)
@@ -157,7 +155,7 @@ b2Fixture *bodyFixture = body->CreateFixture(&bodyShape, 1.0f);
 ```
 	
 También podemos crear los límites del escenario mediante cuerpos de tipo
-	estático y con forma de arista (_edge_):
+	estático y combinando varios _fixtures_ con forma de arista (_edge_):
 	
 ```cpp
 b2BodyDef limitesBodyDef;
@@ -212,17 +210,14 @@ Ya hemos visto cómo crear el mundo 2D y los cuerpos rígidos. Vamos a ver ahora
 world->Step(delta, 6, 2);
 world->ClearForces();
 ```
+
+> **Recomendación**: Conviene utilizar un _delta time_ fijo para el motor de físicas, para así obtener resultados predecibles en la simulación (por ejemplo 60 fps). Si el _frame rate_ del _render_ es distinto podemos interpolar las posiciones.
 	
-Además, los algoritmos de simulación física son iterativos. Cuantas más iteraciones se realicen
-	mayor precisión se obtendrá en los resultados, pero mayor coste tendrán. El segundo y el tercer
-	parámetro de `step` nos permiten establecer el número de veces que debe iterar el algoritmo
-	para resolver la posición y la velocidad de los cuerpos respectivamente. Tras hacer la simulación,
-	deberemos limpiar las fuerzas acumuladas sobre los objetos, para que no se arrastren estos resultados
-	a próximas simulaciones.
-	
-Tras hacer la simulación deberemos actualizar las posiciones de los _sprites_ en pantalla
-	y mostrarlos. Por ejemplo, si hemos vinculado el `Sprite` al cuerpo mediante la propiedad
-	`userData`, podemos recuperarlo y actualizarlo de la siguiente forma:
+Además, los algoritmos de simulación física son iterativos. Con cada iteración se busca resolver las colisiones y restricciones de los objetos del mundo para aproximar su posición y velocidad. Cuantas más iteraciones se realicen mayor precisión se obtendrá en los resultados, pero mayor coste tendrán. El segundo y el tercer	parámetro de `step` nos permiten establecer el número de veces que debe iterar el algoritmo	para resolver la posición y la velocidad de los cuerpos respectivamente. Tras hacer la simulación, deberemos limpiar las fuerzas acumuladas sobre los objetos, para que no se arrastren estos resultados a próximas simulaciones.
+
+> **Recomendación**: Un valor recomendable para las iteraciones de posición y velocidad es 8 y 3 respectivamente.
+
+Tras hacer la simulación deberemos actualizar las posiciones de los _sprites_ en pantalla y mostrarlos. Por ejemplo, si hemos vinculado el `Sprite` al cuerpo mediante la propiedad `userData`, podemos recuperarlo y actualizarlo de la siguiente forma:
 	
 ```cpp
 CCSprite *sprite = (CCSprite *)body->GetUserData();
@@ -233,17 +228,157 @@ sprite->setPosition(ccp(pos.x*PTM_RATIO, pos.y*PTM_RATIO));
 sprite->setRotation(rot);
 ```
 
+### Formas de los objetos
+
+Hemos visto que mediante _fixtures_ podemos asignar diferentes formas a los objetos del mundo, como círculos, polígonos y aristas.
 	
+#### Círculos
+
+Es la forma más sencilla. Se crea simplemente indicando su centro y su radio, y el cálculo de colisiones con ellos es muy eficiente.
+
+```cpp
+b2CircleShape circle; 
+circle.m_p.Set(0.0f, 0.0f); // Centro
+circle.m_radius = 0.5f;     // Radio
+```
+
+#### Polígonos
+
+Nos permite crear formas arbitrarias convexas. Es importante destacar que los polígonos siempre serán convexos y cerrados, y sus vértices se definirán en sentido contrario a las agujas del reloj (CCW). El cálculo de colisiones con formas cóncavas es demasiado complejo para el motor de físicas.
+
+```cpp
+b2Vec2 vertices[kNUM_VERTICES];  // Vertices definidos en orden CCW
+vertices[0].Set(-1.0f, 0.0f); 
+vertices[1].Set(1.0f, 0.0f); 
+vertices[2].Set(0.0f, 2.0f);
+
+b2PolygonShape polygon; 
+polygon.Set(vertices, kNUM_VERTICES);
+```
+
+Un caso particular de los polígonos son las cajas. Al ser este tipo de polígonos muy común, se proporciona un método para crearlas de forma automática a partir de su media altura y anchura:
+
+```cpp
+b2PolygonShape box;
+bodyShape.SetAsBox(0.5, 0.5); // Crea una caja de 1m x 1m
+```
+
+#### Aristas
+
+Las aristas (_edges_) son segmentos de línea que normalmente se utilizan para construir la geometría del escenario estático, que podrá tener una forma arbitraria. Podemos 
 	
+```cpp
+b2Vec2 v1(0.0f, 0.0f); // Inicio del segmento
+b2Vec2 v2(1.0f, 0.0f); // Fin del segmento
+
+b2EdgeShape edge;
+edge.Set(v1, v2);
+```
+
+#### Cadenas
+
+Las cadenas nos permiten unir varias aristas para así definir la geometría estática del escenario y evitar que se puedan producir "baches" en las juntas entre diferentes aristas. 
+
+```cpp 
+b2Vec2 v[kNUM_VERTICES];
+v[0].Set(0.0f, 0.0f);
+v[1].Set(1.0f, 0.25f);
+v[2].Set(2.0f, 1.0f);
+v[3].Set(3.0f, 1.25f);
+
+b2ChainShape chain; 
+chain.CreateChain(vs, kNUM_VERTICES);
+```
+
+> **Cuidado**: Las aristas de la cadena no deben intersectar entre si. Esto no está previsto por el motor, por lo que puede producir efectos inesperados.
+
 	
+#### Formas compuestas
+
+Si ninguno de los tipos anteriores de formas se adapta a nuestras necesidades, como por ejemplo en el caso de necesitar una forma cóncava, podemos definir la forma del cuerpo como una composición de formás básicas. Esto lo podemos conseguir añadiendo múltiples _fixtures_ a un cuerpo, cada una de ellas con una forma distinta. Esto será útil para cuerpos dinámicos con formas complejas.
+
+
+### Propiedades de los cuerpos
+
+Los cuerpos y _fixtures_ tienen una serie de propiedades que nos permiten definir su comportamiento en la simulación física. Hemos visto algunas básicas como la masa y la forma, que se indican en el momento de crear una _fixture_. Vamos a ver ahora otras propiedades físicas de los objetos.
+
+#### Resistencia al aire
+
+Para cada cuerpo podemos indicar una constante de resistencia al aire (_damping_), tanto lineal como angular. La resistencia al aire es la fuerza que hará que la velocidad del objeto disminuya, aunque no esté en contacto con ningún otro cuerpo. Cuánta mayor sea la velocidad, más fuerza ejercerá la resistencia al aire para pararlo. Es recomendable indicar una resistencia al aire para que los cuerpos no se muevan (o roten) de forma indefinida:
+
+```cpp
+bodyDef.linearDamping = 0.1f; 
+bodyDef.angularDamping = 0.25f;
+```
+
+#### Fricción
+
+La fricción es la fuerza que hace que un objeto se pare al deslizarse sobre otro, debido a rugosidades de la superficie. A diferencia de la resistencia al aire, esta fuerza sólo se ejercerá cuando dos _fixtures_ estén en contacto. La fricción se define a nivel de _fixture_:
+
+```cpp
+fixtureDef.friction = 0.25f;
+```
+
+#### Restitución
+
+La restitución nos indica la forma en la que responderá un objeto al colisionar con otro, permitiendo que los objetos permanezcan juntos o reboten. Una restitución 0 indica que el objeto no rebotará el colisionar, mientras que el valor 1 indica que al colisionar rebota y en el rebote se restituye toda la velocidad que tenía en el momento previo a la colisión.
+
+```cpp
+fixtureDef.restitution = 0.5f;
+```
+
+
 ### Detección de colisiones
 	
-Hemos comentado que dentro de la simulación física existen interacciones entre los diferentes
-	objetos del mundo. Podemos recibir notificaciones cada vez que se produzca un contacto entre objetos,
-	para así por ejemplo aumentar el daño recibido.
+Hemos comentado que dentro de la simulación física existen interacciones entre los diferentes objetos del mundo. Encontramos diferentes formas de consultar las colisiones de los objetos del mundo con otros objetos y otros elementos.
+
+#### Colisiona con un punto del mundo
+
+Un _test_ sencillo consiste en comprobar si la forma de una _fixture_ ocupa un determinado punto del mundo. Esto es útil por ejemplo cuando tocamos sobre la pantalla táctil, para comprobar si en el punto sobre el que hemos pulsado hay un determinado objeto. Este método se aplica sobre una _fixture_ concreta:
+
+```cpp
+b2Transfrom transform;
+transform.SetIdentity(); 
+b2Vec2 point(touch_x / PTM_RATIO, touch_y / PTM_RATIO);
+
+bool hit = fixture->TestPoint(transform, point);
+```
+
+#### Trazado de rayos
 	
-Podremos recibir notificaciones mediante un objeto que implemente la interfaz `ContactListener`. 
-	Esta interfaz nos forzará a definir los siguientes métodos:
+Otro _test_ disponible es el trazado de rayos. Consiste en lanzar un rayo desde una determinada posición del mundo en una determinada dirección y comprobar cuál es el primer objeto del mundo físico con el que impacta. 
+
+Esto es especialmente útil para implementar por ejemplo los disparos de nuestro personaje. Al ser la bala un objeto extremadamente rápido, no es conveniente simular su movimiento con el motor de físicas, ya que podría producirse el efecto conocido como _tunneling_, atravesando objetos al dar un gran salto en su posición de una iteración a la siguiente. En este caso es mejor simplemente considerar la bala como algo instantáneo, y encontrar en el mismo momento en que se dispara el objeto con el que impactaría lanzando un rayo.
+
+Puede aplicarse para una _fixture_ concreta para saber si el rayo impacta con ella:
+
+```cpp
+b2RayCastInput input; 
+input.p1.Set(0.0f, 0.0f, 0.0f); // Punto inicial del rayo
+input.p2.Set(1.0f, 0.0f, 0.0f); // Punto final del rayo
+input.maxFraction = 1.0f; 
+
+b2RayCastOutput output;
+bool hit = fixture->RayCast(&output, input, 0); 
+if (hit) {
+    b2Vec2 hitPoint = input.p1 + output.fraction * (input.p2 – input.p1);
+    b2Vec2 normal = output.normal;
+}
+```
+
+Como salida tenemos la siguiente información del punto de impacto:
+
+* _Fracción_: Tomando como referencia el vector desde el punto inicial al final del rayo, nos indica por cuánto debemos multiplicar dicho vector para encontrar el punto de impacto. Como entrada debemos especificar la fracción máxima hasta la que vamos a buscar el impacto. Por ejemplo, si la fracción es 1.0 el punto de impacto coincidirá con el punto final del rayo, mientras que si es 0.5 el impacto estaría justo a la mitad del vector del rayo.
+* _Normal_: Nos indica la dirección normal de la superficie sobre la que ha impactado el rayo. De esta forma podremos saber si hemos impactado de lado o de frente, y así aplicar distinto nivel de daño en cada caso, o aplicar una fuerza al objeto en la dirección en la que haya recibido el impacto.
+
+También podría aplicarse sobre el mundo, para buscar la primera _fixture_ con la que impacte. En este caso necesitaremos utilizar un objeto `b2RayCastCallback` para obtener la información del primer _fixture_ con el que impacte y los datos del impacto.
+
+	
+#### Colisiones entre cuerpos
+	
+Podemos recibir notificaciones cada vez que se produzca un contacto entre objetos del mundo, para así por ejemplo aumentar el daño recibido.
+	
+Podremos recibir notificaciones mediante un objeto que implemente la interfaz `ContactListener`. Esta interfaz nos forzará a definir los siguientes métodos:
 	
 ```cpp
 class MiContactListener : public b2ContactListener {
@@ -299,9 +434,10 @@ void MiContactListener::BeginContact(b2Contact* contact) {
 	
 De esta forma, además de detectar colisiones podemos también saber la velocidad a la que han chocado,
 	para así poder aplicar un diferente nivel de daño según la fuerza del impacto.
-	
-También podemos utilizar `postSolve` para obtener el impulso ejercido sobre los cuerpos
-    en contacto en cada instante:
+
+El objeto _manifold_ nos da el conjunto de puntos que define el contacto. En el caso de la colisión de una esfera con una superficie siempre será un único punto, pero en el caso de una caja puede ocurrir que toda una cara de la caja colisione con la superficie. En este caso el _manifold_ nos devolerá los puntos de los extremos de la cara que colisiones con la superficie. 
+
+También podemos utilizar `PostSolve` para obtener el impulso ejercido sobre los cuerpos en contacto en cada instante:
 
 ```cpp
 void MiContactListener::PostSolve(b2Contact* contact, 
@@ -314,9 +450,18 @@ void MiContactListener::PostSolve(b2Contact* contact,
 }
 ```
 
-Debemos tener en cuenta que `BeginContact` sólo será llamado una vez, al comienzo del
-    contacto, mientras que `PostSolve` nos informa en cada iteración de las fuerzas ejercidas
-    entre los cuerpos en contacto.
+Debemos tener en cuenta que `BeginContact` sólo será llamado una vez, al comienzo del contacto, mientras que `PostSolve` nos informa en cada iteración de las fuerzas ejercidas entre los cuerpos en contacto para mantener uno en reposo sobre otro.
+
+
+#### Sensores
+
+En el punto anterior hemos visto cómo detectar colisiones entre cuerpos que producen una respuesta (fuerza de reacción). En algunos casos nos interesa que en el motor de físicas se detecten colisiones con un cuerpo, pero que no produzcan una respuesta en la simulación física. Por ejemplo, podríamos tener una zona en la que al entrar algún cuerpo queramos que se abra alguna puerta. Esto podemos conseguirlo mediante sensores. Podemos hacer que una _fixture_ se comporte como sensor mediante su propiedad `isSensor`:
+
+```cpp
+fixtureDef.isSensor = TRUE;
+```
+
+Al ser un sensor otros objetos atravesará esta _fixture_, pero podremos detectar las colisiones mediante los métodos `BeginContact` y `EndContact` de una `ContactListener`.
 
 
 
