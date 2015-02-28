@@ -381,19 +381,26 @@ $$\mathbf{f}_{resistencia} = -\mathbf{\hat{v}}(k_{damping} |\mathbf{v}| $$
 
 Donde $$k_{damping}$$ es la constante de _damping_ especificada para el cuerpo, y $$\mathbf{\hat{v}}$$ el vector de velocidad normalizado (vector unitario con la dirección de la velocidad). Podemos ver que la fuerza actúa en el sentido opuesto a la velocidad del objeto (lo frena), y con una magnitud proporcional a la velocidad.
 
-A parte de las fuerzas de gravedad, resistencia al aire, y las fuerzas ejercidas entre cuerpos en contacto, también podemos aplicar una fuerza manualmente sobre un determinado cuerpo. Para ello deberemos indicar el vector de fuerza y el punto del objeto donde se aplicará dicha fuerza relativo a su centro de masas:
+A parte de las fuerzas de gravedad, resistencia al aire, y las fuerzas ejercidas entre cuerpos en contacto, también podemos aplicar una fuerza manualmente sobre un determinado cuerpo. Para ello deberemos indicar el vector de fuerza y el punto del objeto donde se aplicará dicha fuerza:
 
 ```cpp
-body.ApplyForce(b2Vec(5.0, 2.0), b2Vec(0.0, 0.0));
+body.ApplyForce(b2Vec(5.0, 2.0), body.GetPosition());
 ```
 
-Las unidades en las que especificaremos la fuerza son $$N$$ ($$\frac{kg·m}{s^2}$$). 
+Las unidades en las que especificaremos la fuerza son _Newtons_ ($$N = \frac{kg·m}{s^2}$$). 
 
-Si el punto del objeto al que aplicamos la fuerza no es su centro de masas, la fuerza producirá además que el objeto rote. Podemos también aplicar un par de fuerzas (_torque_) para producir una rotación del objeto alrededor de su centro de masas sin producir una traslación:
+Si el punto del objeto al que aplicamos la fuerza no es su centro de masas, la fuerza producirá además que el objeto rote. Si nos interesa siempre aplicar la fuerza en el centro, podemos utilizar el método:
+
+```cpp
+body.ApplyForceToCenter(b2Vec(5.0, 2.0));
+```
+
+Podemos también aplicar un par de fuerzas (_torque_) para producir una rotación del objeto alrededor de su centro de masas sin producir una traslación:
 
 ```cpp
 body.ApplyTorque(2.0);
 ```
+El _torque_ se indica en $$N·m$$.
 
 #### Impulsos
 
@@ -415,7 +422,19 @@ Considerando $$\Delta v = v' - v$$, donde $$v$$ es la velocidad previa a la apli
 v' = v + \frac{1}{m}g
 \end{equation}
 
+En Box2D podremos aplicar un impulso sobre un punto de un cuerpo (al igual que en el caso de la fuerza) con:
 
+```cpp
+body.ApplyImpulse(b2Vec(5.0, 2.0, body.GetPosition());
+```
+
+El impulso lineal se especifica en $$N·s$$. Podemos también aplicar un impulso angular con:
+
+```
+body.ApplyAngularImpulse(2.0);
+```
+
+Las unidades en este caso son $$N·m·s$$ (es decir, $$kg\frac{m^2}{s}$$). 
 
 ### Detección de colisiones
 	
