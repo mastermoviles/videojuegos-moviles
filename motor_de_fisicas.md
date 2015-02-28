@@ -327,9 +327,11 @@ La restitución nos indica la forma en la que responderá un objeto al colisiona
 fixtureDef.restitution = 0.5f;
 ```
 
-### Fuerzas e impulsos
+### Dinámica de cuerpos rígidos
 
-#### Fuerzas
+Vamos a ver con mayor detalle la forma en la que se aplican fuerzas e impulsos sobre los cuerpos del mundo.
+
+#### Fuerza y masa
 
 Siguiendo la segunda ley de Newton, la fuerza que se debe aplicar sobre un objeto para producir una determinada aceleración se calcula de la siguiente forma:
 
@@ -339,9 +341,46 @@ Sin embargo, en nuestro motor de físicas lo que realmente nos interesa es conoc
 
 $$\mathbf{a} = \frac{1}{m}\mathbf{f}$$
 
-Podemos ver que aquí multiplicamos la fuerza por la **inversa de la masa**. Dado que este cálculo es frecuente, para evitar tener que calcular la inversa en cada momento, será recomendable almacenar la masa inversa de los cuerpos, en lugar de almacenar la masa. 
+Podemos ver que aquí multiplicamos la fuerza por la **inversa de la masa**. Dado que este cálculo es frecuente, para evitar tener que calcular la inversa en cada momento, normalmente los motores almacenan la masa inversa de los cuerpos, en lugar de almacenar la masa. 
 
 Almacenar la masa inversa tiene una ventaja importante. Para hacer que un cuerpo sea estático (que no se vea afectado por las fuerzas que sobre él se ejerzan) lo que haremos es dar a ese cuerpo masa infinita. Este valor infinito podría crear dificultades en el código, y la necesidad de tratar casos especiales. Si trabajamos únicamente con masa inversa, bastará con darle un valor 0 a la masa inversa para hacer el cuerpo estático. 
+
+En el caso de Box2D en lugar de indicar la masa al crear una _fixture_ indicamos su densidad (medida en $$\frac{kg}{m^2}$$). En función del tamaño de la forma y de su densidad la librería calculará de forma automática la masa. 
+
+```cpp
+fixtureDef.density = 1.0;
+```
+
+Podemos modificar las propiedades de masa de un cuerpo con el método `SetMassData`. 
+
+```cpp
+b2MassData md;
+md.mass = 2.0;
+md.center = b2Vec(1.0, 0.0);
+md.I = 1.0;
+
+body.SetMassData(md);
+```
+
+De esta forma además de la masa podremos especificar el centro de masas y el momento de inercia. El momento de inercia nos permitirá indicar qué par de fuerzas (_torque_) deberemos ejercer para producir una determinada aceleración angular, de la misma forma que la masa nos indica qué fuerza debemos ejercer para producir una determinada aceleración lineal.
+
+#### _Torque_ y momento de inercia
+
+El _torque_ $$\tau$$ es a la aceleración angular $$\alpha$$ lo que la fuerza es a la aceleración lineal. En este caso, en lugar de tener en cuenta únicamente la masa del objeto, deberemos tener en cuenta su momento de inercia $$I$$, en el que no sólo tenemos la masa, sino cómo está repartida a lo largo del cuerpo, lo cual influirá en cómo las fuerzas afectarán a la rotación. 
+
+$$\tau = I \alpha$$
+
+Por ejemplo, si tenemos un objeto con forma de bastón, habrá que hacer menos fuerza para que gire alrededor de su eje principal que alrededor de otro eje. Por lo tanto, el momento de inercia no tendrá siempre el mismo valor para un determinado objeto, sino que dependerá del eje de rotación.
+
+El momento de inercia codifica cómo está repartida la masa del objeto alrededor de su centro. Para simplificar, supongamos que nuestro cuerpo rígido está compuesto de $$n$$ partículas cada una de ellas con una determinada masa $$m_i$$, y situada en una posición $$(x_i, y_i)$$ respecto al centro de masas del cuerpo. El momento de inercia se calcularía de la siguiente forma (medido en $$kg·m$$):
+
+$$I = \sum^{n}_{i=1} m_i \sqrt{x_i^2 + y_i^2}$$
+
+Es decir, este coeficiente no tiene en cuenta sólo la masa, sino también lo alejada que está la masa respecto del centro del centro. De esta forma, hará falta hacer más fuerza para girar un cuerpo cuando la distribución de masa esté alejada del centro.
+
+> Box2D calculará de forma automática tanto el centro de masas como el momento de inercia a partir de la densidad, forma y posición de cada _fixture_ que compone un cuerpo, y normalmente no necesitaremos establecer estos datos de forma manual.
+
+#### Acumulador de fuerzas
 
 Normalmente sobre un cuerpo actuarán varias fuerzas. Siguiendo el principio de D'Alembert,  un conjunto de fuerzas
 
@@ -351,11 +390,13 @@ actuando sobre un objeto pueden ser sustituidas por una única fuerza calculada 
 
 $$f = \sum^{|F|}_{i=1} f_i$$
 
-Para ello, cada objeto contará con un acumulador de fuerzas f donde se irán sumando todas las fuerzas que actúan sobre él (gravedad, interacción con otros objetos, suelo, etc). Cuando llegue el momento de realizar la integración, la aceleración del objeto se calculará a partir de la fuerza que indique dicho acumulador $$f$$.
+Para ello, cada objeto contará con un acumulador de fuerzas f donde se irán sumando todas las fuerzas que actúan sobre él (gravedad, interacción con otros objetos, suelo, etc). Cuando llegue el momento de realizar la actualización de posición y velocidad, la aceleración del objeto se calculará a partir de la fuerza que indique dicho acumulador $$f$$.
 
 > **Poner a cero el acumulador.** Una vez finalizado un paso de la simulación deberemos poner a cero los acumuladores de fuerzas de cada objeto del mundo. Por este motivo Box2D tiene un método `clearForces` que deberemos llamar antes de realizar cada paso de la simulación.
 
-Deberemos llevar cuidado con la discretización del tiempo. Si una gran fuerza se aplica durante un periodo de tiempo muy breve (por ejemplo para disparar una bala), si la aceleración producida se extiende a todo el _delta time_ el incremento de velocidad producido puede ser desmesurado. Por este motivo, estas fuerzas que se aplican en un breve instante puntual de tiempo se tratarán como impulsos.
+Deberemos llevar cuidado con la discretización del tiempo. Si una gran fuerza se aplica durante un periodo de tiempo muy breve (por ejemplo para disparar una bala), si la aceleración producida se extiende a todo el _delta time_ el incremento de velocidad producido puede ser desmesurado. Por este motivo, estas fuerzas que se aplican en un breve instante puntual de tiempo se tratarán como **impulsos**.
+
+#### Aplicación de fuerzas
 
 El caso más común de fuerza aplicada a los objetos es la **gravedad**. Si queremos hacer una simulación realista deberíamos aplicar una fuerza que produzca una aceleración de
 
@@ -389,11 +430,15 @@ body.ApplyForce(b2Vec(5.0, 2.0), body.GetPosition());
 
 Las unidades en las que especificaremos la fuerza son _Newtons_ ($$N = \frac{kg·m}{s^2}$$). 
 
-Si el punto del objeto al que aplicamos la fuerza no es su centro de masas, la fuerza producirá además que el objeto rote. Si nos interesa siempre aplicar la fuerza en el centro, podemos utilizar el método:
+Si el punto del objeto al que aplicamos la fuerza no es su centro de masas, la fuerza producirá además que el objeto rote (a no ser que en su definición hayamos dado valor `true` a su propiedad `fixedRotation`, que evitará que rote). 
+
+Si nos interesa siempre aplicar la fuerza en el centro, podemos utilizar el método:
 
 ```cpp
 body.ApplyForceToCenter(b2Vec(5.0, 2.0));
 ```
+
+#### Aplicación de un par de fuerzas (_torque_)
 
 Podemos también aplicar un par de fuerzas (_torque_) para producir una rotación del objeto alrededor de su centro de masas sin producir una traslación:
 
@@ -422,6 +467,8 @@ Considerando $$\Delta v = v' - v$$, donde $$v$$ es la velocidad previa a la apli
 v' = v + \frac{1}{m}g
 \end{equation}
 
+#### Aplicación de impulsos
+
 En Box2D podremos aplicar un impulso sobre un punto de un cuerpo (al igual que en el caso de la fuerza) con:
 
 ```cpp
@@ -435,6 +482,19 @@ body.ApplyAngularImpulse(2.0);
 ```
 
 Las unidades en este caso son $$N·m·s$$ (es decir, $$kg\frac{m^2}{s}$$). 
+
+#### Velocidad
+
+Además de aplicar fuerzas e impulsos sobre los cuerpos, también podemos consultar o modificar su velocidad con `GetVelocity` y `SetVelocity`. En el caso de la velocidad trabajaremos con $$\frac{m}{s}$$. 
+
+Esto puede ser útil en cuerpos de tipo _kinematic_, en los que las fuerzas nos tienen efecto (al tener masa infinita), pero que si que pueden mantener una velocidad constante, como por ejemplo un proyectil.
+
+```cpp
+body.SetVelocity(b2Vec(5.0, 0.0));
+```
+
+De la misma forma, también podemos consultar y modificar la velocidad angular con `GetAngularVelocity` y `SetAngularVelocity` respectivamente. En estos casos las unidades son $$\frac{radianes}{s}$$. 
+
 
 ### Detección de colisiones
 	
