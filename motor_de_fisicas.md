@@ -327,6 +327,95 @@ La restitución nos indica la forma en la que responderá un objeto al colisiona
 fixtureDef.restitution = 0.5f;
 ```
 
+### Fuerzas e impulsos
+
+#### Fuerzas
+
+Siguiendo la segunda ley de Newton, la fuerza que se debe aplicar sobre un objeto para producir una determinada aceleración se calcula de la siguiente forma:
+
+$$\mathbf{f} = m\mathbf{a}$$
+
+Sin embargo, en nuestro motor de físicas lo que realmente nos interesa es conocer la aceleración producida tras aplicar una fuerza, calculada como:
+
+$$\mathbf{a} = \frac{1}{m}\mathbf{f}$$
+
+Podemos ver que aquí multiplicamos la fuerza por la **inversa de la masa**. Dado que este cálculo es frecuente, para evitar tener que calcular la inversa en cada momento, será recomendable almacenar la masa inversa de los cuerpos, en lugar de almacenar la masa. 
+
+Almacenar la masa inversa tiene una ventaja importante. Para hacer que un cuerpo sea estático (que no se vea afectado por las fuerzas que sobre él se ejerzan) lo que haremos es dar a ese cuerpo masa infinita. Este valor infinito podría crear dificultades en el código, y la necesidad de tratar casos especiales. Si trabajamos únicamente con masa inversa, bastará con darle un valor 0 a la masa inversa para hacer el cuerpo estático. 
+
+Normalmente sobre un cuerpo actuarán varias fuerzas. Siguiendo el principio de D'Alembert,  un conjunto de fuerzas
+
+$$F=\{f_1, f_2, ... f_{|F|}\}$$
+
+actuando sobre un objeto pueden ser sustituidas por una única fuerza calculada como la suma de las fuerzas de $$F$$:
+
+$$f = \sum^{|F|}_{i=1} f_i$$
+
+Para ello, cada objeto contará con un acumulador de fuerzas f donde se irán sumando todas las fuerzas que actúan sobre él (gravedad, interacción con otros objetos, suelo, etc). Cuando llegue el momento de realizar la integración, la aceleración del objeto se calculará a partir de la fuerza que indique dicho acumulador $$f$$.
+
+> **Poner a cero el acumulador.** Una vez finalizado un paso de la simulación deberemos poner a cero los acumuladores de fuerzas de cada objeto del mundo. Por este motivo Box2D tiene un método `clearForces` que deberemos llamar antes de realizar cada paso de la simulación.
+
+Deberemos llevar cuidado con la discretización del tiempo. Si una gran fuerza se aplica durante un periodo de tiempo muy breve (por ejemplo para disparar una bala), si la aceleración producida se extiende a todo el _delta time_ el incremento de velocidad producido puede ser desmesurado. Por este motivo, estas fuerzas que se aplican en un breve instante puntual de tiempo se tratarán como impulsos.
+
+El caso más común de fuerza aplicada a los objetos es la **gravedad**. Si queremos hacer una simulación realista deberíamos aplicar una fuerza que produzca una aceleración de
+
+$$a_{gravedad}=-9.8 \frac{m}{s^2}$$
+
+sobre nuestros objetos en el eje $$y$$ (normalmente se redondea en $$a_{gravedad}=10$$. Considerando el vector 
+
+$$\mathbf{a}_{gravedad} = (0, a_{gravedad})$$
+
+tenemos:
+
+$$\mathbf{f}_{gravedad} = \mathbf{a}_{gravedad}m$$
+
+Los cuerpos de Box2D tienen una propiedad `gravityScale` que nos permite aplicar una gravedad distinta a cada cuerpo. Podemos especificarlo al crear el cuerpo:
+
+```cpp
+bodyDef.gravityScale = 5.0; 
+```
+
+También se puede tratar como una fuerza la **"resistencia al aire"** (_damping_) que produce que los objetos vayan frenando y no se muevan indefinidamente. Un modelo simplificado para esta fuerza que se suele utilizar en videojuegos es el siguiente:
+
+$$\mathbf{f}_{resistencia} = -\mathbf{\hat{v}}(k_{damping} |\mathbf{v}| $$
+
+Donde $$k_{damping}$$ es la constante de _damping_ especificada para el cuerpo, y $$\mathbf{\hat{v}}$$ el vector de velocidad normalizado (vector unitario con la dirección de la velocidad). Podemos ver que la fuerza actúa en el sentido opuesto a la velocidad del objeto (lo frena), y con una magnitud proporcional a la velocidad.
+
+A parte de las fuerzas de gravedad, resistencia al aire, y las fuerzas ejercidas entre cuerpos en contacto, también podemos aplicar una fuerza manualmente sobre un determinado cuerpo. Para ello deberemos indicar el vector de fuerza y el punto del objeto donde se aplicará dicha fuerza relativo a su centro de masas:
+
+```cpp
+body.ApplyForce(b2Vec(5.0, 2.0), b2Vec(0.0, 0.0));
+```
+
+Las unidades en las que especificaremos la fuerza son $$N$$ ($$\frac{kg·m}{s^2}$$). 
+
+Si el punto del objeto al que aplicamos la fuerza no es su centro de masas, la fuerza producirá además que el objeto rote. Podemos también aplicar un par de fuerzas (_torque_) para producir una rotación del objeto alrededor de su centro de masas sin producir una traslación:
+
+```cpp
+body.ApplyTorque(2.0);
+```
+
+#### Impulsos
+
+Los impulsos producen un cambio instantáneo en la velocidad de un objeto. Podemos ver los impulsos respecto a la velocidad como vemos a las fuerzas respecto a la aceleración. Si aplicar una fuerza a un cuerpo produce una aceleración, aplicar un impulso produce un cambio de velocidad. Una diferencia importante es que no puede haber aceleración si no se aplica ninguna fuerza, mientras que si que puede haber velocidad si no se aplican impulsos, un impulso lo que provoca es un cambio en la velocidad. El impulso $$g$$ necesario para producir un cambio de velocidad $$\Delta v$$ será proporcional a la masa del objeto:
+
+\begin{equation}
+g = m\Delta v
+\end{equation}
+
+Al igual que en el caso de las fuerzas, el cálculo que nos interesará realizar es la obtención del cambio de velocidad a partir del impulso:
+
+\begin{equation}
+\Delta v = \frac{1}{m}g
+\end{equation}
+
+Considerando $$\Delta v = v' - v$$, donde $$v$$ es la velocidad previa a la aplicación del impulso, y $$v'$$ es la velocidad resultante, tenemos:
+
+\begin{equation}
+v' = v + \frac{1}{m}g
+\end{equation}
+
+
 
 ### Detección de colisiones
 	
