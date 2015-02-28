@@ -430,7 +430,7 @@ body.ApplyForce(b2Vec(5.0, 2.0), body.GetPosition());
 
 Las unidades en las que especificaremos la fuerza son _Newtons_ ($$N = \frac{kg·m}{s^2}$$). 
 
-Si el punto del objeto al que aplicamos la fuerza no es su centro de masas, la fuerza producirá además que el objeto rote (a no ser que en su definición hayamos dado valor `true` a su propiedad `fixedRotation`, que evitará que rote). 
+Si el punto del objeto al que aplicamos la fuerza no es su centro de masas, la fuerza producirá además que el objeto rote (a no ser que en su definición hayamos dado valor `TRUE` a su propiedad `fixedRotation`, que evitará que rote). 
 
 Si nos interesa siempre aplicar la fuerza en el centro, podemos utilizar el método:
 
@@ -495,12 +495,24 @@ body.SetVelocity(b2Vec(5.0, 0.0));
 
 De la misma forma, también podemos consultar y modificar la velocidad angular con `GetAngularVelocity` y `SetAngularVelocity` respectivamente. En estos casos las unidades son $$\frac{radianes}{s}$$. 
 
+#### Posición
+
+Dado un cuerpo, cuyo centro de masas está posicionado en $$\mathbf{p}_0$$ y con rotación $$\Theta$$ (matriz de rotación), puede interesarnos determinar la posición de cualquier otro punto del objeto en el mundo. Supongamos que queremos conocer la posición de un punto cuyas coordenadas locales (respecto al centro de masas) son $$\mathbf{p}_{local}$$. La posición global de dicho punto vendrá determinada por:
+
+$$\mathbf{p}_{global} = \Theta \mathbf{p}_{local} + \mathbf{p}_0$$
+
+Para simplificar este cálculo, Box2D nos proporciona una serie de métodos con los que podemos convertir entre coordenadas locales del objeto y coordenadas globales del mundo, teniendo en cuenta la posición o orientación del objeto. Con `GetWorldPoint` podremos obtener las coordenadas globales a partir de la coordenadas locales del objeto, y con `GetLocalPoint` podremos hacer la transformación inversa.
+
+```cpp
+b2Vec globalPos = body->GetWorldPoint(b2Vec(0.0, 1.0));
+```
+
 
 ### Detección de colisiones
 	
 Hemos comentado que dentro de la simulación física existen interacciones entre los diferentes objetos del mundo. Encontramos diferentes formas de consultar las colisiones de los objetos del mundo con otros objetos y otros elementos.
 
-#### Colisiona con un punto del mundo
+#### Colisión con un punto del mundo
 
 Un _test_ sencillo consiste en comprobar si la forma de una _fixture_ ocupa un determinado punto del mundo. Esto es útil por ejemplo cuando tocamos sobre la pantalla táctil, para comprobar si en el punto sobre el que hemos pulsado hay un determinado objeto. Este método se aplica sobre una _fixture_ concreta:
 
