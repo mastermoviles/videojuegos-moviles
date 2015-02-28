@@ -137,9 +137,10 @@ bodyShape.SetAsBox((width/2) / PTM_RATIO, (height/2) / PTM_RATIO);
 
 body->CreateFixture(&bodyShape, 1.0f);
 ```
+
+En este caso hemos creado un cuerpo con una única _fixture_ con forma de caja y densidad 1.0 $$\frac{kg}{m^2}$$. La masa del cuerpo sera calculada de forma automática a partir de la forma y densidad de sus _fixtures_.
 	
-	
-Podemos también crear un cuerpo de forma circular con:
+De forma similar podemos también crear un cuerpo dinámico de forma circular con:
 	
 ```cpp
 b2BodyDef bodyDef;
@@ -154,8 +155,7 @@ bodyShape.m_radius = radius / PTM_RATIO;
 b2Fixture *bodyFixture = body->CreateFixture(&bodyShape, 1.0f);
 ```
 	
-También podemos crear los límites del escenario mediante cuerpos de tipo
-	estático y combinando varios _fixtures_ con forma de arista (_edge_):
+Para definir los límites del escenario utilizaremos un cuerpo de tipo estático compuesto de varias _fixtures_ con forma de arista (_edge_):
 	
 ```cpp
 b2BodyDef limitesBodyDef;
@@ -182,11 +182,10 @@ limitesShape.Set(b2Vec2(0.0f / PTM_RATIO, height / PTM_RATIO),
                  b2Vec2(0.0f / PTM_RATIO, 0.0f / PTM_RATIO));
 limitesBody->CreateFixture(&fixtureDef);
 ```
-	
-Los cuerpos tienen una propiedad `userData` que nos permite
-	vincular cualquier objeto con el cuerpo. Por ejemplo, podríamos vincular a
-	un cuerpo físico el `Sprite` que queremos utilizar para 
-	mostrarlo en pantalla:
+
+En este último caso vemos que no hemos indicado ni el tipo de cuerpo ni la masa. Si no indicamos nada por defecto el cuerpo será estático y su masa será infinita.
+
+Los cuerpos tienen además una propiedad `userData` que nos permite vincular cualquier objeto con el cuerpo. Por ejemplo, podríamos vincular a un cuerpo físico el `Sprite` que queremos utilizar para mostrarlo en pantalla:
 	
 ```cpp
 bodyDef.userData = sprite;
