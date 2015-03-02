@@ -155,7 +155,7 @@ bodyShape.m_radius = radius / PTM_RATIO;
 b2Fixture *bodyFixture = body->CreateFixture(&bodyShape, 1.0f);
 ```
 	
-Para definir los límites del escenario utilizaremos un cuerpo de tipo estático compuesto de varias _fixtures_ con forma de arista (_edge_):
+Para definir los límites del escenario utilizaremos un cuerpo de tipo estático compuesto de varias _fixtures_ con forma de arista (_edge_). En este caso en lugar de utilizar el atajo `CreateFixture(shape, density)` de los ejemplos anteriores utilizaremos la versión `CreateFixture(fixtureDef)` que crea la _fixture_ a partir de las propiedades definidas en una estructura de tipo `b2FixtureDef`, lo cual nos dará mayor flexibilidad:
 	
 ```cpp
 b2BodyDef limitesBodyDef;
@@ -184,6 +184,12 @@ limitesBody->CreateFixture(&fixtureDef);
 ```
 
 En este último caso vemos que no hemos indicado ni el tipo de cuerpo ni la masa. Si no indicamos nada por defecto el cuerpo será estático y su masa será infinita.
+
+En la propiedad `type` de la estructura `b2BodyDef` podemos especificar de forma explícita el tipo de cuerpo que queremos crear, que puede ser:
+
+* `b2_staticBody`: Cuerpo estático (valor por defecto). Podemos moverlos manualmente, pero el motor no los mueve.
+* `b2_kinematicBody`: Cuerpo cinemática. Podemos darle una velocidad pero las fuerzas no tienen efecto sobre él.
+* `b2_dinamicBody`: Cuerpo dinámico. Sometido totalmente a simulación física. 
 
 Los cuerpos tienen además una propiedad `userData` que nos permite vincular cualquier objeto con el cuerpo. Por ejemplo, podríamos vincular a un cuerpo físico el `Sprite` que queremos utilizar para mostrarlo en pantalla:
 	
