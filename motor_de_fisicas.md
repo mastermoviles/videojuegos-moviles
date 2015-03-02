@@ -715,3 +715,7 @@ GB2ShapeCache::sharedGB2ShapeCache()->addFixturesToBody(body, "roca");
 (no la versión HD), para así obtener las coordenadas de las formas en puntos. Al
 tratarse las coordenadas como puntos, será suficiente con hacer una única versión de este fichero.
  -->
+
+## Referencias
+
+* http://www.gamasutra.com/blogs/JuanBelonPerez/20130826/198897/How_to_create_2D_Physics_Games_with_Box2D_Library.php
