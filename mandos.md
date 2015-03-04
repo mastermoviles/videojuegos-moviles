@@ -47,4 +47,94 @@ http://www.raywenderlich.com/8618/adding-icade-support-to-your-game
 
 ### Controladores en Cocos2d-x
 
-En Cocos2d-x encontramos el _listener_ `EventListenerController` que nos permite incorporar soporte para mandos físicos de forma sencilla. 
+Cocos2d-x soporta tanto los mandos oficiales de Android como los oficiales de iOS, ofreciéndonos una API única para utilizarlos en cualquiera de estas plataformas. 
+
+Vamos a centrarnos en la API común de Cocos2d-x y en las cuestiones específicas para utilizarla en Android e iOS.
+
+#### Eventos del mando
+
+En Cocos2d-x encontramos el _listener_ `EventListenerController` que nos permite incorporar soporte para mandos físicos de forma sencilla. Este _listener_ nos permite recibir los siguientes eventos:
+
+* `onConnected`: Se ha conectado un mando.
+* `onDisconnected`: Se ha desconectado un mando.
+* `onKeyDown`: Se ha pulsado un botón del mando.
+* `onKeyUp`: Se ha soltado un botón del mando.
+* `onKeyRepeat`: Se mantiene pulsado un botón.
+* `onAxisEvent`: Notifica cambios en el _stick_ analógico.
+
+A continuación vemos el esqueleto de la clase de una escena de nuestro juego en la que utilizamos como entrada el mando. Al iniciar la escena registraremos el _listener_ de eventos del mando y configuraremos los _callbacks_ necesarios para cada uno de los eventos anteriores:
+
+```cpp
+bool MiEscena::init()
+{
+    if ( !Layer::init() )
+    {
+        return false;
+    }       
+    
+    configuraMandos();
+
+    return true;
+}
+
+void MiEscena::configurarMando()
+{
+    _listener = EventListenerController::create();
+
+    // Registramos callbacks
+    _listener->onConnected = CC_CALLBACK_2(MiEscena::onConnectController,this);
+    _listener->onDisconnected = CC_CALLBACK_2(MiEscena::onDisconnectedController,this);
+    _listener->onKeyDown = CC_CALLBACK_3(MiEscena::onKeyDown, this);
+    _listener->onKeyUp = CC_CALLBACK_3(MiEscena::onKeyUp, this);
+    _listener->onAxisEvent = CC_CALLBACK_3(MiEscena::onAxisEvent, this);
+
+    // Añadimos el listener el mando al gestor de eventos
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(_listener, this);
+
+    // Inicia búsqueda de controladores (necesario en iOS)
+    Controller::startDiscoveryController();
+}
+
+void MiEscena::onKeyDown(cocos2d::Controller *controller, int keyCode, cocos2d::Event *event) { }   
+
+void MiEscena::onKeyUp(cocos2d::Controller *controller, int keyCode, cocos2d::Event *event) { }
+
+void MiEscena::onAxisEvent(cocos2d::Controller* controller, int keyCode, cocos2d::Event* event) { }   
+
+void MiEscena::onConnectController(Controller* controller, Event* event) { }
+
+void MiEscena::onDisconnectedController(Controller* controller, Event* event) { }
+```
+
+A continuación veremos con más detalle estos eventos.
+
+#### Conexión y desconexión del mando
+
+Los mandos se conectarán de forma inalámbrica al móvil, por lo que deberemos poder conectar nuevos mandos, o desconectar los que tenemos conectados. 
+
+Podemos estar al tanto de los eventos de conexión y desconexión de mandos. A partir del parámetros `Controller` que nos proporcionan estos eventos podremos saber además datos sobre el mando que se ha conectado:
+
+```cpp
+void MiEscena::onConnectController(Controller* controller, Event* event) { 
+    CCLOG("Tag:%d", controller->getTag());
+    CCLOG("Id:%d", controller->getDeviceId());
+    CCLOG("Nombre:%s", controller->getDeviceName().c_str());
+}
+
+void MiEscena::onDisconnectedController(Controller* controller, Event* event) { 
+
+}
+```
+
+Como vemos, una propiedad de los controladores es su etiqueta (_tag_). Podemos poner una etiqueta a los mandos para poder acceder a ellos de forma sencilla con `setTag` y consultarla con `getTag`. Esta etiqueta será un número entero. Por ejemplo, podríamos utilizar las etiquetas `1` y `2` para identificar los mandos para el primer y segundo jugador respectivamente. Podremos localizar uno de estos mandos de forma inmediata con el método estático `Controller::getControllerByTag`.
+
+```cpp
+Controller* primerJugador = Controller::getControllerByTag(1);
+```
+
+
+#### Pulsación de teclas
+
+
+
+
