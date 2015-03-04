@@ -173,3 +173,39 @@ if(estado.isPressed) {
 KeyStatus estadoHorizontal = primerJugador->getKeyStatus(JOYSTICK_LEFT_X);
 player->setVelocity(estadoHorizontal.value);
 ```
+
+#### Configuración de mandos para Android
+
+Cocos2d-x en Android soporta tanto los mandos oficiales (como Amazon fire TV), como los mandos de tipo Ouya TV, Moga y Nibiru. Deberemos hacer algunos cambios en el proyecto Android para soportar estos mandos.
+
+En primer lugar, deberemos añadir al _workspace_ de Eclipse la librería `libControllerManualAdapter` y añadirla como librería de nuestro proyecto Cocos2d-x. Esta librería la podremos encontrar en el directorio `$COCOS_HOME/platform/android/ControllerManualAdapter`.
+
+Una vez añadida la librería, añadiremos los siguientes cambios a la actividad `AppActivity`:
+
+* Haremos que la actividad herede de `GameControllerActivity`.
+* En caso de querer utilizar controladores diferentes de los oficiales, deberemos especificarlo de forma explícita en `onCreate`:
+
+```java
+this.connectController(DRIVERTYPE_NIBIRU);
+this.connectController(DRIVERTYPE_MOGA);
+this.connectController(DRIVERTYPE_OUYA);
+```
+ 
+Por ejemplo, para dar soporte a controladores de tipo OUYA tendríamos:
+
+```java
+public class AppActivity extends GameControllerActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.connectController(DRIVERTYPE_OUYA);
+    }
+}
+```
+También será necesario que en nuestro dispositivo Android descarguemos los _drivers_ para el controlador que vayamos a utilizar y lo conectemos al dispositivo.
+
+#### Configuración de mandos para iOS
+
+En el caso de iOS, para que nuestro proyecto soporte los mandos oficiales aparecidos a partir de iOS 7, tendremos que añadir el _framework_ `GameController.Framework` a nuestro proyecto.
+
+Además, será importante que en nuestro proyecto llamemos a `Controller::startDiscoveryController()` para que inicie la búsqueda de mandos y establezca una conexión con ellos, tal como hemos indicado anteriormente.
