@@ -135,6 +135,41 @@ Controller* primerJugador = Controller::getControllerByTag(1);
 
 #### Pulsación de teclas
 
+A partir de un objeto `Controller` podremos conocer el estado de sus botones con el método `getKeyStatus`. Este método recibe como parámetro el código del botón que queremos consultar. En la siguiente imagen mostramos los grupos de botones que encontramos en los mandos para móviles:
 
+![Botones de los mandos](imagenes/mandos/controller-num.png)
 
+Los códigos para los botones de cada grupo se encuentran en la enumeración `Key` y son:
 
+1. Analógico izquierdo: `JOYSTICK_LEFT_X`, `JOYSTICK_LEFT_Y`, `BUTTON_LEFT_THUMBSTICK`
+2. Analógico derecho: `JOYSTICK_RIGHT_X`, `JOYSTICK_RIGHT_Y`, `BUTTON_RIGHT_THUMBSTICK`
+3. Pad digital: `BUTTON_DPAD_UP`, `BUTTON_DPAD_DOWN`, 
+`BUTTON_DPAD_LEFT`, `BUTTON_DPAD_RIGHT`, `BUTTON_DPAD_CENTER`
+4. Botones frontales: `BUTTON_A`, `BUTTON_B`, `BUTTON_C`, `BUTTON_X`, `BUTTON_Y`, `BUTTON_Z`, `BUTTON_START`, `BUTTON_SELECT`, `BUTTON_PAUSE`
+5. Gatillos: `AXIS_LEFT_TRIGGER`, `AXIS_RIGHT_TRIGGER`
+6. Botones superiores: `BUTTON_LEFT_SHOULDER`, 
+`BUTTON_RIGHT_SHOULDER`
+
+Por ejemplo, si queremos consultar el estado del botón `A` en el mando del primer jugador haremos lo siguiente:
+
+```cpp
+KeyStatus estado = primerJugador->getKeyStatus(BUTTON_A);
+```
+
+El estado es una estructura que nos da la siguiente información:
+
+* `isPressed`: Booleano que nos indica si está presionado el botón (para el caso de botones digitales).
+* `isAnalog`: Nos indica si el botón es analógico (_sticks_ analógicos o gatillos).
+* `value`: Nos indica el valor del estado del botón como número flotante. Dependerá del tipo de botón. Por ejemplo en caso de _sticks_ analógicos nos dará un valor entre `-1` y `1`. En caso de gatillos será entre `0` y `1`. En otros botones nos puede dar valores concretos como `0` ó `1`.
+
+Por ejemplo, podemos hacer que al pulsar el botón `A` nuestro personaje dispare y que con el _stick_ izquierdo se mueva horizontalmente:
+
+```cpp
+KeyStatus estadoA = primerJugador->getKeyStatus(BUTTON_A);
+if(estado.isPressed) {
+    player->dispara();
+}
+
+KeyStatus estadoHorizontal = primerJugador->getKeyStatus(JOYSTICK_LEFT_X);
+player->setVelocity(estadoHorizontal.value);
+```
