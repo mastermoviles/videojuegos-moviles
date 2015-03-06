@@ -120,6 +120,11 @@ Hemos visto que el tercer parámetro de `setDesignResolutionSize` nos permite in
 
 ¿Qué estrategia debemos utilizar? Dependerá de lo que busquemos en nuestro juego, pero normalmente nos quedaremos con `kResolutionNoBorder`, `kResolutionFixedHeight` o `kResolutionFixedWidth`. Por ejemplo, si tenemos un plataformas de avance lateral, normalmente querremos que la altura sea fija, por lo que `kResolutionFixedHeight` podría ser la opción más adecuada. Si por el contrario es un juego de naves que avanza hacia arriba, será más adecuado `kResolutionFixedWidth`. En un juego de rol con vista cenital con _scroll_ en cualquier dirección y el personaje centrado en pantalla podría venir bien `kResolutionNoBorder`, nos da igual la parte que quede cortada siempre que en el caso de haber HUD nos aseguremos de dibujarlo dentro de la zona visible. 
 
+![](imagenes/adaptacion/1942.png)
+
+![](imagenes/adaptacion/ff3.jpg)
+
+![](imagenes/adaptacion/jetpack.jpg)
 
 
 ### Depuración del cambio de densidad de pantalla
