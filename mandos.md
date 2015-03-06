@@ -22,7 +22,7 @@ Si queremos implementar un juego cuyo manejo esté basado en _control pad_, ser�
 
 ## Soporte de mandos físicos
 
-Vamos a ver en esta sección cómo integrar soporte para diferentes tipos de mandos _hardware_ en nuestros videojuegos.
+Vamos a ver en esta sección diferentes tipos de mandos _hardware_ que podremos integrar en nuestros videojuegos.
 
 ### Controladores oficiales iOS
 
@@ -36,6 +36,8 @@ El soporte para controladores de juego en Android está presente a partir de la 
 
 http://developer.android.com/training/game-controllers/index.html
 
+Encontramos en Android diferentes mandos que soportan el estándar definido en esta plataforma, como es el caso de Amazon fire TV. También tenemos otros tipos de mandos distintos a los oficiales, como los mandos de tipo Ouya TV, Moga y Nibiru.
+
 ### Controladores iCade
 
 Estos controladores no utilizan la API oficial, ya que salieron a la venta antes de que ésta existiese. Se comportan como un teclado _bluetooth_, por lo que para utilizarlos simplemente deberemos conocer a qué tecla está mapeado cada botón. Está diseñado para ser utilizado con el iPad, pero puede utilizarse en cualquier dispositivo móvil que lo reconozca como teclado _bluetooth_.
@@ -45,13 +47,78 @@ En los siguientes enlaces se puede encontrar documentación para integrar estos 
 http://www.ionaudio.com/downloads/ION%20Arcade%20Dev%20Resource%20v1.5.pdf
 http://www.raywenderlich.com/8618/adding-icade-support-to-your-game
 
-### Controladores en Cocos2d-x
+## Mandos físicos en Cocos2d-x
+
+Vamos a ver ahora cómo utilizar algunos de los mandos anteriores dentro del motor Cocos2d-x.
+
+## Controlador iCade en Cocos2d-x
+ 
+Como hemos comentado anteriormente, este controlador se comporta como un teclado bluetooth. De esta forma, para implementar soporte para él simplemente deberemos leer los eventos del teclado.
+
+En iCade el evento _key down_ de determinadas teclas significa que se ha pulsado un botón del mando, y el _key down_ de otras teclas significa que se ha soltado el botón. En la siguiente figura se muestra en **rojo** las teclas que significan la pulsación de un botón o mando, y en **azul** aquellas que significan que el botón o mando se ha soltado.
+
+![Eventos de teclado de iCade](imagenes/mandos/icade.png)
+
+Vamos a ver ahora cómo leer estos eventos desde Cocos2d-x. Podemos utilizar la clase `EventListenerKeyboard`. 
+
+```cpp
+bool MiEscena::init()
+{
+    if ( !Layer::init() )
+    {
+        return false;
+    }       
+    
+    configuraTeclado();
+
+    return true;
+}
+
+void MiEscena::configurarTeclado()
+{
+    _listener = EventListenerKeyboard::create();
+
+    // Registramos callbacks
+    _listener->onKeyPressed = CC_CALLBACK_2(MiEscena::onConnectController,this);
+    _listener->onReleased = CC_CALLBACK_2(MiEscena::onDisconnectedController,this);
+
+    // Añadimos el listener el mando al gestor de eventos
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(_listener, this);
+}
+
+void MiEscena::onKeyDown(EventKeyboard::KeyCode code, Event *event) { }   
+
+void MiEscena::onKeyUp(EventKeyboard::KeyCode code, Event *event) { }
+```
+
+Por ejemplo, para reconocer los controles izquierda-derecha de iCada podríamos escribir el método `onKeyDown` como se muestra a continuación:
+
+```cpp
+void MiEscena::onKeyDown(EventKeyboard::KeyCode code, Event *event) { 
+    switch(keyCode){
+        case EventKeyboard::KeyCode::KEY_A:
+            _izquierdaPulsado = true;
+            break;
+        case EventKeyboard::KeyCode::KEY_Q:
+            _izquierdaPulsado = false;
+            break;
+        case EventKeyboard::KeyCode::KEY_D:
+            _derechaPulsado = true;
+            break;
+        case EventKeyboard::KeyCode::KEY_C:
+            _derechaPulsado = false;
+            break;
+    }
+}   
+```
+
+## Controladores oficiales en Cocos2d-x
 
 Cocos2d-x soporta tanto los mandos oficiales de Android como los oficiales de iOS, ofreciéndonos una API única para utilizarlos en cualquiera de estas plataformas. 
 
 Vamos a centrarnos en la API común de Cocos2d-x y en las cuestiones específicas para utilizarla en Android e iOS.
 
-#### Eventos del mando
+### Eventos del mando
 
 En Cocos2d-x encontramos el _listener_ `EventListenerController` que nos permite incorporar soporte para mandos físicos de forma sencilla. Este _listener_ nos permite recibir los siguientes eventos:
 
@@ -108,7 +175,7 @@ void MiEscena::onDisconnectedController(Controller* controller, Event* event) { 
 
 A continuación veremos con más detalle estos eventos.
 
-#### Conexión y desconexión del mando
+### Conexión y desconexión del mando
 
 Los mandos se conectarán de forma inalámbrica al móvil, por lo que deberemos poder conectar nuevos mandos, o desconectar los que tenemos conectados. 
 
@@ -133,7 +200,7 @@ Controller* primerJugador = Controller::getControllerByTag(1);
 ```
 
 
-#### Pulsación de teclas
+### Pulsación de teclas
 
 A partir de un objeto `Controller` podremos conocer el estado de sus botones con el método `getKeyStatus`. Este método recibe como parámetro el código del botón que queremos consultar. En la siguiente imagen mostramos los grupos de botones que encontramos en los mandos para móviles:
 
@@ -174,7 +241,7 @@ KeyStatus estadoHorizontal = primerJugador->getKeyStatus(JOYSTICK_LEFT_X);
 player->setVelocity(estadoHorizontal.value);
 ```
 
-#### Configuración de mandos para Android
+### Configuración de mandos para Android
 
 Cocos2d-x en Android soporta tanto los mandos oficiales (como Amazon fire TV), como los mandos de tipo Ouya TV, Moga y Nibiru. Deberemos hacer algunos cambios en el proyecto Android para soportar estos mandos.
 
@@ -204,7 +271,7 @@ public class AppActivity extends GameControllerActivity {
 ```
 También será necesario que en nuestro dispositivo Android descarguemos los _drivers_ para el controlador que vayamos a utilizar y lo conectemos al dispositivo.
 
-#### Configuración de mandos para iOS
+### Configuración de mandos para iOS
 
 En el caso de iOS, para que nuestro proyecto soporte los mandos oficiales aparecidos a partir de iOS 7, tendremos que añadir el _framework_ `GameController.Framework` a nuestro proyecto.
 
