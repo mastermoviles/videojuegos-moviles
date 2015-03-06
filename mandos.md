@@ -51,66 +51,6 @@ http://www.raywenderlich.com/8618/adding-icade-support-to-your-game
 
 Vamos a ver ahora cómo utilizar algunos de los mandos anteriores dentro del motor Cocos2d-x.
 
-## Controlador iCade en Cocos2d-x
- 
-Como hemos comentado anteriormente, este controlador se comporta como un teclado bluetooth. De esta forma, para implementar soporte para él simplemente deberemos leer los eventos del teclado.
-
-En iCade el evento _key down_ de determinadas teclas significa que se ha pulsado un botón del mando, y el _key down_ de otras teclas significa que se ha soltado el botón. En la siguiente figura se muestra en **rojo** las teclas que significan la pulsación de un botón o mando, y en **azul** aquellas que significan que el botón o mando se ha soltado.
-
-![Eventos de teclado de iCade](imagenes/mandos/icade.png)
-
-Vamos a ver ahora cómo leer estos eventos desde Cocos2d-x. Podemos utilizar la clase `EventListenerKeyboard`. 
-
-```cpp
-bool MiEscena::init()
-{
-    if ( !Layer::init() )
-    {
-        return false;
-    }       
-    
-    configuraTeclado();
-
-    return true;
-}
-
-void MiEscena::configurarTeclado()
-{
-    _listener = EventListenerKeyboard::create();
-
-    // Registramos callbacks
-    _listener->onKeyPressed = CC_CALLBACK_2(MiEscena::onConnectController,this);
-    _listener->onReleased = CC_CALLBACK_2(MiEscena::onDisconnectedController,this);
-
-    // Añadimos el listener el mando al gestor de eventos
-    _eventDispatcher->addEventListenerWithSceneGraphPriority(_listener, this);
-}
-
-void MiEscena::onKeyDown(EventKeyboard::KeyCode code, Event *event) { }   
-
-void MiEscena::onKeyUp(EventKeyboard::KeyCode code, Event *event) { }
-```
-
-Por ejemplo, para reconocer los controles izquierda-derecha de iCada podríamos escribir el método `onKeyDown` como se muestra a continuación:
-
-```cpp
-void MiEscena::onKeyDown(EventKeyboard::KeyCode code, Event *event) { 
-    switch(keyCode){
-        case EventKeyboard::KeyCode::KEY_A:
-            _izquierdaPulsado = true;
-            break;
-        case EventKeyboard::KeyCode::KEY_Q:
-            _izquierdaPulsado = false;
-            break;
-        case EventKeyboard::KeyCode::KEY_D:
-            _derechaPulsado = true;
-            break;
-        case EventKeyboard::KeyCode::KEY_C:
-            _derechaPulsado = false;
-            break;
-    }
-}   
-```
 
 ## Controladores oficiales en Cocos2d-x
 
@@ -276,3 +216,65 @@ También será necesario que en nuestro dispositivo Android descarguemos los _dr
 En el caso de iOS, para que nuestro proyecto soporte los mandos oficiales aparecidos a partir de iOS 7, tendremos que añadir el _framework_ `GameController.Framework` a nuestro proyecto.
 
 Además, será importante que en nuestro proyecto llamemos a `Controller::startDiscoveryController()` para que inicie la búsqueda de mandos y establezca una conexión con ellos, tal como hemos indicado anteriormente.
+
+## Eventos de teclado en Cocos2d-x
+ 
+Cocos2d-x soporta eventos de teclado, pero éstos no funcionan en plataformas móviles. Aunque nuestro proyecto esté orientado exclusivamente a estas plataformas, si el control de nuestro juego se realiza mediante mando es recomendable que implementemos también la posibilidad de controlarlo mediante teclado. Esto será de gran utilidad durante el desarrollo, ya que no existe forma de emular un mando, y la forma más parecida al mando para manejar nuestro juego en las pruebas que hagamos durante el desarrollo es el control mediante teclado. 
+ 
+Para leer los eventos de teclado desde Cocos2d-x podemos utilizar la clase `EventListenerKeyboard` como se muestra a continuación: 
+
+```cpp
+bool MiEscena::init()
+{
+    if ( !Layer::init() )
+    {
+        return false;
+    }       
+    
+    configuraTeclado();
+
+    return true;
+}
+
+void MiEscena::configurarTeclado()
+{
+    _listener = EventListenerKeyboard::create();
+
+    // Registramos callbacks
+    _listener->onKeyPressed = CC_CALLBACK_2(MiEscena::onConnectController,this);
+    _listener->onReleased = CC_CALLBACK_2(MiEscena::onDisconnectedController,this);
+
+    // Añadimos el listener el mando al gestor de eventos
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(_listener, this);
+}
+
+void MiEscena::onKeyDown(EventKeyboard::KeyCode code, Event *event) { }   
+
+void MiEscena::onKeyUp(EventKeyboard::KeyCode code, Event *event) { }
+```
+
+Por ejemplo, para reconocer los controles izquierda-derecha mediante las teclas A-D podríamos escribir los métodos `onKeyDown` y `onKeyUp` como se muestra a continuación:
+
+```cpp
+void MiEscena::onKeyDown(EventKeyboard::KeyCode code, Event *event) { 
+    switch(keyCode){
+        case EventKeyboard::KeyCode::KEY_A:
+            _izquierdaPulsado = true;
+            break;
+        case EventKeyboard::KeyCode::KEY_D:
+            _derechaPulsado = true;
+            break;
+    }
+}  
+
+void MiEscena::onKeyUp(EventKeyboard::KeyCode code, Event *event) { 
+    switch(keyCode){
+        case EventKeyboard::KeyCode::KEY_A:
+            _izquierdaPulsado = false;
+            break;
+        case EventKeyboard::KeyCode::KEY_D:
+            _derechaPulsado = false;
+            break;
+    }
+}  
+```
