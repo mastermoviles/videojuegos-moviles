@@ -20,6 +20,24 @@ Si queremos implementar un juego cuyo manejo esté basado en _control pad_, ser�
 * Respetaremos la función estándar de cada botón. El botón de _pausa_ del mando debe permitir pausar el juego en cualquier momento. Determinados botones se suelen utilizar para realizar las mismas acciones en todos los juegos (saltos, ataque, acción, etc). Deberemos intentar seguir estas convenciones.
 * La pantalla del móvil no debe apagarse mientras utilizamos el juego con el mando externo.
 
+## Mandos virtuales
+
+Cuando la mecanica de nuestro juego exige que se controles mediante un mando tradicional, y no contamos con ningún mando _hardware_ que podamos utilizar, la única solución será introducir en nuestro juego un mando virtual en pantalla. 
+
+Vamos a ver diferentes tipos de mandos que podemos implementar en pantalla, emulando controles tanto digitales como analógicos.
+
+### Pad virtual
+
+El _pad_ virtual consiste en dibujar la cruceta de control digital sobre la pantalla y mediante los eventos de la pantalla táctil detectar cuándo se pulsa sobre él. Esta es la forma más sencilla de implementar un control virtual, y será suficiente en el caso de juegos que sólo requieran controles digitales.
+
+### Stick virtual
+
+El _stick_ virtual emula el _stick_ analógico de un mando. Podremos pulsar sobre él y arrastrar para así graduar cuánto queremos moverlo en una determinada dirección. En el caso del _pad_ por ejemplo la dirección izquierda puede estar pulsada o no estarlo. En el _stick_ podemos moverlo más o menos a la izquierda, tomando valores reales entre -1 y 0. 
+
+### Stick virtual con posicionamiento automático
+
+El _stick_ virtual tiene el problema de no tener _feedback_ físico, por lo que si tenemos la atención centrada en la escena del juego es posible que no sepamos si estamos tocando en el centro del mando o no, al intentar hacer un moviemiento. Para evitar esto podemos hacer que al tocar sobre la pantalla el _stick_ se sitúe automáticamente centrado en la posición donde hemos tocado. Así sabremos que siempre tocamos en el centro, y sólo tendremos que arrastrar.
+
 ## Soporte de mandos físicos
 
 Vamos a ver en esta sección diferentes tipos de mandos _hardware_ que podremos integrar en nuestros videojuegos.
@@ -45,11 +63,8 @@ Estos controladores no utilizan la API oficial, ya que salieron a la venta antes
 En los siguientes enlaces se puede encontrar documentación para integrar estos controladores en nuestras aplicaciones:
 
 http://www.ionaudio.com/downloads/ION%20Arcade%20Dev%20Resource%20v1.5.pdf
+
 http://www.raywenderlich.com/8618/adding-icade-support-to-your-game
-
-## Mandos físicos en Cocos2d-x
-
-Vamos a ver ahora cómo utilizar algunos de los mandos anteriores dentro del motor Cocos2d-x.
 
 
 ## Controladores oficiales en Cocos2d-x
