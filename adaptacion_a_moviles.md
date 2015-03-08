@@ -17,18 +17,58 @@ del dispositivo en el que se vaya a ejecutar el juego. Hablaremos en este caso d
 * **Relación de aspecto**: A pesar de trabajar en puntos para que las dimensiones del sistema de coordenadas utilizado sean siempre las mismas, tenemos el problema
 de que la relación de aspecto puede ser distinta. Para resolver esto podemos añadir un borde cuando la relación de aspecto del dispositivo no coincide con la que se ha utilizado en el diseño, estirar la pantalla a pesar de deformar la imagen, o bien recortarla en alguna de sus dimensiones. Esta última opción será la más adecuada, pero deberemos llevar cuidado de hacerlo de forma correcta y diseñar el juego de forma que sobre suficiente espacio como para que se pueda aplicar el recorte sin problemas.
 
+Vamos a ver a continuación cómo implementar todo lo anterior en Cocos2d-x.
 
-## Gestión multi-resolución
+## Resoluciones de recursos, diseño y pantalla
 
+Para resolver el problema de los distintos tamaños de pantalla en Cocos2d-x lo que haremos será definir tres resoluciones distintas:
 
+* **Resolución de recursos**: Resolución para la que están preparados los recursos utilizados.
+* **Resolución de diseño**: Resolución para la que hemos diseñado el juego. Será esta resolución la que utilizaremos en el código del juego (resolución en puntos).
+* **Resolución de pantalla**: Resolución real de la pantalla del dispositivo.
 
+En el objeto `AppDelegate` se inicializa el juego. Este es un buen punto para configurar las resoluciones anteriores. Por ejemplo, podemos definir esta configuración de la siguiente forma:
 
-Vamos a ver cómo implementar todo lo anterior en Cocos2d-x. En primer lugar, para
-soportar distintas versiones de recursos lo que haremos es guardarlos en diferentes directorios.
-Por ejemplo, podemos crear un directorio `sd` para la versión normal y otro
-directorio `hd` para la versión para dispositivos de alta resolución. Ambos
-directorios tendrán los mismos ficheros de texturas, pero con distintas resoluciones. Lo
-que deberemos hacer es indicar al motor dónde buscar los recursos en función de la resolución:
+```cpp
+CCSize screenSize = CCEGLView::sharedOpenGLView()->getFrameSize();
+CCSize designSize = CCSizeMake(480, 320);
+CCSize resourceSize = CCSizeMake(960, 640);
+
+// Establecemos la resolución de recursos
+pDirector->setContentScaleFactor(resourceSize.width / designSize.width);
+
+// Establecemos la resolución de diseño (puntos)
+cocos2d::Director::getInstance()->getOpenGLView()->setDesignResolutionSize(320, 480, ResolutionPolicy::FIXED_WIDTH);
+```
+
+En este ejemplo hemos especificado:
+
+* **Resolución de recursos**: 960 x 640
+* **Resolución de diseño**: 480 x 320
+
+Las reglas que seguiremos para trabajar con estas resoluciones son:
+
+* En el código del juego siempre utilizaremos la **resolución de diseño**. Es decir, en el ejemplo anterior consideraremos que siempre tenemos una resolución de 480 x 320 puntos al posicionar _sprites_, ubicar elementos del HUD, mostrar elementos del escenario, etc. El contenido que hayamos dibujado en el espacio de diseño se estirará para ocupar toda la pantalla. 
+* La **resolución de recursos** nos indica la resolución de pantalla para la que están preparados los recursos en el caso ideal, es decir, en el que cada píxel de la imagen del recurso corresponde exactamente a un píxel en pantalla. En el caso de nuestro ejemplo, la resolución para la que están preparados los recursos es el doble que la resolución de diseño. Es decir, un _sprite_ cuya imagen tenga 128 x 128 pixels está pensado para que se dibuje con su tamaño original en una pantalla de 960 x 640, por lo que en el espacio de diseño de 480 x 320 ocupará un espacio de 64 x 64 puntos. Si la resolución real de pantalla es de 480 x 320, coincidiendo con la resolución de diseño, el _sprite_ tendrá que escalarse a mitad de tamaño, en caso de tener una resolución de pantalla de 960 x 640 el _sprite_ se mostraría en su tamaño real con todos sus _pixels_ (aunque en el código lo posicionemos y obtengamos su tamaño en puntos), mientras que con una pantalla de 1920 x 1280 tendría que escalarse al doble de su tamaño. 
+
+Con esto podemos ver que aunque trabajemos con una resolución de diseño pequeña, esto no implica que el juego se vaya a ver con poca resolución. Ésta resolución de diseño simplemente es un sistema de coordenadas de referencia para situar los objetos en la escena. La resolución que realmente determinará la definición de los gráficos del juego es la resolución de recursos. 
+
+Con el método `Director::setContentScaleFactor` estableceremos la relación existente entre la relación de recursos y la de diseño. Por ejemplo, si la resolución de recursos es el doble que la de diseño, el factor de escala será 2. En caso de que la relación de aspecto de estas resoluciones no coincidiese, tendríamos que decidir si tomar como referencia el alto o el ancho de la imagen a la hora de calcular el factor de escala.
+
+```cpp
+// Tomamos como referencia el ancho
+pDirector->setContentScaleFactor(resourceSize.width / designSize.width);
+
+// Tomamos como referencia el alto
+pDirector->setContentScaleFactor(resourceSize.height / designSize.height);
+```
+
+## Gestión de recursos
+
+En el apartado anterior hemos visto cómo establecer la resolución de los recursos. Sin embargo, como ya hemos comentado anteriormente, es difícil tener una única resolución de recursos que sea adecuada para todos los dispositivos: dispositivos de alta densidad necesitan recursos con mayor resolución para aprovechar la densidad de pantalla, y dispositivos con menor densidad de pantalla normalmente tienen una memoria de vídeo más limitada donde puede que no quepan los recursos necesarios. Por ello es conveniente suministrar diferentes versiones de los recursos.
+
+Para soportar distintas versiones de un mismo recurso lo que haremos es guardarlo en diferentes directorios pero con el mismo nombre de fichero.
+Por ejemplo, podemos crear un directorio `sd` para la versión normal y otro directorio `hd` para la versión para dispositivos de alta resolución. Ambos directorios tendrán los mismos ficheros de texturas, pero con distintas resoluciones. Lo que deberemos hacer es indicar al motor dónde buscar los recursos en función de la resolución:
 
 ```cpp
 CCSize screenSize = CCEGLView::sharedOpenGLView()->getFrameSize();
@@ -49,20 +89,7 @@ En el ejemplo anterior, en el caso del iPhone retina buscará primero los recurs
 directorio `hd`, y si no los encuentra ahí buscará en `sd`. En caso
 caso de tener menor resolución buscará todo directamente en `sd`.
 
-Para resolver el problema de los distintos tamaños de pantalla lo que haremos será definir
-tres resoluciones distintas:
-
-
-* **Resolución de recursos**: Resolución para la que están preparados los 
-recursos utilizados.
-* **Resolución de diseño**: Resolución para la que hemos diseñado el juego. 
-Será esta resolución la que utilizaremos en el código del juego (resolución en puntos).
-* **Resolución de pantalla**: Resolución real de la pantalla del dispositivo.
-
-
-En el objeto `AppDelegate` se inicializa el juego. Este es un buen punto
-para configurar las resoluciones anteriores. Por ejemplo, podemos definir esta
-configuración de la siguiente forma:
+Una vez decidida la versión de los recursos que se va a utilizar, deberemos indicar al motor la resolución de recursos correcta para que así los escale de forma adecuada:
 
 ```cpp
 CCSize screenSize = CCEGLView::sharedOpenGLView()->getFrameSize();
@@ -70,13 +97,7 @@ CCSize designSize = CCSizeMake(480, 320);
 CCSize resourceSize;
 std::vector<std::string> searchPaths;
 
-if (screenSize.height >= 768) { // iPad
-    searchPaths.push_back("hd");
-    searchPaths.push_back("sd");
-    resourceSize = CCSizeMake(1024, 768);
-    designSize = CCSizeMake(1024, 768);
-}
-else if (screenSize.height > 320) { // iPhone retina
+if (screenSize.height > 320) { // iPhone retina
     searchPaths.push_back("hd");
     searchPaths.push_back("sd");
     resourceSize = CCSizeMake(960, 640);          
@@ -91,21 +112,10 @@ pDirector->setContentScaleFactor(resourceSize.width / designSize.width);
 cocos2d::Director::getInstance()->getOpenGLView()->setDesignResolutionSize(320, 480, ResolutionPolicy::FIXED_WIDTH);
 ```
 
-En este caso, además de configurar los directorios de recursos fijamos dos ajustes más:
 
+## Estrategias de adaptación
 
-* `setContentScaleFactor`: Establece el factor de escala a aplicar a los
-recursos. Por ejemplo, si la resolución de diseño con la que trabajamos es 480x320, pero 
-el móvil tiene una resolución de 960x640, los recursos deberán tener el doble de resolución
-en pixels que en puntos, para aprovechar la definición de la pantalla, pero deberán ocupar
-el mismo espacio en pantalla que en otros dispositivos con distinta definición.
-* `setDesignResolutionSize`: Establecemos la resolución de diseño a utilizar
-en el juego. Además el tercer parámetro permite definir la forma de adaptarse a
-diferentes relaciones de aspecto (recortar, añadir borde, o estirar).
-
-### Estrategias de adaptación
-
-Hemos visto que el tercer parámetro de `setDesignResolutionSize` nos permite indicar la forma de adaptar la resolución de diseño a la resolución de pantalla cuando la relación de aspecto de ambas resoluciones no coincida. Encontramos las siguientes estrategias:
+Con el método `setDesignResolutionSize` establecemos la resolución de diseño a utilizar en el juego. Además el tercer parámetro permite indicar la forma de adaptar la resolución de diseño a la resolución de pantalla cuando la relación de aspecto de ambas resoluciones no coincida. Encontramos las siguientes estrategias:
 
 * `kResolutionShowAll`: Hace que todo el contenido de la resolución de diseño quede dentro de la pantalla, dejando franjas negras en los laterales si la relación de aspecto no es la misma. Estas franjas negras hacen que desperdiciemos espacio de pantalla y causan un efecto bastante negativo, por lo que a pesar de la sencillez de esta estrategia, **no será recomendable** si buscamos un producto con un buen acabado.
 * `kResolutionExactFit`: Hace que el contenido dentro de la resolución de diseño se estire para adaptarse a la resolución de pantalla, deformando el contenido si la relación de aspecto no es la misma. Aunque en este caso se llene la pantalla, la deformación de la imagen también causará muy mal efecto y por lo tanto debemos **evitar utilizar esta técnica**.
@@ -121,7 +131,7 @@ Hemos visto que el tercer parámetro de `setDesignResolutionSize` nos permite in
 ![](imagenes/adaptacion/jetpack.jpg)
 
 
-### Depuración del cambio de densidad de pantalla
+## Depuración del cambio de densidad de pantalla
 
 Para comprobar que nuestra aplicación se adapta de forma correcta podemos utilizar diferentes tamaños de ventana durante el desarrollo. Sin embargo, también será necesario comprobar lo que ocurre al tener diferentes densidades de pantalla, teniendo algunos dispositivos resoluciones superiores a la de nuestra máquina de desarrollo. 
 
