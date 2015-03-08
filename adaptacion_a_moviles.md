@@ -1,32 +1,26 @@
 # Adaptación a móviles
 
+Una de las principales problemáticas en el desarrollo de dispositivos móviles es la
+gran diferencia de tamaños de pantalla existentes, con distinta resolución y relación de aspecto. 
+Esto plantea diferentes problemas:
+
+* **Tamaño de los recursos**: Con esto nos referimos a la resolución que deberían tener recursos como los _sprites_ o _tilemaps_. Un enfoque sencillo podría ser proporcionar 
+estos recursos a resolución máxima, para así aprovechar las pantallas de mayor resolución. 
+El problema es que los dispositivos con menor resolución disponen también de una menor
+memoria de vídeo, por lo que es probable que no puedan albergar las texturas necesarias en resolución
+máxima. Por este motivo será conveniente proporcionar diferentes versiones de los recursos
+para diferentes resoluciones de pantalla.
+* **Sistema de coordenadas**: Debemos evitar utilizar un sistema de coordenadas
+en pixels, ya que el tamaño de la pantalla cambiará en cada dispositivo. Lo que se hará es utilizar 
+siempre un sistema de coordenadas del mismo tamaño independientemente de la resolución
+del dispositivo en el que se vaya a ejecutar el juego. Hablaremos en este caso de un sistema de coordenadas en puntos (en lugar de pixels). El tamaño de cada punto dependerá de la resolución real de la pantalla del dispositivo utilizado.
+* **Relación de aspecto**: A pesar de trabajar en puntos para que las dimensiones del sistema de coordenadas utilizado sean siempre las mismas, tenemos el problema
+de que la relación de aspecto puede ser distinta. Para resolver esto podemos añadir un borde cuando la relación de aspecto del dispositivo no coincide con la que se ha utilizado en el diseño, estirar la pantalla a pesar de deformar la imagen, o bien recortarla en alguna de sus dimensiones. Esta última opción será la más adecuada, pero deberemos llevar cuidado de hacerlo de forma correcta y diseñar el juego de forma que sobre suficiente espacio como para que se pueda aplicar el recorte sin problemas.
 
 
 ## Gestión multi-resolución
 
-Una de las principales problemáticas en el desarrollo de dispositivos móviles es la
-gran diferencia de tamaños de pantalla existentes, con distintas relaciones de aspecto. 
-Esto plantea diferentes problemas:
 
-
-* **Tamaño de los recursos**: Un enfoque sencillo podría ser proporcionar 
-las texturar a resolución máxima, para así aprovechar las pantallas de mayor resolución. 
-El problema es que los dispositivos con menor resolución disponen también de una menor
-memoria de vídeo, por lo que es probable que no puedan albergar las texturas en resolución
-máxima. Por este motivo es necesario proporcionar diferentes versiones de los recursos
-para diferentes resoluciones de pantalla.
-* **Sistema de coordenadas**: Debemos evitar utilizar un sistema de coordenadas
-en pixels, ya que el tamaño cambiará en cada dispositivo. Lo que se hará es utilizar 
-siempre un sistema de coordenadas del mismo tamaño independientemente de la resolución
-del dispositivo. Esto se conoce como un sistema de coordenadas en puntos. El tamaño de
-cada punto dependerá de la resolución real de la pantalla.
-* **Relación de aspecto**: A pesar de trabajar en puntos para que las 
-dimensiones del sistema de coordenadas utilizado sean siempre las mismas, tenemos el problema
-de que la relación de aspecto puede ser distinta. Para resolver esto podemos añadir un borde
-cuando la relación de aspecto del dispositivo no coincide con la que se ha utilizado en el diseño,
-o bien recortar la pantalla en alguna de sus dimensiones, o estirarla a pesar de deformar
-la imagen. Si decidimos recortar, deberíamos diseñar el juego de forma que sobre suficiente espacio 
-como para que no pase nada si algún dispositivo recorta.
 
 
 Vamos a ver cómo implementar todo lo anterior en Cocos2d-x. En primer lugar, para
