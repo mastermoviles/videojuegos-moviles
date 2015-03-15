@@ -30,9 +30,294 @@ Vamos a ver diferentes tipos de mandos que podemos implementar en pantalla, emul
 
 El _pad_ virtual consiste en dibujar la cruceta de control digital sobre la pantalla y mediante los eventos de la pantalla táctil detectar cuándo se pulsa sobre él. Esta es la forma más sencilla de implementar un control virtual, y será suficiente en el caso de juegos que sólo requieran controles digitales.
 
+Crearemos los diferentes botones del _pad_ virtual como _sprites_, los posicionaremos en pantalla, y programaremos los eventos necesarios para detectar cuándo pulsamos sobre ellos. Vamos a ver un ejemplo sencillo con tres botones, un _pad_ direccional con botones para movernos a la izquierda y derecha, y un botón de acción:
+
+```cpp
+private: 
+    cocos2d::Sprite *m_buttonAction;
+    cocos2d::Sprite *m_buttonLeft;
+    cocos2d::Sprite *m_buttonRight;
+    ...
+```
+
+Vamos además a crear una enumeración que nos ayude a identificar cada botón:
+
+```cpp
+enum PadButton {
+    BUTTON_LEFT, BUTTON_RIGHT, BUTTON_ACTION
+};
+```
+
+Algo que debemos tener en cuenta al posicionar los controles, es que éstos siempre deben quedar en la parte visible de la pantalla. Por ejemplo, al inicializar nuestro _pad_ virtual podemos posicionar los botones de la siguiente forma:
+
+```cpp
+Size visibleSize = Director::getInstance()->getVisibleSize();
+Vec2 visibleOrigin = Director::getInstance()->getVisibleOrigin();
+        
+m_buttonLeft = Sprite::createWithSpriteFrameName("boton-direccion.png");
+m_buttonLeft->setAnchorPoint(Vec2(0,0));
+m_buttonLeft->setPosition(visibleOrigin.x+kMARGEN_MANDO, visibleOrigin.y+kMARGEN_MANDO);
+m_buttonLeft->setOpacity(127);
+m_buttonLeft->setTag(PadButton::BUTTON_LEFT);
+        
+m_buttonRight = Sprite::createWithSpriteFrameName("boton-direccion.png");
+m_buttonRight->setAnchorPoint(Vec2(1,0));
+m_buttonRight->setScaleX(-1);
+m_buttonRight->setOpacity(127);
+m_buttonRight->setPosition(visibleOrigin.x+ kMARGEN_MANDO + m_buttonLeft->getContentSize().width + kMARGEN_MANDO, visibleOrigin.y+kMARGEN_MANDO);
+m_buttonRight->setTag(PadButton::BUTTON_RIGHT);
+
+m_buttonAction = Sprite::createWithSpriteFrameName("boton-accion.png");
+m_buttonAction->setAnchorPoint(Vec2(1,0));
+m_buttonAction->setPosition(visibleOrigin.x + visibleSize.width - kMARGEN_MANDO, visibleOrigin.y+kMARGEN_MANDO);
+m_buttonAction->setOpacity(127);
+m_buttonAction->setTag(PadButton::BUTTON_ACTION);
+```
+
+En este ejemplo vemos además que hacemos los botones **semitransparentes**. Esta es una práctica habitual, que hará que los botones virtuales afecten menos al apartado visual de nuestro videojuego.
+
+También podemos observar que hemos aprovechado la propiedad _tag_ de los botones para identificarlos mediante los elementos de la enumeración `PadButton`. 
+
+Una vez hemos creado los _sprites_ de los botones los añadiremos a la pantalla:
+
+```cpp
+m_node= Node::create();
+m_node->addChild(m_buttonLeft,0);
+m_node->addChild(m_buttonRight,0);
+m_node->addChild(m_buttonAction,0);
+m_node->setLocalZOrder(100);
+```
+
+Tras esto, debemos definir un _listener_ de eventos táctiles para detectar cuándo pulsamos sobre ellos: 
+
+```cpp
+m_listener = EventListenerTouchOneByOne::create();
+m_listener->setSwallowTouches(true);
+```
+
+Definiremos además en nuestra clase dos funciones _callback_ a las que avisaremos cuando se pulse sobre un botón o cuando se suelte:
+
+```cpp
+public: 
+    ...
+    
+    std::function<void(PadButton)> onButtonPressed;
+    std::function<void(PadButton)> onButtonReleased;
+```
+
+También nos vendrá bien contar con un _array_ mediante el que controlemos el estado actual de cada botón, para poderlo consultar en cualquier momento sin tener que utilizar los _callbacks_ anteriores:
+
+```cpp
+private: 
+    ...
+    
+    bool buttonState[kNUM_BOTONES];
+```
+
+Una vez definidos los elementos anteriores, ya podemos programar los eventos del _listener_ de la pantalla táctil. Al comenzar un contacto comprobaremos si se ha pulsado sobre el botón:
+
+```cpp
+m_listener->onTouchBegan = [=](Touch* touch, Event* event) {
+
+    auto target = static_cast<Sprite*>(event->getCurrentTarget());
+    Point locationInNode = target->convertToNodeSpace(touch->getLocation());
+            
+    Size s = target->getContentSize();
+    Rect rect = Rect(0, 0, s.width, s.height);
+            
+    if(rect.containsPoint(locationInNode)) {
+        buttonState[target->getTag()] = true;
+        if(onButtonPressed) {
+            onButtonPressed((PadButton)target->getTag());
+        }
+        target->setOpacity(255);
+        return true;
+    }
+            
+    return false;
+};
+```
+
+En este caso `target` se refiere al botón sobre el que se ha definido el _listener_. Comprobamos si hemos pulsado sobre el área del botón (`target`) y en tal caso anotamos que dicho botón está pulsado y avisamos al _callback_ correspondiente, en caso de que se haya asignado uno.
+
+De forma similar podemos programar el evento de finalización del contacto:
+
+```cpp
+m_listener->onTouchEnded = [=](Touch* touch, Event* event) {
+    auto target = static_cast<Sprite*>(event->getCurrentTarget());
+    target->setOpacity(127);
+    buttonState[target->getTag()] = false;
+    if(onButtonReleased) {
+        onButtonReleased((PadButton)target->getTag());
+    }
+};
+```
+
+Obtenemos el botón (`target`) sobre el que se ha definido el _listener_ y anotamos que el botón ya no está pulsado, además de llamar al _callback_ correspondiente en caso de estar asignado.
+
+Por último, añadiremos el _listener_ sobre cada uno de los botones. Podemos observar que hay una instancia del _listener_ para cada botón, con lo que en cada uno de ellos el `target` será un único botón concreto:
+
+```cpp
+m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(m_listener, m_buttonLeft);
+m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(m_listener->clone(), m_buttonRight);
+m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(m_listener->clone(), m_buttonAction);
+```
+
+Otra posible alternativa habría sido añadir una lista (`Vector`) con todos los botones del mando, y un único _listener_ que recorra la lista y los compruebe todos. 
+
+Necesitaremos definir además una función que dé acceso al estado de los botones en cualquier momento:
+
+```cpp
+bool VirtualPad::isButtonPressed(PadButton button) {
+    return buttonState[button];
+}
+```
+
+Mostramos a continuación el código completo de esta implementación sencilla de un _pad_ virtual:
+
+```cpp
+#define kNUM_BOTONES  3
+#define kMARGEN_MANDO 20
+
+enum PadButton {
+    BUTTON_LEFT, BUTTON_RIGHT, BUTTON_ACTION
+};
+
+class VirtualPad: public GameEntity {
+public:
+    
+    bool init();
+
+    void preloadResources();
+    Node* getNode();
+    
+    bool isButtonPressed(PadButton button);
+    
+    std::function<void(PadButton)> onButtonPressed;
+    std::function<void(PadButton)> onButtonReleased;
+    
+    CREATE_FUNC(VirtualPad);
+    
+private:
+    cocos2d::Sprite *m_buttonAction;
+    cocos2d::Sprite *m_buttonLeft;
+    cocos2d::Sprite *m_buttonRight;
+    
+    cocos2d::EventListenerTouchOneByOne *m_listener;
+    
+    bool buttonState[kNUM_BOTONES];
+};
+#endif
+```
+
+```cpp
+bool VirtualPad::init(){
+    GameEntity::init();
+    
+    m_buttonAction = Sprite::create();
+    m_buttonLeft = Sprite::create();
+    m_buttonRight = Sprite::create();
+
+    for(int i=0;i<kNUM_BOTONES;i++) {
+        buttonState[i] = false;
+    }
+    
+    return true;
+}
+
+void VirtualPad::preloadResources(){
+    
+    //Cache de sprites
+    auto spriteFrameCache = SpriteFrameCache::getInstance();
+    
+    //Si no estaba el spritesheet en la caché lo cargo
+    if(!spriteFrameCache->getSpriteFrameByName("boton-direccion.png")) {
+        spriteFrameCache->addSpriteFramesWithFile("mando.plist");
+    }
+}
+
+Node* VirtualPad::getNode(){
+    if(m_node==NULL) {
+        
+        Size visibleSize = Director::getInstance()->getVisibleSize();
+        Vec2 visibleOrigin = Director::getInstance()->getVisibleOrigin();
+        
+        m_buttonLeft = Sprite::createWithSpriteFrameName("boton-direccion.png");
+        m_buttonLeft->setAnchorPoint(Vec2(0,0));
+        m_buttonLeft->setPosition(visibleOrigin.x+kMARGEN_MANDO, visibleOrigin.y+kMARGEN_MANDO);
+        m_buttonLeft->setOpacity(127);
+        m_buttonLeft->setTag(PadButton::BUTTON_LEFT);
+        
+        m_buttonRight = Sprite::createWithSpriteFrameName("boton-direccion.png");
+        m_buttonRight->setAnchorPoint(Vec2(1,0));
+        m_buttonRight->setScaleX(-1);
+        m_buttonRight->setOpacity(127);
+        m_buttonRight->setPosition(visibleOrigin.x+ kMARGEN_MANDO + m_buttonLeft->getContentSize().width + kMARGEN_MANDO, visibleOrigin.y+kMARGEN_MANDO);
+        m_buttonRight->setTag(PadButton::BUTTON_RIGHT);
+
+        m_buttonAction = Sprite::createWithSpriteFrameName("boton-accion.png");
+        m_buttonAction->setAnchorPoint(Vec2(1,0));
+        m_buttonAction->setPosition(visibleOrigin.x + visibleSize.width - kMARGEN_MANDO, visibleOrigin.y+kMARGEN_MANDO);
+        m_buttonAction->setOpacity(127);
+        m_buttonAction->setTag(PadButton::BUTTON_ACTION);
+        
+        m_node= Node::create();
+        m_node->addChild(m_buttonLeft,0);
+        m_node->addChild(m_buttonRight,0);
+        m_node->addChild(m_buttonAction,0);
+        m_node->setLocalZOrder(100);
+        
+        m_listener = EventListenerTouchOneByOne::create();
+        m_listener->setSwallowTouches(true);
+        
+        m_listener->onTouchBegan = [=](Touch* touch, Event* event) {
+
+            auto target = static_cast<Sprite*>(event->getCurrentTarget());
+            Point locationInNode = target->convertToNodeSpace(touch->getLocation());
+            
+            Size s = target->getContentSize();
+            Rect rect = Rect(0, 0, s.width, s.height);
+            
+            if(rect.containsPoint(locationInNode)) {
+                buttonState[target->getTag()] = true;
+                if(onButtonPressed) {
+                    onButtonPressed((PadButton)target->getTag());
+                }
+                target->setOpacity(255);
+                return true;
+            }
+            
+            return false;
+        };
+        
+        m_listener->onTouchEnded = [=](Touch* touch, Event* event) {
+            auto target = static_cast<Sprite*>(event->getCurrentTarget());
+            target->setOpacity(127);
+            buttonState[target->getTag()] = false;
+            if(onButtonReleased) {
+                onButtonReleased((PadButton)target->getTag());
+            }
+        };
+        
+        m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(m_listener, m_buttonLeft);
+        m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(m_listener->clone(), m_buttonRight);
+        m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(m_listener->clone(), m_buttonAction);
+
+    }
+    
+    return m_node;
+}
+
+bool VirtualPad::isButtonPressed(PadButton button) {
+    return buttonState[button];
+}
+```
+
 ### Stick virtual
 
 El _stick_ virtual emula el _stick_ analógico de un mando. Podremos pulsar sobre él y arrastrar para así graduar cuánto queremos moverlo en una determinada dirección. En el caso del _pad_ por ejemplo la dirección izquierda puede estar pulsada o no estarlo. En el _stick_ podemos moverlo más o menos a la izquierda, tomando valores reales entre -1 y 0. 
+
+
 
 ### Stick virtual con posicionamiento automático
 
