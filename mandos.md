@@ -323,6 +323,9 @@ El _stick_ virtual emula el _stick_ analógico de un mando. Podremos pulsar sobr
 
 El _stick_ virtual tiene el problema de no tener _feedback_ físico, por lo que si tenemos la atención centrada en la escena del juego es posible que no sepamos si estamos tocando en el centro del mando o no, al intentar hacer un moviemiento. Para evitar esto podemos hacer que al tocar sobre la pantalla el _stick_ se sitúe automáticamente centrado en la posición donde hemos tocado. Así sabremos que siempre tocamos en el centro, y sólo tendremos que arrastrar.
 
+### Stick virtual con posicionamiento automático y deslizamiento
+
+
 ## Soporte de mandos físicos
 
 Vamos a ver en esta sección diferentes tipos de mandos _hardware_ que podremos integrar en nuestros videojuegos.
