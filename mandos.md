@@ -315,9 +315,199 @@ bool VirtualPad::isButtonPressed(PadButton button) {
 
 ### Stick virtual
 
-El _stick_ virtual emula el _stick_ analógico de un mando. Podremos pulsar sobre él y arrastrar para así graduar cuánto queremos moverlo en una determinada dirección. En el caso del _pad_ por ejemplo la dirección izquierda puede estar pulsada o no estarlo. En el _stick_ podemos moverlo más o menos a la izquierda, tomando valores reales entre -1 y 0. 
+El _stick_ virtual emula el _stick_ analógico de un mando. Podremos pulsar sobre él y arrastrar para así graduar cuánto queremos moverlo en una determinada dirección. En el caso del _pad_ por ejemplo la dirección izquierda puede estar pulsada o no estarlo. En el _stick_ podemos moverlo más o menos a la izquierda, tomando valores reales entre -1 y 1. 
+
+Para crear el aspecto visual de nuestro _stick_ analógico utilizaremos dos _sprites_, uno para la base, que no se moverá nunca, y otro para la "palanca", que se desplazará conforme la arrastremos:
+
+```cpp
+private:
+    cocos2d::Sprite *m_stickLeft;
+    cocos2d::Sprite *m_stickLeftBase;
+```
+
+Además, para facilitar la gestión del _stick_ almacenaremos su posición central y el radio en el que puede moverse:
+
+```cpp
+private:
+    ...
+    
+    cocos2d::Size m_radioStick;
+    cocos2d::Point m_centerStick;
+```
+
+También necesitaremos guardar el estado de cada eje del stick (horizontal y vertical), que podrá tomar un valor entre -1 y 1 según su posición, siendo (0,0) la posición central:
+
+```cpp
+private:
+    ...
+
+    float axisState[kNUM_EJES];
+```
+
+Vamos a crear también una enumeración para representar cada eje disponibles:
+
+```cpp
+enum StickAxis {
+    AXIS_LEFT_HORIZONTAL,
+    AXIS_LEFT_VERTICAL
+};
+```
+
+Una vez definidas estas propiedades de la clase de nuestro _stick_ vamos a pasar a implementar el código. Inicializaremos los _sprites_ que componen el _stick_ de la siguiente forma:
+
+```cpp
+Size visibleSize = Director::getInstance()->getVisibleSize();
+Vec2 visibleOrigin = Director::getInstance()->getVisibleOrigin();
+        
+m_stickLeftBase = Sprite::createWithSpriteFrameName("base-stick.png");
+m_stickLeftBase->setAnchorPoint(Vec2(0,0));
+m_stickLeftBase->setPosition(visibleOrigin.x+kMARGEN_MANDO, visibleOrigin.y+kMARGEN_MANDO);
+m_stickLeftBase->setOpacity(127);
+
+m_stickLeft = Sprite::createWithSpriteFrameName("bola-stick.png");
+m_stickLeft->setAnchorPoint(Vec2(0.5,0.5));
+m_stickLeft->setOpacity(127);
+        
+m_radioStick = m_stickLeftBase->getContentSize() * 0.5 - m_stickLeft->getContentSize() * 0.5;
+m_centerStick = m_stickLeftBase->getPosition() + m_stickLeftBase->getContentSize() * 0.5;
+m_stickLeft->setPosition(m_centerStick);
+```
+
+Como podemos ver, posicionamos en primer lugar la base del _stick_ en la esquina inferior-izquierda de la pantalla, haciéndola semiopaca. Tras esto, creamos la palanca y la posicionamos justo en el centro de la base. Definimos `m_centerStick` como la posición central de la base de la palanca, y `m_radioStick` como el radio en el que la palanca podrá moverse. Este radio se obtiene a partir de la media anchura y altura de la base, restándole la media anchura y altura de la palanca, para que así esta última quede siempre dentro de la base al desplazarla.
+
+Una vez creado y configurado el _stick_, lo añadimos a la pantalla:
+
+```cpp
+m_node= Node::create();
+m_node->addChild(m_stickLeftBase,0);
+m_node->addChild(m_stickLeft,1);
+m_node->setLocalZOrder(100);
+```
+
+A continuación, definiremos un _listener_ de eventos táctiles para controlar el _stick_:
+
+```cpp
+EventListenerTouchOneByOne* listener = EventListenerTouchOneByOne::create();
+listener->setSwallowTouches(true);
+```
+
+En el evento del comienzo del contacto comprobaremos si estamos tocando dentro de la palanca, y en tal caso devolveremos `true` para seguir procesando el gesto. En caso contrario, devolvemos `false` para ignorar los siguientes eventos de movimiento de dicho contacto.
+
+```cpp
+listener->onTouchBegan = [=](Touch* touch, Event* event) {
+            
+    auto target = static_cast<Sprite*>(event->getCurrentTarget());
+    Point locationInNode = target->convertToNodeSpace(touch->getLocation());
+            
+    Size s = target->getContentSize();
+    Rect rect = Rect(0, 0, s.width, s.height);
+        
+    if(rect.containsPoint(locationInNode)) {
+        target->setOpacity(255);
+        return true;
+    }
+    
+    return false;
+};
+```
+
+El evento más importante será el de movimiento del contacto:
+
+```cpp
+listener->onTouchMoved = [=](Touch* touch, Event* event) {
+    auto target = static_cast<Sprite*>(event->getCurrentTarget());
+    Point offset = touch->getLocation()-touch->getStartLocation();
+
+    Point max(m_radioStick);
+    Point min(Point::ZERO-m_radioStick);
+    offset.clamp(min, max);
+            
+    axisState[StickAxis::AXIS_LEFT_VERTICAL] = offset.y / max.y;
+    axisState[StickAxis::AXIS_LEFT_HORIZONTAL] = offset.x / max.x;
+            
+    target->setPosition(m_centerStick + offset);
+};
+```
+
+En este caso calculamos el desplazamiento (_offset_) de la posición a la que hemos movido el dedo respecto a la posición del contacto que inició el gesto (`getStartLocation()`). En función de dicho desplazamiento calculamos el valor de cada uno de los ejes, no permitiendo que se salga nunca del radio permitido (esto lo hacemos con la función `clamp`, para hacer que `offset` nunca pueda ser mayor que la posición máxima ni menor que la mínima). 
+
+Por último, en el evento de finalización del gesto volveremos a poner ambos ejes en la posición central (0,0):
+
+```cpp
+listener->onTouchEnded = [=](Touch* touch, Event* event) {
+    auto target = static_cast<Sprite*>(event->getCurrentTarget());
+    target->setOpacity(127);
+    target->setPosition(m_centerStick);
+            
+    axisState[StickAxis::AXIS_LEFT_VERTICAL] = 0;
+    axisState[StickAxis::AXIS_LEFT_HORIZONTAL] = 0;
+};
+```
+
+Añadiremos el _listener_ al gestor de eventos:
+
+```cpp
+m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, m_stickLeft);
+```
+
+Necesitaremos también una función que nos dé acceso al estado de los ejes:
+
+```cpp
+float VirtualStick::axisValue(StickAxis axis) {
+    return axisState[axis];
+}
+```
+
+Para terminar incluimos el código completo de la clase que implementa el _stick_ analógico y un botón digital:
+
+```cpp
+#define kNUM_BOTONES    1
+#define kNUM_EJES       2
+#define kMARGEN_MANDO   20
+
+enum StickButton {
+    BUTTON_ACTION
+};
+
+enum StickAxis {
+    AXIS_LEFT_HORIZONTAL,
+    AXIS_LEFT_VERTICAL
+};
 
 
+class VirtualStick: public GameEntity {
+public:
+    
+    bool init();
+    
+    void preloadResources();
+    Node* getNode();
+    
+    bool isButtonPressed(StickButton button);
+    float axisValue(StickAxis axis);
+    
+    std::function<void(StickButton)> onButtonPressed;
+    std::function<void(StickButton)> onButtonReleased;
+
+    CREATE_FUNC(VirtualStick);
+    
+private:
+    cocos2d::Sprite *m_buttonAction;
+    cocos2d::Sprite *m_stickLeft;
+    cocos2d::Sprite *m_stickLeftBase;
+    
+    cocos2d::Size m_radioStick;
+    cocos2d::Point m_centerStick;
+    
+    bool buttonState[kNUM_BOTONES];
+    float axisState[kNUM_EJES];
+};
+
+```
+
+```cpp
+
+```
 
 ### Stick virtual con posicionamiento automático
 
