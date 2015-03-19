@@ -650,6 +650,237 @@ bool VirtualStick::isButtonPressed(StickButton button) {
 
 El _stick_ virtual tiene el problema de no tener _feedback_ físico, por lo que si tenemos la atención centrada en la escena del juego es posible que no sepamos si estamos tocando en el centro del mando o no, al intentar hacer un moviemiento. Para evitar esto podemos hacer que al tocar sobre la pantalla el _stick_ se sitúe automáticamente centrado en la posición donde hemos tocado. Así sabremos que siempre tocamos en el centro, y sólo tendremos que arrastrar.
 
+Una posible estrategia para implementar este tipo de _sticks_ es dividir el tamaño de la pantalla en dos: el lado izquierdo dedicado al _stick_ analógico, y el lado derecho a los botones de acción. Al pulsar en cualquier lugar del lado izquierdo crearemos un _stick_ analógico en dicha posición, y al arrastrar moveremos sus ejes. Al pulsar en el lado derecho realizaremos una acción (por ejemplo saltar). Deberemos crear una variante adecuada para nuestro tipo de juego. 
+
+Crearemos los _sprites_ necesarios para el _stick_ analógico autoposicionado de forma similar al caso anterior, pero con la diferencia de que en este caso los haremos invisibles y no les daremos ninguna posición inicial:
+
+```cpp
+Size visibleSize = Director::getInstance()->getVisibleSize();
+Vec2 visibleOrigin = Director::getInstance()->getVisibleOrigin();
+        
+m_stickLeftBase = Sprite::createWithSpriteFrameName("base-stick.png");
+m_stickLeftBase->setAnchorPoint(Vec2(0.5,0.5));
+m_stickLeftBase->setVisible(false);
+        
+m_stickLeft = Sprite::createWithSpriteFrameName("bola-stick.png");
+m_stickLeft->setAnchorPoint(Vec2(0.5,0.5));
+m_stickLeft->setVisible(false);
+        
+m_radioStick = m_stickLeftBase->getContentSize() * 0.5 - m_stickLeft->getContentSize() * 0.5;
+```
+
+Los añadimos a la pantalla:
+
+```cpp
+m_node= Node::create();
+m_node->addChild(m_stickLeftBase,0);
+m_node->addChild(m_stickLeft,1);
+m_node->setLocalZOrder(100);
+```
+
+Y creamos un _listener_ para los eventos de la pantalla táctil:
+
+```cpp
+EventListenerTouchOneByOne* listener = EventListenerTouchOneByOne::create();
+listener->setSwallowTouches(true);
+```
+
+Donde si que introduciremos notables diferencias es en los eventos del _listener_. En primer lugar, `onTouchBegan` comprobará si tocamos en la mitad izquierda de la pantalla, y en tal caso hará aparecer el _stick_ en la posición donde hemos tocado y devolverá `true` para seguir procesando el gesto. En caso contrario devuelve `false` para ignorar los siguientes eventos de movimento de dicho gesto (en tal caso se deja que lo procese el _listener_ encargado de los botones de acción a la derecha):
+
+```cpp
+listener->onTouchBegan = [=](Touch* touch, Event* event) {
+            
+    auto target = static_cast<Sprite*>(event->getCurrentTarget());
+    m_centerStick = target->convertToNodeSpace(touch->getLocation());
+    Size winSize = Director::getInstance()->getWinSize();
+            
+    if(m_centerStick.x < winSize.width/2) {
+        m_stickLeftBase->setPosition(m_centerStick);
+        m_stickLeftBase->setVisible(true);
+        m_stickLeft->setPosition(m_centerStick);
+        m_stickLeft->setVisible(true);
+                
+        return true;
+    } else {
+        return false;
+    }
+};
+```
+
+Destacamos que en este caso utilizamos también la propiedad `m_centerStick`, pero no le damos una posición fija en la actualización, sino que la modificamos cada vez que comenzamos un nuevo gesto táctil en `onTouchBegan`.
+
+En segundo lugar, `onTouchMoved` se comporará igual que en el caso del _stick_ con posición fija:
+
+```cpp
+listener->onTouchMoved = [=](Touch* touch, Event* event) {
+    Point offset = touch->getLocation()-touch->getStartLocation();
+            
+    Point max(m_radioStick);
+    Point min(Point::ZERO-m_radioStick);
+    offset.clamp(min, max);
+            
+    axisState[StickAxis::AXIS_LEFT_VERTICAL] = offset.y / max.y;
+    axisState[StickAxis::AXIS_LEFT_HORIZONTAL] = offset.x / max.x;
+            
+    m_stickLeft->setPosition(m_centerStick + offset);
+};
+```
+
+Por último, `onTouchEnded` tiene como diferencia que en este caso volveremos a ocultar el _stick_:
+
+```cpp
+listener->onTouchEnded = [=](Touch* touch, Event* event) {
+    m_stickLeftBase->setVisible(false);
+    m_stickLeft->setVisible(false);
+            
+    axisState[StickAxis::AXIS_LEFT_VERTICAL] = 0;
+    axisState[StickAxis::AXIS_LEFT_HORIZONTAL] = 0;
+};
+```
+
+A continuación incluimos el código completo de las clases que incorporan el _stick_ analógico con posicionamiento automático, combinado con un botón de acción en la parte derecha:
+
+```cpp
+bool VirtualStickAuto::init(){
+    GameEntity::init();
+    
+    for(int i=0;i<kNUM_BOTONES;i++) {
+        buttonState[i] = false;
+    }
+    
+    return true;
+}
+
+void VirtualStickAuto::preloadResources(){
+    
+    //Cache de sprites
+    auto spriteFrameCache = SpriteFrameCache::getInstance();
+    
+    //Si no estaba el spritesheet en la caché lo cargo
+    if(!spriteFrameCache->getSpriteFrameByName("boton-direccion.png")) {
+        spriteFrameCache->addSpriteFramesWithFile("mando.plist");
+    }
+}
+
+Node* VirtualStickAuto::getNode(){
+    if(m_node==NULL) {
+        
+        Size visibleSize = Director::getInstance()->getVisibleSize();
+        Vec2 visibleOrigin = Director::getInstance()->getVisibleOrigin();
+        
+        m_stickLeftBase = Sprite::createWithSpriteFrameName("base-stick.png");
+        m_stickLeftBase->setAnchorPoint(Vec2(0.5,0.5));
+        m_stickLeftBase->setVisible(false);
+        
+        m_stickLeft = Sprite::createWithSpriteFrameName("bola-stick.png");
+        m_stickLeft->setAnchorPoint(Vec2(0.5,0.5));
+        m_stickLeft->setVisible(false);
+        
+        m_radioStick = m_stickLeftBase->getContentSize() * 0.5 - m_stickLeft->getContentSize() * 0.5;
+        
+        m_buttonAction = Sprite::createWithSpriteFrameName("boton-accion.png");
+        m_buttonAction->setAnchorPoint(Vec2(1,0));
+        m_buttonAction->setOpacity(127);
+        m_buttonAction->setPosition(visibleOrigin.x + visibleSize.width - kMARGEN_MANDO, visibleOrigin.y+kMARGEN_MANDO);
+        m_buttonAction->setTag(StickButton::BUTTON_ACTION);
+        
+        m_node= Node::create();
+        m_node->addChild(m_stickLeftBase,0);
+        m_node->addChild(m_stickLeft,1);
+        m_node->addChild(m_buttonAction,0);
+        m_node->setLocalZOrder(100);
+        
+        EventListenerTouchOneByOne* listener = EventListenerTouchOneByOne::create();
+        listener->setSwallowTouches(true);
+        
+        listener->onTouchBegan = [=](Touch* touch, Event* event) {
+            
+            auto target = static_cast<Sprite*>(event->getCurrentTarget());
+            Point locationInNode = target->convertToNodeSpace(touch->getLocation());
+            
+            Size s = target->getContentSize();
+            Rect rect = Rect(0, 0, s.width, s.height);
+            
+            if(rect.containsPoint(locationInNode)) {
+                buttonState[target->getTag()] = true;
+                if(onButtonPressed) {
+                    onButtonPressed((StickButton)target->getTag());
+                }
+                target->setOpacity(255);
+                return true;
+            }
+            
+            return false;
+        };
+        
+        listener->onTouchEnded = [=](Touch* touch, Event* event) {
+            auto target = static_cast<Sprite*>(event->getCurrentTarget());
+            target->setOpacity(127);
+            buttonState[target->getTag()] = false;
+            if(onButtonReleased) {
+                onButtonReleased((StickButton)target->getTag());
+            }
+        };
+        
+        m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, m_buttonAction);
+        
+        // Listener stick
+        listener = EventListenerTouchOneByOne::create();
+        listener->setSwallowTouches(true);
+        
+        listener->onTouchBegan = [=](Touch* touch, Event* event) {
+            
+            auto target = static_cast<Sprite*>(event->getCurrentTarget());
+            m_centerStick = target->convertToNodeSpace(touch->getLocation());
+            Size winSize = Director::getInstance()->getWinSize();
+            
+            if(m_centerStick.x < winSize.width/2) {
+                m_stickLeftBase->setPosition(m_centerStick);
+                m_stickLeftBase->setVisible(true);
+                m_stickLeft->setPosition(m_centerStick);
+                m_stickLeft->setVisible(true);
+                
+                return true;
+            } else {
+                return false;
+            }
+        };
+        
+        listener->onTouchMoved = [=](Touch* touch, Event* event) {
+            Point offset = touch->getLocation()-touch->getStartLocation();
+            
+            Point max(m_radioStick);
+            Point min(Point::ZERO-m_radioStick);
+            offset.clamp(min, max);
+            
+            axisState[StickAxis::AXIS_LEFT_VERTICAL] = offset.y / max.y;
+            axisState[StickAxis::AXIS_LEFT_HORIZONTAL] = offset.x / max.x;
+            
+            m_stickLeft->setPosition(m_centerStick + offset);
+        };
+        
+        listener->onTouchEnded = [=](Touch* touch, Event* event) {
+            m_stickLeftBase->setVisible(false);
+            m_stickLeft->setVisible(false);
+            
+            axisState[StickAxis::AXIS_LEFT_VERTICAL] = 0;
+            axisState[StickAxis::AXIS_LEFT_HORIZONTAL] = 0;
+        };
+        
+        m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, m_node);
+    }
+    
+    return m_node;
+}
+
+float VirtualStickAuto::axisValue(StickAxis axis) {
+    return axisState[axis];
+}
+
+bool VirtualStickAuto::isButtonPressed(StickButton button) {
+    return buttonState[button];
+}
+```
 
 ## Soporte de mandos físicos
 
