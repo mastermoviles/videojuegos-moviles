@@ -213,10 +213,6 @@ private:
 ```cpp
 bool VirtualPad::init(){
     GameEntity::init();
-    
-    m_buttonAction = Sprite::create();
-    m_buttonLeft = Sprite::create();
-    m_buttonRight = Sprite::create();
 
     for(int i=0;i<kNUM_BOTONES;i++) {
         buttonState[i] = false;
@@ -502,11 +498,152 @@ private:
     bool buttonState[kNUM_BOTONES];
     float axisState[kNUM_EJES];
 };
-
 ```
 
 ```cpp
+bool VirtualStick::init(){
+    GameEntity::init();
+    
+    for(int i=0;i<kNUM_BOTONES;i++) {
+        buttonState[i] = false;
+    }
+    
+    return true;
+}
 
+void VirtualStick::preloadResources(){
+    
+    //Cache de sprites
+    auto spriteFrameCache = SpriteFrameCache::getInstance();
+    
+    //Si no estaba el spritesheet en la caché lo cargo
+    if(!spriteFrameCache->getSpriteFrameByName("boton-direccion.png")) {
+        spriteFrameCache->addSpriteFramesWithFile("mando.plist");
+    }
+}
+
+Node* VirtualStick::getNode(){
+    if(m_node==NULL) {
+        
+        Size visibleSize = Director::getInstance()->getVisibleSize();
+        Vec2 visibleOrigin = Director::getInstance()->getVisibleOrigin();
+        
+        m_stickLeftBase = Sprite::createWithSpriteFrameName("base-stick.png");
+        m_stickLeftBase->setAnchorPoint(Vec2(0,0));
+        m_stickLeftBase->setPosition(visibleOrigin.x+kMARGEN_MANDO, visibleOrigin.y+kMARGEN_MANDO);
+        m_stickLeftBase->setOpacity(127);
+
+        m_stickLeft = Sprite::createWithSpriteFrameName("bola-stick.png");
+        m_stickLeft->setAnchorPoint(Vec2(0.5,0.5));
+        m_stickLeft->setOpacity(127);
+        
+        m_radioStick = m_stickLeftBase->getContentSize() * 0.5 - m_stickLeft->getContentSize() * 0.5;
+        m_centerStick = m_stickLeftBase->getPosition() + m_stickLeftBase->getContentSize() * 0.5;
+        m_stickLeft->setPosition(m_centerStick);
+        
+        m_buttonAction = Sprite::createWithSpriteFrameName("boton-accion.png");
+        m_buttonAction->setAnchorPoint(Vec2(1,0));
+        m_buttonAction->setPosition(visibleOrigin.x + visibleSize.width - kMARGEN_MANDO, visibleOrigin.y+kMARGEN_MANDO);
+        m_buttonAction->setOpacity(127);
+        m_buttonAction->setTag(StickButton::BUTTON_ACTION);
+        
+        m_node= Node::create();
+        m_node->addChild(m_stickLeftBase,0);
+        m_node->addChild(m_stickLeft,1);
+        m_node->addChild(m_buttonAction,0);
+        m_node->setLocalZOrder(100);
+        
+        EventListenerTouchOneByOne* listener = EventListenerTouchOneByOne::create();
+        listener->setSwallowTouches(true);
+        
+        listener->onTouchBegan = [=](Touch* touch, Event* event) {
+            
+            auto target = static_cast<Sprite*>(event->getCurrentTarget());
+            Point locationInNode = target->convertToNodeSpace(touch->getLocation());
+            
+            Size s = target->getContentSize();
+            Rect rect = Rect(0, 0, s.width, s.height);
+            
+            if(rect.containsPoint(locationInNode)) {
+                buttonState[target->getTag()] = true;
+                if(onButtonPressed) {
+                    onButtonPressed((StickButton)target->getTag());
+                }
+                target->setOpacity(255);
+                return true;
+            }
+            
+            return false;
+        };
+        
+        listener->onTouchEnded = [=](Touch* touch, Event* event) {
+            auto target = static_cast<Sprite*>(event->getCurrentTarget());
+            target->setOpacity(127);
+            buttonState[target->getTag()] = false;
+            if(onButtonReleased) {
+                onButtonReleased((StickButton)target->getTag());
+            }
+        };
+        
+        m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, m_buttonAction);
+        
+        // Listener stick
+        listener = EventListenerTouchOneByOne::create();
+        listener->setSwallowTouches(true);
+
+        listener->onTouchBegan = [=](Touch* touch, Event* event) {
+            
+            auto target = static_cast<Sprite*>(event->getCurrentTarget());
+            Point locationInNode = target->convertToNodeSpace(touch->getLocation());
+            
+            Size s = target->getContentSize();
+            Rect rect = Rect(0, 0, s.width, s.height);
+            
+            if(rect.containsPoint(locationInNode)) {
+                target->setOpacity(255);
+                return true;
+            }
+            
+            return false;
+        };
+        
+        listener->onTouchMoved = [=](Touch* touch, Event* event) {
+            auto target = static_cast<Sprite*>(event->getCurrentTarget());
+            Point offset = touch->getLocation()-touch->getStartLocation();
+
+            Point max(m_radioStick);
+            Point min(Point::ZERO-m_radioStick);
+            offset.clamp(min, max);
+            
+            axisState[StickAxis::AXIS_LEFT_VERTICAL] = offset.y / max.y;
+            axisState[StickAxis::AXIS_LEFT_HORIZONTAL] = offset.x / max.x;
+            
+            target->setPosition(m_centerStick + offset);
+        };
+        
+        listener->onTouchEnded = [=](Touch* touch, Event* event) {
+            auto target = static_cast<Sprite*>(event->getCurrentTarget());
+            target->setOpacity(127);
+            target->setPosition(m_centerStick);
+            
+            axisState[StickAxis::AXIS_LEFT_VERTICAL] = 0;
+            axisState[StickAxis::AXIS_LEFT_HORIZONTAL] = 0;
+        };
+        
+        m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, m_stickLeft);
+
+    }
+    
+    return m_node;
+}
+
+float VirtualStick::axisValue(StickAxis axis) {
+    return axisState[axis];
+}
+
+bool VirtualStick::isButtonPressed(StickButton button) {
+    return buttonState[button];
+}
 ```
 
 ### Stick virtual con posicionamiento automático
