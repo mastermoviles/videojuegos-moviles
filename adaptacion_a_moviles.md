@@ -91,25 +91,25 @@ En el ejemplo anterior, en el caso del iPhone retina buscará primero los recurs
 Una vez decidida la versión de los recursos que se va a utilizar, deberemos indicar al motor la resolución de recursos correcta para que así los escale de forma adecuada:
 
 ```cpp
-CCSize screenSize = CCEGLView::sharedOpenGLView()->getFrameSize();
-CCSize designSize = CCSizeMake(480, 320);
-CCSize resourceSize;
+Size screenSize = director->getOpenGLView()->getFrameSize();
+Size designSize = Size(480, 320);
+Size resourceSize;
 std::vector<std::string> searchPaths;
 
 if (screenSize.height > 320) { // iPhone retina
     searchPaths.push_back("hd");
     searchPaths.push_back("comun");
-    resourceSize = CCSizeMake(960, 640);          
+    resourceSize = Size(960, 640);          
 }
 else { // iPhone
     searchPaths.push_back("sd");
     searchPaths.push_back("comun");
-    resourceSize = CCSizeMake(480, 320);
+    resourceSize = Size(480, 320);
 }
-CCFileUtils::sharedFileUtils()->setSearchPaths(searchPaths);
-pDirector->setContentScaleFactor(resourceSize.width / designSize.width);
+FileUtils::getInstance()->setSearchPaths(searchPaths);
+director->setContentScaleFactor(resourceSize.width / designSize.width);
 
-cocos2d::Director::getInstance()->getOpenGLView()->setDesignResolutionSize(320, 480, ResolutionPolicy::FIXED_WIDTH);
+director->getOpenGLView()->setDesignResolutionSize(320, 480, ResolutionPolicy::FIXED_WIDTH);
 ```
 
 
