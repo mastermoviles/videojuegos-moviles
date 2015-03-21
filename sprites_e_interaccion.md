@@ -1,4 +1,4 @@
-# Sprites e interacción
+# Sprites y colisiones
 
 En esta sesión vamos a ver un componente básico de los videojuegos: los _sprites_. Vamos a ver
 cómo tratar estos componentes de forma apropiada, cómo animarlos, moverlos por la pantalla y detectar
