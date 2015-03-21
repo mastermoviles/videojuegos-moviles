@@ -224,6 +224,8 @@ m_buttonAction->setTag(PadButton::BUTTON_ACTION);
 
 En este ejemplo vemos además que hacemos los botones **semitransparentes**. Esta es una práctica habitual, que hará que los botones virtuales afecten menos al apartado visual de nuestro videojuego.
 
+![Pad virtual](imagenes/mandos/virtual-pad.png)
+
 También podemos observar que hemos aprovechado la propiedad _tag_ de los botones para identificarlos mediante los elementos de la enumeración `PadButton`. 
 
 Una vez hemos creado los _sprites_ de los botones los añadiremos a la pantalla:
@@ -519,6 +521,9 @@ m_stickLeft->setPosition(m_centerStick);
 
 Como podemos ver, posicionamos en primer lugar la base del _stick_ en la esquina inferior-izquierda de la pantalla, haciéndola semiopaca. Tras esto, creamos la palanca y la posicionamos justo en el centro de la base. Definimos `m_centerStick` como la posición central de la base de la palanca, y `m_radioStick` como el radio en el que la palanca podrá moverse. Este radio se obtiene a partir de la media anchura y altura de la base, restándole la media anchura y altura de la palanca, para que así esta última quede siempre dentro de la base al desplazarla.
 
+![Stick virtual](imagenes/mandos/virtual-stick.png)
+
+
 Una vez creado y configurado el _stick_, lo añadimos a la pantalla:
 
 ```cpp
@@ -800,6 +805,9 @@ El _stick_ virtual tiene el problema de no tener _feedback_ físico, por lo que 
 
 Una posible estrategia para implementar este tipo de _sticks_ es dividir el tamaño de la pantalla en dos: el lado izquierdo dedicado al _stick_ analógico, y el lado derecho a los botones de acción. Al pulsar en cualquier lugar del lado izquierdo crearemos un _stick_ analógico en dicha posición, y al arrastrar moveremos sus ejes. Al pulsar en el lado derecho realizaremos una acción (por ejemplo saltar). Deberemos crear una variante adecuada para nuestro tipo de juego. 
 
+![Stick virtual con autoposicionamiento](imagenes/mandos/virtual-stick-auto.png)
+
+
 Crearemos los _sprites_ necesarios para el _stick_ analógico autoposicionado de forma similar al caso anterior, pero con la diferencia de que en este caso los haremos invisibles y no les daremos ninguna posición inicial:
 
 ```cpp
@@ -1042,6 +1050,11 @@ La especificación de mandos para dispositivos iOS aparece a partir de iOS 7. En
 
 https://developer.apple.com/library/ios/documentation/ServicesDiscovery/Conceptual/GameControllerPG/Introduction/Introduction.html
 
+![MOGA ACE Power](imagenes/mandos/moga-ace-power.png)
+![Logitech Powershell](imagenes/mandos/logitech-powershell.png)
+![Steelseries Stratus](imagenes/mandos/steelseries-stratus.jpg)
+
+
 #### Controladores oficiales Android
 
 El soporte para controladores de juego en Android está presente a partir de la API 9, aunque se han ido incorporando mejoras en APIs sucesivas.
@@ -1049,6 +1062,11 @@ El soporte para controladores de juego en Android está presente a partir de la 
 http://developer.android.com/training/game-controllers/index.html
 
 Encontramos en Android diferentes mandos que soportan el estándar definido en esta plataforma. También tenemos mandos que nos proporcionan su SDK específico para que podamos optimizar su integración en nuestro juego, como por ejemplo los mandos de OUYA TV, Moga y Nibiru.
+
+![MOGA PRO Power](imagenes/mandos/moga-pro-power.jpg)
+![Amazon Fire TV Controller](imagenes/mandos/amazon-fire-controller.jpg)
+![OUYA TV Controller](imagenes/mandos/ouya-controller_original.jpg)
+![Nyko Playpad](imagenes/mandos/nyko-playpad.png)
 
 #### Controladores iCade
 
@@ -1059,6 +1077,8 @@ En los siguientes enlaces se puede encontrar documentación para integrar estos 
 http://www.ionaudio.com/downloads/ION%20Arcade%20Dev%20Resource%20v1.5.pdf
 
 http://www.raywenderlich.com/8618/adding-icade-support-to-your-game
+
+![iCade](imagenes/mandos/icade.jpg)
 
 
 ### Controladores físicos en Cocos2d-x
