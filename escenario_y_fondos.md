@@ -54,10 +54,10 @@ mayor parte de motores 2D son capaces de leer. En Cocos2D tenemos la clase `CCTM
 que puede inicializarse a partir del fichero `.tmx`:
 
 ```cpp
-CCTMXTiledMap *fondo = CCTMXTiledMap::create("mapa.tmx");
+TMXTiledMap *fondo = TMXTiledMap::create("mapa.tmx");
 ```
 
-Este objeto es un nodo (hereda de `CCNode`), por lo que podemos añadirlo a pantalla 
+Este objeto es un nodo (hereda de `Node`), por lo que podemos añadirlo a pantalla 
 (con `addChild`) y aplicar cualquier transformación de las vistas anterioremente.
 
 Las dimesiones del mapa serán _(columnas*ancho)x(filas*alto)_, siendo _ancho x alto_ las
@@ -118,7 +118,7 @@ La base para hacer todo esto es poder obtener cada capa individual del mapa para
 sus elementos. Esto lo haremos con la clase `CCTMXLayer`:
 
 ```cpp
-CCTMXLayer *capa = fondo->layerNamed("muros");
+TMXLayer *capa = fondo->layerNamed("muros");
 ```
 
 
@@ -146,7 +146,7 @@ con una misma propiedad que los marque como tal.
 En el código de nuestro juego podremos leer estas propiedades de la siguiente forma:
 
 ```cpp
-CCPoint tileCoords = ccp(fila,columna);
+Point tileCoords = Point(fila,columna);
 
 int tileGid = capa->tileGIDAt(tileCoords);
 if (tileGid) {
@@ -185,14 +185,14 @@ nos devolverá las coordenadas de una celda a partir de las coordenadas de la es
 el tamaño de cada celda):
 
 ```cpp
-CCPoint Game::tileCoordForPosition(CCPoint position)
+Point Game::tileCoordForPosition(Point position)
 {
-    CCSize tileSize = _tiledMap->getTileSize();
+    Size tileSize = _tiledMap->getTileSize();
 
     float totalHeight = _tiledMap->getMapSize().height * tileSize.height;
     float x = floor(position.x / tileSize.width);
     float y = floor((totalHeight - position.y) / tileSize.height);
-    return ccp(x, y);
+    return Point(x, y);
 }
 ```
 
@@ -203,13 +203,13 @@ También vamos a definir un método que nos devuelva el área (`CCRect`) que ocu
 una celda dada:
 
 ```cpp
-CCRect Game::rectForTileAt(CCPoint tileCoords) {
-    CCSize tileSize = _tiledMap->getTileSize();
+Rect Game::rectForTileAt(CCPoint tileCoords) {
+    Size tileSize = _tiledMap->getTileSize();
 
     float totalHeight = _tiledMap->getMapSize().height * tileSize.height;
-    CCPoint origin = ccp(tileCoords.x * tileSize.width, totalHeight - 
+    Point origin(tileCoords.x * tileSize.width, totalHeight - 
                          ((tileCoords.y + 1) * tileSize.height));
-    return CCRectMake(origin.x, origin.y, 
+    return Rect(origin.x, origin.y, 
                       tileSize.width, tileSize.height);
 }
 ```
@@ -218,7 +218,7 @@ Por último, crearemos un método que nos diga si una determinada celda es colis
 que las celdas fuera del mapa no son colisionables (aunque según el caso podría interesarnos hacerlo al revés):
 
 ```cpp
-bool Game::isCollidableTileAt(CCPoint tileCoords) {
+bool Game::isCollidableTileAt(Point tileCoords) {
     
     // Consideramos que celdas fuera del mapa no son nunca colisionables
     if(tileCoords.x < 0 || tileCoords.x >= _tiledMap->getMapSize().width 
@@ -227,7 +227,7 @@ bool Game::isCollidableTileAt(CCPoint tileCoords) {
         return false;
     }
     
-    CCTMXLayer *layerMuros = _tiledMap->layerNamed("muros");
+    TMXLayer *layerMuros = _tiledMap->layerNamed("muros");
     
     int tileGid = layerMuros->tileGIDAt(tileCoords);
     if (tileGid) {
@@ -248,18 +248,18 @@ Por ejemplo, en el caso sencillo en el que sólo necesitamos calcular las colisi
 utilizar el siguiente código:
 
 ```cpp
-CCSize tileSize = _tiledMap->getTileSize();
+Size tileSize = _tiledMap->getTileSize();
 
-CCPoint tileCoord = 
+Point tileCoord = 
     this->tileCoordForPosition(_spritePersonaje->getPosition());
-CCPoint tileLeft = ccp(tileCoord.x - 1, tileCoord.y);
-CCPoint tileRight = ccp(tileCoord.x + 1, tileCoord.y);
+Point tileLeft(tileCoord.x - 1, tileCoord.y);
+Point tileRight(tileCoord.x + 1, tileCoord.y);
 
 if(this->isCollidableTileAt(tileLeft)) {
-    CCRect tileRect = this->rectForTileAt(tileLeft);
-    if(tileRect.intersectsRect(_spritePersonaje->boundingBox())) {
+    Rect tileRect = this->rectForTileAt(tileLeft);
+    if(tileRect.intersectsRect(_spritePersonaje->getBoundingBox())) {
         this->detenerPersonaje();
-        _spritePersonaje->setPosition(ccp(tileRect.origin.x + 
+        _spritePersonaje->setPosition(Vec2(tileRect.origin.x + 
             tileRect.size.width +
             _spritePersonaje->getContentSize().width / 2, 
             tileSize.height 
@@ -268,10 +268,10 @@ if(this->isCollidableTileAt(tileLeft)) {
 }
 
 if(this->isCollidableTileAt(tileRight)) {
-    CCRect tileRect = this->rectForTileAt(tileRight);
-    if(tileRect.intersectsRect(_spritePersonaje->boundingBox())) {
+    Rect tileRect = this->rectForTileAt(tileRight);
+    if(tileRect.intersectsRect(_spritePersonaje->getBoundingBox())) {
         this->detenerPersonaje();
-        _spritePersonaje->setPosition(ccp(tileRect.origin.x - 
+        _spritePersonaje->setPosition(Vec2(tileRect.origin.x - 
             _spritePersonaje->getContentSize().width / 2, 
             tileSize.height + 
             _spritePersonaje->getContentSize().height / 2));
@@ -300,7 +300,7 @@ Una vez hecho esto, desde nuestro código podemos obtener la capa que contenga d
 por ejemplo "monedas":
 
 ```cpp
-CCTMXLayer *monedas = fondo->layerNamed("monedas");
+TMXLayer *monedas = fondo->layerNamed("monedas");
 ```
 
 De esta capa podremos eliminar los objetos "recolectables" cuando nuestro personaje los recoja. Para hacer
@@ -322,7 +322,7 @@ Para cambiar o modificar los elementos recolectables primero deberemos comprobar
 "colisiona" con la celda en la que se encuentran, de forma similar a lo visto en el punto anterior:
 
 ```cpp
-CCPoint tileCoords = this->tileCoordForPosition(_sprite->getPosition());
+Point tileCoords = this->tileCoordForPosition(_sprite->getPosition());
 
 int tileGid = monedas->tileGIDAt(tileCoords);
 if (tileGid) {
@@ -373,11 +373,11 @@ un nombre, modificar sus dimensiones, y añadir una lista de propiedades.
 
 
 Una vez le hayamos dado un nombre al objeto, podremos obtenerlo desde el código de nuestro juego. Para ello
-primero deberemos obtener la capa de objetos (representada con la clase `CCTMXObjectGroup`) a 
+primero deberemos obtener la capa de objetos (representada con la clase `TMXObjectGroup`) a 
 partir del nombre que le hemos dado (`objetos` en este ejemplo):
 
 ```cpp
-CCTMXObjectGroup *objects = fondo->objectGroupNamed("objetos");
+TMXObjectGroup *objects = fondo->objectGroupNamed("objetos");
 ```
 
 A partir de esta capa podremos obtener uno de sus objetos dando su nombre. Por ejemplo, si hemos creado
@@ -391,7 +391,7 @@ Como vemos, el objeto se obtiene como un diccionario. De él podemos obtener dif
 como sus coordenadas:
 
 ```cpp
-_sprite->setPosition(ccp(inicio->valueForKey("x")->intValue(), 
+_sprite->setPosition(Vec2(inicio->valueForKey("x")->intValue(), 
                          inicio->valueForKey("y")->intValue()));
 ```
 
@@ -401,100 +401,6 @@ ese punto aparezcan nuevos enemigos).
 
 
 
-<!-- 
-
-## Mapas y pantalla retina
-
-La adaptación de los _tilemaps_ a pantalla retina resulta algo más compleja que otros elementos,
-ya que su API trabaja únicamente en píxeles, por lo que deberemos llevar cuidado 
-de realizar las transformaciones necesarias en el código.
-
-En primer lugar, deberemos adaptar nuestro fichero `.tmx` a pantalla retina. Para ello
-crearemos una nueva versión del fichero `png` con el conjunto de patrones, 
-adaptándalo a la nueva resolución (duplicando la resolución para pantalla retina). Por ejemplo, si
-nuestros patrones originales están en un fichero `patrones.png`, crearemos la versión
-retina de los mismos en un fichero con sufijo `-hd`:
-
-```
-patrones-hd.png
-```
-
-Tras la adaptación del fichero con la imagen de los patrones, deberemos modificar el fichero
-`tmx`, ya que en él se especifican las dimensiones de los patrones en píxeles. Deberemos
-generar por lo tanto una versión `-hd` del fichero `tmx` con las nuevas 
-dimensiones. Lo más sencillo en este caso es realizar una copia del fichero original, 
-añadirle el sufijo `-hd`, y modificarlo manualmente con un editor de texto, 
-ya que se trata de un fichero XML. Este fichero tiene un formato como el siguiente:
-
-```xml
-<map version="1.0" orientation="orthogonal" width="50" height="10" 
-                   tilewidth="32" tileheight="32">
- <tileset firstgid="1" name="tilemap" tilewidth="32" tileheight="32">
-  <image source="tilemap.png" width="320" height="160"/>
-  ...
- </tileset>
- <objectgroup name="objetos" width="50" height="10">
-  <object name="inicio" x="128" y="256" width="32" height="32"/>
- </objectgroup>
-</map>
-```
-
-Podemos observar que hay una serie de propiedades que hacen referencia al tamaño de los
-_tiles_ o de las imágenes, medidas en píxeles, mientras que otras propiedades
-hacen referencia al tamaño del mapa en filas y columnas. Para hacer la adaptación a
-pantalla retina sólo deberemos modificar las medidas que se encuentran en píxeles. En el
-ejemplo anterior podemos observar que estos elementos son:
-
-
-* Ancho y alto de los _tiles_ del mapa (atributos `tilewidth` y
-`tileheight` de la etiqueta `map`).
-* Ancho y alto de los _tiles_ del conjunto de patrones (atributos `tilewidth` y
-`tileheight` de la etiqueta `tileset`).
-* Ancho y alto de la imagen de patrones (atributos `width` y
-`height` de la etiqueta `image`).
-* Posición y dimensiones de los objetos  (atributos `x`, `y`, `width` y
-`height` de la etiqueta `object`).
-
-
-Tras duplicar las dimensiones de los elementos anteriores, el mapa quedará de la siguiente
-forma:
-
-```xml
-<map version="1.0" orientation="orthogonal" width="50" height="10" 
-                   tilewidth="64" tileheight="64">
- <tileset firstgid="1" name="tilemap" tilewidth="64" tileheight="64">
-  <image source="tilemap.png" width="640" height="320"/>
-  ...
- </tileset>
- <objectgroup name="objetos" width="50" height="10">
-  <object name="inicio" x="256" y="512" width="64" height="64"/>
- </objectgroup>
-</map>
-```
-
-Debemos tener en cuenta que el tamaño y posición de los _tiles_ y objetos pueden estar siendo
-utilizados en nuestro código para detección de colisiones o aparición de personajes. Debemos tener
-en cuenta que, tal como hemos comentado al comienzo de esta sección, la API de Cocos2D para
-_tilemaps_ trabaja siempre en píxeles, no en puntos. Es decir, cuando accedemos a la propiedad
-`tileSize` de nuestro `CCTMXTiledMap` nos dará las dimensiones tal como 
-aparecen en el fichero `tmx` (en píxeles), mientras que las posiciones y dimensiones de los 
-_sprites_ en Cocos2D están en puntos.
-
-La forma más sencilla de resolver este problema, sabiendo que hemos duplicado las dimensiones del mapa
-para adaptarlo a pantalla retina, es convertir las dimensiones de píxeles a puntos mediante
-las macros que nos proporciona Cocos2D. Podemos obtener el tamaño de un _tile_ en puntos de
-la siguiente forma:
-
-```cpp
-CGSize tileSizeInPoints = CC_SIZE_PIXELS_TO_POINTS(tiledMap.tileSize);
-```
-
-Podríamos también hacer la transformación inversa con `CC_SIZE_POINTS_TO_PIXELS`.
-
-
-
- -->
- 
 
 
 
@@ -505,13 +411,13 @@ _scroll_ para movernos por él. Para hacer _scroll_ podemos desplazar la capa pr
 juego, que contiene tanto el mapa de fondo como los _sprites_:
 
 ```cpp
-this->setPosition(ccp(scrollX, scrollY));
+this->setPosition(Vec2(scrollX, scrollY));
 ```
 
-En este ejemplo anterior, `this` sería nuestra capa (`CCLayer`) principal. En este
+En este ejemplo anterior, `this` sería nuestra capa principal. En este
 caso es importante resaltar que si queremos implementar un HUD (para mostrar puntuaciones, número de vidas,
 etc) la capa del HUD no debe añadirse como hija de la capa principal, sino que deberemos añadirla
-directamente como hija de la escena (`CCScene`), ya que de no ser así el HUD se movería con el
+directamente como hija de la escena (`Scene`), ya que de no ser así el HUD se movería con el
 _scroll_.
 
 Normalmente el _scroll_ deberá seguir la posición de nuestro personaje. Conforme movamos nuestro
@@ -520,18 +426,18 @@ personaje deberemos centrar el mapa:
 
 ```cpp
 void Game::centerViewport() {
-    CCSize screenSize = CCDirector::sharedDirector()->getWinSize();
+    Size screenSize = Director::getInstance()->getWinSize();
     
     float x = screenSize.width/2.0 - _sprite->getPosition().x;
     float y = screenSize.height/2.0 - _sprite->getPosition().y;
     
-    this->setPosition(ccp(x, y));
+    this->setPosition(Vec2(x, y));
 }
 ```
 
 El método anterior deberá invocarse cada vez que se cambie la posición del _sprite_. Lo que hará
 es desplazar todo el escenario del juego de forma que el _sprite_ quede situado justo en el centro
-de la pantalla. Podemos observar que se obtiene el tamaño de la pantalla a partir de `CCDirector`, 
+de la pantalla. Podemos observar que se obtiene el tamaño de la pantalla a partir de `Director`, 
 y calculamos el desplazamiento _(x,y)_ necesario para que el _sprite_ quede situado justo
 en el punto central.
 
@@ -546,8 +452,8 @@ añadiendo algunos `if` al código anterior:
 
 ```cpp
 void Game::centerViewport() {
-    CCSize screenSize = CCDirector::sharedDirector()->getWinSize();
-    CCSize tileSize = _tiledMap->getTileSize();
+    Size screenSize = Director::getInstance()->getWinSize();
+    Size tileSize = _tiledMap->getTileSize();
     
     float offsetX =  screenSize.width / 2.0 - _sprite->getPosition().x;
     float offsetY =  screenSize.height / 2.0 - _sprite->getPosition().y;
@@ -570,7 +476,7 @@ void Game::centerViewport() {
                   tileSize.height * _tiledMap->getMapSize().height;
     }
     
-    this->setPosition(ccp(offsetX, offsetY));
+    this->setPosition(Vec2(offsetX, offsetY));
 }
 ```
 
@@ -591,16 +497,16 @@ las capas más lejanas se muevan a velocidad más lenta que las más cercanas al
 es lo que se conoce como _scroll parallax_.
 
 En Cocos2D es sencillo implementar este tipo de _scroll_, ya que contamos con el tipo de nodo
-`CCParallaxNode` que define este comportamiento. Este nodo nos permite añadir varios hijos, y 
+`ParallaxNode` que define este comportamiento. Este nodo nos permite añadir varios hijos, y 
 hacer que cada uno de ellos se desplace a una velocidad distinta.  
 
 
 ```cpp
-CCParallaxNode *parallax = CCParallaxNode::create();
+ParallaxNode *parallax = ParallaxNode::create();
 
-parallax->addChild(scene, 3, ccp(1,1), ccp(0,0));
-parallax->addChild(mountains, 2, ccp(0.25,1), ccp(0,0));
-parallax->addChild(sky, 1, ccp(0.01,1), ccp(0,0));
+parallax->addChild(scene, 3, Vec2(1,1), Vec2(0,0));
+parallax->addChild(mountains, 2, Vec2(0.25,1), Vec2(0,0));
+parallax->addChild(sky, 1, Vec2(0.01,1), Vec2(0,0));
 
 this->addChild(parallax, -1);
 ```
@@ -630,7 +536,7 @@ La forma más sencilla de utilizar esta librería es mediante el objeto _singlet
 ...
 
 SimpleAudioEngine *audio = 
-    CocosDenshion::SimpleAudioEngine::sharedEngine();
+    CocosDenshion::SimpleAudioEngine::getInstance();
 ```
 
 
