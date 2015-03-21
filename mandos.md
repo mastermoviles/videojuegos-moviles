@@ -6,11 +6,147 @@ Vamos a ver los diferentes mecanismos de entrada que podemos utilizar en los vid
 
 ## Pantalla táctil
 
+Como hemos comentado, es el mecanismo más habitual de entrada en los videojuegos para móviles. En muchos tipos de videojuegos esta es la forma de control más natural. Por ejemplo, tenemos _puzzles_ en los que tenemos que interactuar con diferentes elementos del escenario tocando sobre ellos. También en el género _tower defense_ resulta natural posicionar nuestras diferentes unidades tocando sobre la pantalla, o de forma más amplia en el género de la estrategia interactuar con nuestros recursos y unidades pulsando sobre ellos.
+
+La pantalla táctil tiene ciertas similitudes con el control mediante ratón, pudiendo trasladar muchos juegos que originalmente se controlaban mediante ratón a dispositivos táctiles. Sin embargo, debemos tener en cuenta algunas diferencias importantes. Los juegos en los que el ratón se utiliza para el control de la cámara y para apuntar deslizándolo (como es el caso fundamentalmente de los _First Person Shooters_), encontraremos una pérdida al pasarlos a la pantalla táctil, y no será trivial implementarlo de forma correcta. Sin embargo, aquellos en los que se utilice para seleccionar elementos mediante el puntero ganarán con la pantalla táctil, ya que será más rápido pulsar sobre estos elementos con el dedo que tener que deslizar el puntero del ratón. Además, tenemos que tener en cuenta una ventaja muy importante de la pantalla táctil sobre el ratón: es multitáctil. Esto quiere decir que podemos tener al mismo tiempo varios contactos en pantalla, cosa que con el ratón no es posible. Esto nos da un gran abanico de posibilidades a la hora de implementar el control en nuestros videojuegos.
+
+### Pantalla táctil en Cocos2d-x
+
+Vamos a ver la forma de implementar este mecanismo de control en Cocos2d-x. Para la detección de eventos de la pantalla táctil crearemos un _listener_ de tipo `EventListenerTouch`:
+
+Encontramos dos variantes:
+
+* `EventListenerTouchOneByOne`: Procesa los eventos de la pantalla táctil de uno en uno. Cada vez que se reciba un evento será sobre un único contacto (`Touch`). Es más sencillo de implementar, y resultará adecuado para aquellos juegos en los que no necesitemos detectar más de un contacto al mismo tiempo.
+* `EventListenerTouchAllAtOnce`: En este caso podremos recibir en cada evento información de varios contactos (recibiremos una lista de objetos `Touch`). Será más complicado de gestionar, pero nos permitirá implementar juegos que hagan uso de la pantalla multitáctil. 
+
+Una vez seleccionado el _listener_ que más nos interese para nuestro videojuego, lo inicializaremos de la siguiente forma:
+
+```cpp
+auto listener = EventListenerTouchOneByOne::create();
+```
+
+### Eventos de la pantalla táctil en Cocos2d-x
+
+Hablaremos de un **gesto** táctil para referirnos a la secuencia que consiste en tocar sobre la pantalla, deslizar el dedo, y levantarlo de la pantalla. Durante el gesto se producirán tres tipos de eventos:
+
+* `onTouchBegan`: Evento de comienzo de un gesto. En este evento podemos decidir si queremos procesar el resto del gesto o no. En caso de no estar interesados en este gesto ya no recibiremos ningún evento más del mismo (ni de movimiento ni de finalización).
+* `onTouchMoved`: Evento de continuación del gesto. Mientras desplacemos el contacto por la pantalla recibiremos eventos de movimiento con sus nuevas coordenadas.
+* `onTouchEnded`: Evento de finalización del gesto. Al levantar el dedo de la pantalla el gesto finalizará. 
+
+Podemos indicar _callbacks_ para estos eventos mediante funciones _lambda_, o utilizandos la macro `CC_CALLBACK_2`. 
+
+Comenzamos con el evento de comienzo del gesto. La función _callback_ deberá devolver un _booleano_ indicando si estamos interesados en el gesto o no. Por ejemplo, podemos considerar que nos interesa el gesto si hemos pulsado sobre un determinado _sprite_, y que no nos interesa en caso contrario.  
+```cpp
+listener->onTouchBegan = [=](Touch* touch, Event* event){
+    if(estaSobreSprite(touch)) {
+        return true; 
+    } else {
+        return false; 
+    }
+};
+```
+
+De forma similar definiremos los eventos de movimiento y finalización, aunque en estos casos no deberemos devolver ningún valor:
+
+```cpp
+listener->onTouchMoved = [=](Touch* touch, Event* event){
+    ...
+};
+
+listener->onTouchEnded = [=](Touch* touch, Event* event){
+    ...
+};
+```
+
+### Prioridad de los eventos
+
+Una vez definidos los eventos, añadimos el _listener_ a la escena:
+
+```cpp
+m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, m_sprite);
+```
+
+En este caso `m_node` sería el nodo principal que contiene nuestra escena, y `m_sprite` el nodo que queremos que actúe como objetivo (_target_) de nuestro _listener_. 
+
+Podemos añadir el _listener_  con dos sistemas de prioridad distintos:
+
+* **Prioridad de grafo de la escena**: La prioridad en la que se ejecutan los diferentes _listeners_ viene determinada por el orden de los nodos en el grafo de la escena. El nodo que pasamos como _target_ al añadir el _listener_ será el que determine dicha prioridad. Se ejecutarán antes los eventos definidos sobre nodos que queden delante de otros en la pantalla (es decir, primero aquellos que tengan mayor Z). 
+* **Prioridad fija**: En este caso la prioridad se especifica mediante un valor fijo al añadir el _listener_.
+ 
+
+### Consumo de eventos
+
+Al crear un _listener_ podemos indicar que consuma los eventos:
+
+```cpp
+listener->setSwallowTouches(true);
+```
+
+Si hacemos esto, en caso de que nuestro _listener_ devuelva `true` en `onTouchBegan` consumirá el evento y éste no pasará a otros _listeners_ de menor prioridad. En caso contrario, el evento se propagará al siguiente _listener_
+
+
+### Nodo objetivo del _listener_
+
+Hemos visto que al utilizar prioridad basada en el grafo de la escena cada _listener_ tiene un nodo objetivo. Podemos aprovechar esto para utilizar dicho nodo como nodo sobre el que estamos interesados en pulsar:
+
+```cpp
+listener->onTouchBegan = [=](Touch* touch, Event* event) {
+            
+    auto target = static_cast<Sprite*>(event->getCurrentTarget());
+    Point locationInNode = target->convertToNodeSpace(touch->getLocation());
+            
+    Size s = target->getContentSize();
+    Rect rect = Rect(0, 0, s.width, s.height);
+
+    if(rect.containsPoint(locationInNode)) {
+        return true;
+    } else {
+        return false;
+    }
+};
+```
+
+Con `Event::getCurrentTarget` podemos obtener el nodo que actúa de _target_. Podemos convertir las coordenadas globales del _touch_ a coordenadas locales del nodo _target_, y en caso de estar dentro del área que ocupa dicho nodo entonces devolvemos `true` para seguir procesando eventos de este gesto. De esta forma podemos hacer por ejemplo que al pulsar sobre nuestro _sprite_ podamos arrastrarlo por la pantalla, mientras que si pulsamos fuera este _listener_ no hará nada. 
 
 
 ## Acelerómetro
 
+Encontramos también algunos juegos en los que el mecanismo de control más natural es el uso del acelerómetro. Por ejemplo juegos que cambian la gravedad en la escena según la inclinación del móvil, como es el caso de los juegos en los que manejamos una bola a través de un laberinto, o juegos de conducción en los que la inclinación del móvil hace de volante. 
 
+En Cocos2d-x implementaremos soporte para el acelerómetro mediante un _listener_ de tipo `EventListenerAcceleration`. Para que este _listener_ funcione, en primer lugar deberemos activar el uso del acelerómetro:
+
+```cpp
+Device::setAccelerometerEnabled(true);
+```
+
+Una vez hecho esto, creamos el _listener_ especificando directamente un _callback_ mediante una función _lambda_:
+
+```cpp
+auto listener = EventListenerAcceleration::create([=](Acceleration* acc, Event* event) {
+   ...
+}
+```
+
+También podemos utilizar la macro `CC_CALLBACK_2`:
+
+```cpp
+auto listener = EventListenerAcceleration::create(CC_CALLBACK_2(Game::onAcceleration, this));
+```
+
+```cpp
+void Game::onAcceleration(Acceleration* acc, Event* event)
+{
+    ...
+}
+```
+
+Por último, añadiremos el _listener_ al gestor de eventos de la escena:
+
+```cpp
+m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, m_node);
+```
+
+Es importante tener en cuenta que en los juegos que se manejen mediante acelerómetro, al no ser necesario tocar la pantalla, no debemos permitir que esta se apague de forma automática por inactividad. Esto no se puede hacer directamente con Cocos2d-x, sino que tendremos que especificarlo de forma nativa para cada plataforma.
 
 ## Mandos
 
