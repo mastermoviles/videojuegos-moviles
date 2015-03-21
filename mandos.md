@@ -1,6 +1,18 @@
-# Mandos
+# Controles del videojuego
 
-La principal forma de control del móvil es la pantalla táctil, por lo que los videojuegos diseñados específicamente para móviles se adaptan a esta forma de entrada. Sin embargo, cuando se quiere trasladar a móvil un juego diseñado originalmente para otro sistema deberemos adaptar su forma de manejo. 
+La principal forma de control del móvil es la pantalla táctil, por lo que los videojuegos diseñados específicamente para móviles normalmente se adaptan a esta forma de entrada. Encontramos también algunos juegos diseñados para ser manejados mediante el acelerómetro. Sin embargo, cuando se quiere trasladar a móvil un juego diseñado originalmente para otro sistema en el que contamos con teclado, ratón o _joystick_ deberemos adaptar su forma de manejo, ya que en la mayoría de casos no contamos con dichos mecanismos de entrada en móviles. 
+
+Vamos a ver los diferentes mecanismos de entrada que podemos utilizar en los videojuegos para móviles, y una serie de buenas prácticas a la hora de implementar el control de estos videojuegos.
+
+## Pantalla táctil
+
+
+
+## Acelerómetro
+
+
+
+## Mandos
 
 Los juegos diseñados para videoconsolas o máquinas recreativas se manejan normalmente mediante _joystick_ o _pad_. Al portar uno de estos juegos a móvil podemos optar por:
 
@@ -8,9 +20,9 @@ Los juegos diseñados para videoconsolas o máquinas recreativas se manejan norm
 * Añadir un _pad_ virtual en pantalla. Permite mantener el mismo mecanismo de control que el juego original, pero resulta más complicado de manejar que con un mando real.
 * Añadir soporte para mandos físicos. Nos permitirá trasladar la misma experiencia de juego que la versión de videoconsola/recreativa pero necesita que el usuario cuente con este dispositivo. Se pierde una de las ventajas de los juegos móviles, que es el llevarlos siempre con nosotros.  
 
-Vamos en esta sesión a centrarnos en este tipo de juegos y en la forma de diseñar un control adecuado para ellos. Veremos tanto la forma de incorporar un _pad_ virtual como la forma de añadir soporte para diferentes tipos de mandos físicos. Dentro de estos mandos encontramos tanto mandos soportados por las APIs oficiales de iOS y Android, como mandos con APIs de terceros, como por ejemplo iCade.
+Vamos ahora a centrarnos en este tipo de juegos y en la forma de diseñar un control adecuado para ellos. Veremos tanto la forma de incorporar un _pad_ virtual como la forma de añadir soporte para diferentes tipos de mandos físicos. Dentro de estos mandos encontramos tanto mandos soportados por las APIs oficiales de iOS y Android, como mandos con APIs de terceros, como por ejemplo iCade.
 
-## Buenas prácticas para juegos basados en _control pad_
+### Buenas prácticas para juegos basados en _control pad_
 
 Si queremos implementar un juego cuyo manejo esté basado en _control pad_, será recomendable seguir las siguientes prácticas:
 
@@ -882,17 +894,19 @@ bool VirtualStickAuto::isButtonPressed(StickButton button) {
 }
 ```
 
-## Soporte de mandos físicos
+## Mandos físicos
 
 Vamos a ver en esta sección diferentes tipos de mandos _hardware_ que podremos integrar en nuestros videojuegos.
 
-### Controladores oficiales iOS
+### Tipos de mandos físicos
+
+#### Controladores oficiales iOS
 
 La especificación de mandos para dispositivos iOS aparece a partir de iOS 7. En dicha versión del SDK se incorpora el _framework_ `GameController` que nos permitirá añadir soporte para este tipo de mandos, que llevan la etiqueta MFI (_Made for iPhone/iPod/iPad_), la cual se refiere a todos los dispositivos _hardware_ diseñados para estos dispositivos iOS. 
 
 https://developer.apple.com/library/ios/documentation/ServicesDiscovery/Conceptual/GameControllerPG/Introduction/Introduction.html
 
-### Controladores oficiales Android
+#### Controladores oficiales Android
 
 El soporte para controladores de juego en Android está presente a partir de la API 9, aunque se han ido incorporando mejoras en APIs sucesivas.
 
@@ -900,7 +914,7 @@ http://developer.android.com/training/game-controllers/index.html
 
 Encontramos en Android diferentes mandos que soportan el estándar definido en esta plataforma. También tenemos mandos que nos proporcionan su SDK específico para que podamos optimizar su integración en nuestro juego, como por ejemplo los mandos de OUYA TV, Moga y Nibiru.
 
-### Controladores iCade
+#### Controladores iCade
 
 Estos controladores no utilizan la API oficial, ya que salieron a la venta antes de que ésta existiese. Se comportan como un teclado _bluetooth_, por lo que para utilizarlos simplemente deberemos conocer a qué tecla está mapeado cada botón. Está diseñado para ser utilizado con el iPad, pero puede utilizarse en cualquier dispositivo móvil que lo reconozca como teclado _bluetooth_.
 
@@ -911,13 +925,13 @@ http://www.ionaudio.com/downloads/ION%20Arcade%20Dev%20Resource%20v1.5.pdf
 http://www.raywenderlich.com/8618/adding-icade-support-to-your-game
 
 
-## Controladores oficiales en Cocos2d-x
+### Controladores físicos en Cocos2d-x
 
 Cocos2d-x soporta tanto los mandos oficiales de Android como los oficiales de iOS, ofreciéndonos una API única para utilizarlos en cualquiera de estas plataformas. 
 
 Vamos a centrarnos en la API común de Cocos2d-x y en las cuestiones específicas para utilizarla en Android e iOS.
 
-### Eventos del mando
+#### Eventos del mando
 
 En Cocos2d-x encontramos el _listener_ `EventListenerController` que nos permite incorporar soporte para mandos físicos de forma sencilla. Este _listener_ nos permite recibir los siguientes eventos:
 
@@ -974,7 +988,7 @@ void MiEscena::onDisconnectedController(Controller* controller, Event* event) { 
 
 A continuación veremos con más detalle estos eventos.
 
-### Conexión y desconexión del mando
+#### Conexión y desconexión del mando
 
 Los mandos se conectarán de forma inalámbrica al móvil, por lo que deberemos poder conectar nuevos mandos, o desconectar los que tenemos conectados. 
 
@@ -999,7 +1013,7 @@ Controller* primerJugador = Controller::getControllerByTag(1);
 ```
 
 
-### Pulsación de teclas
+#### Pulsación de teclas
 
 A partir de un objeto `Controller` podremos conocer el estado de sus botones con el método `getKeyStatus`. Este método recibe como parámetro el código del botón que queremos consultar. En la siguiente imagen mostramos los grupos de botones que encontramos en los mandos para móviles:
 
@@ -1040,7 +1054,7 @@ KeyStatus estadoHorizontal = primerJugador->getKeyStatus(JOYSTICK_LEFT_X);
 player->setVelocity(estadoHorizontal.value);
 ```
 
-### Configuración de mandos para Android
+#### Configuración de mandos para Android
 
 Cocos2d-x en Android soporta los mandos estándar para videojuegos, y también contiene optimizaciones para tipos concretos de mando como son los de tipo Ouya TV, Moga y Nibiru. Deberemos hacer algunos cambios en el proyecto Android para soportar cualquier tipo de mando _hardware_.
 
@@ -1070,13 +1084,13 @@ public class AppActivity extends GameControllerActivity {
 ```
 También será necesario que en nuestro dispositivo Android descarguemos los _drivers_ para el controlador que vayamos a utilizar y lo conectemos al dispositivo.
 
-### Configuración de mandos para iOS
+#### Configuración de mandos para iOS
 
 En el caso de iOS, para que nuestro proyecto soporte los mandos oficiales aparecidos a partir de iOS 7, tendremos que añadir el _framework_ `GameController.Framework` a nuestro proyecto.
 
 Además, será importante que en nuestro proyecto llamemos a `Controller::startDiscoveryController()` para que inicie la búsqueda de mandos y establezca una conexión con ellos, tal como hemos indicado anteriormente.
 
-## Eventos de teclado en Cocos2d-x
+## Teclado en Cocos2d-x
  
 Cocos2d-x soporta eventos de teclado, pero éstos no funcionan en plataformas móviles. Aunque nuestro proyecto esté orientado exclusivamente a estas plataformas, si el control de nuestro juego se realiza mediante mando es recomendable que implementemos también la posibilidad de controlarlo mediante teclado. Esto será de gran utilidad durante el desarrollo, ya que no existe forma de emular un mando, y la forma más parecida al mando para manejar nuestro juego en las pruebas que hagamos durante el desarrollo es el control mediante teclado. 
  
