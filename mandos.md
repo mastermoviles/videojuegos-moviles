@@ -898,7 +898,7 @@ El soporte para controladores de juego en Android está presente a partir de la 
 
 http://developer.android.com/training/game-controllers/index.html
 
-Encontramos en Android diferentes mandos que soportan el estándar definido en esta plataforma, como es el caso de Amazon fire TV. También tenemos otros tipos de mandos distintos a los oficiales, como los mandos de tipo Ouya TV, Moga y Nibiru.
+Encontramos en Android diferentes mandos que soportan el estándar definido en esta plataforma. También tenemos mandos que nos proporcionan su SDK específico para que podamos optimizar su integración en nuestro juego, como por ejemplo los mandos de OUYA TV, Moga y Nibiru.
 
 ### Controladores iCade
 
@@ -1042,14 +1042,14 @@ player->setVelocity(estadoHorizontal.value);
 
 ### Configuración de mandos para Android
 
-Cocos2d-x en Android soporta tanto los mandos oficiales (como Amazon fire TV), como los mandos de tipo Ouya TV, Moga y Nibiru. Deberemos hacer algunos cambios en el proyecto Android para soportar estos mandos.
+Cocos2d-x en Android soporta los mandos estándar para videojuegos, y también contiene optimizaciones para tipos concretos de mando como son los de tipo Ouya TV, Moga y Nibiru. Deberemos hacer algunos cambios en el proyecto Android para soportar cualquier tipo de mando _hardware_.
 
 En primer lugar, deberemos añadir al _workspace_ de Eclipse la librería `libControllerManualAdapter` y añadirla como librería de nuestro proyecto Cocos2d-x. Esta librería la podremos encontrar en el directorio `$COCOS_HOME/platform/android/ControllerManualAdapter`.
 
 Una vez añadida la librería, añadiremos los siguientes cambios a la actividad `AppActivity`:
 
 * Haremos que la actividad herede de `GameControllerActivity`.
-* En caso de querer utilizar controladores diferentes de los oficiales, deberemos especificarlo de forma explícita en `onCreate`:
+* En caso de querer utilizar internamente los SDK específicos para determinados tipos de mandos y optimizar la adaptación a ellos, deberemos especificarlo de forma explícita en `onCreate`:
 
 ```java
 this.connectController(DRIVERTYPE_NIBIRU);
@@ -1057,7 +1057,7 @@ this.connectController(DRIVERTYPE_MOGA);
 this.connectController(DRIVERTYPE_OUYA);
 ```
  
-Por ejemplo, para dar soporte a controladores de tipo OUYA tendríamos:
+Por ejemplo, para dar soporte específico a controladores de tipo OUYA tendríamos:
 
 ```java
 public class AppActivity extends GameControllerActivity {
