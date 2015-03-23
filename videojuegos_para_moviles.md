@@ -262,7 +262,6 @@ Esto nos permite por ejemplo tener un motor genérico implementado para diferent
    plataformas (Android, iOS, Windows Phone), y portar los videojuegos llevando
    los ficheros de datos a cada una de ellas.
 
-![Motores comerciales para videojuegos](imagenes/juegos/motores_comercial.jpg)
 
 
 Encontramos diferentes motores que nos permiten crear videojuegos destinados
@@ -274,7 +273,6 @@ Actualmente Unreal Engine 4 (UE4) es gratuito para todos los desarrolladores.
 Tiene un lenguaje de programación visual (_blueprints_) y también nos permite incorporar componentes en C++. Los videojuegos desarrollados
 con UE4 pueden empaquetarse como aplicaciones Android o iOS, y podemos distribuirlos en la App Store y en Google Play Market teniendo que pagar a Epic Games sólo un porcentaje de los _royalties_ en caso de que superemos cierto nivel de ganancias.
 
-![Editor de niveles de UDK](imagenes/juegos/motores_udk.jpg)
 
 
 
@@ -287,5 +285,4 @@ permite realizar videojuegos de tamaño más reducido que con el motor anterior.
 
 A parte de los motores anteriores, que incorporan sus propias herramientas con las que podemos crear videojuegos de forma visual de forma independiente a la plataformas, también encontramos motores Open Source más sencillos que podemos utilizar para determinadas plataformas concretas. En este caso, más que motores son _frameworks_ y librerías que nos ayudarán a implementar los videojuegos, aislándonos de las capas de más bajo nivel como OpenGL o OpenAL, y ofreciéndonos un marco que nos simplificará la implementación del videojuego. Uno de estos motores es Cocos2d-x, que nos permite crear en C++ videojuegos para las principales plataformas móviles.
 
-![Motores Open Source](imagenes/juegos/motores_opensource.jpg)
 
