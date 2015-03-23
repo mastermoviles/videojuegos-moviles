@@ -30,12 +30,12 @@ Para resolver el problema de los distintos tamaños de pantalla en Cocos2d-x lo 
 En el objeto `AppDelegate` se inicializa el juego. Este es un buen punto para configurar las resoluciones anteriores. Por ejemplo, podemos definir esta configuración de la siguiente forma:
 
 ```cpp
-CCSize screenSize = CCEGLView::sharedOpenGLView()->getFrameSize();
-CCSize designSize = CCSizeMake(480, 320);
-CCSize resourceSize = CCSizeMake(960, 640);
+Size screenSize = director->getOpenGLView()->getFrameSize();
+Size designSize(480, 320);
+Size resourceSize(960, 640);
 
 // Establecemos la resolución de recursos
-pDirector->setContentScaleFactor(resourceSize.width / designSize.width);
+director->setContentScaleFactor(resourceSize.width / designSize.width);
 
 // Establecemos la resolución de diseño (puntos)
 cocos2d::Director::getInstance()->getOpenGLView()->setDesignResolutionSize(320, 480, ResolutionPolicy::FIXED_WIDTH);
@@ -57,10 +57,10 @@ Con el método `Director::setContentScaleFactor` estableceremos la relación exi
 
 ```cpp
 // Tomamos como referencia el ancho
-pDirector->setContentScaleFactor(resourceSize.width / designSize.width);
+director->setContentScaleFactor(resourceSize.width / designSize.width);
 
 // Tomamos como referencia el alto
-pDirector->setContentScaleFactor(resourceSize.height / designSize.height);
+director->setContentScaleFactor(resourceSize.height / designSize.height);
 ```
 
 ## Gestión de recursos
@@ -71,7 +71,7 @@ Para soportar distintas versiones de un mismo recurso lo que haremos es guardarl
 Por ejemplo, podemos crear un directorio `sd` para la versión normal y otro directorio `hd` para la versión para dispositivos de alta resolución. Ambos directorios tendrán los mismos ficheros de texturas, pero con distintas resoluciones. Lo que deberemos hacer es indicar al motor dónde buscar los recursos en función de la resolución:
 
 ```cpp
-CCSize screenSize = CCEGLView::sharedOpenGLView()->getFrameSize();
+Size screenSize = director->getOpenGLView()->getFrameSize();
 
 std::vector<std::string> searchPaths;
 
@@ -83,7 +83,7 @@ else { // iPhone
     searchPaths.push_back("sd");
     searchPaths.push_back("comun");
 }
-CCFileUtils::sharedFileUtils()->setSearchPaths(searchPaths);
+FileUtils::getInstance()->setSearchPaths(searchPaths);
 ```
 
 En el ejemplo anterior, en el caso del iPhone retina buscará primero los recursos en el directorio `hd`, y si no los encuentra ahí buscará en `comun`. En caso caso de tener menor resolución buscará primero en `sd` y después en `comun`.
