@@ -109,6 +109,23 @@ listener->onTouchBegan = [=](Touch* touch, Event* event) {
 Con `Event::getCurrentTarget` podemos obtener el nodo que actúa de _target_. Podemos convertir las coordenadas globales del _touch_ a coordenadas locales del nodo _target_, y en caso de estar dentro del área que ocupa dicho nodo entonces devolvemos `true` para seguir procesando eventos de este gesto. De esta forma podemos hacer por ejemplo que al pulsar sobre nuestro _sprite_ podamos arrastrarlo por la pantalla, mientras que si pulsamos fuera este _listener_ no hará nada. 
 
 
+### Pantalla multitáctil
+
+Cocos2d-x soporta pantalla multitáctil, pero por defecto se encuentra deshabilitada en iOS. Para habilitar el soporte para recibir varios contactos simultáneos en esta plataforma, deberemos abrir el fichero `AppController.mm` y localizar la siguiente línea:
+
+```objc 
+[eaglView setMultipleTouchEnabled:NO];
+```
+
+La modificaremos de forma que si que esté habilitado el soporte para múltiples contactos:
+
+```objc 
+[eaglView setMultipleTouchEnabled:YES];
+```
+
+En Android no será necesario que hagamos nada, el soporte para pantalla multitáctil está habilitado por defecto.
+
+
 ## Acelerómetro
 
 Encontramos también algunos juegos en los que el mecanismo de control más natural es el uso del acelerómetro. Por ejemplo juegos que cambian la gravedad en la escena según la inclinación del móvil, como es el caso de los juegos en los que manejamos una bola a través de un laberinto, o juegos de conducción en los que la inclinación del móvil hace de volante. 
