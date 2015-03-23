@@ -51,12 +51,11 @@ Pero fue con la llegada del iPhone y la App Store en 2008 cuando realmente se pr
   la principal plataforma de videojuegos en móviles, e incluso les comenzó a 
   ganar terreno rápidamente a las videoconsolas portátiles.
 
-En la actualidad la plataforma de Apple continua siendo el principal mercado para
-  videojuegos para móviles, superando ya a videoconsolas portátiles como la PSP. 
-  Comparte este mercado con las plataformas Android y Windows Phone, en las que
+En la actualidad las plataformas Android e iOS son el principal mercado para
+  videojuegos para móviles, superando ya a las videoconsolas portátiles. 
+  Por detrás quedan otras plataformas como Windows Phone o Blackberry, en las que
   también podemos encontrar una gran cantidad de videojuegos disponibles. La
-  capacidad de los dispositivos actuales permite que veamos videojuegos técnicamente cercanos
-  a los que podemos encontrar en algunas videoconsolas de sobremesa.
+  capacidad de los dispositivos actuales permite que veamos videojuegos técnicamente cercanos a los que podemos encontrar en algunas videoconsolas de sobremesa.
   
 
 
@@ -117,7 +116,7 @@ conforme avanza la tecnología:
     importante en los móviles, ya que muchas veces se utilizan estos juegos 
     mientras el usuario viaja en autobús, o está esperando, de forma 
     que puede tener que finalizar la partida en cualquier momento. Deberemos hacer 
-    esto utilizando la mínima cantidad de espacio posible.
+    esto utilizando la mínima cantidad de espacio posible. También debemos intentar reducir en la medida de lo posible el tamaño del videojuego, ya que muchas veces el espacio con el que contamos para instalar aplicaciones es bastante limitado.
   
 * **Ancho de banda reducido e inestable**. Si desarrollamos juegos en red deberemos 
     tener en determinados momentos velocidad puede ser baja, según la cobertura, y 
@@ -271,16 +270,9 @@ a distintas plataformas. El contar con estos motores nos permitirá crear juegos
 centrándonos en el diseño del juego, sin tener que implementar nosotros el motor
 a bajo nivel. Uno de estos motores es **Unreal Engine**, con el que se han
 creado videojuegos como la trilogía de _Gears of War_, o _Batmat Arkham City_.
-Existe una versión gratuita de las herramientas de desarrollo de este motor, conocida como
-Unreal Development Kit (UDK). Entre ellas tenemos un editor visual de escenarios y 
-plugins para crear modelos 3D de objetos y personajes con herramientas como 3D Studio Max. 
-Tiene un lenguaje de programación visual para definir el comportamiento de los objetos
-del escenario, y también un lenguaje de _script_ conocido como UnrealScript que
-nos permite personalizar el juego con mayor flexibilidad. Los videojuegos desarrollados
-con UDK pueden empaquetarse como aplicaciones iOS, y podemos distribuirlos en la App Store
-previo pago de una reducida cuota de licencia anual (actualmente $99 para desarroladores
-_indie_). En la versión de pago de este motor, se nos permite también crear
-aplicaciones para Android  y para otras plataformas.
+Actualmente Unreal Engine 4 (UE4) es gratuito para todos los desarrolladores.  
+Tiene un lenguaje de programación visual (_blueprints_) y también nos permite incorporar componentes en C++. Los videojuegos desarrollados
+con UE4 pueden empaquetarse como aplicaciones Android o iOS, y podemos distribuirlos en la App Store y en Google Play Market teniendo que pagar a Epic Games sólo un porcentaje de los _royalties_ en caso de que superemos cierto nivel de ganancias.
 
 ![Editor de niveles de UDK](imagenes/juegos/motores_udk.jpg)
 
@@ -290,19 +282,10 @@ aplicaciones para Android  y para otras plataformas.
 También encontramos otros motores como **Unity**, que también nos permite
 crear videojuegos para diferentes plataformas móviles como Android e iOS (además de otros
 tipos de plataformas). En este caso tenemos un motor capaz de realizar juegos 3D como
-en el caso anterior, pero resulta más accesible para desarrolladores noveles. Además, 
-permite realizar videojuegos de tamaño más reducido que con el motor anterior (en el caso
-de Unreal sólo el motor ocupa más de 50Mb, lo cual excede por mucho el tamaño máximo que
-debe tener una aplicación iOS para poder ser descargada vía Wi-Fi). También encontramos
-otros motores como ShiVa o Torque 2D/3D.
+en el caso anterior, y también 2D, y resulta más accesible para desarrolladores noveles. Además, 
+permite realizar videojuegos de tamaño más reducido que con el motor anterior. 
 
-A parte de los motores anteriores, que incorporan sus propias herramientas con las que
-podemos crear videojuegos de forma visual de forma independiente a la plataformas, también
-encontramos motores Open Source más sencillos que podemos utilizar para determinadas
-plataformas concretas. En este caso, más que motores son _frameworks_ y librerías
-que nos ayudarán a implementar los videojuegos, aislándonos de las capas de más bajo nivel
-como OpenGL o OpenAL, y ofreciéndonos un marco que nos simplificará la implementación
-del videojuego.
+A parte de los motores anteriores, que incorporan sus propias herramientas con las que podemos crear videojuegos de forma visual de forma independiente a la plataformas, también encontramos motores Open Source más sencillos que podemos utilizar para determinadas plataformas concretas. En este caso, más que motores son _frameworks_ y librerías que nos ayudarán a implementar los videojuegos, aislándonos de las capas de más bajo nivel como OpenGL o OpenAL, y ofreciéndonos un marco que nos simplificará la implementación del videojuego. Uno de estos motores es Cocos2d-x, que nos permite crear en C++ videojuegos para las principales plataformas móviles.
 
 ![Motores Open Source](imagenes/juegos/motores_opensource.jpg)
 
