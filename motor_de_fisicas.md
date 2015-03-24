@@ -138,7 +138,7 @@ bodyShape.SetAsBox((width/2) / PTM_RATIO, (height/2) / PTM_RATIO);
 body->CreateFixture(&bodyShape, 1.0f);
 ```
 
-En este caso hemos creado un cuerpo con una única _fixture_ con forma de caja y densidad 1.0 $$\frac{kg}{m^2}$$. La masa del cuerpo sera calculada de forma automática a partir de la forma y densidad de sus _fixtures_.
+En este caso hemos creado un cuerpo con una única _fixture_ con forma de caja y densidad 1.0 $$\frac{kg}{m^2}$$. La masa del cuerpo sera calculada de forma automática a partir de la forma y densidad de sus _fixtures_. 
 	
 De forma similar podemos también crear un cuerpo dinámico de forma circular con:
 	
