@@ -1,2 +1,2 @@
-# Redes sociales
+# Redes sociales para videojuegos
 
