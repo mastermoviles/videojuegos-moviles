@@ -1,2 +1,2 @@
-# Optimización para móviles
+# Optimización para plataformas móviles
 
