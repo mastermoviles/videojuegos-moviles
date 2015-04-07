@@ -24,7 +24,7 @@ Antes de ver una serie de consejos para el diseño de logros, vamos a realizar u
 
 * Deben existir logros para jugadores con **diferentes grados de experiencia**, desde logros que cualquier jugador pueda conseguir, hasta logros dirigidos a los jugadores más experimentados. Algunos juegos ofrecen como incentivo dar "logros fáciles", con lo cual pueden conseguir usuarios que desean ganar puntos de logros y así competir con sus amigos, pero esto no favorece la experiencia de juego.
 * **Utilizar logros ocultos para eventos inesperados**, y conseguir así sorprender al jugador. Podemos hacer que estos logros aperezcan cuando se realizar algo que no está contemplado en la historia del juego, o cuando el jugador falla en algo.
-* **No ofrecer todos los logros en la primera versión del juego**. 
+* **No ofrecer todos los logros en la primera versión del juego**. Es conveniente observar el comportamiento de los jugadores una vez el juego ha sido lanzado, y así poder añadir nuevos logros que se adapten a lo que los jugadores buscan en el juego. Además, podremos añadir logros para nuevos contenidos que podamos incorporar.
 
 
 
