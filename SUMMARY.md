@@ -9,4 +9,5 @@
 * [Controles del videojuego](mandos.md)
 * [Motor de físicas](motor_de_fisicas.md)
 * [Ejercicios](ejercicios.md)
+* Optimización para móviles
 
