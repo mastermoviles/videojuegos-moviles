@@ -16,11 +16,17 @@ Antes de ver una serie de consejos para el diseño de logros, vamos a realizar u
 
 * **Logros de progreso**: Logros que se conceden conforme progresamos en el juegos. Por ejemplo, "Completa el nivel 1". Estos logros se obtendrán siempre que avancemos en el juego. No suponen un reto extra, pero son un buen incentivo para completar el juego.
 * **Retos extra**: Suponen retos adicionales al mero avance en el juego. Por ejemplo, "Completa un nivel sin recibir ningún daño". Estos logros aumentan la rejugabilidad y alargan la vida del juego. 
-* **Logros ocultos**: Los logros ocultos pueden ser de cualquiera de los tipos anteriores, pero el reto para obtener el logro no es visible hasta que no se haya obtenido. En el caso de logros de progreso puede ser interesante que sean ocultos para evitar _spoilers_. Cuando se aplican sobre retos extra, harán que tenga que ser el jugador quien descubra qué debe hacer para obtener el reto. 
-
+* **Logros ocultos**: Los logros ocultos pueden ser de cualquiera de los tipos anteriores, pero el reto para obtener el logro no es visible hasta que no se haya obtenido. Esto es especialmente últil en el caso de logros de progreso, para evitar _spoilers_.  
 
 
 ### Consejos para el diseño de logros
+
+
+* Deben existir logros para jugadores con **diferentes grados de experiencia**, desde logros que cualquier jugador pueda conseguir, hasta logros dirigidos a los jugadores más experimentados. Algunos juegos ofrecen como incentivo dar "logros fáciles", con lo cual pueden conseguir usuarios que desean ganar puntos de logros y así competir con sus amigos, pero esto no favorece la experiencia de juego.
+* **Utilizar logros ocultos para eventos inesperados**, y conseguir así sorprender al jugador. Podemos hacer que estos logros aperezcan cuando se realizar algo que no está contemplado en la historia del juego, o cuando el jugador falla en algo.
+* **No ofrecer todos los logros en la primera versión del juego**. 
+
+
 
 ## Diseño de marcadores
 
