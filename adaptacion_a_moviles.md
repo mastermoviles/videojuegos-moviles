@@ -38,7 +38,8 @@ Size resourceSize(960, 640);
 director->setContentScaleFactor(resourceSize.width / designSize.width);
 
 // Establecemos la resolución de diseño (puntos)
-cocos2d::Director::getInstance()->getOpenGLView()->setDesignResolutionSize(320, 480, ResolutionPolicy::FIXED_WIDTH);
+cocos2d::Director::getInstance()->getOpenGLView()->setDesignResolutionSize(
+                                     320, 480, ResolutionPolicy::FIXED_WIDTH);
 ```
 
 En este ejemplo hemos especificado:
@@ -156,7 +157,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     eglView->setFrameZoomFactor(0.4f);
     
     // Soporte multi-resolucion
-    cocos2d::Director::getInstance()->getOpenGLView()->setDesignResolutionSize(768, 1024, ResolutionPolicy::FIXED_WIDTH);
+    cocos2d::Director::getInstance()->getOpenGLView()->setDesignResolutionSize(
+                                         768, 1024, ResolutionPolicy::FIXED_WIDTH);
     
     // turn on display FPS
     director->setDisplayStats(true);
