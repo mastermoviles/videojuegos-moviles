@@ -229,12 +229,15 @@ m_buttonRight = Sprite::createWithSpriteFrameName("boton-direccion.png");
 m_buttonRight->setAnchorPoint(Vec2(1,0));
 m_buttonRight->setScaleX(-1);
 m_buttonRight->setOpacity(127);
-m_buttonRight->setPosition(visibleOrigin.x+ kMARGEN_MANDO + m_buttonLeft->getContentSize().width + kMARGEN_MANDO, visibleOrigin.y+kMARGEN_MANDO);
+m_buttonRight->setPosition(visibleOrigin.x+ kMARGEN_MANDO + 
+                           m_buttonLeft->getContentSize().width + kMARGEN_MANDO, 
+                           visibleOrigin.y+kMARGEN_MANDO);
 m_buttonRight->setTag(PadButton::BUTTON_RIGHT);
 
 m_buttonAction = Sprite::createWithSpriteFrameName("boton-accion.png");
 m_buttonAction->setAnchorPoint(Vec2(1,0));
-m_buttonAction->setPosition(visibleOrigin.x + visibleSize.width - kMARGEN_MANDO, visibleOrigin.y+kMARGEN_MANDO);
+m_buttonAction->setPosition(visibleOrigin.x + visibleSize.width - kMARGEN_MANDO, 
+                            visibleOrigin.y+kMARGEN_MANDO);
 m_buttonAction->setOpacity(127);
 m_buttonAction->setTag(PadButton::BUTTON_ACTION);
 ```
@@ -407,7 +410,8 @@ Node* VirtualPad::getNode(){
         
         m_buttonLeft = Sprite::createWithSpriteFrameName("boton-direccion.png");
         m_buttonLeft->setAnchorPoint(Vec2(0,0));
-        m_buttonLeft->setPosition(visibleOrigin.x+kMARGEN_MANDO, visibleOrigin.y+kMARGEN_MANDO);
+        m_buttonLeft->setPosition(visibleOrigin.x+kMARGEN_MANDO, 
+                                  visibleOrigin.y+kMARGEN_MANDO);
         m_buttonLeft->setOpacity(127);
         m_buttonLeft->setTag(PadButton::BUTTON_LEFT);
         
@@ -415,12 +419,15 @@ Node* VirtualPad::getNode(){
         m_buttonRight->setAnchorPoint(Vec2(1,0));
         m_buttonRight->setScaleX(-1);
         m_buttonRight->setOpacity(127);
-        m_buttonRight->setPosition(visibleOrigin.x+ kMARGEN_MANDO + m_buttonLeft->getContentSize().width + kMARGEN_MANDO, visibleOrigin.y+kMARGEN_MANDO);
+        m_buttonRight->setPosition(visibleOrigin.x+ kMARGEN_MANDO + 
+                                   m_buttonLeft->getContentSize().width + 
+                                   kMARGEN_MANDO, visibleOrigin.y+kMARGEN_MANDO);
         m_buttonRight->setTag(PadButton::BUTTON_RIGHT);
 
         m_buttonAction = Sprite::createWithSpriteFrameName("boton-accion.png");
         m_buttonAction->setAnchorPoint(Vec2(1,0));
-        m_buttonAction->setPosition(visibleOrigin.x + visibleSize.width - kMARGEN_MANDO, visibleOrigin.y+kMARGEN_MANDO);
+        m_buttonAction->setPosition(visibleOrigin.x + visibleSize.width - 
+                                    kMARGEN_MANDO, visibleOrigin.y+kMARGEN_MANDO);
         m_buttonAction->setOpacity(127);
         m_buttonAction->setTag(PadButton::BUTTON_ACTION);
         
@@ -463,8 +470,10 @@ Node* VirtualPad::getNode(){
         };
         
         m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(m_listener, m_buttonLeft);
-        m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(m_listener->clone(), m_buttonRight);
-        m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(m_listener->clone(), m_buttonAction);
+        m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(m_listener->clone(), 
+                                                                             m_buttonRight);
+        m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(m_listener->clone(), 
+                                                                             m_buttonAction);
 
     }
     
@@ -713,7 +722,8 @@ Node* VirtualStick::getNode(){
         
         m_buttonAction = Sprite::createWithSpriteFrameName("boton-accion.png");
         m_buttonAction->setAnchorPoint(Vec2(1,0));
-        m_buttonAction->setPosition(visibleOrigin.x + visibleSize.width - kMARGEN_MANDO, visibleOrigin.y+kMARGEN_MANDO);
+        m_buttonAction->setPosition(visibleOrigin.x + visibleSize.width - kMARGEN_MANDO, 
+                                    visibleOrigin.y+kMARGEN_MANDO);
         m_buttonAction->setOpacity(127);
         m_buttonAction->setTag(StickButton::BUTTON_ACTION);
         
@@ -954,7 +964,8 @@ Node* VirtualStickAuto::getNode(){
         m_buttonAction = Sprite::createWithSpriteFrameName("boton-accion.png");
         m_buttonAction->setAnchorPoint(Vec2(1,0));
         m_buttonAction->setOpacity(127);
-        m_buttonAction->setPosition(visibleOrigin.x + visibleSize.width - kMARGEN_MANDO, visibleOrigin.y+kMARGEN_MANDO);
+        m_buttonAction->setPosition(visibleOrigin.x + visibleSize.width - kMARGEN_MANDO, 
+                                    visibleOrigin.y+kMARGEN_MANDO);
         m_buttonAction->setTag(StickButton::BUTTON_ACTION);
         
         m_node= Node::create();
