@@ -428,7 +428,7 @@ $$\mathbf{f}_{resistencia} = -\mathbf{\hat{v}}(k_{damping} |\mathbf{v}| $$
 Donde $$k_{damping}$$ es la constante de _damping_ especificada para el cuerpo, y $$\mathbf{\hat{v}}$$ el vector de velocidad normalizado (vector unitario con la dirección de la velocidad). Podemos ver que la fuerza actúa en el sentido opuesto a la velocidad del objeto (lo frena), y con una magnitud proporcional a la velocidad.
 
 A parte de las fuerzas de gravedad, resistencia al aire, y las fuerzas ejercidas entre cuerpos en contacto, también podemos aplicar una fuerza manualmente sobre un determinado cuerpo. Para ello deberemos indicar el vector de fuerza y el punto del objeto donde se aplicará dicha fuerza:
-
+ 
 ```cpp
 body.ApplyForce(b2Vec(5.0, 2.0), body.GetPosition());
 ```
