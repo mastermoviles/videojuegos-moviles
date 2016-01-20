@@ -10,6 +10,6 @@
 * [Controles del videojuego](mandos.md)
 * [Motor de físicas](motor_de_fisicas.md)
 * [Redes sociales](redes_sociales.md)
-* [Ejercicios](ejercicios.md)
 * [Desarrollo de juegos con SpriteKit](spritekit.md)
+* [Ejercicios](ejercicios.md)
 
