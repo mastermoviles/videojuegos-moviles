@@ -30,7 +30,7 @@ En la actualidad las plataformas Android e iOS son el principal mercado de video
   
 
 
-## Motores de juegos para móviles
+## Motores para videojuegos
 
 Normalmente los juegos consisten en una serie de niveles. Cada vez que superemos un nivel, entraremos en uno nuevo en el que se habrá incrementado la dificultad, y posiblemente encontremos algún elemento nuevo, como nuevos tipos de enemigos y nuevos poderes a utilizar, pero la mecánica del juego en esencia será la misma. 
 
@@ -40,27 +40,39 @@ Entre los ficheros de datos que podrá cargar nuestro motor (recursos conocidos 
 
 En muchas ocasiones encontramos motores desarrollados para implementar un videojuego concreto. En estos casos, podremos añadir nuevos contenidos a nuestro juego (niveles, personajes, etc) añadiendo nuevos ficheros de datos que lea el motor sin tener que modificar el fuente. Sin embargo, conforme ha ido evolucionando la tecnología han ido apareciendo motores genéricos pensados para poder crear cualquier tipo de videojuego (o casi cualquiera). En estos casos ya no se lleva a los "datos" simplemente los contenidos del juego, sino también el comportamiento del mismo (normalmente mediante _scripting_). 
 
-Esto es de especial importancia en el caso de las plataformas móviles. Si contamos con un motor genérico implementado para diferentes plataformas (Android, iOS, Windows Phone), podremos crear nuestro juego una única vez sobre dicho motor (con los tipos de ficheros de datos que soporte), y exportarlo a todas las plataformas soportadas.
-   
-Encontramos diferentes motores que nos permiten exportar videojuegos a distintas plataformas móviles. El contar con estos motores nos permitirá crear juegos complejos
-centrándonos en el diseño del juego, sin tener que implementar nosotros el motor
-a bajo nivel. Uno de estos motores es **Unreal Engine**, con el que se han
-creado videojuegos como la trilogía de _Gears of War_, o _Batman Arkham City_.
-Actualmente Unreal Engine 4 (UE4) es gratuito para todos los desarrolladores.  
-Tiene un lenguaje de programación visual (_blueprints_) y también nos permite incorporar componentes en C++. Los videojuegos desarrollados
-con UE4 pueden empaquetarse como aplicaciones Android o iOS, y podemos distribuirlos en la App Store y en Google Play Market teniendo que pagar a Epic Games sólo un porcentaje de los _royalties_ en caso de que superemos cierto nivel de ganancias.
+El uso de este tipo de motores nos proporcionará una serie de ventajas:
+* **Independencia del _hardware_**: Esto es de especial importancia en el caso de las plataformas móviles. Si contamos con un motor genérico implementado para diferentes plataformas (Android, iOS, Windows Phone), podremos crear nuestro juego una única vez sobre dicho motor (con los tipos de ficheros de datos que soporte), y exportarlo a todas las plataformas soportadas.
+* **Mejora del flujo de trabajo en el equipo de desarrollo**: Cada miembro del equipo de desarrollo trabajará sobre sus propios _assets_: el diseñador del juego con los datos de los niveles; el artista gráfico con las texturas, modelos, y animaciones 3D; músicos y técnicos de sonido con _clips_ de audio; y programadores con _scripts_. El motor se encargará de integrar todos estos elementos en el juego.
+* **Centrarnos en lo que hace nuestro juego diferente**: El contar con estos motores nos permitirá crear juegos complejos centrándonos en el diseño y contenidos del juego, sin tener que implementar nosotros el motor genérico. Es decir, nos centramos en aquello que hace a nuestros juego distinto a los demás (contenidos), y no en aquello que es común a todos los juegos (motor).
+* **Menor coste de desarrollo y _time to market_**: Evitar tener que implementar el motor a bajo nivel supondrá un notable ahorro en el coste del desarrollo, especialmente conforme el _hardware_ se hace más complejo, y nos permitirá llegar más rápidamente al mercado. 
+
+## Motores y librerías para el desarrollo de videojuegos para móviles
+
+Encontramos diferentes motores y librerías que nos permiten exportar videojuegos a distintas plataformas móviles. Vamos a realizar una revisión de las principales tecnologías disponibles que agruparemos en tres diferentes categorías:
+
+* **Motores completos**: Motores completos que nos permitirán crear casi cualquier tipo de videojuego (2D y 3D) mediante sus propias herramientas de creación de contenidos. En estos casos la programación suele hacerse mediante lenguajes de _script_. En este grupo encontramos motores como **Unreal Engine 4** o **Unity**.
+* **Herramientas de creación de videojuegos**: Herramientas visuales que nos permiten crear videojuegos de forma sencilla, en muchos casos sin la necesidad de saber programar. En estas herramientas suele estar más restringido el tipo de juegos que se pueden realizar, limitándose normalmente a juegos 2D. Dentro de este grupo encontramos herramientas como **Game Maker: Studio**, **Construct2** y **Gamesalad**.
+* **Frameworks para el desarrollo de videojuegos**: En este grupo encontramos librerías multiplataforma (normalmente _Open Source_) orientadas al desarrollo de videojuegos. No cuentan con las herramientas de creación de contenidos de los casos anteriores, sino que casi todo lo tendremos que hacer mediante programación, pero nos permitirán escribir el juego una única vez y portarlo a diferentes plataformas móviles. En este grupo destacamos los _frameworks_ multiplataforma **Cocos2d-x** (desarrollo en C++) y **libgdx** (desarrollo en Java). Además, dentro de este grupo también encontramos los _frameworks_ nativos de la plataforma iOS **SpriteKit** (juegos 2D) y **SceneKit** (juegos 3D).
+
+A continuación veremos más detalles de cada uno de los motores anteriores.
+
+### Unreal Engine 4
+
+Con este motor se han creado videojuegos como los juegos de la saga _Gears of War_, o _Daylight_, o _Street Fighter V_. Actualmente Unreal Engine 4 (UE4) es gratuito para todos los desarrolladores.  
+
+Tiene un lenguaje de _scripting_ visual (_blueprints_) y también nos permite incorporar componentes en C++. Los videojuegos desarrollados con UE4 pueden empaquetarse como aplicaciones Android o iOS (además de PC, Mac, y videoconsolas como PS4 y Xbox One), y podemos distribuirlos en la App Store y en Google Play Market teniendo que pagar a Epic Games sólo un porcentaje de los _royalties_ en caso de que superemos cierto nivel de ganancias.
 
 
+### Unity
 
 
+Nos permite crear videojuegos para diferentes plataformas móviles como Android e iOS (además de otros tipos de plataformas). En este caso tenemos un motor capaz de realizar juegos tanto 3D como 2D, y resulta más accesible para desarrolladores noveles que el motor anterior. Además, permite realizar videojuegos de tamaño más reducido. 
 
-También encontramos otros motores como **Unity**, que también nos permite
-crear videojuegos para diferentes plataformas móviles como Android e iOS (además de otros
-tipos de plataformas). En este caso tenemos un motor capaz de realizar juegos 3D como
-en el caso anterior, y también 2D, y resulta más accesible para desarrolladores noveles. Además, 
-permite realizar videojuegos de tamaño más reducido que con el motor anterior. 
+### Cocos2d-x
 
 A parte de los motores anteriores, que incorporan sus propias herramientas con las que podemos crear videojuegos de forma visual de forma independiente a la plataformas, también encontramos motores Open Source más sencillos que podemos utilizar para determinadas plataformas concretas. En este caso, no solemos contar con herramientas visuales completas para la creación del videojuego, como es el caso de los anteriores, sino simplemente con _frameworks_ y librerías que nos ayudarán a implementar los videojuegos, aislándonos de las capas de más bajo nivel como OpenGL o OpenAL, y ofreciéndonos un marco que nos simplificará la implementación del videojuego. Uno de estos motores es **Cocos2d-x**, que nos permite crear en C++ videojuegos para las principales plataformas móviles.
+
+### SpriteKit y SceneKit
 
 De forma alternativa, en iOS contamos con dos _frameworks_ nativos de la plataforma orientados a la creación de videojuegos: **SpriteKit** y **SceneKit**, para juegos 2D y 3D respectivamente. Al ser nativos, nos permitirán crear videojuegos optimizados para esta plataforma y reducir el tamaño del paquete de la aplicación, pero sólo podrán ser utilizados en iOS.
 
