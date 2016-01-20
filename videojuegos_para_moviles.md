@@ -1,62 +1,87 @@
 # Videojuegos para móviles
 
-Sin duda el tipo de aplicaciones que más famoso se ha hecho en el mercado de los móviles
-son los videojuegos. Con estos teléfonos los usuarios pueden descargar estos juegos a través de
-las diferentes tiendas online, normalmente a precios muy reducidos en relación a otras plataformas
-de videojuegos, y cuentan con la gran ventaja de que son dispositivos que siempre llevamos
+Sin duda uno de los tipos de aplicaciones que más famosos se han hecho en el mercado de los móviles son los videojuegos. Con estos teléfonos los usuarios pueden descargar juegos a través de
+las diferentes tiendas online, normalmente a precios muy reducidos en relación a otras plataformas de videojuegos, y cuentan con la gran ventaja de que son dispositivos que siempre llevamos
 con nosotros.
 
-Vamos a ver los conceptos básicos de la programación de videojuegos y las  herramientas y 
-librerías que podemos utilizar para desarrollar este tipo de aplicaciones para las plataformas
-Android e iOS.
+En este primer capítulo vamos a ver las características particulares de los videojuegos para móviles, y las herramientas y librerías que podemos utilizar para desarrollarlos y portarlos a las diferentes plataformas móviles, especialmente Android e iOS.
   
 
 ## Historia de los videojuegos en móviles
 
 Los primeros juegos que podíamos encontrar en los móviles eran 
-  normalmente juegos muy sencillos tipo puzzle o de mesa, o en todo caso juegos 
-  de acción muy simples similares a los primeros videojuegos aparecidos 
-  antes de los 80. El primer juego que apareció fue el Snake, que se incluyó preinstalado en
-  determinados modelos de móviles Nokia (como por ejemplo el 3210) a partir de 1997. Se trataba
-  de un juego monocromo, cuya versión original data de finales de los 70. Este era el único
-  juego que venía preinstalado en estos móviles, y no contábamos con la posibilidad
-  de descargar ningún otro.
+  normalmente juegos muy sencillos tipo puzzle o de mesa, o en todo caso juegos de acción muy simples similares a los primeros videojuegos aparecidos antes de los 80. El primer juego que apareció fue el Snake, que se incluyó preinstalado en
+  determinados modelos de móviles Nokia (como por ejemplo el 3210) a partir de 1997. Se trataba de un juego monocromo, cuya versión original data de finales de los 70. Su traslado a los móviles Nokia supuso un enorme éxito, convirtiéndose en un icono de los dispositivos de esta compañía. Este era el único juego que venía preinstalado en estos móviles, y no contábamos con la posibilidad de descargar ningún otro.
 
 ![Snake para Nokia](imagenes/juegos/snake.jpg)
 
 
-
-
-  Con la llegada de los móviles con soporte para Java aparecieron 
-  juegos más complejos, similares a los que se podían ver en los ordenadores 
-  y consolas de 8 bits, y estos juegos irían mejorando conforme los teléfonos  
-  móviles evolucionaban, hasta llegar incluso a tener juegos sencillos
-  en 3D. Los videojuegos fueron el tipo de aplicación Java más común para estos
-  móviles, llegando al punto de que los móviles con soporte para Java ME comercialmente
+  Con el avance de la tecnología, aparecieron móviles capaces de instalar nuevas aplicaciones. El sistema operativo más común era SymbianOS, pero casi todos los móviles, independientemente del sistema operativo que incorporasen, también soportaban la instalación de aplicación Java (plataforma Java ME). Esto, junto con el éxito que había cosechado _Snake_, dió lugar a la aparición de un gran número de videojuegos para las plataformas Symbian y Java ME.
+  
+  Con esto aparecieron juegos algo más complejos, similares a los que habían aparecido bastantes años antes para ordenadores 
+  y consolas de 8 bits. Estos juegos irían mejorando conforme los teléfonos móviles evolucionaban, hasta llegar incluso a tener juegos sencillos en 3D. Los videojuegos fueron el tipo de aplicación Java más común para estos móviles, llegando al punto de que los móviles con soporte para Java ME comercialmente
   se vendían muchas veces como móvil con _Juegos Java_.
   
-Además teníamos las ventajas de que existía ya una gran comunidad de programadores 
-  en Java, a los que no les costaría aprender a desarrollar este tipo de 
-  juegos para móviles, por lo que el número de juegos disponible 
-  crecería rápidamente. El poder descargar y añadir estos 
-  juegos al móvil de forma sencilla, como cualquier otra aplicación 
-  Java, hará estos juegos especialmente atractivos para los usuarios, ya 
-  que de esta forma podrán estar disponiendo continuamente de nuevos juegos 
-  en su móvil.
+Además teníamos la ventaja de que en aquel momento ya existía una gran comunidad de programadores en Java, a los que no les costaría aprender a desarrollar este tipo de juegos para móviles, por lo que el número de juegos disponible crecería rápidamente. El poder descargar y añadir estos juegos al móvil de forma sencilla, como cualquier otra aplicación Java, hará estos juegos especialmente atractivos para los usuarios, permitiendo disponer continuamente de nuevos juegos en sus móviles.
   
-Pero fue con la llegada del iPhone y la App Store en 2008 cuando realmente se produjo
-  el _boom_ de los videojuegos para móviles. La facilidad para obtener los
-  contenidos en la tienda de Apple, junto a la capacidad de estos dispositivos
-  para reproducir videojuegos causaron que en muy poco tiempo ésta pasase a ser
-  la principal plataforma de videojuegos en móviles, e incluso les comenzó a 
-  ganar terreno rápidamente a las videoconsolas portátiles.
+Pero fue con la llegada del iPhone en 2007 y la App Store en 2008 cuando realmente se produjo el _boom_ de los videojuegos para móviles. La facilidad para obtener los contenidos en la tienda de Apple, junto a la capacidad de estos dispositivos para reproducir videojuegos causaron que en muy poco tiempo ésta pasase a ser la principal plataforma de videojuegos en móviles, incluso ganando terreno rápidamente a las videoconsolas portátiles.
 
-En la actualidad las plataformas Android e iOS son el principal mercado para
-  videojuegos para móviles, superando ya a las videoconsolas portátiles. 
-  Por detrás quedan otras plataformas como Windows Phone o Blackberry, en las que
-  también podemos encontrar una gran cantidad de videojuegos disponibles. La
-  capacidad de los dispositivos actuales permite que veamos videojuegos técnicamente cercanos a los que podemos encontrar en algunas videoconsolas de sobremesa.
+En la actualidad las plataformas Android e iOS son el principal mercado de videojuegos para móviles, superando ya a las videoconsolas portátiles. Por detrás quedan otras plataformas como Windows Phone o Blackberry, en las que también podemos encontrar una gran cantidad de videojuegos disponibles. La capacidad de los dispositivos actuales permite que veamos videojuegos técnicamente cercanos a los que podemos encontrar en algunas videoconsolas de sobremesa.
   
+
+
+## Motores de juegos para móviles
+
+Cuando desarrollamos juegos, será conveniente llevar a la capa de datos 
+  todo lo que podamos, dejando el código del juego lo más sencillo y genérico que sea 
+  posible. Por ejemplo, podemos crear ficheros de datos donde se especifiquen las características 
+  de cada nivel del juego, el tipo y el comportamiento de los enemigos, los textos, 
+  etc.
+  
+Normalmente los juegos consisten en una serie de niveles. Cada vez que superemos 
+  un nivel, entraremos en uno nuevo en el que se habrá incrementado la 
+  dificultad, pero la mecánica del juego en esencia será la misma. 
+  Por esta razón es conveniente que el código del programa se encargue 
+  de implementar esta mecánica genérica, lo que se conoce como **motor 
+  del juego**, y que lea de ficheros de datos todas las características de cada 
+  nivel concreto.
+  
+De esta forma, si queremos añadir o modificar niveles del juego, cambiar 
+  el comportamiento de los enemigos, añadir nuevos tipos de enemigos, 
+  o cualquier otra modificación de este tipo, no tendremos que modificar el código 
+  fuente, simplemente bastará con cambiar los ficheros de datos. Por ejemplo,
+  podríamos definir los datos del juego en un fichero XML, JSON o plist.
+  
+En muchas ocasiones encontramos motores desarrollados para implementar un videojuego concreto. En estos casos, podremos añadir nuevos contenidos a nuestro juego (niveles, personajes, etc) añadiendo nuevos ficheros de datos que lea el motor sin tener que modificar el fuente. Sin embargo, conforme ha ido evolucionando la tecnología han ido apareciendo motores genéricos pensados para poder crear cualquier tipo de videojuego (o casi cualquiera). En estos casos ya no se lleva a los "datos" simplemente los contenidos del juego, sino también el comportamiento del mismo (se tienen como componentes del juego _scripts_, programas de alto nivel que definen el comportamiento de las entidades del juego, además de los gráficos, datos de niveles, _clips_ de audio, etc). 
+
+
+Esto es de especial importancia en el caso de las plataformas móviles. Si contamos con un motor genérico implementado para diferentes plataformas (Android, iOS, Windows Phone), podremos crear nuestro juego una única vez sobre dicho motor (con los tipos de ficheros de datos que soporte), y exportarlo a todas las plataformas soportadas.
+   
+
+Encontramos diferentes motores que nos permiten crear videojuegos destinados
+a distintas plataformas. El contar con estos motores nos permitirá crear juegos complejos
+centrándonos en el diseño del juego, sin tener que implementar nosotros el motor
+a bajo nivel. Uno de estos motores es **Unreal Engine**, con el que se han
+creado videojuegos como la trilogía de _Gears of War_, o _Batman Arkham City_.
+Actualmente Unreal Engine 4 (UE4) es gratuito para todos los desarrolladores.  
+Tiene un lenguaje de programación visual (_blueprints_) y también nos permite incorporar componentes en C++. Los videojuegos desarrollados
+con UE4 pueden empaquetarse como aplicaciones Android o iOS, y podemos distribuirlos en la App Store y en Google Play Market teniendo que pagar a Epic Games sólo un porcentaje de los _royalties_ en caso de que superemos cierto nivel de ganancias.
+
+
+
+
+
+También encontramos otros motores como **Unity**, que también nos permite
+crear videojuegos para diferentes plataformas móviles como Android e iOS (además de otros
+tipos de plataformas). En este caso tenemos un motor capaz de realizar juegos 3D como
+en el caso anterior, y también 2D, y resulta más accesible para desarrolladores noveles. Además, 
+permite realizar videojuegos de tamaño más reducido que con el motor anterior. 
+
+A parte de los motores anteriores, que incorporan sus propias herramientas con las que podemos crear videojuegos de forma visual de forma independiente a la plataformas, también encontramos motores Open Source más sencillos que podemos utilizar para determinadas plataformas concretas. En este caso, no solemos contar con herramientas visuales completas para la creación del videojuego, como es el caso de los anteriores, sino simplemente con _frameworks_ y librerías que nos ayudarán a implementar los videojuegos, aislándonos de las capas de más bajo nivel como OpenGL o OpenAL, y ofreciéndonos un marco que nos simplificará la implementación del videojuego. Uno de estos motores es **Cocos2d-x**, que nos permite crear en C++ videojuegos para las principales plataformas móviles.
+
+De forma alternativa, en iOS contamos con dos _frameworks_ nativos de la plataforma orientados a la creación de videojuegos: **SpriteKit** y **SceneKit**, para juegos 2D y 3D respectivamente. Al ser nativos, nos permitirán crear videojuegos optimizados para esta plataforma y reducir el tamaño del paquete de la aplicación, pero sólo podrán ser utilizados en iOS.
+
+
 
 
 
@@ -151,57 +176,5 @@ Ante todo, estos videojuegos deben ser atractivos para los jugadores, ya que
   tenemos que conseguir que el usuario continue jugando a nuestro juego. Para incentivar
   esto deberemos ofrecerle alguna recompensa por seguir jugando, y la posibilidad de que
   pueda compartir estos logros con otros jugadores.
-
-
-
-
-## Motores de juegos para móviles
-
-Cuando desarrollamos juegos, será conveniente llevar a la capa de datos 
-  todo lo que podamos, dejando el código del juego lo más sencillo y genérico que sea 
-  posible. Por ejemplo, podemos crear ficheros de datos donde se especifiquen las características 
-  de cada nivel del juego, el tipo y el comportamiento de los enemigos, los textos, 
-  etc.
-  
-Normalmente los juegos consisten en una serie de niveles. Cada vez que superemos 
-  un nivel, entraremos en uno nuevo en el que se habrá incrementado la 
-  dificultad, pero la mecánica del juego en esencia será la misma. 
-  Por esta razón es conveniente que el código del programa se encargue 
-  de implementar esta mecánica genérica, lo que se conoce como **motor 
-  del juego**, y que lea de ficheros de datos todas las características de cada 
-  nivel concreto.
-  
-De esta forma, si queremos añadir o modificar niveles del juego, cambiar 
-  el comportamiento de los enemigos, añadir nuevos tipos de enemigos, 
-  o cualquier otra modificación de este tipo, no tendremos que modificar el código 
-  fuente, simplemente bastará con cambiar los ficheros de datos. Por ejemplo,
-  podríamos definir los datos del juego en un fichero XML, JSON o plist.
-  
-En muchas ocasiones encontramos motores desarrollados para implementar un videojuego concreto. En estos casos, podremos añadir nuevos contenidos a nuestro juego (niveles, personajes, etc) añadiendo nuevos ficheros de datos que lea el motor sin tener que modificar el fuente. Sin embargo, conforme ha ido evolucionando la tecnología han ido apareciendo motores genéricos pensados para poder crear cualquier tipo de videojuego (o casi cualquiera). En estos casos ya no se lleva a los "datos" simplemente los contenidos del juego, sino también el comportamiento del mismo (se tienen como componentes del juego _scripts_, programas de alto nivel que definen el comportamiento de las entidades del juego, además de los gráficos, datos de niveles, _clips_ de audio, etc). 
-
-
-Esto es de especial importancia en el caso de las plataformas móviles. Si contamos con un motor genérico implementado para diferentes plataformas (Android, iOS, Windows Phone), podremos crear nuestro juego una única vez sobre dicho motor (con los tipos de ficheros de datos que soporte), y exportarlo a todas las plataformas soportadas.
-   
-
-Encontramos diferentes motores que nos permiten crear videojuegos destinados
-a distintas plataformas. El contar con estos motores nos permitirá crear juegos complejos
-centrándonos en el diseño del juego, sin tener que implementar nosotros el motor
-a bajo nivel. Uno de estos motores es **Unreal Engine**, con el que se han
-creado videojuegos como la trilogía de _Gears of War_, o _Batman Arkham City_.
-Actualmente Unreal Engine 4 (UE4) es gratuito para todos los desarrolladores.  
-Tiene un lenguaje de programación visual (_blueprints_) y también nos permite incorporar componentes en C++. Los videojuegos desarrollados
-con UE4 pueden empaquetarse como aplicaciones Android o iOS, y podemos distribuirlos en la App Store y en Google Play Market teniendo que pagar a Epic Games sólo un porcentaje de los _royalties_ en caso de que superemos cierto nivel de ganancias.
-
-
-
-
-
-También encontramos otros motores como **Unity**, que también nos permite
-crear videojuegos para diferentes plataformas móviles como Android e iOS (además de otros
-tipos de plataformas). En este caso tenemos un motor capaz de realizar juegos 3D como
-en el caso anterior, y también 2D, y resulta más accesible para desarrolladores noveles. Además, 
-permite realizar videojuegos de tamaño más reducido que con el motor anterior. 
-
-A parte de los motores anteriores, que incorporan sus propias herramientas con las que podemos crear videojuegos de forma visual de forma independiente a la plataformas, también encontramos motores Open Source más sencillos que podemos utilizar para determinadas plataformas concretas. En este caso, no solemos contar con herramientas visuales completas para la creación del videojuego, como es el caso de los anteriores, sino simplemente con _frameworks_ y librerías que nos ayudarán a implementar los videojuegos, aislándonos de las capas de más bajo nivel como OpenGL o OpenAL, y ofreciéndonos un marco que nos simplificará la implementación del videojuego. Uno de estos motores es **Cocos2d-x**, que nos permite crear en C++ videojuegos para las principales plataformas móviles.
 
 
