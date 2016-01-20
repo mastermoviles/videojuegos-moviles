@@ -32,34 +32,17 @@ En la actualidad las plataformas Android e iOS son el principal mercado de video
 
 ## Motores de juegos para móviles
 
-Cuando desarrollamos juegos, será conveniente llevar a la capa de datos 
-  todo lo que podamos, dejando el código del juego lo más sencillo y genérico que sea 
-  posible. Por ejemplo, podemos crear ficheros de datos donde se especifiquen las características 
-  de cada nivel del juego, el tipo y el comportamiento de los enemigos, los textos, 
-  etc.
-  
-Normalmente los juegos consisten en una serie de niveles. Cada vez que superemos 
-  un nivel, entraremos en uno nuevo en el que se habrá incrementado la 
-  dificultad, pero la mecánica del juego en esencia será la misma. 
-  Por esta razón es conveniente que el código del programa se encargue 
-  de implementar esta mecánica genérica, lo que se conoce como **motor 
-  del juego**, y que lea de ficheros de datos todas las características de cada 
-  nivel concreto.
-  
-De esta forma, si queremos añadir o modificar niveles del juego, cambiar 
-  el comportamiento de los enemigos, añadir nuevos tipos de enemigos, 
-  o cualquier otra modificación de este tipo, no tendremos que modificar el código 
-  fuente, simplemente bastará con cambiar los ficheros de datos. Por ejemplo,
-  podríamos definir los datos del juego en un fichero XML, JSON o plist.
-  
-En muchas ocasiones encontramos motores desarrollados para implementar un videojuego concreto. En estos casos, podremos añadir nuevos contenidos a nuestro juego (niveles, personajes, etc) añadiendo nuevos ficheros de datos que lea el motor sin tener que modificar el fuente. Sin embargo, conforme ha ido evolucionando la tecnología han ido apareciendo motores genéricos pensados para poder crear cualquier tipo de videojuego (o casi cualquiera). En estos casos ya no se lleva a los "datos" simplemente los contenidos del juego, sino también el comportamiento del mismo (se tienen como componentes del juego _scripts_, programas de alto nivel que definen el comportamiento de las entidades del juego, además de los gráficos, datos de niveles, _clips_ de audio, etc). 
+Normalmente los juegos consisten en una serie de niveles. Cada vez que superemos un nivel, entraremos en uno nuevo en el que se habrá incrementado la dificultad, y posiblemente encontremos algún elemento nuevo, como nuevos tipos de enemigos y nuevos poderes a utilizar, pero la mecánica del juego en esencia será la misma. 
 
+Por este motivo, en el desarrollo de videojuegos es conveniente que el código fuente resulte lo más genérico y reutilizable posible, llevando la definición de los niveles a ficheros de datos (por ejemplo con formato xml o json), que contendrán la estructura del escenario, los enemigos que aparecerán en él, y otros elementos con los que podamos interactuar. De esta forma, cada vez que iniciemos un nuevo nivel, la cargarán los datos del fichero del nivel, y se aplicará sobre ellos la mecánica genérica del juego. Este código genérico capaz de leer, interpretar y reproducir los niveles de nuestro juego es lo que conoceremos como **motor del juego**.
+
+Entre los ficheros de datos que podrá cargar nuestro motor (recursos conocidos habitualmente como **assets**) encontramos por ejemplo los gráficos del juego, fuentes, _clips_ de audio, la estructura de cada nivel, e incluso _scripts_ (programas en lenguajes de alto nivel que definen el comportamiento de las entidades del juego). 
+
+En muchas ocasiones encontramos motores desarrollados para implementar un videojuego concreto. En estos casos, podremos añadir nuevos contenidos a nuestro juego (niveles, personajes, etc) añadiendo nuevos ficheros de datos que lea el motor sin tener que modificar el fuente. Sin embargo, conforme ha ido evolucionando la tecnología han ido apareciendo motores genéricos pensados para poder crear cualquier tipo de videojuego (o casi cualquiera). En estos casos ya no se lleva a los "datos" simplemente los contenidos del juego, sino también el comportamiento del mismo (normalmente mediante _scripting_). 
 
 Esto es de especial importancia en el caso de las plataformas móviles. Si contamos con un motor genérico implementado para diferentes plataformas (Android, iOS, Windows Phone), podremos crear nuestro juego una única vez sobre dicho motor (con los tipos de ficheros de datos que soporte), y exportarlo a todas las plataformas soportadas.
    
-
-Encontramos diferentes motores que nos permiten crear videojuegos destinados
-a distintas plataformas. El contar con estos motores nos permitirá crear juegos complejos
+Encontramos diferentes motores que nos permiten exportar videojuegos a distintas plataformas móviles. El contar con estos motores nos permitirá crear juegos complejos
 centrándonos en el diseño del juego, sin tener que implementar nosotros el motor
 a bajo nivel. Uno de estos motores es **Unreal Engine**, con el que se han
 creado videojuegos como la trilogía de _Gears of War_, o _Batman Arkham City_.
