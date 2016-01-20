@@ -10,9 +10,9 @@ El código fuente proporcionado en este libro ha sido probado con la libreria *C
 
 # Copyright
 
-_Copyright_ 2014-2016 Universidad de Alicante. Todos los derechos reservados.
+_Copyright_ 2015-2016 Universidad de Alicante. Todos los derechos reservados.
 
-Este documento está protegido por _copyright_ y se distribuye bajo licencias que restringen su uso, copia y distribución. Se restringe al uso estrictamente personal y como material didáctico del Máster Universitario en Desarrollo de Software para Dispositivos Móviles, curso 2014-2016, de la Universidad de Alicante.
+Este documento está protegido por _copyright_ y se distribuye bajo licencias que restringen su uso, copia y distribución. Se restringe al uso estrictamente personal y como material didáctico del Máster Universitario en Desarrollo de Software para Dispositivos Móviles, curso 2015-2016, de la Universidad de Alicante.
 
 La distribución y copia de este documento no están permitidas, salvo autorización previa de la Universidad de Alicante.
 
