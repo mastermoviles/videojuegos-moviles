@@ -1,6 +1,6 @@
 # Desarrollo de juegos con SpriteKit
 
-**SpriteKit** es un _framework_ nativo de la plataforma iOS destinado al desarrollo de aplicaciones que muestren cualquier tipo de gráficos 2D animados, como es el caso de los videojuegos. Todas las clases de este _framework_ tienen el prefijo `SK`.
+**SpriteKit** es un _framework_ nativo de la plataforma iOS destinado al desarrollo de aplicaciones que muestren cualquier tipo de gráficos 2D animados, como es el caso de los videojuegos. Todas las clases de este _framework_ tienen el prefijo `SK`, y se encuentra disponible a partir de iOS 7.
 
 Su API es muy parecida a la del motor de videojuegos Cocos2d-x, por lo que la transición entre estas tecnologías será muy sencilla. 
 
