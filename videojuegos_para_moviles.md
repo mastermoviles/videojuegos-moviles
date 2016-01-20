@@ -177,17 +177,17 @@ De esta forma, si queremos añadir o modificar niveles del juego, cambiar
   fuente, simplemente bastará con cambiar los ficheros de datos. Por ejemplo,
   podríamos definir los datos del juego en un fichero XML, JSON o plist.
   
-Esto nos permite por ejemplo tener un motor genérico implementado para diferentes 
-   plataformas (Android, iOS, Windows Phone), y portar los videojuegos llevando
-   los ficheros de datos a cada una de ellas.
+En muchas ocasiones encontramos motores desarrollados para implementar un videojuego concreto. En estos casos, podremos añadir nuevos contenidos a nuestro juego (niveles, personajes, etc) añadiendo nuevos ficheros de datos que lea el motor sin tener que modificar el fuente. Sin embargo, conforme ha ido evolucionando la tecnología han ido apareciendo motores genéricos pensados para poder crear cualquier tipo de videojuego (o casi cualquiera). En estos casos ya no se lleva a los "datos" simplemente los contenidos del juego, sino también el comportamiento del mismo (se tienen como componentes del juego _scripts_, programas de alto nivel que definen el comportamiento de las entidades del juego, además de los gráficos, datos de niveles, _clips_ de audio, etc). 
 
 
+Esto es de especial importancia en el caso de las plataformas móviles. Si contamos con un motor genérico implementado para diferentes plataformas (Android, iOS, Windows Phone), podremos crear nuestro juego una única vez sobre dicho motor (con los tipos de ficheros de datos que soporte), y exportarlo a todas las plataformas soportadas.
+   
 
 Encontramos diferentes motores que nos permiten crear videojuegos destinados
 a distintas plataformas. El contar con estos motores nos permitirá crear juegos complejos
 centrándonos en el diseño del juego, sin tener que implementar nosotros el motor
 a bajo nivel. Uno de estos motores es **Unreal Engine**, con el que se han
-creado videojuegos como la trilogía de _Gears of War_, o _Batmat Arkham City_.
+creado videojuegos como la trilogía de _Gears of War_, o _Batman Arkham City_.
 Actualmente Unreal Engine 4 (UE4) es gratuito para todos los desarrolladores.  
 Tiene un lenguaje de programación visual (_blueprints_) y también nos permite incorporar componentes en C++. Los videojuegos desarrollados
 con UE4 pueden empaquetarse como aplicaciones Android o iOS, y podemos distribuirlos en la App Store y en Google Play Market teniendo que pagar a Epic Games sólo un porcentaje de los _royalties_ en caso de que superemos cierto nivel de ganancias.
@@ -202,6 +202,6 @@ tipos de plataformas). En este caso tenemos un motor capaz de realizar juegos 3D
 en el caso anterior, y también 2D, y resulta más accesible para desarrolladores noveles. Además, 
 permite realizar videojuegos de tamaño más reducido que con el motor anterior. 
 
-A parte de los motores anteriores, que incorporan sus propias herramientas con las que podemos crear videojuegos de forma visual de forma independiente a la plataformas, también encontramos motores Open Source más sencillos que podemos utilizar para determinadas plataformas concretas. En este caso, más que motores son _frameworks_ y librerías que nos ayudarán a implementar los videojuegos, aislándonos de las capas de más bajo nivel como OpenGL o OpenAL, y ofreciéndonos un marco que nos simplificará la implementación del videojuego. Uno de estos motores es Cocos2d-x, que nos permite crear en C++ videojuegos para las principales plataformas móviles.
+A parte de los motores anteriores, que incorporan sus propias herramientas con las que podemos crear videojuegos de forma visual de forma independiente a la plataformas, también encontramos motores Open Source más sencillos que podemos utilizar para determinadas plataformas concretas. En este caso, no solemos contar con herramientas visuales completas para la creación del videojuego, como es el caso de los anteriores, sino simplemente con _frameworks_ y librerías que nos ayudarán a implementar los videojuegos, aislándonos de las capas de más bajo nivel como OpenGL o OpenAL, y ofreciéndonos un marco que nos simplificará la implementación del videojuego. Uno de estos motores es **Cocos2d-x**, que nos permite crear en C++ videojuegos para las principales plataformas móviles.
 
 
