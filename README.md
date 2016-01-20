@@ -4,7 +4,7 @@
 Los dispositivos actuales cuentan con una elevada potencia gráfica, comparable a la que podemos encontrar en algunas videoconsolas actuales. Esto hace que estos dispositivos sean capaces de reproducir videojuegos, y de hecho, este tipo de aplicaciones es uno de los que más éxito han cosechado en los mercados de aplicaciones para móviles desde sus comienzos. En la asignatura **Videojuegos para Dispositivos Móviles** del [Máster Universitario en Desarrollo de Software para Dispositivos Móviles de la Universidad de Alicante](http://web.ua.es/mastermoviles) veremos cómo diseñar e implementar videojuegos orientados a estas plataformas.
 
 #Compatibilidad
-El código fuente proporcionado en este libro ha sido probado con la libreria *Cocos2Dx* versión **3.3**
+El código fuente proporcionado en este libro ha sido probado con la libreria *Cocos2Dx* versión **3.9**
 
 
 
