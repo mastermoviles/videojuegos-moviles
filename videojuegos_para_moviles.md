@@ -86,11 +86,9 @@ De forma alternativa, en iOS contamos con dos _frameworks_ nativos de la platafo
 
 
 
-## Características de los videojuegos
+## Características de los videojuegos para móviles
 
-Los juegos que se ejecutan en un móvil tendrán distintas características 
-  que los juegos para ordenador o videoconsolas, debido a las peculiaridades de 
-  estos dispositivos. 
+Los juegos que se ejecutan en un móvil tendrán distintas características que los juegos para ordenador o videoconsolas, debido a las peculiaridades de estos dispositivos. Deberemos tener en cuenta esto a la hora de diseñar estos videojuegos.
   
 Estos dispositivos suelen tener una serie de limitaciones. Muchas de ellas van desapareciendo
 conforme avanza la tecnología:
