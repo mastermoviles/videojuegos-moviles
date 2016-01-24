@@ -56,28 +56,42 @@ Encontramos diferentes motores y librerías que nos permiten exportar videojuego
 
 A continuación veremos más detalles de cada uno de los motores anteriores.
 
+
 ### Unreal Engine 4
 
-Con este motor se han creado videojuegos como los juegos de la saga _Gears of War_, o _Daylight_, o _Street Fighter V_. Actualmente Unreal Engine 4 (UE4) es gratuito para todos los desarrolladores.  
+Con este motor se han creado videojuegos como los juegos de la saga _Gears of War_, o _Daylight_, o _Street Fighter V_. Actualmente Unreal Engine 4 (UE4) es gratuito para todos los desarrolladores. 
 
 Tiene un lenguaje de _scripting_ visual (_blueprints_) y también nos permite incorporar componentes en C++. Los videojuegos desarrollados con UE4 pueden empaquetarse como aplicaciones Android o iOS (además de PC, Mac, y videoconsolas como PS4 y Xbox One), y podemos distribuirlos en la App Store y en Google Play Market teniendo que pagar a Epic Games sólo un porcentaje de los _royalties_ en caso de que superemos cierto nivel de ganancias.
 
 
 ### Unity
 
+Nos permite crear videojuegos para un gran número de plataformas (entre ellas iOS, Android y Windows Phone). En este caso tenemos un motor capaz de realizar juegos tanto 3D como 2D, y resulta más accesible para desarrolladores noveles que el motor anterior. Además, permite realizar videojuegos de tamaño algo más reducido. 
 
-Nos permite crear videojuegos para diferentes plataformas móviles como Android e iOS (además de otros tipos de plataformas). En este caso tenemos un motor capaz de realizar juegos tanto 3D como 2D, y resulta más accesible para desarrolladores noveles que el motor anterior. Además, permite realizar videojuegos de tamaño más reducido. 
+A partir de Unity 5 existe una versión gratuita que podemos utilizar siempre que no superemos cierto nivel de ganancias anuales como particular o empresa. Esta versión incluye todas las funcionalidades del motor. Los juegos realizados con este motor podrán publicarse de forma comercial libres de _royalties_. 
+
+### Game Maker: Studio
+
+Se trata de una herramienta para crear juegos 2D sencillos. Cuenta con una herramienta visual que simplifica la creación de contenidos, y que nos permite crear videojuegos incluso sin necesidad de programar. Permite generar juegos para Windows de forma gratuita, pero para exportar a otras plataformas como Android o iOS deberemos adquirir una licencia de pago.
+
+Encontramos opciones similartes, como el motor Construct2 (en este caso la herramienta está sólo para Windows), o Gamesalad (que cuenta con una licencia de pago mensual).
 
 ### Cocos2d-x
 
-A parte de los motores anteriores, que incorporan sus propias herramientas con las que podemos crear videojuegos de forma visual de forma independiente a la plataformas, también encontramos motores Open Source más sencillos que podemos utilizar para determinadas plataformas concretas. En este caso, no solemos contar con herramientas visuales completas para la creación del videojuego, como es el caso de los anteriores, sino simplemente con _frameworks_ y librerías que nos ayudarán a implementar los videojuegos, aislándonos de las capas de más bajo nivel como OpenGL o OpenAL, y ofreciéndonos un marco que nos simplificará la implementación del videojuego. Uno de estos motores es **Cocos2d-x**, que nos permite crear en C++ videojuegos para las principales plataformas móviles.
+A parte de los motores anteriores, que incorporan sus propias herramientas con las que podemos crear videojuegos de forma visual de forma independiente a la plataformas, también encontramos motores Open Source más sencillos que podemos utilizar para determinadas plataformas concretas. En este caso, no solemos contar con herramientas visuales completas para la creación del videojuego, como es el caso de los anteriores, sino simplemente con _frameworks_ y librerías que nos ayudarán a implementar los videojuegos, aislándonos de las capas de más bajo nivel como OpenGL o OpenAL, y ofreciéndonos un marco que nos simplificará la implementación del videojuego. 
+
+Uno de estos motores es **Cocos2d-x**, que nos permite crear en C++ videojuegos para las principales plataformas móviles (iOS, Android, Windows Phone, Blackberry, etc).
+
+Aunque el propio motor no incorpore herramientas de creación de contenidos, se integra bien con herramientas externas como Tiled o Texture Packer que nos permiten editar escenarios u hojas de _sprites_ respectivamente.
+
+Una opción similar es libgdx. En este caso se programa en lenguaje Java, y para pasar a iOS realiza una traducción automática de Java a C++.
+
+Estos motores tienen como ventaja el acceso al código fuente del motor, en el que puede participar la comunidad, y también generan un tamaño de paquete más reducido que motores más complejos como Unity o sobre todo UE4.
+
 
 ### SpriteKit y SceneKit
 
 De forma alternativa, en iOS contamos con dos _frameworks_ nativos de la plataforma orientados a la creación de videojuegos: **SpriteKit** y **SceneKit**, para juegos 2D y 3D respectivamente. Al ser nativos, nos permitirán crear videojuegos optimizados para esta plataforma y reducir el tamaño del paquete de la aplicación, pero sólo podrán ser utilizados en iOS.
-
-
-
 
 
 
