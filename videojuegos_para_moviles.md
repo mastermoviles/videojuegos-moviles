@@ -90,65 +90,15 @@ Vamos a revisar a continuación los principales aspectos que tendremos que tener
 
 * **Limitaciones de la memoria**. En los primeros dispositivos (Java ME) la memoría suponía una gran limitación, ya que en algunos dispositivos contábamos con tan solo 128kb para todo el juego. Con el avance de la tecnología esta limitación se ha ido atenuando y hoy en día ya no supone algo crítico. Sin embargo, deberemos llevar especial cuidado con la memoria de vídeo. Por este motivo será importante seleccionar un formato de textura adecuado (el más compacto que cumpla con las necesidades para el videojuego), y será común comprimir las texturas. También es importante empaquetar nuestros gráficos de forma óptima para así aprovechar al máximo el espacio de las texturas. Encontraremos herramientas como Texture Packer que se encargan de realizar esta tarea.
 * **Tamaño de la aplicación**. Los videojuegos para plataformas de sobremesa habitualmente ocupan varios gigas. En un móvil la distribución de juegos siempre es digital, por lo que deberemos reducir este tamaño en la medida de lo posible, tanto para evitar tener que descargar un paquete demasiado grande a través de la limitada conexión del móvil, como para evitar que ocupe demasiado espacio en la memoria de almacenamiento del dispositivo (que en algunos dispositivos es escaso). Para poder descargar un juego vía conexión de datos no debería exceder los 20Mb, por lo que será recomendable conseguir empaquetarlo en un espacio menor, para que los usuarios puedan acceder a él sin necesidad de disponer de Wi-Fi. Esto nos dará una importante ventaja competitiva. Para esto es importante hacer una buena elección del motor a utilizar. Motores complejos como Unity 5 generan paquetes con un tamaño mínimo de unas 20Mb, mientras que otros motores como Cocos2d-x nos permitirían tener juegos a partir de unas 5Mb. Si nuestro juego no necesita gráficos 3D ni otras de las características que sólo se encuentren en Unity, puede ser conveniente seleccionar un motor más sencillo como Cocos2d-x.
-* **Capacidad de procesamiento**. La CPU de los móviles es más lenta 
-    que la de los ordenadores de sobremesa y las videoconsolas. Es importante 
-    que los juegos vayan de forma fluida, por lo que antes de distribuir nuestra 
-    aplicación deberemos probarla en móviles reales para asegurarnos 
-    de que funcione bien, ya que muchas veces los emuladores funcionarán 
-    a velocidades distintas. En el caso de Android ocurre al contrario, ya que el emulador
-    es demasiado lento como para poder probar un videojuego en condiciones. Es conveniente
-    empezar desarrollando un código claro y limpio, y posteriormente optimizarlo. Para
-    optimizar el juego deberemos identificar el lugar donde tenemos el cuello de botella, 
-    que podría ser en el procesamiento, o en el dibujado de los gráficos. 
-  
+* **Capacidad de procesamiento**. La CPU y GPU de los móviles en muchas ocasiones es más limitada que la de plataformas de sobremesa. Es importante que los juegos vayan de forma fluida, por lo que antes de distribuirlos deberemos probarlos en diferentes móviles reales para asegurarnos de que funcione bien, ya que muchas veces los emuladores funcionarán a velocidades distintas. Es conveniente empezar desarrollando un código claro y limpio, y posteriormente optimizarlo. Para optimizar el juego deberemos identificar el lugar donde tenemos el cuello de botella, que podría ser en el procesamiento, o en el dibujado de los gráficos. En el segundo caso podemos ajustar en el motor la calidad de los gráficos para cada plataforma.
 * **Pantalla reducida**. Deberemos tener esto en cuenta en los 
-    juegos, y hacer que todos los objetos se vean correctamente. Podemos utilizar 
-    _zoom_ en determinadas zonas para poder visualizar mejor los objetos 
-    de la escena. Deberemos cuidar que todos los elementos de la interfaz puedan
-    visualizarse correctamente, y que no sean demasiado pequeños como para poder verlos
-    o interactuar con ellos.
-  
-* **Almacenamiento limitado**. En muchos móviles Java ME el espacio
-    con el que contábamos para almacenar datos estaba muy limitado. 
-    Es muy importante permitir guardar la partida, para que el usuario puede 
-    continuar más adelante donde se quedó. Esto es especialmente 
-    importante en los móviles, ya que muchas veces se utilizan estos juegos 
-    mientras el usuario viaja en autobús, o está esperando, de forma 
-    que puede tener que finalizar la partida en cualquier momento. Deberemos hacer 
-    esto utilizando la mínima cantidad de espacio posible. También debemos intentar reducir en la medida de lo posible el tamaño del videojuego, ya que muchas veces el espacio con el que contamos para instalar aplicaciones es bastante limitado.
-  
-* **Ancho de banda reducido e inestable**. Si desarrollamos juegos en red deberemos 
-    tener en determinados momentos velocidad puede ser baja, según la cobertura, y 
-    podemos tener también una elevada latencia de la red. Incluso es posible que en
-    determinados momentos se pierda la conexión temporalmente. Deberemos minimizar 
-    el tráfico que circula por la red. 
-  
-* **Diferente interfaz de entrada**. Actualmente los móviles no suelen tener
-    teclado, y en aquellos que lo tienen este teclado es muy pequeño. 
-    Deberemos intentar proporcionar un manejo cómodo, adaptado a la interfaz de entrada con la que cuenta el móvil,
-    como el acelerómetro o la pantalla táctil, haciendo que el control sea lo más sencillo 
-    posible, con un número reducido de posibles acciones.
-  
-* **Posibles interrupciones**. En el móvil es muy probable 
-    que se produzca una interrupción involuntaria de la partida, por ejemplo 
-    cuando recibimos una llamada entrante. Deberemos permitir que esto ocurra. 
-    Además también es conveniente que el usuario pueda pausar la 
-    partida fácilmente. Es fundamental hacer que cuando otra aplicación pase
-    a primer plano nuestro juego se pause automáticamente, para así no afectar al 
-    progreso que ha hecho el usuario. Incluso lo deseable sería que cuando salgamos de la
-    aplicación en cualquier momento siempre se guarde el estado actual del juego, 
-    para que el usuario pueda continuar por donde se había quedado la próxima
-    vez que juegue. Esto permitirá que el usuario pueda dejar utilizar el juego mientras
-    está esperando, por ejemplo a que llegue el autobús, y cuando esto ocurra lo pueda
-    dejar rápidamente sin complicaciones, y no perder el progreso.
+juegos, y hacer que todos los objetos se vean correctamente. Podemos utilizar _zoom_ en determinadas zonas para poder visualizar mejor los objetos de la escena. Deberemos cuidar que todos los elementos de la interfaz puedan visualizarse correctamente y que tengan un tamaño adecuado para interactuar con ellos. Los botones u otros elementos con los que podamos interactuar en la pantalla táctil tendrán que tener al menos el tamaño de la yema del dedo. 
+* **Diferente interfaz de entrada**. Actualmente los móviles no suelen tener teclado, y en aquellos que lo tienen este teclado es muy pequeño. Deberemos intentar proporcionar un manejo cómodo, adaptado a la interfaz de entrada con la que cuenta el móvil,
+como el acelerómetro o la pantalla táctil, haciendo que el control sea lo más sencillo posible, con un número reducido de posibles acciones. En muchos casos el manejo del juego se reduce a hacer _tap_ en pantalla. Para mecánicas más complejas, se puede utilizar un mando virtual (hay que hacer un buen diseño del mismo para que sea usable), o soportar mandos externos.
+* **Ancho de banda reducido e inestable**. Si desarrollamos juegos en red deberemos tener en determinados momentos velocidad puede ser baja, según la cobertura, y podemos tener también una elevada latencia de la red. Incluso es posible que en determinados momentos se pierda la conexión temporalmente. Deberemos minimizar el tráfico que circula por la red. 
+* **Posibles interrupciones**. En el móvil es muy probable que se produzca una interrupción involuntaria de la partida, por ejemplo 
+cuando recibimos una llamada entrante. Deberemos permitir que esto ocurra. Además también es conveniente que el usuario pueda pausar la partida fácilmente, ya que estos dispositivos se utilizan habitualmente para "hacer tiempo". Si estamos jugando mientras esperamos el autobús o esperamos nuestro turno en una tienda, cuando llegue nuestro turno deberemos poder interrumpir la partida inmediatamente sin perder nuestro progreso. Es fundamental hacer que cuando otra aplicación pase a segundo plano nuestro juego se pause automáticamente, para así no afectar al progreso que ha hecho el usuario. Incluso lo deseable sería que cuando salgamos de la aplicación en cualquier momento siempre se guarde el estado actual del juego, para que el usuario pueda continuar por donde se había quedado la próxima vez que juegue. Esto permitirá que el usuario pueda cerrar el juego en cualquier momento sin miedo de perder sus avances.
 
 
-Ante todo, estos videojuegos deben ser atractivos para los jugadores, ya que 
-  su única finalidad es entretener. Debemos tener en cuenta que son videojuegos
-  que normalmente se utilizarán para hacer tiempo, por lo que no deben requerir apenas de ningún
-  aprendizaje previo para empezar a jugar, y las partidas deben ser rápidas. También
-  tenemos que conseguir que el usuario continue jugando a nuestro juego. Para incentivar
-  esto deberemos ofrecerle alguna recompensa por seguir jugando, y la posibilidad de que
-  pueda compartir estos logros con otros jugadores.
-
+Ante todo, estos deben ser atractivos para los jugadores, ya que su principal finalidad es entretener. Debemos tener en cuenta que son videojuegos que normalmente se utilizarán para hacer tiempo, por lo que es deseable que la curva de aprendizaje sea suave y que permita partidas rápidas. Dos aspectos fundamentales son la adquisición y la retención de jugadores. Tenemos que conseguir que que los usuarios prueben nuestro juego y que continuen jugando a él. Para incentivar esto deberemos ofrecerle alguna recompensa por seguir jugando, y la posibilidad de que pueda compartir estos logros con otros jugadores.
 
