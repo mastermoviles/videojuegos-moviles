@@ -83,20 +83,12 @@ De forma alternativa, en iOS contamos con dos _frameworks_ nativos de la platafo
 
 ## Características de los videojuegos para móviles
 
-Los juegos que se ejecutan en un móvil tendrán distintas características que los juegos para ordenador o videoconsolas, debido a las peculiaridades de estos dispositivos. Deberemos tener en cuenta esto a la hora de diseñar estos videojuegos.
-  
-Estos dispositivos suelen tener una serie de limitaciones. Muchas de ellas van desapareciendo
-conforme avanza la tecnología:
+Los dispositivos móviles presentan diferencias notables respecto a los equipos de sobremesa (ordenadores y consolas), en relación a la capacidad del _hardware_, la interfaz, y el tipo de uso que se les da. Esto tendrá importantes repercusiones en el diseño de videojuegos para estos dispositivos.
 
-* **Escasa memoria**. En móviles Java ME la memoria era un gran problema. 
-    Debíamos controlar mucho el número de objetos en memoria, ya que en algunos casos
-    teníamos únicamente 128Kb disponible para el juego. Esto nos obligaba 
-    a rescatar viejas técnicas de programación de videojuegos de 
-    los tiempos de los 8 bits a mediados/finales de los 80. En dispositivos actuales no
-    tenemos este problema, pero aun así la memoria de vídeo es mucho más limitada que
-    la de los ordenadores de sobremesa. Esto nos obligará a tener que llevar cuidado con el
-    tamaño o calidad de las texturas. 
-  
+Vamos a revisar a continuación los principales aspectos que tendremos que tener en cuenta a la hora de diseñar videojuegos para dispositivos móviles:
+
+
+* **Limitaciones de la memoria**. En los primeros dispositivos (Java ME) la memoría suponía una gran limitación, ya que en algunos dispositivos contábamos con tan solo 128kb para todo el juego. Con el avance de la tecnología esta limitación se ha ido atenuando y hoy en día ya no supone algo crítico. Sin embargo, deberemos llevar especial cuidado con la memoria de vídeo. Por este motivo será importante seleccionar un formato de textura adecuado (el más compacto que cumpla con las necesidades para el videojuego), y será común comprimir las texturas. También es importante empaquetar nuestros gráficos de forma óptima para así aprovechar al máximo el espacio de las texturas. Encontraremos herramientas como Texture Packer que se encargan de realizar esta tarea.
 * **Tamaño de la aplicación**. Actualmente los videojuegos para plataformas
   de sobremesa ocupan varios Gb. En un móvil la distribución de juegos siempre es digital, por
   lo que deberemos reducir este tamaño en la medida de lo posible, tanto para evitar tener
