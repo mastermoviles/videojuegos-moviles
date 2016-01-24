@@ -89,18 +89,7 @@ Vamos a revisar a continuación los principales aspectos que tendremos que tener
 
 
 * **Limitaciones de la memoria**. En los primeros dispositivos (Java ME) la memoría suponía una gran limitación, ya que en algunos dispositivos contábamos con tan solo 128kb para todo el juego. Con el avance de la tecnología esta limitación se ha ido atenuando y hoy en día ya no supone algo crítico. Sin embargo, deberemos llevar especial cuidado con la memoria de vídeo. Por este motivo será importante seleccionar un formato de textura adecuado (el más compacto que cumpla con las necesidades para el videojuego), y será común comprimir las texturas. También es importante empaquetar nuestros gráficos de forma óptima para así aprovechar al máximo el espacio de las texturas. Encontraremos herramientas como Texture Packer que se encargan de realizar esta tarea.
-* **Tamaño de la aplicación**. Actualmente los videojuegos para plataformas
-  de sobremesa ocupan varios Gb. En un móvil la distribución de juegos siempre es digital, por
-  lo que deberemos reducir este tamaño en la medida de lo posible, tanto para evitar tener
-  que descargar un paquete demasiado grande a través de la limitada conexión del móvil, como
-  para evitar que ocupe demasiado espacio en la memoria de almacenamiento del dispositivo. 
-  En dispositivos Java ME el tamaño del JAR con en el que empaquetamos el juego muchas 
-  veces estaba muy limitado, incluso en algunos casos el tamaño máximo era de 64Kb. 
-  En dispositivos actuales, aunque tengamos suficiente espacio, para
-  poder descargar un juego vía 3G no podrá exceder de los 20Mb, por lo que será
-  recomendable conseguir empaquetarlo en un espacio menor, para que los usuarios puedan
-  acceder a él sin necesidad de disponer de Wi-Fi. Esto nos dará una importante ventaja
-  competitiva.
+* **Tamaño de la aplicación**. Los videojuegos para plataformas de sobremesa habitualmente ocupan varios gigas. En un móvil la distribución de juegos siempre es digital, por lo que deberemos reducir este tamaño en la medida de lo posible, tanto para evitar tener que descargar un paquete demasiado grande a través de la limitada conexión del móvil, como para evitar que ocupe demasiado espacio en la memoria de almacenamiento del dispositivo (que en algunos dispositivos es escaso). Para poder descargar un juego vía conexión de datos no debería exceder los 20Mb, por lo que será recomendable conseguir empaquetarlo en un espacio menor, para que los usuarios puedan acceder a él sin necesidad de disponer de Wi-Fi. Esto nos dará una importante ventaja competitiva. Para esto es importante hacer una buena elección del motor a utilizar. Motores complejos como Unity 5 generan paquetes con un tamaño mínimo de unas 20Mb, mientras que otros motores como Cocos2d-x nos permitirían tener juegos a partir de unas 5Mb. Si nuestro juego no necesita gráficos 3D ni otras de las características que sólo se encuentren en Unity, puede ser conveniente seleccionar un motor más sencillo como Cocos2d-x.
 * **CPU lenta**. La CPU de los móviles es más lenta 
     que la de los ordenadores de sobremesa y las videoconsolas. Es importante 
     que los juegos vayan de forma fluida, por lo que antes de distribuir nuestra 
