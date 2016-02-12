@@ -120,3 +120,38 @@ Además, tambien tiene una propiedad `anchorPoint`, cuyo valor por defecto es `(
 * `(0.5, 0.5)` es el centro del _sprite_.
 * `(1.0, 1.0)` es la esquina superior derecha del _sprite_.
 
+## Acciones
+
+Los nodos de la escena nos permiten ejecutar acciones, que modifican las propiedades del nodos (como su posición o rotación) a lo largo del tiempo. Estas acciones se definen como objetos de la clase `SKAction`.
+
+Dentro de `SKAction` encontramos númerosos métodos factoría para crear diferentes tipos de acciones. Por ejemplo, tenemos acciones para mover un nodo a una posición o rotarlo a un cierto ángulo:
+
+```objc
+SKAction *accionMoverFinal = [SKAction moveTo:CGPointMake(200,200) duration:2.0];
+SKAction *accionRotarFinal = [SKAction rotateToAngle:3.14f duration: 1.0];
+SKAction *accionMoverInicio = [SKAction moveTo:CGPointMake(100,100) duration:2.0];
+SKAction *accionRotarInicio = [SKAction rotateToAngle:0.0f duration: 1.0];
+```
+
+En estas acciones se indica la posición o ángulo destino a la que se moverá el nodo, y el tiempo que tardará en hacerlo (en segundo).
+
+Existen también otros muchos tipos de acciones para modificar otras propiedades como la escala, la textura, el color o el control de audio.
+
+También encontramos acciones que nos permiten combinar otras acciones, o repetirlas:
+
+```objc 
+SKAction *accionSecuencia = [SKAction sequence: @{accionMoverFinal, accionRotarFinal, accionMoverInicio, accionRotarInicio}];
+SKAction *accionRepite = [SKAction repeatActionForever:accionSecuencia];
+```
+
+Con esta última acción podemos especificar por ejemplo el movimiento de "patrulla" de un enemigo, que se moverá contínuamente entre los puntos `(100, 100)` y `(200, 200)`.
+
+Podemos ejecutar cualquiera de las acciones anteriores sobre cualquier nodo, utilizando el método `runAction:` de la clase `SKNode`:
+
+```objc
+[miNodo runAction: accionRepite];
+```
+
+De esta forma dicho nodo reproducirá la conducta especificada por la acción. 
+
+Podremos parar todas las acciones de un nodo con `removeAllActions`. También podemos añadir una acción con una clave (_key_) que posteriormente nos permitirá parar únicamente dicha acción, o podemos ejecutar una acción proporcionando un bloque de código que se ejecutará cuando la acción se complete.
