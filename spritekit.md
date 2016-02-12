@@ -101,3 +101,22 @@ A parte de las propiedades generales de los nodos, la propiedad más importante 
 ```objc
 miEtiqueta.text = @"Super Mobile Game";
 ```
+
+Este tipo de nodos nos permitirá cambiar además el tipo de fuente, su color, o la alineación del texto.
+
+### Sprites
+
+El tipo de nodo más importante en un videojuego es el _sprite_, que representa aquellas entidades que aparecen en la escena (personajes, objetos, etc), y que se muestran como una imagen o una animación. Podemos crear un _sprite_ a partir del nombre de la imagen que queremos que muestre:
+
+```objc
+SKSpriteNode *miSprite = [SKSpriteNode spriteNodeWithImageNamed: @"mario"];
+```
+
+Dado que el _sprite_ muestra una imagen en la escena, una propiedad importante será `size`, que nos indicará el tamaño del _sprite_ en puntos. Esto será importante porque se tendrá en cuenta también para el cálculo de colisiones con otros _sprites_ de la escena. 
+
+Además, tambien tiene una propiedad `anchorPoint`, cuyo valor por defecto es `(0.5, 0.5)`, y que siempre tomará valores entre `(0.0, 0.0)` y `(1.0, 1.0)`. Esta propiedad nos indicará cómo posicionar el _sprite_ en la escena cuando modifiquemos su propiedad `position`. Se trata de las coordenadas locales dentro de la imagen del _sprite_ que se situarán en la posición indicada por `position`, siendo:
+
+* `(0.0, 0.0)` es la esquina inferior izquierda del _sprite_.
+* `(0.5, 0.5)` es el centro del _sprite_.
+* `(1.0, 1.0)` es la esquina superior derecha del _sprite_.
+
