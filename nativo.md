@@ -1,10 +1,27 @@
-# Desarrollo de juegos con SpriteKit
+# Tecnologías nativas para el desarrollo de videojuegos
+
+Aunque el uso de motores multiplataforma nos aporta una gran cantidad de ventajas, es algunos casos nos podría interesar desarrollar videojuegos utilizando las tecnologías nativas de la plataforma. Una posible razón para hacer esto es la de conseguir reducir el tamaño de la aplicación lo máximo posible, lo cual puede ser conveniente en juegos sencillos que no necesiten un motor complejo.
+
+La tecnología nativa para desarrollo de videojuegos que podemos encontrar en las principales plataformas móviles es **OpenGL ES**. Se trata de una librería de bajo nivel, sobre la que tendremos que construir nuestro propio motor adaptado a las necesidades de nuestro videojuego. 
+
+En el momento de la escritura de este texto, OpenGL ES es la única opción nativa en el caso de **Android**, recomendándose utilizar el **NDK** para la implementación de nuestro propio motor del videojuego, y así poderlo optimizar al máximo.
+
+En **Windows Phone** encontraremos también la API nativa **XNA**. Contamos con el entorno XNA Game Studio dedicado al desarrollo de videojuegos en la plataforma de Microsoft.
+
+Sin embargo, la plataforma que mayor número de opciones nativas nos ofrece es la de Apple. En **iOS**, además de **OpenGL ES**, encontramos **Metal**, una librería gráfica similar a bajo nivel optimizada para esta plataforma. A parte de las opciones a bajo nivel, tenemos también dos librerías de alto nivel para el desarrollo de videojuegos 2D y 3D respectivamente: **SpriteKit** y **SceneKit**. Cuando desde Xcode creamos un proyecto de tipo _Game_ nativo, nos preguntará cuál de las anteriores librerías queremos utilizar como base.
+
+!["Creacion de un proyecto de tipo _Game_](imagenes/nativo/ios-game.png)
+!["Selección de librería para videojuegos"](imagenes/nativo/ios-apis.png)
+
+Vamos a centrarnos en las tecnologías de alto nivel: **SpriteKit** y **SceneKit**. Con ellas dispondremos además herramientas visuales en el entorno para crear las escenas del videojuego. Conviene destacar también que estas tecnologías presentan abundantes similitudes con Cocos2d-x y Unity respectivamente.
+
+## Desarrollo de juegos con SpriteKit
 
 **SpriteKit** es un _framework_ nativo de la plataforma iOS destinado al desarrollo de aplicaciones que muestren cualquier tipo de gráficos 2D animados, como es el caso de los videojuegos. Todas las clases de este _framework_ tienen el prefijo `SK`, y se encuentra disponible a partir de iOS 7.
 
 Su API es muy parecida a la del motor de videojuegos Cocos2d-x, por lo que la transición entre estas tecnologías será muy sencilla. 
 
-## La escena de SpriteKit
+### La escena de SpriteKit
 
 Al igual que en dicho motor, utiliza una organización **jerárquica** de los elementos **escena**, es decir, todos los elementos de la escena son **nodos** que se organizan en forma de de árbol. 
 
@@ -40,12 +57,14 @@ Hemos de destacar que el constructor de la escena toma como parámetro el nombre
 
 Podemos crear este fichero desde Xcode, con _File > New > File ... > iOS > Resource > SpriteKit Scene_:
 
+!["Creación de una escena"](imagenes/nativo/sk-scene.png)
+
 
 Podemos dejar esta escena vacía y crear su contenido de forma programada. Vamos a hacerlo así de momento.
 
 La clase escena tiene un método `-(void)didMoveToView:(SKView *)view` que se invocará cuando la escena se pase a ejecutar en la vista del juego. Podemos aprovechar este método para crear de forma programada el contenido de la escena. Este contenido se definirá como un árbol de nodos (objetos de tipo `SKNode` o de alguna de sus subclases).
 
-## Nodos de la escena
+### Nodos de la escena
 
 La escena de SpriteKit se define como un árbol de nodos, todos ellos de tipo `SKNode` o alguna de sus subclases. Destacamos los siguiente tipos de nodos:
 
@@ -88,7 +107,7 @@ SKNode *miGrupo = [SKNode node];
 
 Encontraremos también métodos y propiedades para conocer quién es el padre de un nodo, eliminar un hijo de un nodo, o moverlo a otro nodo padre, entre otras funciones.
 
-### Etiqueta de texto
+#### Etiqueta de texto
 
 Un tipo de nodo fundamental es la etiqueta de texto (`SKLabelNode`) que nos permitirá mostrar texto en la escena. Este tipo de nodo se puede crear a partir de la fuente a utilizar:
 
@@ -104,7 +123,7 @@ miEtiqueta.text = @"Super Mobile Game";
 
 Este tipo de nodos nos permitirá cambiar además el tipo de fuente, su color, o la alineación del texto.
 
-### Sprites
+#### Sprites
 
 El tipo de nodo más importante en un videojuego es el _sprite_, que representa aquellas entidades que aparecen en la escena (personajes, objetos, etc), y que se muestran como una imagen o una animación. Podemos crear un _sprite_ a partir del nombre de la imagen que queremos que muestre:
 
@@ -120,7 +139,7 @@ Además, tambien tiene una propiedad `anchorPoint`, cuyo valor por defecto es `(
 * `(0.5, 0.5)` es el centro del _sprite_.
 * `(1.0, 1.0)` es la esquina superior derecha del _sprite_.
 
-## Acciones
+### Acciones
 
 Los nodos de la escena nos permiten ejecutar acciones, que modifican las propiedades del nodos (como su posición o rotación) a lo largo del tiempo. Estas acciones se definen como objetos de la clase `SKAction`.
 
