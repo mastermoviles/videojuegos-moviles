@@ -172,12 +172,10 @@ consistir en hacer la comprobación con todas las celdas de la capa. Sin embargo
 ni adecuado. La solución que se suele utilizar habitualmente consiste en comprobar la colisión únicamente con las
 celdas de nuestro entorno. Haremos lo siguiente:
 
-<ol>
 * Obtendremos la posición en las que está centrado nuestro _sprite_.
 * Calcularemos las coordenadas de la celda a la que corresponde (dividiendo entre la anchura y altura de cada celda).
 * Obtendremos los _gid_ de las 9 celdas adyacentes.
 * Comprobaremos si colisiona con alguna de ellas, corrigiendo la posición del _sprite_ en tal caso.
-</ol>
 
 A continuación mostramos un ejemplo de código en el que obtendríamos cada una de las celdas adyacentes
 a un _sprite_. En primer lugar vamos a crear una serie de métodos auxiliares. El primero de ellos
@@ -199,7 +197,7 @@ Point Game::tileCoordForPosition(Point position)
 > Hay que destacar que las coordenadas _y_ del mapa están invertidas respecto a las
 de la escena. Por ese motivo es necesario calcular la altura total y hacer la resta.
 
-También vamos a definir un método que nos devuelva el área (`CCRect`) que ocupa en la escena
+También vamos a definir un método que nos devuelva el área (`Rect`) que ocupa en la escena
 una celda dada:
 
 ```cpp
