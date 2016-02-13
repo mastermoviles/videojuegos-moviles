@@ -9,9 +9,8 @@
 * [Optimización para móviles](optimizacion_para_moviles.md)
 * [Controles del videojuego](mandos.md)
 * [Motor de físicas](motor_de_fisicas.md)
-* [Redes sociales](redes_sociales.md)
+* [Servicios y redes sociales para juegos](redes_sociales.md)
 * [El motor Unity](unity.md)
-* [Desarrollo de juegos 2D con SpriteKit](spritekit.md)
-* [Desarrollo de juegos 3D con SceneKit](scenekit.md)
+* [Tecnologías nativas para el desarrollo de videojuegos](nativo.md)
 * [Ejercicios](ejercicios.md)
 
