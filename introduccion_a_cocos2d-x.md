@@ -2,18 +2,39 @@
 
 Uno de los motores más conocidos y utilizados para desarrollo de videojuegos para
 dispositivos móviles es **Cocos2D**. Existe gran
-cantidad de juegos para iOS implementados con este motor. Existe también un port para
-Android, aunque se encuentra poco desarrollado. Sin embargo, contamos con **Cocos2d-x** 
-(http://www.cocos2d-x.org)
-que es una versión multiplataforma de este motor. El juego se desarrolla con C++, y puede ser
+cantidad de juegos para iOS implementados con este motor. Aunque inicialmente se trataba de un motor escrito en Objective-C únicamente para iOS, actualmente contamos con **Cocos2d-x** 
+(http://www.cocos2d-x.org) que es la versión multiplataforma de este motor. El juego se desarrolla con C++, y puede ser
 portado directamente a distintos tipos de dispositivos (Android, iOS, Windows Phone, etc). 
-La familia de Cocos2D la completa **Cocos2D-html5**, que nos permite crear juegos web.
 
-Vamos a comenzar estudiando la forma de crear los diferentes componentes de un videojuego mediante
-el motor Cocos2d-x.
+Vamos a comenzar estudiando la forma de crear los diferentes componentes de un videojuego mediante el motor Cocos2d-x. 
 
-Al descargar y descomprimir Cocos2d-x, veremos en el directorio raiz de la libreria un script llamado `setup.py`. Este hay que ejecutarlo una vez después de haber descomprimido la libreria. Este mismo script nos introducira en nuestro fichero `~/.profile` las rutas necesarias para utilizar la libreria desde línea de comandos. De manera manual podríamos cargar dichas variables mediante el comando  `source ~/.profile`, pero eso se realizará de manera automática cada vez que abramos una nueva terminal. 
+## Instalación de Cocos2d-x
 
+Existen dos formas de instalar Cocos2d-x: 
+
+* Instalar únicamente el _framework_, con lo que tendremos todo el código fuente de la librería y comandos del terminal para crear nuevos proyectos que la utilicen
+* Instalar todo el _kit_ de herramientas de Cocos, que nos proporciona una interfaz para la creación de nuevos proyectos, una herramienta visual para la creación de escenas (_Cocos Studio_), y la posibilidad de utilizar una versión precompilada de la librería, lo cual ahorrará mucho tiempo de compilación en nuestro proyecto. 
+
+Elegiremos la primera opción si queremos modificar el código de la librería y hacer alguna contribución al proyecto, mientras que en otros casos sería más conveniente utilizar la segunda.
+
+### Creación del proyecto con Cocos
+
+Si instalamos el _kit_ completo de herramientas, contaremos con la herramienta _Cocos_ que nos permitirá crear un nuevo proyecto multiplataforma con esta librería, y gestionar los proyectos existentes.
+
+Al crear un nuevo proyecto nos dejará elegir:
+
+* **Nombre del proyecto**. 
+* **Ruta del directorio de proyectos**. Ruta del disco donde se almacenará el proyecto Cocos2d-x. Será un directorio con el nombre indicado en el campo anterior.
+* **Tipo de motor**. Podemos elegir si queremos que nuestro proyecto integre los fuentes de la librería de Cocos2d-x, o sólo los binarios. Con la primera opción la compilación será más lenta, pero nos permitirá hacer cambios en la librería si es necesario.
+* **Lenguaje de desarrollo**. Además de C++, podremos también crear videojuegos mediante lenguajes de _script_ como Lua o Javascript.
+* **Editor**. Nos permite indicar si queremos utilizar _Cocos Studio_ para la edición visual de las escenas.
+* **SDKs**. Nos permite incluir _plugins_ adicionales para integrar servicios nativos de la plataforma o servicios de terceros, como por ejemplo redes sociales o analíticas.
+
+### Creación del proyecto desde la terminal
+
+Tanto si tenemos el _kit_ completo como sólo el _framework_, tendremos la opción de crear un nuevo proyecto desde la terminal. 
+
+Al descargar y descomprimir Cocos2d-x, veremos en el directorio raiz de la libreria un script llamado `setup.py`. Este hay que ejecutarlo una vez después de haber descomprimido la libreria (si utilizamos el instalador esto se hará de forma automática). Este mismo script nos introducira en nuestro fichero `~/.profile` las rutas necesarias para utilizar la libreria desde línea de comandos. De manera manual podríamos cargar dichas variables mediante el comando  `source ~/.profile`, pero eso se realizará de manera automática cada vez que abramos una nueva terminal. 
 
 De esta manera tendremos acceso a un script llamado `cocos`que permite entre otras cosas crear la plantilla para un nuevo proyecto Cocos2d-x multiplataforma. 
 Deberemos proporcionar la siguiente información:
