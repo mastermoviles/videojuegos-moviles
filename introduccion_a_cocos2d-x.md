@@ -21,6 +21,8 @@ Elegiremos la primera opción si queremos modificar el código de la librería y
 
 Si instalamos el _kit_ completo de herramientas, contaremos con la herramienta _Cocos_ que nos permitirá crear un nuevo proyecto multiplataforma con esta librería, y gestionar los proyectos existentes.
 
+!["Herramienta Cocos"](imagenes/cocos/cocos-projects.png)
+
 Al crear un nuevo proyecto nos dejará elegir:
 
 * **Nombre del proyecto**. 
@@ -29,6 +31,9 @@ Al crear un nuevo proyecto nos dejará elegir:
 * **Lenguaje de desarrollo**. Además de C++, podremos también crear videojuegos mediante lenguajes de _script_ como Lua o Javascript.
 * **Editor**. Nos permite indicar si queremos utilizar _Cocos Studio_ para la edición visual de las escenas.
 * **SDKs**. Nos permite incluir _plugins_ adicionales para integrar servicios nativos de la plataforma o servicios de terceros, como por ejemplo redes sociales o analíticas.
+
+!["Nuevo proyecto con Cocos"](imagenes/cocos/cocos-new-project.png)
+
 
 ### Creación del proyecto desde la terminal
 
@@ -333,7 +338,7 @@ this->addChild(label);
 
 Por otro lado, también podemos crear menús de opciones. Normalmente en la pantalla principal del juego
 siempre encontraremos un menú con todas las opciones que nos ofrece dicho juego. Los menús se crean con
-la clase `CCMenu`, a la que añadiremos una serie de _items_, de tipo `CCMenuItem` (o subclases suyas), 
+la clase `Menu`, a la que añadiremos una serie de _items_, de tipo `MenuItem` (o subclases suyas), 
 que representarán las opciones del menú. Estos _items_ pueden ser etiquetas de texto, pero también
 podemos utilizar imágenes para darles un aspecto más vistoso. El menú se añadirá a la escena como cualquier
 otro tipo de _item_:
@@ -419,7 +424,7 @@ deberemos llamar a `release` sobre dicho campo cuando nuestro objeto
 sea destruido, o cuando vayamos a cambiar el valor del campo y el antiguo deba ser
 liberado. 
 
-
+<!--
 
 ## Creación de la interfaz con CocosBuilder
 
@@ -622,4 +627,4 @@ CCScene *scene =
                                                 screenSize);
 ```
 
-
+-->
