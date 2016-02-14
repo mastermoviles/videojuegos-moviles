@@ -79,7 +79,7 @@ Por un lado tenemos la clase `Ref`. Todos los objetos de la librería
 heredan en última instancia de esta clase. En ella se define por ejemplo el mecanismo de
 gestión de memoria que utilizan todos los objetos de la librería.
 
-Tenemos una serie de colecciones como `Vector<>`, `Map<>` especiales de Cocos2d-x que tienen en cuenta su modelo particular de memoria. 
+Tenemos una serie de colecciones como `Vector<>`, `Map<>` especiales de Cocos2d-x que tienen en cuenta su modelo particular de memoria, pero con los que podremos utilizar la sintaxis de C++ para este tipo de colecciones. También tenemos los tipos `Value`, `ValueVector` y `ValueMap` para la representación de estructuras de datos, que nos permiten por ejemplo cargar ficheros `.plist` de forma automática. El primero de ellos es un _wrapper_ que permite almacenar tipos básicos (`bool`, `int`, `string`, etc) o complejos, mientras que los otros dos representan las listas y diccionarios respectivamente.
 
 Encontramos también una serie de tipos de datos geométricos: `Point`, 
 `Rect` y `Size`. Estos tipos de datos incorporan también algunas
