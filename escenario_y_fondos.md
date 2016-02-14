@@ -148,13 +148,12 @@ En el código de nuestro juego podremos leer estas propiedades de la siguiente f
 ```cpp
 Point tileCoords = Point(fila,columna);
 
-int tileGid = capa->tileGIDAt(tileCoords);
+int tileGid = capa->getTileGIDAt(tileCoords);
 if (tileGid) {
-    CCDictionary *properties = fondo->propertiesForGID(tileGid);
-    if (properties) {
-        const CCString *collision = 
-            properties->valueForKey("colisionable");
-        if(collision && collision->compare("true")==0) {
+    auto properties = fondo->getPropertiesForGID(tileGid);
+    if (!properties.isNull()) {
+        bool collision =  properties.asValueMap().at("colisionable").asBool();
+        if(collision) {
             ...
         }
     }
@@ -225,15 +224,14 @@ bool Game::isCollidableTileAt(Point tileCoords) {
         return false;
     }
     
-    TMXLayer *layerMuros = _tiledMap->layerNamed("muros");
+    TMXLayer *layerMuros = _tiledMap->getLayer("muros");
     
-    int tileGid = layerMuros->tileGIDAt(tileCoords);
+    int tileGid = layerMuros->getTileGIDAt(tileCoords);
     if (tileGid) {
-        CCDictionary *properties = _tiledMap->propertiesForGID(tileGid);
-        if (properties) {
-            const CCString *collision = 
-                properties->valueForKey("colisionable");
-            return (collision && collision->compare("true")==0);
+        auto properties = _tiledMap->getPropertiesForGID(tileGid);
+        if (!properties.isNull()) {
+            bool collision = properties.asValueMap().at("colisionable").asBool();
+            return collision;
         }
     }
     
@@ -298,7 +296,7 @@ Una vez hecho esto, desde nuestro código podemos obtener la capa que contenga d
 por ejemplo "monedas":
 
 ```cpp
-TMXLayer *monedas = fondo->layerNamed("monedas");
+TMXLayer *monedas = fondo->getLayer("monedas");
 ```
 
 De esta capa podremos eliminar los objetos "recolectables" cuando nuestro personaje los recoja. Para hacer
@@ -322,13 +320,12 @@ Para cambiar o modificar los elementos recolectables primero deberemos comprobar
 ```cpp
 Point tileCoords = this->tileCoordForPosition(_sprite->getPosition());
 
-int tileGid = monedas->tileGIDAt(tileCoords);
+int tileGid = monedas->getTileGIDAt(tileCoords);
 if (tileGid) {
-    CCDictionary *properties = fondo->propertiesForGID(tileGid);
-    if (properties) {
-        const CCString *recolectable = 
-            properties->valueForKey("recolectable");
-        if(recolectable && recolectable->compare("true")==0) {
+    auto properties = fondo->getPropertiesForGID(tileGid);
+    if (!properties.isNull()) {
+        bool recolectable = properties.asValueMap().at("recolectable").asBool();
+        if(recolectable) {
             monedas->removeTileAt(tileCoords);
         }
     }
@@ -368,29 +365,31 @@ un nombre, modificar sus dimensiones, y añadir una lista de propiedades.
 ![Propiedades de los objetos](imagenes/tiled/tiled_objectprop.jpg)
 
 
-
+#### Lectura de la capa de objetos
 
 Una vez le hayamos dado un nombre al objeto, podremos obtenerlo desde el código de nuestro juego. Para ello
 primero deberemos obtener la capa de objetos (representada con la clase `TMXObjectGroup`) a 
 partir del nombre que le hemos dado (`objetos` en este ejemplo):
 
 ```cpp
-TMXObjectGroup *objects = fondo->objectGroupNamed("objetos");
+TMXObjectGroup *objects = fondo->getObjectGroup("objetos");
 ```
 
 A partir de esta capa podremos obtener uno de sus objetos dando su nombre. Por ejemplo, si hemos creado
-un objeto con nombre `inicio`, podremos obtenerlo de la siguiente forma
+un objeto con nombre `inicio`, podremos obtenerlo de la siguiente forma:
 
 ```cpp
-CCDictionary *inicio = objects->objectNamed("inicio");
+auto inicio = objects->getObject("inicio");
 ```
         
 Como vemos, el objeto se obtiene como un diccionario. De él podemos obtener diferentes propiedades,
 como sus coordenadas:
 
 ```cpp
-_sprite->setPosition(Vec2(inicio->valueForKey("x")->intValue(), 
-                         inicio->valueForKey("y")->intValue()));
+int x = inicio.at("x").asInt();
+int y = inicio.at("y").asInt();
+
+_sprite->setPosition(Vec2(x, y));
 ```
 
 De esta forma en el código obtenemos la posición que ocupa el objeto y podemos utilizar esta posición
@@ -399,7 +398,37 @@ ese punto aparezcan nuevos enemigos).
 
 
 
+#### Formas geométricas
 
+En la capa de objetos podemos incluir formas geométricas, como por ejemplo líneas o polilíneas. Esto puede ser especialmente útil para definir la geometría de colisión del escenario y posteriormente cargarla en el motor de físicas. 
+
+La capa de objetos geométricos se carga de forma similar a los objetos genéricos definidos por el usuario. 
+
+Por ejemplo, si nuestros objetos geométricos de la capa de objetos son todos ellos polilíneas, podemos cargarlos de la siguiente forma:
+
+```objc
+TMXObjectGroup *groupEdges = _tiledMap->getTiledMap()->getObjectGroup("MyEdges");
+        
+ValueVector edges = groupsEdges->getObjects();
+        
+for(Value edge : edges) {
+    ValueVector polyline = edge.asValueMap().at("polylinePoints").asValueVector();
+            
+    // Calculamos la coordenadas absolutas del objeto
+    float x = edge.asValueMap().at("x").asFloat() + _tiledMap->getTiledMap()->getPositionX();
+    float y = edge.asValueMap().at("y").asFloat() + _tiledMap->getTiledMap()->getPositionY();
+            
+    for(Value point: polyline) {
+        float px = point.asValueMap().at("x").asFloat() + x;
+        float py = point.asValueMap().at("y").asFloat() + y;
+                
+        // Hacemos algo con (px, py)    
+        ...
+    }
+}
+```
+
+> Si no conocemos cómo está organizada la capa de objetos, podemos consultar el fuente XML del fichero `.tmx`. También tenemos la opción de imprimir en la consola el objeto que nos devuelve `getObjects`, y de esta forma veremos su estructura en JSON y podremos así escribir el código para leerlo.
 
 
 ## Scroll del escenario
