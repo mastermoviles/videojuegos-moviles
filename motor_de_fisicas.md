@@ -225,11 +225,11 @@ Además, los algoritmos de simulación física son iterativos. Con cada iteraci�
 Tras hacer la simulación deberemos actualizar las posiciones de los _sprites_ en pantalla y mostrarlos. Por ejemplo, si hemos vinculado el `Sprite` al cuerpo mediante la propiedad `userData`, podemos recuperarlo y actualizarlo de la siguiente forma:
 	
 ```cpp
-CCSprite *sprite = (CCSprite *)body->GetUserData();
+Sprite *sprite = (Sprite *)body->GetUserData();
 b2Vec2 pos = body->GetPosition();
-CGFloat rot = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
+float rot = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
 
-sprite->setPosition(ccp(pos.x*PTM_RATIO, pos.y*PTM_RATIO));
+sprite->setPosition(Vec2(pos.x*PTM_RATIO, pos.y*PTM_RATIO));
 sprite->setRotation(rot);
 ```
 
