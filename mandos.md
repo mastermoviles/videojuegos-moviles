@@ -4,6 +4,68 @@ La principal forma de control del móvil es la pantalla táctil, por lo que los 
 
 Vamos a ver los diferentes mecanismos de entrada que podemos utilizar en los videojuegos para móviles, y una serie de buenas prácticas a la hora de implementar el control de estos videojuegos.
 
+## Teclado en Cocos2d-x
+ 
+Cocos2d-x soporta eventos de teclado, pero éstos no funcionan en plataformas móviles. Aunque nuestro proyecto esté orientado exclusivamente a estas plataformas, si el control de nuestro juego se realiza mediante mando es recomendable que implementemos también la posibilidad de controlarlo mediante teclado. Esto será de gran utilidad durante el desarrollo, ya que no existe forma de emular un mando, y la forma más parecida al mando para manejar nuestro juego en las pruebas que hagamos durante el desarrollo es el control mediante teclado. 
+ 
+Para leer los eventos de teclado desde Cocos2d-x podemos utilizar la clase `EventListenerKeyboard` como se muestra a continuación: 
+
+```cpp
+bool MiEscena::init()
+{
+    if ( !Layer::init() )
+    {
+        return false;
+    }       
+    
+    configuraTeclado();
+
+    return true;
+}
+
+void MiEscena::configurarTeclado()
+{
+    _listener = EventListenerKeyboard::create();
+
+    // Registramos callbacks
+    _listener->onKeyPressed = CC_CALLBACK_2(MiEscena::onConnectController,this);
+    _listener->onReleased = CC_CALLBACK_2(MiEscena::onDisconnectedController,this);
+
+    // Añadimos el listener el mando al gestor de eventos
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(_listener, this);
+}
+
+void MiEscena::onKeyDown(EventKeyboard::KeyCode code, Event *event) { }   
+
+void MiEscena::onKeyUp(EventKeyboard::KeyCode code, Event *event) { }
+```
+
+Por ejemplo, para reconocer los controles izquierda-derecha mediante las teclas A-D podríamos escribir los métodos `onKeyDown` y `onKeyUp` como se muestra a continuación:
+
+```cpp
+void MiEscena::onKeyDown(EventKeyboard::KeyCode code, Event *event) { 
+    switch(keyCode){
+        case EventKeyboard::KeyCode::KEY_A:
+            _izquierdaPulsado = true;
+            break;
+        case EventKeyboard::KeyCode::KEY_D:
+            _derechaPulsado = true;
+            break;
+    }
+}  
+
+void MiEscena::onKeyUp(EventKeyboard::KeyCode code, Event *event) { 
+    switch(keyCode){
+        case EventKeyboard::KeyCode::KEY_A:
+            _izquierdaPulsado = false;
+            break;
+        case EventKeyboard::KeyCode::KEY_D:
+            _derechaPulsado = false;
+            break;
+    }
+}  
+```
+
 ## Pantalla táctil
 
 Como hemos comentado, es el mecanismo más habitual de entrada en los videojuegos para móviles. En muchos tipos de videojuegos esta es la forma de control más natural. Por ejemplo, tenemos _puzzles_ en los que tenemos que interactuar con diferentes elementos del escenario tocando sobre ellos. También en el género _tower defense_ resulta natural posicionar nuestras diferentes unidades tocando sobre la pantalla, o de forma más amplia en el género de la estrategia interactuar con nuestros recursos y unidades pulsando sobre ellos.
@@ -190,6 +252,151 @@ Si queremos implementar un juego cuyo manejo esté basado en _control pad_, ser�
 Cuando la mecanica de nuestro juego exige que se controles mediante un mando tradicional, y no contamos con ningún mando _hardware_ que podamos utilizar, la única solución será introducir en nuestro juego un mando virtual en pantalla. 
 
 Vamos a ver diferentes tipos de mandos que podemos implementar en pantalla, emulando controles tanto digitales como analógicos.
+
+### Controles virtuales
+
+Antes de implementar un mecanismo de control concreto, es conveniente generar una estructura de clases que haga de fachada y nos permita implementar el control del videojuego de forma genérica, sin hacer referencia expresa al teclado, mandos físicos, o mandos virtuales. 
+
+En esta sección proponemos un sistema de control virtual basado en herencia. Implementaremos una clase `VirtualControls` que nos dará la información necesaria para leer los controles que necesite nuestro videojuego. Por ejemplo, si necesitamos un _joystick_ analógico con dos ejes (horizontal y vertical) y tres botones digitales, nuestra clase nos dará información sobre estos controles virtuales, sin determinar qué mecanismo concreto se utiliza para implementarlos. Esto será responsabilidad de las subclases de `VirtualControls`, que serán las que implementen el mapeo entre un mecanismo de control concreto y los controles virtuales definidos en `VirtualControls`. De esta forma, simplemente cambiando la subclase de `VirtualControls` que instanciamos podremos cambiar la forma de controlar el videojuego.
+
+Vamos a ver un ejemplo de implementación de sistema genérico de control. En primer lugar definiremos los botones y ejes virtuales que necesitamos reconocer en el videojuego:
+
+```cpp
+#define kNUM_BUTTONS  3
+#define kNUM_AXIS    2
+
+enum Button {
+    BUTTON_ACTION=0,
+    BUTTON_LEFT=1,
+    BUTTON_RIGHT=2
+};
+
+enum Axis {
+    AXIS_HORIZONTAL=0,
+    AXIS_VERTICAL=1
+};
+```
+
+Podemos crear la clase de control virtual con la siguiente estructura:
+
+```cpp
+class VirtualControls: public Ref {
+public:
+    
+    bool init();
+    
+    virtual void preloadResources(){};
+    virtual Node* getNode();
+    
+    bool isButtonPressed(Button button);
+    float getAxis(Axis axis);
+    
+    std::function<void(Button)> onButtonPressed;
+    std::function<void(Button)> onButtonReleased;
+    
+    // Keyboard controls
+    void onKeyPressed(EventKeyboard::KeyCode keyCode, cocos2d::Event *event);
+    void onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Event *event);
+    
+    void addKeyboardListeners(cocos2d::Node *node);
+
+    CREATE_FUNC(VirtualControls);
+    
+protected:
+
+    bool buttonState[kNUM_BUTTONS];
+    float axisState[kNUM_AXIS];
+};
+```
+
+Como vemos, la clase controla el estado de los botones (pulsados o sin pulsar) y el de los ejes, que oscilará entre `-1` (totalmente a la izquierda) y `1` (totalmente a la derecha). Deberemos poder leer el estado de estos controles virtuales en cualquier momento. Además, incluimos la posibilidad de devolver un nodo que nos permita pintar controles virtuales en pantalla (de momento estará vacío):
+
+```cpp
+bool VirtualControls::init(){
+    GameEntity::init();
+    
+    for(int i=0;i<kNUM_BUTTONS;i++) {
+        buttonState[i] = false;
+    }
+    
+    for(int i=0;i<kNUM_AXIS;i++) {
+        axisState[i] = 0.0f;
+    }
+    
+    return true;
+}
+
+Node* VirtualControls::getNode() {
+    return NULL;
+}
+
+bool VirtualControls::isButtonPressed(Button button) {
+    return buttonState[button];
+}
+
+float VirtualControls::getAxis(Axis axis) {
+    return clampf(axisState[axis], -1.0, 1.0);
+}
+```
+
+Vamos a hacer que la clase base implemente por defecto controles de teclado para depuración:
+
+```cpp
+void VirtualControls::addKeyboardListeners(cocos2d::Node *node) {
+    //Creo listeners del teclado
+    auto listener = cocos2d::EventListenerKeyboard::create();
+    listener->onKeyPressed = CC_CALLBACK_2(VirtualControls::onKeyPressed,this);
+    Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, node);
+    
+    listener = cocos2d::EventListenerKeyboard::create();
+    listener->onKeyReleased = CC_CALLBACK_2(VirtualControls::onKeyReleased,this);
+    Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, node);
+}
+
+void VirtualControls::onKeyPressed(EventKeyboard::KeyCode keyCode, cocos2d::Event *event){
+    
+    if(onButtonPressed) {
+        if (keyCode == EventKeyboard::KeyCode::KEY_LEFT_ARROW)
+        {
+            onButtonPressed(Button::BUTTON_LEFT);
+            axisState[Axis::AXIS_HORIZONTAL] -= 1.0;
+        }
+        else if (keyCode == EventKeyboard::KeyCode::KEY_RIGHT_ARROW)
+        {
+            onButtonPressed(Button::BUTTON_RIGHT);
+            axisState[Axis::AXIS_HORIZONTAL] += 1.0;
+        }
+        else if(keyCode==EventKeyboard::KeyCode::KEY_SPACE)
+        {
+            onButtonPressed(Button::BUTTON_ACTION);
+        }
+    }
+    
+}
+
+void VirtualControls::onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Event *event){
+    
+    if(onButtonReleased) {
+        if (keyCode == EventKeyboard::KeyCode::KEY_LEFT_ARROW)
+        {
+            onButtonReleased(Button::BUTTON_LEFT);
+            axisState[Axis::AXIS_HORIZONTAL] += 1.0;
+        }
+        else if (keyCode == EventKeyboard::KeyCode::KEY_RIGHT_ARROW)
+        {
+            onButtonReleased(Button::BUTTON_RIGHT);
+            axisState[Axis::AXIS_HORIZONTAL] -= 1.0;
+        }
+        else if(keyCode==EventKeyboard::KeyCode::KEY_SPACE)
+        {
+            onButtonReleased(Button::BUTTON_ACTION);
+        }
+    }
+    
+}
+```
+
+De esta forma mapeamos la lectura del teclado sobre nuestro sistema de control virtual. A continuación veremos cómo crear subclases de `VirtualControls` que nos permitan implementar formar alternativas de control, con un mando dibujado sobre pantalla.
 
 ### Pad virtual
 
@@ -1274,64 +1481,3 @@ En el caso de iOS, para que nuestro proyecto soporte los mandos oficiales aparec
 
 Además, será importante que en nuestro proyecto llamemos a `Controller::startDiscoveryController()` para que inicie la búsqueda de mandos y establezca una conexión con ellos, tal como hemos indicado anteriormente.
 
-## Teclado en Cocos2d-x
- 
-Cocos2d-x soporta eventos de teclado, pero éstos no funcionan en plataformas móviles. Aunque nuestro proyecto esté orientado exclusivamente a estas plataformas, si el control de nuestro juego se realiza mediante mando es recomendable que implementemos también la posibilidad de controlarlo mediante teclado. Esto será de gran utilidad durante el desarrollo, ya que no existe forma de emular un mando, y la forma más parecida al mando para manejar nuestro juego en las pruebas que hagamos durante el desarrollo es el control mediante teclado. 
- 
-Para leer los eventos de teclado desde Cocos2d-x podemos utilizar la clase `EventListenerKeyboard` como se muestra a continuación: 
-
-```cpp
-bool MiEscena::init()
-{
-    if ( !Layer::init() )
-    {
-        return false;
-    }       
-    
-    configuraTeclado();
-
-    return true;
-}
-
-void MiEscena::configurarTeclado()
-{
-    _listener = EventListenerKeyboard::create();
-
-    // Registramos callbacks
-    _listener->onKeyPressed = CC_CALLBACK_2(MiEscena::onConnectController,this);
-    _listener->onReleased = CC_CALLBACK_2(MiEscena::onDisconnectedController,this);
-
-    // Añadimos el listener el mando al gestor de eventos
-    _eventDispatcher->addEventListenerWithSceneGraphPriority(_listener, this);
-}
-
-void MiEscena::onKeyDown(EventKeyboard::KeyCode code, Event *event) { }   
-
-void MiEscena::onKeyUp(EventKeyboard::KeyCode code, Event *event) { }
-```
-
-Por ejemplo, para reconocer los controles izquierda-derecha mediante las teclas A-D podríamos escribir los métodos `onKeyDown` y `onKeyUp` como se muestra a continuación:
-
-```cpp
-void MiEscena::onKeyDown(EventKeyboard::KeyCode code, Event *event) { 
-    switch(keyCode){
-        case EventKeyboard::KeyCode::KEY_A:
-            _izquierdaPulsado = true;
-            break;
-        case EventKeyboard::KeyCode::KEY_D:
-            _derechaPulsado = true;
-            break;
-    }
-}  
-
-void MiEscena::onKeyUp(EventKeyboard::KeyCode code, Event *event) { 
-    switch(keyCode){
-        case EventKeyboard::KeyCode::KEY_A:
-            _izquierdaPulsado = false;
-            break;
-        case EventKeyboard::KeyCode::KEY_D:
-            _derechaPulsado = false;
-            break;
-    }
-}  
-```
