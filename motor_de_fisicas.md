@@ -648,6 +648,92 @@ fixtureDef.isSensor = TRUE;
 
 Al ser un sensor otros objetos atravesará esta _fixture_, pero podremos detectar las colisiones mediante los métodos `BeginContact` y `EndContact` de una `ContactListener`.
 
+## Controlador de personaje
+
+En un videojuego de plataformas debemos aplicar físicas y control de colisiones a nuestro personaje para así por ejemplo controlar el salto y las caídas, y evitar que pueda atravesar muros o el suelo. Este control suele hacerse con físicas simplificadas que aplican una gravedad al personaje y comprueban si entra en colisión con el suelo (parte inferior) o con muros (laterales). Sin embargo, podría interesarnos delegar todo este control a un motor de físicas como Box2D. Vamos a ver cómo podríamos utilizar este motor para implementar un controlador de personaje.
+
+En primer lugar deberemos crear un cuerpo físico para nuestro personaje y su geometría de colisión. Podemos para ello utilizar una caja con las dimensiones de su nodo gráfico (`m_playerSprite`). Es importante bloquear la rotación del cuerpo físico, ya que normalmente buscaremos que nuestro personaje esté siempre _de pie_:
+
+```cpp
+b2BodyDef bodyDef;
+bodyDef.type = b2BodyType::b2_dynamicBody;
+bodyDef.fixedRotation = true;
+
+b2PolygonShape shapeBoundingBox;
+shapeBoundingBox.SetAsBox(m_playerSprite->getContentSize().width / PTM_RATIO,
+                          m_playerSprite->getContentSize().height / PTM_RATIO);
+
+m_body = world->CreateBody(&bodyDef);
+b2Fixture *fixture = m_body->CreateFixture(&shapeBoundingBox, 1.0);
+fixture->SetFriction(0.0f);
+```
+
+Además de crear la geometría de colisión del _sprite_, es importante saber cuándo estamos pisando suelo y cuándo estamos en el aire, para determinar así si podemos saltar o no. Para ello podemos utilizar un sensor añadido bajo los pies del personaje:
+
+```cpp
+b2CircleShape shapeSensor;
+shapeSensor.m_radius = GROUND_TEST_RADIUS;
+shapeSensor.m_p = b2Vec2(0, -m_playerSprite->getContentSize().width * 0.5 / PTM_RATIO);
+
+m_groundTest = m_body->CreateFixture(&shapeSensor, 1.0);
+m_groundTest->SetSensor(true);
+```
+
+Al marcar esta forma circular como _sensor_, no causará reacción de colisión con el suelo pero si que detectará cuando está solapado con él. De esta forma podremos saber si estamos sobre una superficie o en el aire. Podemos comprobar las colisiones de nuestro cuerpo con el siguiente código:
+
+```cpp
+bool checkGrounded() {
+    b2ContactEdge *edge = m_body->GetContactList();
+    while ( edge != NULL ) {
+        if ( edge->contact->GetFixtureA()==m_groundTest || 
+             edge->contact->GetFixtureB()==m_groundTest) {
+            return true;
+        }
+        edge = edge->next;
+    }
+    return false;
+}
+```
+
+Con este método obtenemos todos los contactos existentes con el cuerpo de nuestro personaje, y filtramos sólo aquellos que se producen con el sensor (`m_groundTest`). En caso de existir alguno, es que estamos pisando sobre alguna superficie.
+
+Para mover el personaje a izquierda o derecha lo único que deberemos hacer es establecer su velocidad en _x_ a partir del valor del eje horizontal de mando, conservando su velocidad vertical (determinada por la fuerza de la gravedad):
+
+```cpp
+m_body->SetLinearVelocity(b2Vec2(m_horizontalAxis * m_vel / PTM_RATIO, 
+                                 m_body->GetLinearVelocity().y));
+```
+
+Con esto ya tendremos nuestro _sprite_ en movimiento utilizando el motor de físicas. Ya sólo quedaría controlar las animaciones de nuestro personaje, aunque esto ya no es responsabilidad del motor de físicas. Por ejemplo, deberemos hacer que mire en la dirección en la que estemos moviendo el mando:
+
+```cpp
+if(m_horizontalAxis < 0 && !m_playerSprite->isFlippedX()) {
+    m_playerSprite->setFlippedX(true);
+} else if(m_horizontalAxis > 0 && m_playerSprite->isFlippedX()) {
+    m_playerSprite->setFlippedX(false);
+}
+```
+
+Si queremos controlar la velocidad de la animación de fotogramas en función de la velocidad a la que estemos moviendo el personaje podemos añadir una acción de tipo `Speed`:
+
+```cpp
+Animate* actionAnimate = Animate::create(AnimationCache::getInstance()->getAnimation("animAndar"));
+RepeatForever* actionRepeat = RepeatForever::create(actionAnimate);
+m_actionAndar = Speed::create(actionRepeat, 1.0f);
+```
+
+Con esta acción podremos controlar la velocidad a la que se reproduce la animación en cada momento con:
+
+```cpp
+if(fabsf(m_horizontalAxis) < 0.1) {
+    // Paramos al personaje
+    m_actionAndar->setSpeed(0.0f);
+    m_playerSprite->setSpriteFrame("idle.png");
+} else {
+    // Establecemos la velocidad de la animación
+    m_actionAndar->setSpeed(fabsf(m_horizontalAxis));
+}
+```
 
 ## Depuración de las físicas
 
