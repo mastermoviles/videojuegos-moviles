@@ -286,7 +286,7 @@ escena actual por una escena de transición:
 ```cpp
 Scene *puntuacionesScene = Puntuaciones::scene();
 TransitionCrossFade *transition = 
-    TransitionCrossFade::create(0.5, gameScene);
+    TransitionCrossFade::create(0.5, puntuacionScene);
 Director::getInstance()->replaceScene(transition);
 ```
 
