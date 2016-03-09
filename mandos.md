@@ -309,7 +309,11 @@ protected:
 };
 ```
 
-Como vemos, la clase controla el estado de los botones (pulsados o sin pulsar) y el de los ejes, que oscilará entre `-1` (totalmente a la izquierda) y `1` (totalmente a la derecha). Deberemos poder leer el estado de estos controles virtuales en cualquier momento. Además, incluimos la posibilidad de devolver un nodo que nos permita pintar controles virtuales en pantalla (de momento estará vacío):
+
+
+Como vemos, la clase controla el estado de los botones (pulsados o sin pulsar) y el de los ejes, que oscilará entre `-1` (totalmente a la izquierda) y `1` (totalmente a la derecha). Deberemos poder leer el estado de estos controles virtuales en cualquier momento. Para ello hemos incorporado las propiedades `buttonState` y `axisState`, en las que podremos consultar en todo momento el estado de los botones y de los ejes.
+
+Además, incluimos la posibilidad de devolver un nodo que nos permita pintar controles virtuales en pantalla (de momento estará vacío):
 
 ```cpp
 bool VirtualControls::init(){
@@ -402,6 +406,24 @@ De esta forma mapeamos la lectura del teclado sobre nuestro sistema de control v
 
 El _pad_ virtual consiste en dibujar la cruceta de control digital sobre la pantalla y mediante los eventos de la pantalla táctil detectar cuándo se pulsa sobre él. Esta es la forma más sencilla de implementar un control virtual, y será suficiente en el caso de juegos que sólo requieran controles digitales.
 
+Aprovecharemos la clase `VirtualControls` introducida en el apartado anterior, y crearemos una subclase que lea la entrada a partir de un _pad_ virtual en pantalla, y mapee dicha entrada sobre los eventos de control virtuales genéricos definidos en la `VirtualControls` (ejes horizontal y vertical y estado de los botones).
+
+```cpp
+class VirtualPad: public VirtualControls {
+public:
+    
+    bool init();
+
+    void preloadResources();
+    Node* getNode();
+    
+    CREATE_FUNC(VirtualPad);
+    
+private:
+    ...
+};
+```
+
 Crearemos los diferentes botones del _pad_ virtual como _sprites_, los posicionaremos en pantalla, y programaremos los eventos necesarios para detectar cuándo pulsamos sobre ellos. Vamos a ver un ejemplo sencillo con tres botones, un _pad_ direccional con botones para movernos a la izquierda y derecha, y un botón de acción:
 
 ```cpp
@@ -412,13 +434,14 @@ private:
     ...
 ```
 
-Vamos además a crear una enumeración que nos ayude a identificar cada botón:
+Además, añadimos un _listener_ para leer los eventos de la pantalla táctil que se produzcan sobre los controles anteriores: 
 
 ```cpp
-enum PadButton {
-    BUTTON_LEFT, BUTTON_RIGHT, BUTTON_ACTION
-};
+private: 
+    ...
+    cocos2d::EventListenerTouchOneByOne *m_listener;
 ```
+
 
 Algo que debemos tener en cuenta al posicionar los controles, es que éstos siempre deben quedar en la parte visible de la pantalla. Por ejemplo, al inicializar nuestro _pad_ virtual podemos posicionar los botones de la siguiente forma:
 
@@ -428,25 +451,25 @@ Vec2 visibleOrigin = Director::getInstance()->getVisibleOrigin();
         
 m_buttonLeft = Sprite::createWithSpriteFrameName("boton-direccion.png");
 m_buttonLeft->setAnchorPoint(Vec2(0,0));
-m_buttonLeft->setPosition(visibleOrigin.x+kMARGEN_MANDO, visibleOrigin.y+kMARGEN_MANDO);
+m_buttonLeft->setPosition(visibleOrigin.x+kPAD_MARGIN, visibleOrigin.y+kPAD_MARGIN);
 m_buttonLeft->setOpacity(127);
-m_buttonLeft->setTag(PadButton::BUTTON_LEFT);
-        
+m_buttonLeft->setTag(Button::BUTTON_LEFT);
+
 m_buttonRight = Sprite::createWithSpriteFrameName("boton-direccion.png");
 m_buttonRight->setAnchorPoint(Vec2(1,0));
 m_buttonRight->setScaleX(-1);
 m_buttonRight->setOpacity(127);
-m_buttonRight->setPosition(visibleOrigin.x+ kMARGEN_MANDO + 
-                           m_buttonLeft->getContentSize().width + kMARGEN_MANDO, 
-                           visibleOrigin.y+kMARGEN_MANDO);
-m_buttonRight->setTag(PadButton::BUTTON_RIGHT);
+m_buttonRight->setPosition(visibleOrigin.x+ kPAD_MARGIN + 
+                           m_buttonLeft->getContentSize().width + 
+                           kPAD_MARGIN, visibleOrigin.y+kPAD_MARGIN);
+m_buttonRight->setTag(Button::BUTTON_RIGHT);
 
 m_buttonAction = Sprite::createWithSpriteFrameName("boton-accion.png");
 m_buttonAction->setAnchorPoint(Vec2(1,0));
-m_buttonAction->setPosition(visibleOrigin.x + visibleSize.width - kMARGEN_MANDO, 
-                            visibleOrigin.y+kMARGEN_MANDO);
+m_buttonAction->setPosition(visibleOrigin.x + visibleSize.width - kPAD_MARGIN, 
+                            visibleOrigin.y+kPAD_MARGIN);
 m_buttonAction->setOpacity(127);
-m_buttonAction->setTag(PadButton::BUTTON_ACTION);
+m_buttonAction->setTag(Button::BUTTON_ACTION);
 ```
 
 En este ejemplo vemos además que hacemos los botones **semitransparentes**. Esta es una práctica habitual, que hará que los botones virtuales afecten menos al apartado visual de nuestro videojuego.
@@ -482,14 +505,7 @@ public:
     std::function<void(PadButton)> onButtonReleased;
 ```
 
-También nos vendrá bien contar con un _array_ mediante el que controlemos el estado actual de cada botón, para poderlo consultar en cualquier momento sin tener que utilizar los _callbacks_ anteriores:
 
-```cpp
-private: 
-    ...
-    
-    bool buttonState[kNUM_BOTONES];
-```
 
 Una vez definidos los elementos anteriores, ya podemos programar los eventos del _listener_ de la pantalla táctil. Al comenzar un contacto comprobaremos si se ha pulsado sobre el botón:
 
