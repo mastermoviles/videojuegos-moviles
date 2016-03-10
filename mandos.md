@@ -290,7 +290,7 @@ public:
     bool init();
     
     virtual void preloadResources(){};
-    virtual Node* getNode();
+    virtual Node* getNode() {return NULL;};
     
     bool isButtonPressed(Button button);
     float getAxis(Axis axis);
@@ -315,11 +315,15 @@ protected:
 
 Como vemos, la clase controla el estado de los botones (pulsados o sin pulsar) y el de los ejes, que oscilará entre `-1` (totalmente a la izquierda) y `1` (totalmente a la derecha). Deberemos poder leer el estado de estos controles virtuales en cualquier momento. Para ello hemos incorporado las propiedades `buttonState` y `axisState`, en las que almacenamos este estado, y proporcionamos los métodos `isButtonPressed` y `getAxis` para consultarlos.
 
-Además, incluimos la posibilidad de devolver un nodo (método `getNode`) que nos permita pintar controles virtuales en pantalla (de momento estará vacío), y también un método para cargar los recursos necesarios para pintar estos controles (`preloadResources`). Estos métodos se utilizarán en las subclases de `VirtualControls`.
+Definimos también los eventos `onButtonPressed` y `onButtonReleased` para los cuales podremos definir _callbacks_. De esta forma podremos tener constancia de que un botón ha sido pulsado o soltado, sin tener que comprobar continuamente su estado.
+
+Además, incluimos la posibilidad de devolver un nodo (método `getNode`) que nos permita pintar controles virtuales en pantalla (de momento estará vacío), y también un método para cargar los recursos necesarios para pintar estos controles (`preloadResources`). Estos métodos se definirán en las subclases de `VirtualControls`.
+
+Vamos a ver a continuación cómo implementar cada método de esta clase. En primer lugar, el método para su inicialización (`init`) simplemente establecerá el estado de los botones a "no pulsado" (`false`) y los ejes en reposo (`0`):
 
 ```cpp
 bool VirtualControls::init(){
-    GameEntity::init();
+    Ref::init();
     
     for(int i=0;i<kNUM_BUTTONS;i++) {
         buttonState[i] = false;
@@ -331,11 +335,11 @@ bool VirtualControls::init(){
     
     return true;
 }
+```
 
-Node* VirtualControls::getNode() {
-    return NULL;
-}
+También será necesario definir los métodos para poder leer el estado de los controles (botones y ejes):
 
+```cpp
 bool VirtualControls::isButtonPressed(Button button) {
     return buttonState[button];
 }
@@ -344,6 +348,8 @@ float VirtualControls::getAxis(Axis axis) {
     return clampf(axisState[axis], -1.0, 1.0);
 }
 ```
+
+De momento sólo hemos definido en esta clase los controles que se utilizarán en el juego
 
 Vamos a hacer que la clase base implemente por defecto controles de teclado para depuración:
 
