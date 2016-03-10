@@ -349,7 +349,7 @@ float VirtualControls::getAxis(Axis axis) {
 }
 ```
 
-De momento sólo hemos definido en esta clase los controles que se utilizarán en el juego
+De momento sólo hemos definido en esta clase los controles que se utilizarán en el juego y lo métodos para consultarlos, pero de momento no se ha establecido la forma de darles valor a estos controles. Esto es algo que deberá implementar cada subclase concreta. Sin embargo, para depuración puede ser conveniente poder activar al control por teclado.
 
 Vamos a hacer que la clase base implemente por defecto controles de teclado para depuración:
 
