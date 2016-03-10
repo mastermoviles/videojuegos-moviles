@@ -277,7 +277,11 @@ enum Axis {
 };
 ```
 
-Podemos crear la clase de control virtual con la siguiente estructura:
+En este caso hemos definido tres botones (acción, izquierda y derecha), y dos ejes (horizontal y vertical), aunque podríamos adaptar esto a las necesidades de cada juego. Indicamos mediante constantes el número de botones y ejes, e identificamos cada uno mediante elementos mediante enumeraciones.
+
+Los **botones** tendrán como estado un _booleano_ (pulsado o no pulsado), mientras que los **ejes** tendrán como valor un valor de tipo _float_ entre -1 y 1 (palanca totalmente inclinada en un sentido o en el contrario), y valdrá 0 si está en reposo. 
+
+Mostramos a continuación la estructura completa que podría tener la clase que implemente el _control virtual_:
 
 ```cpp
 class VirtualControls: public Ref {
@@ -309,11 +313,9 @@ protected:
 };
 ```
 
+Como vemos, la clase controla el estado de los botones (pulsados o sin pulsar) y el de los ejes, que oscilará entre `-1` (totalmente a la izquierda) y `1` (totalmente a la derecha). Deberemos poder leer el estado de estos controles virtuales en cualquier momento. Para ello hemos incorporado las propiedades `buttonState` y `axisState`, en las que almacenamos este estado, y proporcionamos los métodos `isButtonPressed` y `getAxis` para consultarlos.
 
-
-Como vemos, la clase controla el estado de los botones (pulsados o sin pulsar) y el de los ejes, que oscilará entre `-1` (totalmente a la izquierda) y `1` (totalmente a la derecha). Deberemos poder leer el estado de estos controles virtuales en cualquier momento. Para ello hemos incorporado las propiedades `buttonState` y `axisState`, en las que podremos consultar en todo momento el estado de los botones y de los ejes.
-
-Además, incluimos la posibilidad de devolver un nodo que nos permita pintar controles virtuales en pantalla (de momento estará vacío):
+Además, incluimos la posibilidad de devolver un nodo (método `getNode`) que nos permita pintar controles virtuales en pantalla (de momento estará vacío), y también un método para cargar los recursos necesarios para pintar estos controles (`preloadResources`). Estos métodos se utilizarán en las subclases de `VirtualControls`.
 
 ```cpp
 bool VirtualControls::init(){
