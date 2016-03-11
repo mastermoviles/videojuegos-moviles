@@ -323,8 +323,6 @@ Vamos a ver a continuación cómo implementar cada método de esta clase. En pri
 
 ```cpp
 bool VirtualControls::init(){
-    Ref::init();
-    
     for(int i=0;i<kNUM_BUTTONS;i++) {
         buttonState[i] = false;
     }
@@ -351,20 +349,26 @@ float VirtualControls::getAxis(Axis axis) {
 
 De momento sólo hemos definido en esta clase los controles que se utilizarán en el juego y lo métodos para consultarlos, pero de momento no se ha establecido la forma de darles valor a estos controles. Esto es algo que deberá implementar cada subclase concreta. Sin embargo, para depuración puede ser conveniente poder activar al control por teclado.
 
-Vamos a hacer que la clase base implemente por defecto controles de teclado para depuración:
+Vamos a hacer que la clase base implemente controles de teclado para depuración. En primer lugar actualizamos la definición de la clase `VirtualControls`. Añadimos a ella los _callbacks_ necesarios para recibir los controles de teclado, y un método para activar el control por teclado en nuestro juego (`addKeyboardListeners`):
 
 ```cpp
-void VirtualControls::addKeyboardListeners(cocos2d::Node *node) {
-    //Creo listeners del teclado
-    auto listener = cocos2d::EventListenerKeyboard::create();
-    listener->onKeyPressed = CC_CALLBACK_2(VirtualControls::onKeyPressed,this);
-    Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, node);
+class VirtualControls: public Ref {
+public:
+    ...    
     
-    listener = cocos2d::EventListenerKeyboard::create();
-    listener->onKeyReleased = CC_CALLBACK_2(VirtualControls::onKeyReleased,this);
-    Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, node);
-}
+    // Keyboard controls
+    void onKeyPressed(EventKeyboard::KeyCode keyCode, cocos2d::Event *event);
+    void onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Event *event);
+    
+    void addKeyboardListeners(cocos2d::Node *node);
 
+    ...
+};
+```
+
+A continuación, en la implementación de la clase introducimos el código de los _callbacks_ de los eventos de teclado: las teclas _Cursor Izquierda_ y _Cursor Derecha_ modificarán el valor del eje horizontal (al mismo tiempo que el estado de los botones `BUTTON_LEFT` y `BUTTON_RIGHT`), y la tecla espacio modificará el estado del botón `BUTTON_ACTION`:
+
+```cpp
 void VirtualControls::onKeyPressed(EventKeyboard::KeyCode keyCode, cocos2d::Event *event){
     
     if(onButtonPressed) {
@@ -408,7 +412,152 @@ void VirtualControls::onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Eve
 }
 ```
 
-De esta forma mapeamos la lectura del teclado sobre nuestro sistema de control virtual. A continuación veremos cómo crear subclases de `VirtualControls` que nos permitan implementar formar alternativas de control, con un mando dibujado sobre pantalla.
+De esta forma mapeamos la lectura del teclado sobre nuestro sistema de control virtual. Debemos añadir también un método que cree el _listener_ necesario para escuchar los eventos de teclado, y programarlo para que avise a los _callbacks_ definidos anteriormente. Esto lo podemos hacer de la siguiente forma:
+
+```cpp
+void VirtualControls::addKeyboardListeners(cocos2d::Node *node) {
+    //Creo listeners del teclado
+    auto listener = cocos2d::EventListenerKeyboard::create();
+    listener->onKeyPressed = CC_CALLBACK_2(VirtualControls::onKeyPressed,this);
+    Director::getInstance()->getEventDispatcher()
+       ->addEventListenerWithSceneGraphPriority(listener, node);
+    
+    listener = cocos2d::EventListenerKeyboard::create();
+    listener->onKeyReleased = CC_CALLBACK_2(VirtualControls::onKeyReleased,this);
+    Director::getInstance()->getEventDispatcher()
+       ->addEventListenerWithSceneGraphPriority(listener, node);
+```
+
+Mostramos a continuación el código completo de la clase `VirtualControls`:
+
+```cpp
+// VirtualControls.h
+
+#define kNUM_BUTTONS    1
+#define kNUM_AXIS    2
+
+enum Button {
+    BUTTON_ACTION=0,
+    BUTTON_LEFT=1,
+    BUTTON_RIGHT=2
+};
+
+enum Axis {
+    AXIS_HORIZONTAL=0,
+    AXIS_VERTICAL=1
+};
+
+class VirtualControls: public Ref {
+public:
+    
+    bool init();
+    
+    virtual void preloadResources(){};
+    virtual Node* getNode(){return NULL;};
+    
+    bool isButtonPressed(Button button);
+    float getAxis(Axis axis);
+    
+    std::function<void(Button)> onButtonPressed;
+    std::function<void(Button)> onButtonReleased;
+    
+    // Keyboard controls
+    void onKeyPressed(EventKeyboard::KeyCode keyCode, cocos2d::Event *event);
+    void onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Event *event);
+    
+    void addKeyboardListeners(cocos2d::Node *node);
+
+    CREATE_FUNC(VirtualControls);
+    
+protected:
+
+    bool buttonState[kNUM_BUTTONS];
+    float axisState[kNUM_AXIS];
+};
+
+
+
+// VirtualControls.cpp
+
+bool VirtualControls::init(){
+    for(int i=0;i<kNUM_BUTTONS;i++) {
+        buttonState[i] = false;
+    }
+    
+    for(int i=0;i<kNUM_AXIS;i++) {
+        axisState[i] = 0.0f;
+    }
+    
+    return true;
+}
+
+bool VirtualControls::isButtonPressed(Button button) {
+    return buttonState[button];
+}
+
+float VirtualControls::getAxis(Axis axis) {
+    return clampf(axisState[axis], -1.0, 1.0);
+}
+
+// Keyboard input support
+
+void VirtualControls::addKeyboardListeners(cocos2d::Node *node) {
+    //Creo listeners del teclado
+    auto listener = cocos2d::EventListenerKeyboard::create();
+    listener->onKeyPressed = CC_CALLBACK_2(VirtualControls::onKeyPressed,this);
+    Director::getInstance()->getEventDispatcher()
+        ->addEventListenerWithSceneGraphPriority(listener, node);
+    
+    listener = cocos2d::EventListenerKeyboard::create();
+    listener->onKeyReleased = CC_CALLBACK_2(VirtualControls::onKeyReleased,this);
+    Director::getInstance()->getEventDispatcher()
+        ->addEventListenerWithSceneGraphPriority(listener, node);
+}
+
+void VirtualControls::onKeyPressed(EventKeyboard::KeyCode keyCode, cocos2d::Event *event){
+    
+    if(onButtonPressed) {
+        if (keyCode == EventKeyboard::KeyCode::KEY_LEFT_ARROW)
+        {
+            onButtonPressed(Button::BUTTON_LEFT);
+            axisState[Axis::AXIS_HORIZONTAL] -= 1.0;
+        }
+        else if (keyCode == EventKeyboard::KeyCode::KEY_RIGHT_ARROW)
+        {
+            onButtonPressed(Button::BUTTON_RIGHT);
+            axisState[Axis::AXIS_HORIZONTAL] += 1.0;
+        }
+        else if(keyCode==EventKeyboard::KeyCode::KEY_SPACE)
+        {
+            onButtonPressed(Button::BUTTON_ACTION);
+        }
+    }
+    
+}
+
+void VirtualControls::onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Event *event){
+    
+    if(onButtonReleased) {
+        if (keyCode == EventKeyboard::KeyCode::KEY_LEFT_ARROW)
+        {
+            onButtonReleased(Button::BUTTON_LEFT);
+            axisState[Axis::AXIS_HORIZONTAL] += 1.0;
+        }
+        else if (keyCode == EventKeyboard::KeyCode::KEY_RIGHT_ARROW)
+        {
+            onButtonReleased(Button::BUTTON_RIGHT);
+            axisState[Axis::AXIS_HORIZONTAL] -= 1.0;
+        }
+        else if(keyCode==EventKeyboard::KeyCode::KEY_SPACE)
+        {
+            onButtonReleased(Button::BUTTON_ACTION);
+        }
+    }   
+}
+```
+
+A continuación veremos cómo crear subclases de `VirtualControls` que nos permitan implementar formar alternativas de control, con un mando dibujado sobre pantalla. Además de incorporar un mando virtual en pantalla, podremos aprovechar esta estructura de clases para implementar otros mecanismos de control alternativos como acelerómetro o mandos físicos.
+
 
 ### Pad virtual
 
@@ -450,8 +599,22 @@ private:
     cocos2d::EventListenerTouchOneByOne *m_listener;
 ```
 
+Vamos a pasar ahora a ver la implementación de la clase `VirtualPad`. En primer lugar, podemos proporcionar un método para cargar los recursos necesarios para dibujar el mando en pantalla. Podemos cargarlos desde un _sprite sheet_:
 
-Algo que debemos tener en cuenta al posicionar los controles, es que éstos siempre deben quedar en la parte visible de la pantalla. Por ejemplo, al inicializar nuestro _pad_ virtual podemos posicionar los botones de la siguiente forma:
+```cpp
+void VirtualPad::preloadResources(){
+    
+    //Cache de sprites
+    auto spriteFrameCache = SpriteFrameCache::getInstance();
+    
+    //Si no estaba el spritesheet en la caché lo cargo
+    if(!spriteFrameCache->getSpriteFrameByName("boton-direccion.png")) {
+        spriteFrameCache->addSpriteFramesWithFile("mando.plist");
+    }
+}
+```
+
+A continuación vamos a ver cómo crear la interfaz del _pad_ virtual en pantalla, posicionando de forma correcta los gráficos que hemos cargado y añadiendo los correspondiente _listeners_ de pantalla táctil sobre ellos. Algo que debemos tener en cuenta al posicionar los controles es que éstos siempre deben quedar en la parte visible de la pantalla. Por ejemplo, al inicializar nuestro _pad_ virtual podemos posicionar los botones de la siguiente forma:
 
 ```cpp
 Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -484,7 +647,7 @@ En este ejemplo vemos además que hacemos los botones **semitransparentes**. Est
 
 ![Pad virtual](imagenes/mandos/virtual-pad.png)
 
-También podemos observar que hemos aprovechado la propiedad _tag_ de los botones para identificarlos mediante los elementos de la enumeración `PadButton`. 
+También podemos observar que hemos aprovechado la propiedad _tag_ de los botones para identificarlos mediante los elementos de la enumeración `Button`. Veremos que esto será de especial interés cuando procesemos los eventos, para saber a qué botón virtual corresponde cada botón en pantalla.
 
 Una vez hemos creado los _sprites_ de los botones los añadiremos a la pantalla:
 
@@ -503,19 +666,9 @@ m_listener = EventListenerTouchOneByOne::create();
 m_listener->setSwallowTouches(true);
 ```
 
-Definiremos además en nuestra clase dos funciones _callback_ a las que avisaremos cuando se pulse sobre un botón o cuando se suelte:
+Aprovecharemos las funciones `onButttonPressed` y `onButtonReleased` definidas en la superclase `VirtualControls` para avisar al _callback_ que tuviesen asignado (si hubiese alguno) de que un botón ha sido pulsado o liberado, y actualizaremos también el estado de los botones (`buttonState`).
 
-```cpp
-public: 
-    ...
-    
-    std::function<void(PadButton)> onButtonPressed;
-    std::function<void(PadButton)> onButtonReleased;
-```
-
-
-
-Una vez definidos los elementos anteriores, ya podemos programar los eventos del _listener_ de la pantalla táctil. Al comenzar un contacto comprobaremos si se ha pulsado sobre el botón:
+Empezamos detectando cuando comienza un contacto en pantalla. Si se ha pulsado sobre unos de los botones, lo marcaremos como _pulsado_ y llamamos a los _callbacks_ correspondientes (si no son `NULL`):
 
 ```cpp
 m_listener->onTouchBegan = [=](Touch* touch, Event* event) {
@@ -528,6 +681,8 @@ m_listener->onTouchBegan = [=](Touch* touch, Event* event) {
             
     if(rect.containsPoint(locationInNode)) {
         buttonState[target->getTag()] = true;
+        
+        // Solo llama al callback si no es NULL
         if(onButtonPressed) {
             onButtonPressed((PadButton)target->getTag());
         }
@@ -541,13 +696,15 @@ m_listener->onTouchBegan = [=](Touch* touch, Event* event) {
 
 En este caso `target` se refiere al botón sobre el que se ha definido el _listener_. Comprobamos si hemos pulsado sobre el área del botón (`target`) y en tal caso anotamos que dicho botón está pulsado y avisamos al _callback_ correspondiente, en caso de que se haya asignado uno.
 
-De forma similar podemos programar el evento de finalización del contacto:
+De forma similar podemos programar el evento de finalización del contacto, y en ese caso marcamos el botón como _no pulsado_ y llamamos al _callback_ correspondiente:
 
 ```cpp
 m_listener->onTouchEnded = [=](Touch* touch, Event* event) {
     auto target = static_cast<Sprite*>(event->getCurrentTarget());
     target->setOpacity(127);
     buttonState[target->getTag()] = false;
+    
+    // Solo llama al callback si no es NULL
     if(onButtonReleased) {
         onButtonReleased((PadButton)target->getTag());
     }
@@ -564,38 +721,21 @@ m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(m_listener-
 m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(m_listener->clone(), m_buttonAction);
 ```
 
-Otra posible alternativa habría sido añadir una lista (`Vector`) con todos los botones del mando, y un único _listener_ que recorra la lista y los compruebe todos. 
-
-Necesitaremos definir además una función que dé acceso al estado de los botones en cualquier momento:
-
-```cpp
-bool VirtualPad::isButtonPressed(PadButton button) {
-    return buttonState[button];
-}
-```
 
 Mostramos a continuación el código completo de esta implementación sencilla de un _pad_ virtual:
 
 ```cpp
-#define kNUM_BOTONES  3
-#define kMARGEN_MANDO 20
+// VirtualPad.h
 
-enum PadButton {
-    BUTTON_LEFT, BUTTON_RIGHT, BUTTON_ACTION
-};
+#define kPAD_MARGIN   20
 
-class VirtualPad: public GameEntity {
+class VirtualPad: public VirtualControls {
 public:
     
     bool init();
 
     void preloadResources();
     Node* getNode();
-    
-    bool isButtonPressed(PadButton button);
-    
-    std::function<void(PadButton)> onButtonPressed;
-    std::function<void(PadButton)> onButtonReleased;
     
     CREATE_FUNC(VirtualPad);
     
@@ -605,19 +745,13 @@ private:
     cocos2d::Sprite *m_buttonRight;
     
     cocos2d::EventListenerTouchOneByOne *m_listener;
-    
-    bool buttonState[kNUM_BOTONES];
 };
-#endif
-```
 
-```cpp
+
+// VirtualPad.cpp
+
 bool VirtualPad::init(){
-    GameEntity::init();
-
-    for(int i=0;i<kNUM_BOTONES;i++) {
-        buttonState[i] = false;
-    }
+    VirtualControls::init();
     
     return true;
 }
@@ -641,26 +775,26 @@ Node* VirtualPad::getNode(){
         
         m_buttonLeft = Sprite::createWithSpriteFrameName("boton-direccion.png");
         m_buttonLeft->setAnchorPoint(Vec2(0,0));
-        m_buttonLeft->setPosition(visibleOrigin.x+kMARGEN_MANDO, 
-                                  visibleOrigin.y+kMARGEN_MANDO);
+        m_buttonLeft->setPosition(visibleOrigin.x+kPAD_MARGIN, 
+                                  visibleOrigin.y+kPAD_MARGIN);
         m_buttonLeft->setOpacity(127);
-        m_buttonLeft->setTag(PadButton::BUTTON_LEFT);
+        m_buttonLeft->setTag(Button::BUTTON_LEFT);
         
         m_buttonRight = Sprite::createWithSpriteFrameName("boton-direccion.png");
         m_buttonRight->setAnchorPoint(Vec2(1,0));
         m_buttonRight->setScaleX(-1);
         m_buttonRight->setOpacity(127);
-        m_buttonRight->setPosition(visibleOrigin.x+ kMARGEN_MANDO + 
+        m_buttonRight->setPosition(visibleOrigin.x+ kPAD_MARGIN + 
                                    m_buttonLeft->getContentSize().width + 
-                                   kMARGEN_MANDO, visibleOrigin.y+kMARGEN_MANDO);
-        m_buttonRight->setTag(PadButton::BUTTON_RIGHT);
+                                   kPAD_MARGIN, visibleOrigin.y+kPAD_MARGIN);
+        m_buttonRight->setTag(Button::BUTTON_RIGHT);
 
         m_buttonAction = Sprite::createWithSpriteFrameName("boton-accion.png");
         m_buttonAction->setAnchorPoint(Vec2(1,0));
         m_buttonAction->setPosition(visibleOrigin.x + visibleSize.width - 
-                                    kMARGEN_MANDO, visibleOrigin.y+kMARGEN_MANDO);
+                                    kPAD_MARGIN, visibleOrigin.y+kPAD_MARGIN);
         m_buttonAction->setOpacity(127);
-        m_buttonAction->setTag(PadButton::BUTTON_ACTION);
+        m_buttonAction->setTag(Button::BUTTON_ACTION);
         
         m_node= Node::create();
         m_node->addChild(m_buttonLeft,0);
@@ -682,7 +816,7 @@ Node* VirtualPad::getNode(){
             if(rect.containsPoint(locationInNode)) {
                 buttonState[target->getTag()] = true;
                 if(onButtonPressed) {
-                    onButtonPressed((PadButton)target->getTag());
+                    onButtonPressed((Button)target->getTag());
                 }
                 target->setOpacity(255);
                 return true;
@@ -696,29 +830,26 @@ Node* VirtualPad::getNode(){
             target->setOpacity(127);
             buttonState[target->getTag()] = false;
             if(onButtonReleased) {
-                onButtonReleased((PadButton)target->getTag());
+                onButtonReleased((Button)target->getTag());
             }
         };
         
-        m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(m_listener, m_buttonLeft);
-        m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(m_listener->clone(), 
-                                                                             m_buttonRight);
-        m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(m_listener->clone(), 
-                                                                             m_buttonAction);
+        m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(
+           m_listener, m_buttonLeft);
+        m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(
+           m_listener->clone(), m_buttonRight);
+        m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(
+           m_listener->clone(), m_buttonAction);
 
     }
     
     return m_node;
 }
-
-bool VirtualPad::isButtonPressed(PadButton button) {
-    return buttonState[button];
-}
 ```
 
 ### Stick virtual
 
-El _stick_ virtual emula el _stick_ analógico de un mando. Podremos pulsar sobre él y arrastrar para así graduar cuánto queremos moverlo en una determinada dirección. En el caso del _pad_ por ejemplo la dirección izquierda puede estar pulsada o no estarlo. En el _stick_ podemos moverlo más o menos a la izquierda, tomando valores reales entre -1 y 1. 
+El _stick_ virtual emula el _stick_ analógico de un mando. Podremos pulsar sobre él y arrastrar para así graduar cuánto queremos moverlo en una determinada dirección. En el caso del _pad_ por ejemplo la dirección izquierda puede estar pulsada o no estarlo. En el _stick_ podemos moverlo más o menos a la izquierda. Podremos leer el estado del _stick_ analógico a partir del valor de sus ejes vertical y horizontal, que tomarán valores reales entre `-1` y `1`.
 
 Para crear el aspecto visual de nuestro _stick_ analógico utilizaremos dos _sprites_, uno para la base, que no se moverá nunca, y otro para la "palanca", que se desplazará conforme la arrastremos:
 
@@ -738,23 +869,6 @@ private:
     cocos2d::Point m_centerStick;
 ```
 
-También necesitaremos guardar el estado de cada eje del stick (horizontal y vertical), que podrá tomar un valor entre -1 y 1 según su posición, siendo (0,0) la posición central:
-
-```cpp
-private:
-    ...
-
-    float axisState[kNUM_EJES];
-```
-
-Vamos a crear también una enumeración para representar cada eje disponibles:
-
-```cpp
-enum StickAxis {
-    AXIS_LEFT_HORIZONTAL,
-    AXIS_LEFT_VERTICAL
-};
-```
 
 Una vez definidas estas propiedades de la clase de nuestro _stick_ vamos a pasar a implementar el código. Inicializaremos los _sprites_ que componen el _stick_ de la siguiente forma:
 
@@ -764,7 +878,7 @@ Vec2 visibleOrigin = Director::getInstance()->getVisibleOrigin();
         
 m_stickLeftBase = Sprite::createWithSpriteFrameName("base-stick.png");
 m_stickLeftBase->setAnchorPoint(Vec2(0,0));
-m_stickLeftBase->setPosition(visibleOrigin.x+kMARGEN_MANDO, visibleOrigin.y+kMARGEN_MANDO);
+m_stickLeftBase->setPosition(visibleOrigin.x+kSTICK_MARGIN, visibleOrigin.y+kSTICK_MARGIN);
 m_stickLeftBase->setOpacity(127);
 
 m_stickLeft = Sprite::createWithSpriteFrameName("bola-stick.png");
@@ -828,8 +942,8 @@ listener->onTouchMoved = [=](Touch* touch, Event* event) {
     Point min(Point::ZERO-m_radioStick);
     offset.clamp(min, max);
             
-    axisState[StickAxis::AXIS_LEFT_VERTICAL] = offset.y / max.y;
-    axisState[StickAxis::AXIS_LEFT_HORIZONTAL] = offset.x / max.x;
+    axisState[Axis::AXIS_VERTICAL] = offset.y / max.y;
+    axisState[Axis::AXIS_HORIZONTAL] = offset.x / max.x;
             
     target->setPosition(m_centerStick + offset);
 };
@@ -845,8 +959,8 @@ listener->onTouchEnded = [=](Touch* touch, Event* event) {
     target->setOpacity(127);
     target->setPosition(m_centerStick);
             
-    axisState[StickAxis::AXIS_LEFT_VERTICAL] = 0;
-    axisState[StickAxis::AXIS_LEFT_HORIZONTAL] = 0;
+    axisState[Axis::AXIS_VERTICAL] = 0;
+    axisState[Axis::AXIS_HORIZONTAL] = 0;
 };
 ```
 
@@ -856,45 +970,21 @@ Añadiremos el _listener_ al gestor de eventos:
 m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, m_stickLeft);
 ```
 
-Necesitaremos también una función que nos dé acceso al estado de los ejes:
-
-```cpp
-float VirtualStick::axisValue(StickAxis axis) {
-    return axisState[axis];
-}
-```
-
 Para terminar incluimos el código completo de la clase que implementa el _stick_ analógico y un botón digital:
 
 ```cpp
-#define kNUM_BOTONES    1
-#define kNUM_EJES       2
-#define kMARGEN_MANDO   20
+// VirtualStick.h
 
-enum StickButton {
-    BUTTON_ACTION
-};
+#define kSTICK_MARGIN   20
 
-enum StickAxis {
-    AXIS_LEFT_HORIZONTAL,
-    AXIS_LEFT_VERTICAL
-};
-
-
-class VirtualStick: public GameEntity {
+class VirtualStick: public VirtualControls {
 public:
     
     bool init();
     
     void preloadResources();
     Node* getNode();
-    
-    bool isButtonPressed(StickButton button);
-    float axisValue(StickAxis axis);
-    
-    std::function<void(StickButton)> onButtonPressed;
-    std::function<void(StickButton)> onButtonReleased;
-
+        
     CREATE_FUNC(VirtualStick);
     
 private:
@@ -903,21 +993,15 @@ private:
     cocos2d::Sprite *m_stickLeftBase;
     
     cocos2d::Size m_radioStick;
-    cocos2d::Point m_centerStick;
-    
-    bool buttonState[kNUM_BOTONES];
-    float axisState[kNUM_EJES];
+    cocos2d::Point m_centerStick;    
 };
-```
 
-```cpp
+
+// VirtualStick.cpp
+
 bool VirtualStick::init(){
-    GameEntity::init();
-    
-    for(int i=0;i<kNUM_BOTONES;i++) {
-        buttonState[i] = false;
-    }
-    
+    VirtualControls::init();
+        
     return true;
 }
 
@@ -940,23 +1024,26 @@ Node* VirtualStick::getNode(){
         
         m_stickLeftBase = Sprite::createWithSpriteFrameName("base-stick.png");
         m_stickLeftBase->setAnchorPoint(Vec2(0,0));
-        m_stickLeftBase->setPosition(visibleOrigin.x+kMARGEN_MANDO, visibleOrigin.y+kMARGEN_MANDO);
+        m_stickLeftBase->setPosition(visibleOrigin.x+kSTICK_MARGIN,
+                                     visibleOrigin.y+kSTICK_MARGIN);
         m_stickLeftBase->setOpacity(127);
 
         m_stickLeft = Sprite::createWithSpriteFrameName("bola-stick.png");
         m_stickLeft->setAnchorPoint(Vec2(0.5,0.5));
         m_stickLeft->setOpacity(127);
         
-        m_radioStick = m_stickLeftBase->getContentSize() * 0.5 - m_stickLeft->getContentSize() * 0.5;
-        m_centerStick = m_stickLeftBase->getPosition() + m_stickLeftBase->getContentSize() * 0.5;
+        m_radioStick = m_stickLeftBase->getContentSize() * 0.5 - 
+                       m_stickLeft->getContentSize() * 0.5;
+        m_centerStick = m_stickLeftBase->getPosition() + 
+                        m_stickLeftBase->getContentSize() * 0.5;
         m_stickLeft->setPosition(m_centerStick);
         
         m_buttonAction = Sprite::createWithSpriteFrameName("boton-accion.png");
         m_buttonAction->setAnchorPoint(Vec2(1,0));
-        m_buttonAction->setPosition(visibleOrigin.x + visibleSize.width - kMARGEN_MANDO, 
-                                    visibleOrigin.y+kMARGEN_MANDO);
+        m_buttonAction->setPosition(visibleOrigin.x + visibleSize.width - 
+                                    kSTICK_MARGIN, visibleOrigin.y+kSTICK_MARGIN);
         m_buttonAction->setOpacity(127);
-        m_buttonAction->setTag(StickButton::BUTTON_ACTION);
+        m_buttonAction->setTag(Button::BUTTON_ACTION);
         
         m_node= Node::create();
         m_node->addChild(m_stickLeftBase,0);
@@ -978,7 +1065,7 @@ Node* VirtualStick::getNode(){
             if(rect.containsPoint(locationInNode)) {
                 buttonState[target->getTag()] = true;
                 if(onButtonPressed) {
-                    onButtonPressed((StickButton)target->getTag());
+                    onButtonPressed((Button)target->getTag());
                 }
                 target->setOpacity(255);
                 return true;
@@ -992,11 +1079,12 @@ Node* VirtualStick::getNode(){
             target->setOpacity(127);
             buttonState[target->getTag()] = false;
             if(onButtonReleased) {
-                onButtonReleased((StickButton)target->getTag());
+                onButtonReleased((Button)target->getTag());
             }
         };
         
-        m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, m_buttonAction);
+        m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(
+           listener, m_buttonAction);
         
         // Listener stick
         listener = EventListenerTouchOneByOne::create();
@@ -1026,8 +1114,8 @@ Node* VirtualStick::getNode(){
             Point min(Point::ZERO-m_radioStick);
             offset.clamp(min, max);
             
-            axisState[StickAxis::AXIS_LEFT_VERTICAL] = offset.y / max.y;
-            axisState[StickAxis::AXIS_LEFT_HORIZONTAL] = offset.x / max.x;
+            axisState[Axis::AXIS_VERTICAL] = offset.y / max.y;
+            axisState[Axis::AXIS_HORIZONTAL] = offset.x / max.x;
             
             target->setPosition(m_centerStick + offset);
         };
@@ -1037,23 +1125,16 @@ Node* VirtualStick::getNode(){
             target->setOpacity(127);
             target->setPosition(m_centerStick);
             
-            axisState[StickAxis::AXIS_LEFT_VERTICAL] = 0;
-            axisState[StickAxis::AXIS_LEFT_HORIZONTAL] = 0;
+            axisState[Axis::AXIS_VERTICAL] = 0;
+            axisState[Axis::AXIS_HORIZONTAL] = 0;
         };
         
-        m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, m_stickLeft);
+        m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(
+           listener, m_stickLeft);
 
     }
     
     return m_node;
-}
-
-float VirtualStick::axisValue(StickAxis axis) {
-    return axisState[axis];
-}
-
-bool VirtualStick::isButtonPressed(StickButton button) {
-    return buttonState[button];
 }
 ```
 
