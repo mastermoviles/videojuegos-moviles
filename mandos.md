@@ -1214,8 +1214,8 @@ listener->onTouchMoved = [=](Touch* touch, Event* event) {
     Point min(Point::ZERO-m_radioStick);
     offset.clamp(min, max);
             
-    axisState[StickAxis::AXIS_LEFT_VERTICAL] = offset.y / max.y;
-    axisState[StickAxis::AXIS_LEFT_HORIZONTAL] = offset.x / max.x;
+    axisState[Axis::AXIS_VERTICAL] = offset.y / max.y;
+    axisState[Axis::AXIS_HORIZONTAL] = offset.x / max.x;
             
     m_stickLeft->setPosition(m_centerStick + offset);
 };
@@ -1228,20 +1228,42 @@ listener->onTouchEnded = [=](Touch* touch, Event* event) {
     m_stickLeftBase->setVisible(false);
     m_stickLeft->setVisible(false);
             
-    axisState[StickAxis::AXIS_LEFT_VERTICAL] = 0;
-    axisState[StickAxis::AXIS_LEFT_HORIZONTAL] = 0;
+    axisState[Axis::AXIS_VERTICAL] = 0;
+    axisState[Axis::AXIS_HORIZONTAL] = 0;
 };
 ```
 
 A continuación incluimos el código completo de las clases que incorporan el _stick_ analógico con posicionamiento automático, combinado con un botón de acción en la parte derecha:
 
 ```cpp
-bool VirtualStickAuto::init(){
-    GameEntity::init();
+// VirtualStickAuto.h
+
+#define kAUTOSTICK_MARGIN   20
+
+class VirtualStickAuto: public VirtualControls {
+public:
     
-    for(int i=0;i<kNUM_BOTONES;i++) {
-        buttonState[i] = false;
-    }
+    bool init();
+    
+    void preloadResources();
+    Node* getNode();
+    
+    CREATE_FUNC(VirtualStickAuto);
+    
+private:
+    cocos2d::Sprite *m_buttonAction;
+    cocos2d::Sprite *m_stickLeft;
+    cocos2d::Sprite *m_stickLeftBase;
+    
+    cocos2d::Size m_radioStick;
+    cocos2d::Point m_centerStick;    
+};
+
+
+// VirtualStickAuto.cpp
+
+bool VirtualStickAuto::init(){
+    VirtualControls::init();
     
     return true;
 }
@@ -1271,14 +1293,15 @@ Node* VirtualStickAuto::getNode(){
         m_stickLeft->setAnchorPoint(Vec2(0.5,0.5));
         m_stickLeft->setVisible(false);
         
-        m_radioStick = m_stickLeftBase->getContentSize() * 0.5 - m_stickLeft->getContentSize() * 0.5;
+        m_radioStick = m_stickLeftBase->getContentSize() * 0.5 - 
+                       m_stickLeft->getContentSize() * 0.5;
         
         m_buttonAction = Sprite::createWithSpriteFrameName("boton-accion.png");
         m_buttonAction->setAnchorPoint(Vec2(1,0));
         m_buttonAction->setOpacity(127);
-        m_buttonAction->setPosition(visibleOrigin.x + visibleSize.width - kMARGEN_MANDO, 
-                                    visibleOrigin.y+kMARGEN_MANDO);
-        m_buttonAction->setTag(StickButton::BUTTON_ACTION);
+        m_buttonAction->setPosition(visibleOrigin.x + visibleSize.width - 
+                                    kAUTOSTICK_MARGIN, visibleOrigin.y + kAUTOSTICK_MARGIN);
+        m_buttonAction->setTag(Button::BUTTON_ACTION);
         
         m_node= Node::create();
         m_node->addChild(m_stickLeftBase,0);
@@ -1296,11 +1319,11 @@ Node* VirtualStickAuto::getNode(){
             
             Size s = target->getContentSize();
             Rect rect = Rect(0, 0, s.width, s.height);
-            
+
             if(rect.containsPoint(locationInNode)) {
                 buttonState[target->getTag()] = true;
                 if(onButtonPressed) {
-                    onButtonPressed((StickButton)target->getTag());
+                    onButtonPressed((Button)target->getTag());
                 }
                 target->setOpacity(255);
                 return true;
@@ -1314,11 +1337,12 @@ Node* VirtualStickAuto::getNode(){
             target->setOpacity(127);
             buttonState[target->getTag()] = false;
             if(onButtonReleased) {
-                onButtonReleased((StickButton)target->getTag());
+                onButtonReleased((Button)target->getTag());
             }
         };
         
-        m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, m_buttonAction);
+        m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(
+           listener, m_buttonAction);
         
         // Listener stick
         listener = EventListenerTouchOneByOne::create();
@@ -1349,8 +1373,8 @@ Node* VirtualStickAuto::getNode(){
             Point min(Point::ZERO-m_radioStick);
             offset.clamp(min, max);
             
-            axisState[StickAxis::AXIS_LEFT_VERTICAL] = offset.y / max.y;
-            axisState[StickAxis::AXIS_LEFT_HORIZONTAL] = offset.x / max.x;
+            axisState[Axis::AXIS_VERTICAL] = offset.y / max.y;
+            axisState[Axis::AXIS_HORIZONTAL] = offset.x / max.x;
             
             m_stickLeft->setPosition(m_centerStick + offset);
         };
@@ -1359,24 +1383,20 @@ Node* VirtualStickAuto::getNode(){
             m_stickLeftBase->setVisible(false);
             m_stickLeft->setVisible(false);
             
-            axisState[StickAxis::AXIS_LEFT_VERTICAL] = 0;
-            axisState[StickAxis::AXIS_LEFT_HORIZONTAL] = 0;
+            axisState[Axis::AXIS_VERTICAL] = 0;
+            axisState[Axis::AXIS_HORIZONTAL] = 0;
         };
         
         m_node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, m_node);
+        
     }
     
     return m_node;
 }
-
-float VirtualStickAuto::axisValue(StickAxis axis) {
-    return axisState[axis];
-}
-
-bool VirtualStickAuto::isButtonPressed(StickButton button) {
-    return buttonState[button];
-}
 ```
+
+> Es importante remarcar que con esta implementación de controles virtuales podremos reemplazar un tipo de control por otro sin afectar al código de nuestro juego, que siempre utilizará `VirtualControls`. Simplemente cambiando la subclase concreta que instanciamos podremos alternar entre diferentes formas de control.
+
 
 ## Mandos físicos
 
