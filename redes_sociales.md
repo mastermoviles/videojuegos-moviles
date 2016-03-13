@@ -2,10 +2,6 @@
 
 ## Diseño de logros
 
-http://www.gamasutra.com/blogs/GregMcClanahan/20091202/86035/Achievement_Design_101.php
-
-http://www.gamasutra.com/view/feature/6360/the_cake_is_not_a_lie_how_to_.php?print=1
-
 Los logros son recompensas que podremos obtener cumpliendo determinados retos dentro del juego. Cada logro tiene asociado un reto sobre algo que podemos realizar dentro del juego (por ejemplo, "Destruye 100 naves enemigas"). Una vez consigamos realizar el objetivo de este reto seremos recompensados con el logro. Normalmente veremos los logros conseguidos como medallas, y podremos ver también los logros obtenidos por otros jugadores y compararlos con los que hemos obtenido nosotros.
 
 Bien diseñados, los logros podrán hacer que los jugadores tengan más incentivos para jugar a nuestro juego. 
@@ -37,3 +33,10 @@ http://www.gamesparks.com/blog/leaderboards/
 ## Juegos sociales
 
 http://www.gamasutra.com/view/feature/4009/the_social_network_game_boom.php
+
+## Referencias
+
+http://www.gamasutra.com/blogs/GregMcClanahan/20091202/86035/Achievement_Design_101.php
+
+http://www.gamasutra.com/view/feature/6360/the_cake_is_not_a_lie_how_to_.php?print=1
+
