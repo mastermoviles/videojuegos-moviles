@@ -170,7 +170,7 @@ Al igual que en el caso anterior, podremos localizar la información de este for
 
 ## Implementación de logros y marcadores
 
-
+Para implementar el soporte de logros y marcadores con Game Center contamos con el _framework_ `GameKit` nativo de la plataforma iOS. Por otro lado, para añadir soporte para Google Play Games en Android necesitaremos incluir en nuestro proyecto los Google Play Services, mientras que para iOS contamos con un SDK específico que podemos añadir al proyecto. Sin embargo, no contamos con soporte _"de serie"_ de logros y marcadores en Cocos2d-x. Para utilizar estas características con dicho motor, deberemos recurrir a las APIs nativas, o bien utilizar algún _plugin_ de terceros que haga esto por nosotros. Un _plugin_ que podemos utilizar para esta tarea es [GameSharing](http://www.cocos2d-x.org/hub/156). Éste nos proporciona una API C++ única que por debajo, dependiendo de la plataforma, utilizará Game Center (con `GameKit`) o Google Play Games (con los _Google Play Services_). 
 
 ## Referencias
 
