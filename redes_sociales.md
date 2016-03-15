@@ -1,8 +1,8 @@
 # Redes sociales para videojuegos
 
-Existen diferentes redes sociales específicas para videojuegos. Estas redes nos permiten ver por ejemplo a qué juegos están jugando nuestros amigos, y los **logros** y **puntuaciones** que han conseguido en ellos. También nos permitirán entrar en partidas multijugador con nuestros amigos. 
+Existen diferentes redes sociales específicas para videojuegos. Estas redes nos permiten ver por ejemplo a qué juegos están jugando nuestros amigos, y los **logros** y **puntuaciones** que han conseguido en ellos. También nos permitirán entrar en partidas multijugador con nuestros amigos o almacenar los datos de nuestra partida en la nube. 
 
-Normalmente estas redes están ligadas a la plataforma que utilizamos para jugar (**Game Center** para las plataformas de Apple: iOS, Mac, Apple TV; **Xbox live** para las plataformas de Microsoft: Xbox y Windows; **PS Network** para las plataformas de Sony: PS3, PS4, PS Vita; **Steam** en PC, Linux y Mac), pero también encontramos redes que podemos utilizar en diferentes plataformas (**Google Play Games**, además de Android, puede utilizarse en iOS o plataformas Web). 
+Normalmente estas redes están ligadas a la plataforma que utilizamos para jugar (**Game Center** para las plataformas de Apple: iOS, Mac, Apple TV; **Xbox live** para las plataformas de Microsoft: Xbox y Windows; **PS Network** para las plataformas de Sony: PS3, PS4, PS Vita; **Steam** en PC, Linux y Mac), pero también encontramos redes que podemos utilizar en diferentes plataformas (**Google Play Games**, además de Android, puede utilizarse en iOS o plataformas Web). También existen plataformas sociales para videojuegos ofrecidas por terceros (por ejemplo _Game Sparks_, _Playphone_ o _OpenKit_), siendo la mayoría de ellos servicios de pago.
 
 Vamos a ver cómo diseñar e implementar **logros** y **marcadores** con las principales redes sociales para juegos disponibles en las plataformas móviles.
 
@@ -36,6 +36,7 @@ Antes de ver una serie de consejos para el diseño de logros, vamos a realizar u
 
 ### Consejos para el diseño de logros
 
+El diseño de logros será una tarea que normalmente realizaremos en las fases finales del desarrollo del videojuego. Será importante tener muy bien definidas cuáles son las mecánicas y modos del juego y los contenidos que vamos a ofrecer. A continuación mostramos una serie de consejos para el diseño de logros:
 
 * La lista de logros debe ser una buena **representación del juego**. Es decir, deberíamos tener logros que se consigan con cada modo de juego (por ejemplo, modo "Historia" y modo "Contrarreloj"), y con cada mecánica del juego (por ejemplo, matar enemigos, coger monedas, etc). 
 * Deben existir logros para jugadores con **diferentes grados de experiencia**, desde logros que cualquier jugador pueda conseguir, hasta logros dirigidos a los jugadores más experimentados. Algunos juegos ofrecen como incentivo dar "logros fáciles", con lo cual pueden conseguir usuarios que desean ganar puntos de logros y así competir con sus amigos, pero esto no favorece la experiencia de juego.
@@ -46,20 +47,30 @@ Antes de ver una serie de consejos para el diseño de logros, vamos a realizar u
 
 ## Diseño de marcadores
 
-Los marcadores anotarán la **puntuación máxima** que hemos conseguido en el juego. Además, no sólo nos permitirán ver la puntuación que hemos obtenido, sino que podremos **compararla** con la de nuestros amigos y con la de otros jugadores de todo el mundo. 
+Los marcadores anotarán la **puntuación máxima** que hemos conseguido en el juego. Además, no sólo nos permitirán ver la puntuación que hemos obtenido, sino que podremos **compararla** con la de nuestros amigos y con la de otros jugadores de todo el mundo. Esta es una cuestión importante, ya que en un marcador mundial es muy difícil conseguir estar en puestos destacados, lo cual puede desanimar a la mayoría de jugadores. Sin embargo, si tenemos la opción de ver en el marcador sólo a nuestros amigos, es más probable que podamos "pelear" por los primeros puestos, y esto mejorará la **retención** de los usuarios, bien para conseguir llegar a ocupar las primeras posiciones, o para conservarlas.
 
 Podremos tener **varios marcadores** en nuestro juego, con distintos tipos de datos (por ejemplo, _puntuaciones máximas_, _monedas recolectadas_, _mejores tiempos_, etc). Según el tipo de marcador, podremos indicar si la ordenación debe ser **ascendente o descendente**. Por ejemplo, para la _puntuación_ debería ser descendente (la máxima encabezará la lista), pero para _mejores tiempos_ deberíamos utilizar un marcador ascendente (el que menor tiempo haya hecho encabezará la lista).
 
+Al igual que en el caso de los logros, la incorporación de los marcadores se suele hacer en las fases finales del desarrollo. Son algo independiente del juego, durante el transcurso de la partida no tendrán ningún efecto. Normalmente los veremos siempre en una pantalla independiente, ya fuera de la pantalla del juego, donde se mostrará la lista de las mejores puntuaciones. 
 
-http://www.gamesparks.com/blog/leaderboards/
 
-## Juegos sociales
 
-http://www.gamasutra.com/view/feature/4009/the_social_network_game_boom.php
+
 
 ## Referencias
 
-http://www.gamasutra.com/blogs/GregMcClanahan/20091202/86035/Achievement_Design_101.php
+* Artículo sobre diseño de marcadores: 
 
-http://www.gamasutra.com/view/feature/6360/the_cake_is_not_a_lie_how_to_.php?print=1
+[Leaderboards - The original social feature](http://www.gamesparks.com/blog/leaderboards/)
+
+* Articulos sobre diseño de logros:
+
+[Achievement Design 101](http://www.gamasutra.com/blogs/GregMcClanahan/20091202/86035/Achievement_Design_101.php)
+[The Cake Is Not a Lie: How to Design Effective Achievements](http://www.gamasutra.com/view/feature/6360/the_cake_is_not_a_lie_how_to_.php?print=1)
+
+* Artículo sobre juegos sociales:
+
+[The social network game boom](http://www.gamasutra.com/view/feature/4009/the_social_network_game_boom.php)
+
+
 
