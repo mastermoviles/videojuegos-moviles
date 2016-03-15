@@ -9,6 +9,4 @@
 * [Controles del videojuego](mandos.md)
 * [Adaptación a móviles](adaptacion_a_moviles.md)
 * [Servicios y redes sociales para juegos](redes_sociales.md)
-* [El motor Unity](unity.md)
-* [Tecnologías nativas para el desarrollo de videojuegos](nativo.md)
 
