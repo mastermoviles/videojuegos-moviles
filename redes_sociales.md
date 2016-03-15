@@ -117,28 +117,56 @@ En la parte inferior podemos localizar los textos de los logros a diferentes idi
 
 ### Google Play Games
 
-La plataforma Google Play Games cuenta también con una interfaz similar para dar de alta logros y marcadores. Esta herramienta se encuentra integrada en la consola de desarrolladores de Android, en la sección _Servicios de juegos_
+La plataforma Google Play Games (GPG) cuenta también con una interfaz similar para dar de alta logros y marcadores. Esta herramienta se encuentra integrada en la consola de desarrolladores de Android, en la sección _Servicios de juegos_
 
 ![Servicios de juegos en Google Play](gpg_01_servicios.png)
 
-En dicha sección daremos de alta los juegos que queramos que puedan utilizar el servicio de Google Play Games. Hay que remarcar que esto es algo totalmente independiente al alta de la aplicación Android (en _Tus aplicaciones_). En _Servicios de juegos_ simplemente creamos la ficha para nuestro juego en Google Play Games, a la que se podrá acceder desde Android, iOS, u otras plataformas. Podríamos incluso crear aquí juegos que no estuvieran disponibles en Android.
+En dicha sección daremos de alta los juegos que queramos que puedan utilizar el servicio de GPG. Hay que remarcar que esto es algo totalmente independiente al alta de la aplicación Android (en _Tus aplicaciones_). En _Servicios de juegos_ simplemente creamos la ficha para nuestro juego en GPG, a la que se podrá acceder desde Android, iOS, u otras plataformas. Podríamos incluso crear aquí juegos que no estuvieran disponibles en Android.
 
-En caso de querer crear la ficha del juego en Google Play Games para un juego Android, será recomendable subir antes un APK, aunque se trate de una versión _alpha_. Si contamos con dicho APK, muchos de los datos necesarios para crear nuestra ficha los podrá obtener de forma automática a partir de dicho fichero, simplificando notablemente el proceso.
+En caso de querer crear la ficha del juego en GPG para un juego Android, será recomendable subir antes un APK, aunque se trate de una versión _alpha_. Si contamos con dicho APK, muchos de los datos necesarios para crear nuestra ficha los podrá obtener de forma automática a partir de dicho fichero, simplificando notablemente el proceso.
 
 ![Alta de un juego en Google Play Games](gpg_02_alta.png)
 
 #### Configuración de logros
 
+Una vez creado nuestro juego en los servicios de GPG, podremos acceder a su ficha y configurar logros y marcadores.
+
+Entrando en la sección de _Logros_ veremos el listado de logros existentes, y un botón _Añadir nuevo logro_. En la lista podemos observar que cada logro tiene un ID que deberemos utilizar para hacer referencia a él desde el código de nuestro juego. A diferencia de Game Center, estos IDs no los introducimos nosotros, sino que son autogenerados. Esto nos obligará a tener que definir en nuestro juego dos listas de identificadores de logros diferentes, una para cada plataforma.
+
 ![Listado de logros](gpg_03_logros.png)
+
+Si pulsamos sobre _Añadir nuevo logro_, o editamos uno de los existentes, veremos la pantalla para introducir datos del logro.
 
 ![Datos de un logro](gpg_04_datos_logro.png)
 
+Para cada logro nos pide:
+
+* Nombre (el que se le mostrará al usuario)
+* Descripción
+* Icono
+* Indicar si es incremental (si podemos irlo consiguiendo a incrementos parciales)
+* Puntos (con un máximo total de 1000 puntos, al igual que Game Center).
+
+Estos datos pueden estar localizados a diferentes idiomas.
+
 #### Configuración de marcadores
+
+Dentro de la ficha de nuestro juego en GPG, también encontramos una sección _Marcadores_ donde podemos configurar los marcadores del juego. Veremos un listado de los marcadores existentes, cada uno de ellos con su ID autogenerado asociado, al igual que en el caso de los logros. También tendremos un botón _Añadir nuevo marcador_.
 
 ![Listado de marcadores](gpg_05_scores.png)
 
+Pulsando sobre el botón _Añadir nuevo marcador_ o yendo a editar un marcador existente, veremos la pantalla para introducir los datos del marcador.
+
 ![Datos de un marcador](gpg_06_datos_score.png)
 
+De cada marcador nos pide:
+
+* Nombre (el que se le mostrará al usuario)
+* Tipo de datos y formato de las puntuaciones
+* Icono
+* Límites inferior y superior de las puntuaciones
+
+Al igual que en el caso anterior, podremos localizar la información de este formulario a diferentes idiomas.
 
 ## Implementación de logros y marcadores
 
