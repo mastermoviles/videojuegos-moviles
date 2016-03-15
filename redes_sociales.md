@@ -6,7 +6,9 @@ Normalmente estas redes están ligadas a la plataforma que utilizamos para jugar
 
 Vamos a ver cómo diseñar e implementar **logros** y **marcadores** con las principales redes sociales para juegos disponibles en las plataformas móviles.
 
-## Diseño de logros
+## Diseño de logros y marcadores
+
+### Logros
 
 Los logros son recompensas que podremos obtener cumpliendo determinados retos dentro del juego. Cada logro tiene asociado un reto sobre algo que podemos realizar dentro del juego (por ejemplo, "Destruye 100 naves enemigas"). Una vez consigamos realizar el objetivo de este reto seremos recompensados con el logro. Normalmente veremos los logros conseguidos como medallas, y podremos ver también los logros obtenidos por otros jugadores y compararlos con los que hemos obtenido nosotros.
 
@@ -15,7 +17,7 @@ Los logros son recompensas que podremos obtener cumpliendo determinados retos de
 Bien diseñados, los logros podrán hacer que los jugadores tengan más incentivos para jugar a nuestro juego. 
 
 
-### Datos de un logro
+#### Datos de un logro
 
 Para cada logro deberemos proporcionar la siguiente información:
 
@@ -25,7 +27,7 @@ Para cada logro deberemos proporcionar la siguiente información:
 
 
 
-### Tipos de logros
+#### Tipos de logros
 
 Antes de ver una serie de consejos para el diseño de logros, vamos a realizar una clasificación de tipos de logros que podemos incluir:
 
@@ -34,7 +36,7 @@ Antes de ver una serie de consejos para el diseño de logros, vamos a realizar u
 * **Logros ocultos**: Los logros ocultos pueden ser de cualquiera de los tipos anteriores, pero el reto para obtener el logro no es visible hasta que no se haya obtenido. Esto es especialmente últil en el caso de logros de progreso, para evitar _spoilers_.  
 
 
-### Consejos para el diseño de logros
+#### Consejos para el diseño de logros
 
 El diseño de logros será una tarea que normalmente realizaremos en las fases finales del desarrollo del videojuego. Será importante tener muy bien definidas cuáles son las mecánicas y modos del juego y los contenidos que vamos a ofrecer. A continuación mostramos una serie de consejos para el diseño de logros:
 
@@ -44,8 +46,7 @@ El diseño de logros será una tarea que normalmente realizaremos en las fases f
 * **No ofrecer todos los logros en la primera versión del juego**. Es conveniente observar el comportamiento de los jugadores una vez el juego ha sido lanzado, y así poder añadir nuevos logros que se adapten a lo que los jugadores buscan en el juego. Además, podremos añadir logros para nuevos contenidos que podamos incorporar.
 
 
-
-## Diseño de marcadores
+### Marcadores
 
 Los marcadores anotarán la **puntuación máxima** que hemos conseguido en el juego. Además, no sólo nos permitirán ver la puntuación que hemos obtenido, sino que podremos **compararla** con la de nuestros amigos y con la de otros jugadores de todo el mundo. Esta es una cuestión importante, ya que en un marcador mundial es muy difícil conseguir estar en puestos destacados, lo cual puede desanimar a la mayoría de jugadores. Sin embargo, si tenemos la opción de ver en el marcador sólo a nuestros amigos, es más probable que podamos "pelear" por los primeros puestos, y esto mejorará la **retención** de los usuarios, bien para conseguir llegar a ocupar las primeras posiciones, o para conservarlas.
 
@@ -54,6 +55,10 @@ Podremos tener **varios marcadores** en nuestro juego, con distintos tipos de da
 Al igual que en el caso de los logros, la incorporación de los marcadores se suele hacer en las fases finales del desarrollo. Son algo independiente del juego, durante el transcurso de la partida no tendrán ningún efecto. Normalmente los veremos siempre en una pantalla independiente, ya fuera de la pantalla del juego, donde se mostrará la lista de las mejores puntuaciones. 
 
 
+## Configuración de logros y marcadores
+
+
+## Implementación de logros y marcadores
 
 
 
