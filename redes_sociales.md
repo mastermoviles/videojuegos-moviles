@@ -60,6 +60,84 @@ Al igual que en el caso de los logros, la incorporación de los marcadores se su
 Antes de poder utilizar logros y marcadores en nuestros juegos, deberemos configurarlos en la plataforma que vayamos a utilizar (Game Center, Google Play Games, etc). Normalmente, cada plataforma nos proporcionará una interfaz web con la que introducir los datos de los logros y marcadores que vayamos a utilizar en nuestro juego. Vamos a ver cómo hacer esto en las principales plataformas para móviles.
 
 
+### Game Center
+
+Comenzaremos viendo cómo dar de alta logros y marcadores en Game Center, la plataforma de videojuegos de Apple. 
+
+En primer lugar, deberemos crear un App ID para nuestra aplicación en la que esté activo el servicio Game Center. Para ello entramos en la aplicación _Certificates, Identifiers & Profiles_, que encontraremos dentro de las aplicaciones disponibles para los desarrolladores del _Apple Developer Program_.
+
+![Crear App ID con Game Center activado](gc_01_appid.png)
+
+Una vez creado el App ID, entraremos en _iTunes Connect_ y crearemos la ficha de la aplicación para nuestro juego, utilizando el App ID definido en el paso anterior. Dentro de los datos de nuestra aplicación, veremos una pestaña _Prestaciones_, que contiene una sección _Game Center_ donde podremos configurar logros y marcadores.
+
+![Ficha de Game Center en iTunes Connect](gc_02_gamecenter.png)
+
+En la sección _Game Center_ veremos una lista de logros y de marcadores existentes, y podremos crear nuevos logros y marcadores tal como veremos a continuación.
+
+
+#### Configuración de marcadores
+
+En la lista de marcadores veremos todos los marcadores creados hasta el momento (inicialmente estará vacía), y tendremos un botón `+` que nos permitirá añadir nuevos marcadores a la aplicación.
+
+![Listado de marcadores](gc_03_marcadores.png)
+
+Al pulsar sobre el botón para añadir un marcador nos preguntará si queremos una _Clasificación individual_ o _combinada_. Comenzaremos creando una _individual_ (sólo podemos crear _combinadas_ si ya contamos con clasificaciones _individuales_ que podamos combinar).
+
+
+![Datos de un marcador](gc_04_datos_marcador.png)
+
+Para la clasificación deberemos dar:
+
+* Un nombre descriptivo (sólo para identificarlo en la interfaz de la aplicación de gestión)
+* Un identificador (con el que haremos referencia al marcador desde el código del juego)
+* Un tipo de datos y formato con el que mostrar las puntuaciones
+* Orden ascendente o descendente
+* Valores máximo y mínimo que puede alcanzar la puntuación.
+
+Además, en la parte inferior vemos que podemos localizar en varios idiomas el nombre y el formato de la puntuación. Esto es lo que el usuario del juego verá cuando se muestre la tabla de puntuaciones. 
+
+#### Configuración de logros
+
+De forma similar al caso de los marcadores, veremos también un listado de logros existentes con la posibilidad de añadir nuevos logros mediante el botón `+`.
+
+![Listado de logros](gc_05_logros.png)
+
+Al añadir un nuevo logro, se nos presentará una interfaz donde introducir sus datos.
+
+![Datos de un logro](gc_06_datos_logro.png)
+Los datos que debemos proporcionar de los logros son:
+
+* Nombre descriptivo (sólo interno para la aplicación de gestión)
+* Identificador (con el que haremos referencia a él desde el código)
+* Valor del logro (en total pueden sumar como máximo 1000 puntos)
+* Indicar si el logro es oculto o no
+* Indicar si el logro se puede conseguir más de una vez (hay logros que se pueden conseguir gradualmente, hasta alcanzar su 100%)
+
+En la parte inferior podemos localizar los textos de los logros a diferentes idiomas. Estos serán los textos que el usuario final verá cuando consigamos un logro o cuando se muestre el listado de logros del juego.
+
+### Google Play Games
+
+La plataforma Google Play Games cuenta también con una interfaz similar para dar de alta logros y marcadores. Esta herramienta se encuentra integrada en la consola de desarrolladores de Android, en la sección _Servicios de juegos_
+
+![Servicios de juegos en Google Play](gpg_01_servicios.png)
+
+En dicha sección daremos de alta los juegos que queramos que puedan utilizar el servicio de Google Play Games. Hay que remarcar que esto es algo totalmente independiente al alta de la aplicación Android (en _Tus aplicaciones_). En _Servicios de juegos_ simplemente creamos la ficha para nuestro juego en Google Play Games, a la que se podrá acceder desde Android, iOS, u otras plataformas. Podríamos incluso crear aquí juegos que no estuvieran disponibles en Android.
+
+En caso de querer crear la ficha del juego en Google Play Games para un juego Android, será recomendable subir antes un APK, aunque se trate de una versión _alpha_. Si contamos con dicho APK, muchos de los datos necesarios para crear nuestra ficha los podrá obtener de forma automática a partir de dicho fichero, simplificando notablemente el proceso.
+
+![Alta de un juego en Google Play Games](gpg_02_alta.png)
+
+#### Configuración de logros
+
+![Listado de logros](gpg_03_logros.png)
+
+![Datos de un logro](gpg_04_datos_logro.png)
+
+#### Configuración de marcadores
+
+![Listado de marcadores](gpg_05_scores.png)
+
+![Datos de un marcador](gpg_06_datos_score.png)
 
 
 ## Implementación de logros y marcadores
