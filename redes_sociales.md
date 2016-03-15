@@ -57,6 +57,10 @@ Al igual que en el caso de los logros, la incorporación de los marcadores se su
 
 ## Configuración de logros y marcadores
 
+Antes de poder utilizar logros y marcadores en nuestros juegos, deberemos configurarlos en la plataforma que vayamos a utilizar (Game Center, Google Play Games, etc). Normalmente, cada plataforma nos proporcionará una interfaz web con la que introducir los datos de los logros y marcadores que vayamos a utilizar en nuestro juego. Vamos a ver cómo hacer esto en las principales plataformas para móviles.
+
+
+
 
 ## Implementación de logros y marcadores
 
