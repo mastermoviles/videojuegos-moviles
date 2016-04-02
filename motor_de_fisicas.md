@@ -697,6 +697,14 @@ bool checkGrounded() {
 
 Con este método obtenemos todos los contactos existentes con el cuerpo de nuestro personaje, y filtramos sólo aquellos que se producen con el sensor (`m_groundTest`). En caso de existir alguno, es que estamos pisando sobre alguna superficie.
 
+Podríamos implementar el salto aplicando una velocidad vertical (`m_jump`) y conservando la velocidad horizontal del personaje. Haremos esto sólo cuando el personaje esté sobre una superficie sólida:
+
+```cpp
+if(checkGrounded()) {
+    m_body->SetLinearVelocity(b2Vec2(m_body->GetLinearVelocity().x, m_jump));
+}
+```
+
 Para mover el personaje a izquierda o derecha lo único que deberemos hacer es establecer su velocidad en _x_ a partir del valor del eje horizontal de mando, conservando su velocidad vertical (determinada por la fuerza de la gravedad):
 
 ```cpp
