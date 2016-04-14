@@ -673,7 +673,7 @@ Además de crear la geometría de colisión del _sprite_, es importante saber cu
 ```cpp
 b2CircleShape shapeSensor;
 shapeSensor.m_radius = GROUND_TEST_RADIUS;
-shapeSensor.m_p = b2Vec2(0, -m_playerSprite->getContentSize().width * 0.5 / PTM_RATIO);
+shapeSensor.m_p = b2Vec2(0, -m_playerSprite->getContentSize().height * 0.5 / PTM_RATIO);
 
 m_groundTest = m_body->CreateFixture(&shapeSensor, 1.0);
 m_groundTest->SetSensor(true);
