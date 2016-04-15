@@ -299,6 +299,12 @@ GKScore *scoreReporter = [[GKScore alloc] initWithLeaderboardIdentifier: [NSStri
 ```
 
 ### Logros y marcadores con `GameSharing`
+
+            GameSharing::ShowAchievementsUI();
+
+
+                GameSharing::UnlockAchivement(Achievements::AchievementFirstJump);
+
 -->
 ## Referencias
 
