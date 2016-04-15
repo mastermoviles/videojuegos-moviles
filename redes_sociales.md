@@ -173,10 +173,16 @@ Al igual que en el caso anterior, podremos localizar la información de este for
 Para implementar el soporte de logros y marcadores con Game Center contamos con el _framework_ `GameKit` nativo de la plataforma iOS. Por otro lado, para añadir soporte para Google Play Games en Android necesitaremos incluir en nuestro proyecto los Google Play Services, mientras que para iOS contamos con un SDK específico que podemos añadir al proyecto. Sin embargo, no contamos con soporte _"de serie"_ de logros y marcadores en Cocos2d-x. Para utilizar estas características con dicho motor, deberemos recurrir a las APIs nativas, o bien utilizar algún _plugin_ de terceros que haga esto por nosotros. Un _plugin_ que podemos utilizar para esta tarea es [GameSharing](http://www.cocos2d-x.org/hub/156). Éste nos proporciona una API C++ única que por debajo, dependiendo de la plataforma, utilizará Game Center (con `GameKit`) o Google Play Games (con los _Google Play Services_). 
 
 Como veremos a continuación, las diferentes APIs para gestión de logros y marcadores son muy parecidas. Las interfaces multiplataforma que podemos encontrar en motores como Unity o en el _plugin_ GameSharing de Cocos2d-x se utilizan prácticamente de la misma forma que la API nativa `GameKit` de iOS. 
-<!--
+
 ### Logros y marcadores con `GameKit`
 
+Vamos a comenzar viendo cómo integrar Game Center mediante el _framework_ nativo `GameKit` de iOS. Para utilizarlo simplemente tendremos que añadir dicho _framework_ a nuestro proyecto de Xcode. Una vez añadido, podremos utilizar su API. Todas sus clases tienen el prefijo `GK`.
+
 #### Inicialización
+
+Para poder gestionar los logros y marcadores de nuestro juego en Game Center, lo primero que deberemos hacer es autenticar al usuario en dicha plataforma. Normalmente el usuario ya habrá configurado su cuenta de Game Center en el móvil, por lo que la autenticación será automática, sin tener que introducir _login_ ni _password_. En caso de que no hubiera configurado una cuenta de Game Center previamente, podremos invitarle a que lo haga en este momento.
+
+Para autenticar el usuario simplemente tendremos que obtener la instancia única (_singleton_) del objeto `GKLocalPlayer`, que hace referencia al usuario local configurado en el móvil, y asignar un bloque de código a su propiedad `authenticateHandler`. Con esto, la autenticación se hará de forma automática nada más establecer la propiedad, y volverá a autenticar al usuario cada vez que volvamos a abrir la aplicación.
 
 ```objc
 GKLocalPlayer *player = [GKLocalPlayer localPlayer];
@@ -193,7 +199,18 @@ player.authenticateHandler = ^(UIViewController *viewController, NSError *error)
 };    
 ```
 
+Podemos observar que pueden ocurrir tres cosas:
+
+* Que se proporcione un `viewController`. Quiere decir que no hay usuario configurado en el dispositivo, y el `viewController` proporcionado nos sirve para invitar al usuario a que lo configure. Deberemos presentarlo como controlador modal.
+* Que el usuario se autentique de forma correcta (se puede comprobar con la propiedad `player.authenticated`. 
+* Que no se pueda autenticar al usuario. En este caso, debemos asegurarnos de que el uso de Game Center quede deshabilitado (no deberemos intenter publicar logros ni marcadores).
+
+Podremos consultar la propiedad `player.authenticated` en cualquier momento para saber si podemos utilizar las funciones de Game Center en el juego.
+
+
 #### Mostrar panel de logros y marcadores
+
+Una vez tenemos al usuario autenticado en Game Center, podemos mostrar una pantalla estándar de la plataforma donde se muestra la ficha de Game Center para nuestro juego. En dicha pantalla podremos ver los marcadores y los logros conseguidos por el usuario hasta el momento:
 
 ```objc
 GKGameCenterViewController* gkController = [[GKGameCenterViewController alloc] init];
@@ -201,6 +218,8 @@ gkController.gameCenterDelegate = self;
 
 [self presentViewController:gkController animated:YES completion:^{}];
 ```
+
+Si nuestro juego tiene varios marcadores, también podemos hacer que se muestre un marcador concreto estableciendo las siguientes propiedades del controlador anterior:
 
 ```objc
 gkController.leaderboardIdentifier = ID_MARCADOR;
@@ -210,9 +229,29 @@ gkController.leaderboardTimeScope = GKLeaderboardTimeScopeAllTime;
 
 #### Gestión de puntuaciones
 
+Cuando termine una partida, y nuestro jugador haya conseguido un nuevo récord, podemos subir dicha puntuación a su marcador global de Game Center. Deberemos crear un objeto `GKScore` con el identificador del marcador en el que publicar la puntuación, y asignar a su propiedad `value` el valor de la puntuación que queremos publicar:
+
+```objc
+GKScore *scoreReporter = [[GKScore alloc] initWithLeaderboardIdentifier: ID_MARCADOR];
+scoreReporter.value = score;
+scoreReporter.context = 0;
+
+[GKScore reportScores:@[scoreReporter] withCompletionHandler:^(NSError *error) {
+    if (error != nil) {
+        // Error al enviar puntuacion
+        // POSIBLE SOLUCION: Guardarlo en lista de pendientes de envio
+    } else {
+        // Puntuación enviada
+    }
+}];    
+```
+
+Hay que destacar que la publicación podría fallar, por ejemplo si la red está inaccesible en este momento. Una posible forma de solucionarlo es almacenar en nuestra aplicación una lista de puntuaciones pendientes de subir, para así poder volver a intentarlo la próxima vez que entremos en el juego.
+
 
 #### Gestión de logros
 
+La publicación de logros conseguidos se hará de forma similar a la de las puntuaciones de los marcadores. En este caso, para desbloquear un logro debemos proporcionar su identificador. Además, dado que podemos tener logros incrementales, debemos indicar el porcentaje de logro que queremos desbloquear (`percentComplete`). Si queremos desbloquear el logro completo, le daremos a esta propiedad el valor `100`. También podemos utilizar la propiedad `showsCompletionBanner` para que automáticamente muestre el _banner_ de desbloqueo de logro por defecto del sistema. Poniendo esta propiedad a `false` podríamos mostrar nuestro propio tipo de _banners_, si queremos personalizarlos.
 
 ```objc   
 GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier: ID_LOGRO];
@@ -230,29 +269,17 @@ if (achievement){
 }
 ```
 
-```objc
-GKScore *scoreReporter = [[GKScore alloc] initWithLeaderboardIdentifier: ID_MARCADOR];
-scoreReporter.value = score;
-scoreReporter.context = 0;
+Al igual que en el caso de las puntuaciones, si obtenemos un error al desbloquear un logro, podemos guardarlo para intentarlo más adelante. Esto sólo debe hacerse como última instancia, ya que los logros deben ser desbloqueados de forma inmediata tras realizar la acción que los produce.
 
-[GKScore reportScores:@[scoreReporter] withCompletionHandler:^(NSError *error) {
-    if (error != nil) {
-        // Error al enviar puntuacion
-        // POSIBLE SOLUCION: Guardarlo en lista de pendientes de envio
-    } else {
-        // Puntuación enviada
-    }
-}];    
-```
+Es recomendable también sólo desbloquear logros cuando haya un progreso real del usuario en el juego, y evitar pedir desbloquear el mismo logro varias veces para evitar tráfico innecesario a través de la red. Para conseguir esto, podemos guardar una caché con los logros obtenidos, y así sólo intentar desbloquearlos cuando no estén en dicha caché. Para crearla podemos leer todos los logros obtenidos justo tras realizar la autenticación del usuario, mediante el método `loadAchievementsWithCompletionHandler` de la clase `GKAchievement`.
 
 ### Logros y marcadores con `GameSharing`
 
-            GameSharing::ShowAchievementsUI();
+```cpp
+GameSharing::ShowAchievementsUI();
+GameSharing::UnlockAchivement(0);
+```
 
-
-                GameSharing::UnlockAchivement(Achievements::AchievementFirstJump);
-
--->
 ## Referencias
 
 * Artículo sobre diseño de marcadores: 
