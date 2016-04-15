@@ -172,6 +172,134 @@ Al igual que en el caso anterior, podremos localizar la información de este for
 
 Para implementar el soporte de logros y marcadores con Game Center contamos con el _framework_ `GameKit` nativo de la plataforma iOS. Por otro lado, para añadir soporte para Google Play Games en Android necesitaremos incluir en nuestro proyecto los Google Play Services, mientras que para iOS contamos con un SDK específico que podemos añadir al proyecto. Sin embargo, no contamos con soporte _"de serie"_ de logros y marcadores en Cocos2d-x. Para utilizar estas características con dicho motor, deberemos recurrir a las APIs nativas, o bien utilizar algún _plugin_ de terceros que haga esto por nosotros. Un _plugin_ que podemos utilizar para esta tarea es [GameSharing](http://www.cocos2d-x.org/hub/156). Éste nos proporciona una API C++ única que por debajo, dependiendo de la plataforma, utilizará Game Center (con `GameKit`) o Google Play Games (con los _Google Play Services_). 
 
+Como veremos a continuación, las diferentes APIs para gestión de logros y marcadores son muy parecidas. Las interfaces multiplataforma que podemos encontrar en motores como Unity o en el _plugin_ GameSharing de Cocos2d-x se utilizan prácticamente de la misma forma que la API nativa `GameKit` de iOS. 
+<!--
+### Logros y marcadores con `GameKit`
+
+#### Inicialización
+
+```objc
+[[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:^(NSError *error) {
+    if (error == nil)
+    {
+        // Autenticado correctamente
+    }
+    else
+    {
+        // Error al autenticar al jugador
+    }
+    
+    
+GKLocalPlayer *player = [GKLocalPlayer localPlayer];
+    bool signedIn=false;
+    player.authenticateHandler = ^(UIViewController *viewController, NSError *error){
+        if (viewController != nil)
+        {
+            if (viewController != nil && player.authenticated == false)
+            {
+                [[GameCenterDelegate getInstance].viewController presentViewController:viewController animated:YES completion:^{}];
+            }
+        }
+    };    
+```
+
+#### Mostrar panel de logros y marcadores
+
+```objc
+GKGameCenterViewController* gkController = [[GKGameCenterViewController alloc] init];
+            gkController.leaderboardIdentifier = [NSString stringWithUTF8String:iosLeaderboardIds.at(lId).c_str()];
+            gkController.leaderboardTimeScope = GKLeaderboardTimeScopeAllTime;
+
+            GameCenterDelegate *gameCenterDelegate = [GameCenterDelegate getInstance];
+            gkController.gameCenterDelegate = gameCenterDelegate;
+            
+            [gameCenterDelegate.viewController presentViewController:gkController animated:YES completion:^{}];
+```
+
+```objc
+GKGameCenterViewController* gkController = [[GKGameCenterViewController alloc] init];
+
+        GameCenterDelegate *gameCenterDelegate = [GameCenterDelegate getInstance];
+        gkController.gameCenterDelegate = gameCenterDelegate;
+        
+        [gameCenterDelegate.viewController presentViewController:gkController animated:YES completion:^{}];```
+
+```objc
+[achievement reportAchievementWithCompletionHandler:^(NSError *error) {
+			if (error != nil) {
+				// Error al enviar logro				
+                // POSIBLE SOLUCION: Guardarlo en lista de pendientes de envio
+			} else {
+				// Logro desbloqueado
+			}
+		}];
+        
+        
+        
+GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier:
+                                      [NSString stringWithUTF8String:iosAchievementIds.at(aId).c_str()]];
+        if (achievement){
+            achievement.percentComplete = 100;
+            achievement.showsCompletionBanner = true;
+            [GKAchievement reportAchievements:@[achievement] withCompletionHandler:^(NSError *error) {
+                if (error != nil) {
+                    NSLog(@"Error at GameSharing::unlockAchievement()");
+                    if (GameSharing::errorHandler != nullptr) {
+                        GameSharing::errorHandler();
+                    }
+                }
+            }];
+        }
+        
+        
+Unity: 
+GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier:[NSString stringWithUTF8String:achievementID]];
+        achievement.percentComplete = progress;
+        achievement.showsCompletionBanner = showsCompletionBanner;
+        
+        achievementUnlockedCallback = callback;
+
+        [GKAchievement reportAchievements:@[achievement] withCompletionHandler:^(NSError *error) {
+            
+            if(achievementUnlockedCallback!=NULL) {
+                achievementUnlockedCallback(achievementID, error==nil);
+            }
+            
+            if(error != nil) {
+                NSLog(@"Error reporting achievement: %@", error.localizedDescription);
+            }
+            
+        }];
+```
+
+```objc
+    [scoreReporter reportScoreWithCompletionHandler:^(NSError *error) {
+		if (error != nil)
+		{
+            // Error al enviar puntuacion
+            // POSIBLE SOLUCION: Guardarlo en lista de pendientes de envio
+        } else {
+
+		}
+    }];
+    
+    
+GKScore *scoreReporter = [[GKScore alloc] initWithLeaderboardIdentifier: [NSString stringWithUTF8String:iosLeaderboardIds.at(lId).c_str()]];
+        scoreReporter.value = score;
+        scoreReporter.context = 0;
+        
+        [GKScore reportScores:@[scoreReporter] withCompletionHandler:^(NSError *error) {
+            if (error != nil) {
+                NSLog(@"Error at GameSharing::submitScoreToLeaderboard()");
+                if (GameSharing::errorHandler != nullptr) {
+                    GameSharing::errorHandler();
+                }
+            }
+        }];    
+```
+
+### Logros y marcadores con `GameSharing`
+-->
 ## Referencias
 
 * Artículo sobre diseño de marcadores: 
