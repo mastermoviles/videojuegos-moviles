@@ -275,10 +275,55 @@ Es recomendable también sólo desbloquear logros cuando haya un progreso real d
 
 ### Logros y marcadores con `GameSharing`
 
+En caso de tener un proyecto multiplataforma Cocos2d-x podemos realizar llamadas a las APIs nativas de Game Center y Google Play Games para gestionar sus logros y marcadores, pero convendrá que hagamos esto de forma que el código del juego siga siendo multiplataforma. Podemos utilizar para ello un _plugin_ como _GameSharing_ que se encarga de "esconder" las llamadas a las APIs nativas tras una fachada C++. Dicha fachada se encuentra en la clase `GameSharing`, que no es necesario que instanciemos, ya que todos sus métodos son estáticos. Incluiremos dicha clase (`GameSharing.cpp` y `GameSharing.h`) en el directorio `Classes` del proyecto.
+
+#### Configuración de _GameSharing_
+
+Antes de poder utilizar dicha clase deberemos realizar una serie de tareas de configuración del proyecto. En el **caso de iOS** deberemos:
+
+* Añadir el _framework_ `GameKit` al proyecto Xcode.
+* Añadir las clases Objective-C nativas de la librería al proyecto Xcode (se encargan de hacer las llamadas nativas a GameCenter, y son utilizadas por la clase C++ `GameSharing`.
+* Configurar la lista de logros y marcadores en un fichero `ios_ids.plist` dentro de los recursos del proyecto. Dicho fichero constará de un diccionario con dos claves: `Leaderboards` y `Achievements`. Cada una de ellas contendrá un _array_ con los identificadores de los marcadores y logros disponibles.
+
+En el **caso de Android** deberemos realizar una serie de acciones similares:
+
+* Incluir en el proyecto Android (directorio `libs`) las librerías de _Google Play Services_ y `android-support-v4`. 
+* Incluir las clases Java nativas de la _GameSharing_ en el proyecto nativo y también una serie de recursos necesarios en el directorio `res`. Deberemos editar algunos de estos elementos para adaptarlos a nuestra aplicación, siguiendo las instrucciones indicadas en la documentación de la librería _GameSharing_.
+* Añadimos a los ficheros de recursos dos recursos de tipo `string`: `leaderboards` y `achievements`, donde indicaremos los identificadores de marcadores y logros separados por `;`.
+
+Hemos de destacar que en ambos casos hemos especificado una lista de marcadores y logros en ficheros de configuración externos. En el código siempre haremos referencia a estos elementos mediante el índice de la posición que ocupan en estas listas. Por ello es importante que en ambas listas se incluyan los logros y marcadores en el mismo orden, para así poder utilizar el mismo código para Android e iOS.
+
+#### Uso de la API
+
+Una vez realizada la configuración necesaria, podremos utilizar la API de _GameSharing_ en nuestro código de Cocos2d-x. En el caso de la versión iOS, deberemos inicializar la librería para autenticar al usuario local (esto no es necesario en Android):
+
+```objc
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    window.rootViewController = rootViewController;
+    GameSharing::initGameSharing((__bridge void *)rootViewController);
+}
+```
+
+Podremos mostrar la pantalla estándar del sistema con los logros o marcadores del juego:
+
 ```cpp
 GameSharing::ShowAchievementsUI();
-GameSharing::UnlockAchivement(0);
+GameSharing::ShowLeaderboards(indice);
 ```
+
+También podemos desbloquear un logro dado su índice en el _array_ (siguiendo el orden en el que se especificaron en el fichero de configuración):
+
+```cpp
+GameSharing::UnlockAchivement(indice);
+```
+
+De la misma forma, podemos publicar la puntuación en uno de los marcadores (dado su índice en el _array_):
+
+```cpp
+GameSharing::SubmitScore(score,indice);
+```
+
+
 
 ## Referencias
 
