@@ -179,123 +179,70 @@ Como veremos a continuación, las diferentes APIs para gestión de logros y marc
 #### Inicialización
 
 ```objc
-[[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:^(NSError *error) {
-    if (error == nil)
-    {
-        // Autenticado correctamente
-    }
-    else
-    {
-        // Error al autenticar al jugador
-    }
-    
-    
 GKLocalPlayer *player = [GKLocalPlayer localPlayer];
-    bool signedIn=false;
-    player.authenticateHandler = ^(UIViewController *viewController, NSError *error){
-        if (viewController != nil)
-        {
-            if (viewController != nil && player.authenticated == false)
-            {
-                [[GameCenterDelegate getInstance].viewController presentViewController:viewController animated:YES completion:^{}];
-            }
-        }
-    };    
+player.authenticateHandler = ^(UIViewController *viewController, NSError *error){
+    if (viewController != nil)
+    {
+        // No hay usuario de GameCenter, presenta interfaz de autenticación
+        [self presentViewController:viewController animated:YES completion:^{}];
+    } else if(player.authenticated) {
+        // Autenticación correcta
+    } else {
+        // Error en la autenticación
+    }
+};    
 ```
 
 #### Mostrar panel de logros y marcadores
 
 ```objc
 GKGameCenterViewController* gkController = [[GKGameCenterViewController alloc] init];
-            gkController.leaderboardIdentifier = [NSString stringWithUTF8String:iosLeaderboardIds.at(lId).c_str()];
-            gkController.leaderboardTimeScope = GKLeaderboardTimeScopeAllTime;
+gkController.gameCenterDelegate = self;
 
-            GameCenterDelegate *gameCenterDelegate = [GameCenterDelegate getInstance];
-            gkController.gameCenterDelegate = gameCenterDelegate;
-            
-            [gameCenterDelegate.viewController presentViewController:gkController animated:YES completion:^{}];
+[self presentViewController:gkController animated:YES completion:^{}];
 ```
 
 ```objc
-GKGameCenterViewController* gkController = [[GKGameCenterViewController alloc] init];
-
-        GameCenterDelegate *gameCenterDelegate = [GameCenterDelegate getInstance];
-        gkController.gameCenterDelegate = gameCenterDelegate;
-        
-        [gameCenterDelegate.viewController presentViewController:gkController animated:YES completion:^{}];```
-
-```objc
-[achievement reportAchievementWithCompletionHandler:^(NSError *error) {
-			if (error != nil) {
-				// Error al enviar logro				
-                // POSIBLE SOLUCION: Guardarlo en lista de pendientes de envio
-			} else {
-				// Logro desbloqueado
-			}
-		}];
-        
-        
-        
-GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier:
-                                      [NSString stringWithUTF8String:iosAchievementIds.at(aId).c_str()]];
-        if (achievement){
-            achievement.percentComplete = 100;
-            achievement.showsCompletionBanner = true;
-            [GKAchievement reportAchievements:@[achievement] withCompletionHandler:^(NSError *error) {
-                if (error != nil) {
-                    NSLog(@"Error at GameSharing::unlockAchievement()");
-                    if (GameSharing::errorHandler != nullptr) {
-                        GameSharing::errorHandler();
-                    }
-                }
-            }];
-        }
-        
-        
-Unity: 
-GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier:[NSString stringWithUTF8String:achievementID]];
-        achievement.percentComplete = progress;
-        achievement.showsCompletionBanner = showsCompletionBanner;
-        
-        achievementUnlockedCallback = callback;
-
-        [GKAchievement reportAchievements:@[achievement] withCompletionHandler:^(NSError *error) {
-            
-            if(achievementUnlockedCallback!=NULL) {
-                achievementUnlockedCallback(achievementID, error==nil);
-            }
-            
-            if(error != nil) {
-                NSLog(@"Error reporting achievement: %@", error.localizedDescription);
-            }
-            
-        }];
+gkController.leaderboardIdentifier = ID_MARCADOR;
+gkController.leaderboardTimeScope = GKLeaderboardTimeScopeAllTime;
 ```
 
-```objc
-    [scoreReporter reportScoreWithCompletionHandler:^(NSError *error) {
-		if (error != nil)
-		{
-            // Error al enviar puntuacion
+
+#### Gestión de puntuaciones
+
+
+#### Gestión de logros
+
+
+```objc   
+GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier: ID_LOGRO];
+if (achievement){
+    achievement.percentComplete = 100;
+    achievement.showsCompletionBanner = true;
+    [GKAchievement reportAchievements:@[achievement] withCompletionHandler:^(NSError *error) {
+        if (error != nil) {
+            // Error al publicar logro
             // POSIBLE SOLUCION: Guardarlo en lista de pendientes de envio
         } else {
-
-		}
+            // Logro desbloqueado
+        }
     }];
-    
-    
-GKScore *scoreReporter = [[GKScore alloc] initWithLeaderboardIdentifier: [NSString stringWithUTF8String:iosLeaderboardIds.at(lId).c_str()]];
-        scoreReporter.value = score;
-        scoreReporter.context = 0;
-        
-        [GKScore reportScores:@[scoreReporter] withCompletionHandler:^(NSError *error) {
-            if (error != nil) {
-                NSLog(@"Error at GameSharing::submitScoreToLeaderboard()");
-                if (GameSharing::errorHandler != nullptr) {
-                    GameSharing::errorHandler();
-                }
-            }
-        }];    
+}
+```
+
+```objc
+GKScore *scoreReporter = [[GKScore alloc] initWithLeaderboardIdentifier: ID_MARCADOR];
+scoreReporter.value = score;
+scoreReporter.context = 0;
+
+[GKScore reportScores:@[scoreReporter] withCompletionHandler:^(NSError *error) {
+    if (error != nil) {
+        // Error al enviar puntuacion
+        // POSIBLE SOLUCION: Guardarlo en lista de pendientes de envio
+    } else {
+        // Puntuación enviada
+    }
+}];    
 ```
 
 ### Logros y marcadores con `GameSharing`
