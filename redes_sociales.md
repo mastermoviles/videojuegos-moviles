@@ -282,8 +282,20 @@ En caso de tener un proyecto multiplataforma Cocos2d-x podemos realizar llamadas
 Antes de poder utilizar dicha clase deberemos realizar una serie de tareas de configuración del proyecto. En el **caso de iOS** deberemos:
 
 * Añadir el _framework_ `GameKit` al proyecto Xcode.
-* Añadir las clases Objective-C nativas de la librería al proyecto Xcode (se encargan de hacer las llamadas nativas a GameCenter, y son utilizadas por la clase C++ `GameSharing`.
-* Configurar la lista de logros y marcadores en un fichero `ios_ids.plist` dentro de los recursos del proyecto. Dicho fichero constará de un diccionario con dos claves: `Leaderboards` y `Achievements`. Cada una de ellas contendrá un _array_ con los identificadores de los marcadores y logros disponibles.
+* Añadir las clases Objective-C nativas de la librería al proyecto Xcode (se encargan de hacer las llamadas nativas a GameCenter, y son utilizadas por la clase C++ `GameSharing`. Además, deberemos añadir la siguiente inicialización en la clase `AppDelegate`:
+
+```objc
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
+    ...
+    
+    // Init GameSharing
+    GameSharing::initGameSharing_iOS((__bridge void *)_viewController);
+    
+    return YES;
+}
+```
+
+* * Configurar la lista de logros y marcadores en un fichero `ios_ids.plist` dentro de los recursos del proyecto. Dicho fichero constará de un diccionario con dos claves: `Leaderboards` y `Achievements`. Cada una de ellas contendrá un _array_ con los identificadores de los marcadores y logros disponibles.
 
 En el **caso de Android** deberemos realizar una serie de acciones similares:
 
@@ -297,12 +309,7 @@ Hemos de destacar que en ambos casos hemos especificado una lista de marcadores 
 
 Una vez realizada la configuración necesaria, podremos utilizar la API de _GameSharing_ en nuestro código de Cocos2d-x. En el caso de la versión iOS, deberemos inicializar la librería para autenticar al usuario local (esto no es necesario en Android):
 
-```objc
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    window.rootViewController = rootViewController;
-    GameSharing::initGameSharing((__bridge void *)rootViewController);
-}
-```
+
 
 Podremos mostrar la pantalla estándar del sistema con los logros o marcadores del juego:
 
