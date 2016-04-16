@@ -309,7 +309,9 @@ Hemos de destacar que en ambos casos hemos especificado una lista de marcadores 
 
 Una vez realizada la configuración necesaria, podremos utilizar la API de _GameSharing_ en nuestro código de Cocos2d-x. En el caso de la versión iOS, deberemos inicializar la librería para autenticar al usuario local (esto no es necesario en Android):
 
-
+```cpp
+GameSharing::initGameSharing();
+```
 
 Podremos mostrar la pantalla estándar del sistema con los logros o marcadores del juego:
 
