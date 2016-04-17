@@ -163,7 +163,7 @@ button->setTitleText("Pause");
 button->setTitleFontName("Marker Felt");
 addChild(button);
 
-button->addTouchEventListener(\[&\]\(Ref* sender, ui::Widget::TouchEventType type\) {
+button->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type) {
     if(type==ui::Widget::TouchEventType::ENDED) {
         pausar();
     }
