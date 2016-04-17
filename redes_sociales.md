@@ -182,6 +182,8 @@ Vamos a comenzar viendo cómo integrar Game Center mediante el _framework_ nativ
 
 Para poder gestionar los logros y marcadores de nuestro juego en Game Center, lo primero que deberemos hacer es autenticar al usuario en dicha plataforma. Normalmente el usuario ya habrá configurado su cuenta de Game Center en el móvil, por lo que la autenticación será automática, sin tener que introducir _login_ ni _password_. En caso de que no hubiera configurado una cuenta de Game Center previamente, podremos invitarle a que lo haga en este momento.
 
+![Autenticación en Game Center](imagenes/social/social-init.png)
+
 Para autenticar el usuario simplemente tendremos que obtener la instancia única (_singleton_) del objeto `GKLocalPlayer`, que hace referencia al usuario local configurado en el móvil, y asignar un bloque de código a su propiedad `authenticateHandler`. Con esto, la autenticación se hará de forma automática nada más establecer la propiedad, y volverá a autenticar al usuario cada vez que volvamos a abrir la aplicación.
 
 ```objc
@@ -219,6 +221,8 @@ gkController.gameCenterDelegate = self;
 [self presentViewController:gkController animated:YES completion:^{}];
 ```
 
+![Listado de logros](imagenes/social/social-achievements.png)
+
 Si nuestro juego tiene varios marcadores, también podemos hacer que se muestre un marcador concreto estableciendo las siguientes propiedades del controlador anterior:
 
 ```objc
@@ -226,6 +230,7 @@ gkController.leaderboardIdentifier = ID_MARCADOR;
 gkController.leaderboardTimeScope = GKLeaderboardTimeScopeAllTime;
 ```
 
+![Marcadores](imagenes/social/social-leaderboards.png)
 
 #### Gestión de puntuaciones
 
