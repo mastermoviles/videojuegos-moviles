@@ -184,6 +184,8 @@ button->setScale9Enabled(true);
 
 Muchos elementos del HUD deberán estar alineados con las esquinas de la pantalla. Por ejemplo, nos puede interesar tener un botón de pausa en la esquina superior izquierda, y nuestra puntuación en la esquina superior derecha. Para alinear estos elementos de forma correcta, lo más adecuado será ajustar convenientemente la propiedad `anchorPoint` del nodo, que contendrá unas coordenadas relativas (de 0 a 1) al tamaño del nodo, indicando qué punto del nodo coincidirá con la posición donde lo ubiquemos en pantalla (`position`). En el eje de las _x_, el valor `0` hace referencia al lado izquierda, `0.5` al centro, y `1` al lado derecho. En el eje de las _y_, el valor `0` representa la parte inferior del nodo, `0.5` la mitad, y `1` la parte superior.  
 
+![HUD del juego](imagenes/adaptacion/gui.png)
+
 Por ejemplo, para un elemento que vaya a estar en la esquina superior izquierda, un valor correcto para el `anchorPoint` sería `(0,1)`, para que así cuando lo ubiquemos en dicha posición sea su esquina superior izquierda la que coincida con la esquina de la pantalla. 
 
 ```cpp
@@ -204,7 +206,9 @@ A parte del HUD, los menús del juego son otro elemento con el que deberemos lle
 
 Podemos plantearnos la posibilidad de implementar menús alternativos para teléfonos y _tablets_, que aprovechen en cada caso la pantalla de forma adecuada, o limitar el tamaño de los elementos del menú cuando el tamaño físico de la pantalla sea mayor al de un móvil, para así evitar ocupar más espacio de pantalla que el necesario para poderlos pulsar fácilmente.
 
+![Menú principal para iPhone](imagenes/adaptacion/menu-iphone.png)
 
+![Menú principal para iPad](imagenes/adaptacion/menu-ipad.PNG)
 
 ## Depuración del cambio de densidad de pantalla
 
