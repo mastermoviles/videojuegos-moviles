@@ -148,6 +148,62 @@ Si por el contrario es un juego que avanza verticalmente (por ejemplo juegos de 
 ![Juego de avance vertical](pantalla_fixed_width.png)
 
 
+## Posicionamiento de los elementos de la GUI
+
+Hemos visto diferentes estrategias para adaptar el videojuego al tamaño de la pantalla del móvil, intentando preservar en la medida de lo posible la resolución de diseño. Esto es relativamente sencillo para juegos que cuentan con escenarios con _scroll_ lateral, vertical, o ambos. Sin embargo, un elemento con el que deberemos llevar especial cuidado son los componentes de la GUI, como es el caso del HUD (marcador de puntuación, vidas restantes, energía, etc) y los menús del juego.
+
+### Componentes de la GUI de cocos2d-x
+
+En cocos2d-x encontramos una API bastante completa de elementos para la GUI, a la que tendremos acceso importando el fichero `ui/CocosGUI.h` y que está contenida bajo el espacio de nombres `ui`. En ella encontramos elementos como botones, listas, etiquetas de texto, paneles de _scroll_, imágenes o _sliders_, y podremos utilizarlos de la misma forma que el resto de nodos, aunque en estos casos normalmente contaremos con la posibilidad de programar eventos para las acciones que pueda realizar cada uno de estos _widgets_, como por ejemplo el evento de _click_ de un botón.
+
+```cpp
+ui::Button *button = ui::Button::create();
+button->loadTextures("boton_normal.png", "boton_pressed.png");
+button->setTitleText("Pause");
+button->setTitleFontName("Marker Felt");
+addChild(button);
+
+button->addTouchEventListener(\[&\]\(Ref* sender, ui::Widget::TouchEventType type\) {
+    if(type==ui::Widget::TouchEventType::ENDED) {
+        pausar();
+    }
+});
+```
+
+### Imágenes nine-patch
+
+Algunos elementos de la GUI de cocos2d-x, como los botones, soportan trabajar con imágenes _nine-patch_, con lo cual podemos hacer botones independientes del tamaño de su contenido. Para activar el modo _nine_patch_, deberemos proporcionar los límites de la región central (estirable) de la imagen mediante el método `setCapInsets`. Tras esto activaremos el modo _nine-patch_ con `setScale9Enabled`. Ahora podremos cambiar el tamaño del contenido del _widget_ `setContentSize` sin que se deformen las esquinas de la imagen.
+
+```cpp
+button->setCapInsets(Rect(8, 8, 26, 26));
+button->setContentSize(button->getTitleRenderer()->getContentSize() + Size(16,16));
+button->setScale9Enabled(true);
+```
+
+### Alineación con los bordes de la pantalla
+
+Muchos elementos del HUD deberán estar alineados con las esquinas de la pantalla. Por ejemplo, nos puede interesar tener un botón de pausa en la esquina superior izquierda, y nuestra puntuación en la esquina superior derecha. Para alinear estos elementos de forma correcta, lo más adecuado será ajustar convenientemente la propiedad `anchorPoint` del nodo, que contendrá unas coordenadas relativas (de 0 a 1) al tamaño del nodo, indicando qué punto del nodo coincidirá con la posición donde lo ubiquemos en pantalla (`position`). En el eje de las _x_, el valor `0` hace referencia al lado izquierda, `0.5` al centro, y `1` al lado derecho. En el eje de las _y_, el valor `0` representa la parte inferior del nodo, `0.5` la mitad, y `1` la parte superior.  
+
+Por ejemplo, para un elemento que vaya a estar en la esquina superior izquierda, un valor correcto para el `anchorPoint` sería `(0,1)`, para que así cuando lo ubiquemos en dicha posición sea su esquina superior izquierda la que coincida con la esquina de la pantalla. 
+
+```cpp
+Size visibleSize = Director::getInstance()->getVisibleSize();
+Vec2 origin = Director::getInstance()->getVisibleOrigin();
+    
+button->setAnchorPoint(Vec2(0.0, 1.0));
+button->setPosition(Point(origin.x + 5, origin.y + visibleSize.height - 5));    
+```
+
+Por otro lado, si queremos que el elemento quede alineado en la esquina superior derecha, será mejor especificar como `anchorPoint` el valor `(1,1)`, para que así al ubicarlo en dicha posición sea su esquina superior derecha. Aunque el nodo cambie de tamaño, su esquina superior derecha siempre se mantendrá en el mismo punto en pantalla.
+
+Para los elementos con texto variable, como por ejemplo la puntuación, cuando los ajustemos a la derecha será conveniente que reservemos espacio suficiente para todos los valores que queramos que pueda tomar, para que así al ir aumentando el número de dígitos de la puntuación no se vaya desplazando el texto. En este caso puede ser recomendable utilizar una fuente monoespaciada y rellenar con ceros el número máximo de dígitos que queramos que pueda tener. Por ejemplo, `SCORE: 00010`. 
+
+### Menús
+
+A parte del HUD, los menús del juego son otro elemento con el que deberemos llevar especial cuidado. En este caso lo normal será tener centrados los _items_ del menú en pantalla, habitualmente con una disposición vertical. Los botones del menú (y todos los botones de la interfaz en general) deberán tener un tamaño suficiente para abarcar la yema del dedo en cualquier dispositivo. Esto nos llevará a tener en el móvil botones que ocuparán gran parte de la pantalla. Si trasladamos la aplicación a un _tablet_, la estrategia de cocos2d-x será la de escalar la pantalla, lo cual puede producir que los menús se vean innecesariamente grandes. 
+
+Podemos plantearnos la posibilidad de implementar menús alternativos para teléfonos y _tablets_, que aprovechen en cada caso la pantalla de forma adecuada, o limitar el tamaño de los elementos del menú cuando el tamaño físico de la pantalla sea mayor al de un móvil, para así evitar ocupar más espacio de pantalla que el necesario para poderlos pulsar fácilmente.
+
 
 
 ## Depuración del cambio de densidad de pantalla
