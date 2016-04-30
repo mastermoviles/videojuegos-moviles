@@ -84,4 +84,46 @@ Encontramos tres tipos de movimientos básicos para movernos por la escena en el
 Con los comandos anteriores podremos desplazarnos libremente sobre la escena, pero también es importante conocer otras forma más directas de movernos a la posición que nos interese:
 
 * **Ver un objeto**: Si nos interesa ir rápidamente a un punto donde veamos de cerca un objeto concreto de la escena, podemos hacer doble _click_ sobre dicho objeto en la vista _Hierarchy_.
-* **Alineación con un objeto**: Alinea la vista de la escena con el objeto seleccionado. Es especialmente útil cuando se utiliza con la cámara, ya que veremos la escena tal como se estaría bien desde la camara.
+* **Alineación con un objeto**: Alinea la vista de la escena con el objeto seleccionado. Es especialmente útil cuando se utiliza con la cámara, ya que veremos la escena tal como se estaría bien desde la camara. Para hacer esto, seleccionaremos el _game object_ con el que nos queramos alinear y seleccionaremos la opción del menú _GameObject > Align View To Selected_.
+
+## Interfaz de usuario
+
+### Canvas
+
+### Elementos de la UI
+
+### Posicionamiento en el espacio de la UI
+
+### Escalado del Canvas
+
+
+
+## Assets
+
+### Prefabs
+
+### Paquetes de assets
+
+### Asset Store
+
+## Scripting
+
+### Creación de scripts
+
+### Estructura de un script
+
+### Ciclo del juego
+
+### Acceso a los componentes y polimorfismo
+
+### Interfaz pública del script
+
+### Búsqueda de objetos
+
+### Creación y destrucción de objetos
+
+## Controles multiplataforma
+
+### Controles predefinidos en pantalla
+
+## Patrones de diseño
