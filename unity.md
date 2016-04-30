@@ -122,8 +122,20 @@ Con los comandos anteriores podremos desplazarnos libremente sobre la escena, pe
 
 ### Creación y destrucción de objetos
 
+### Corrutinas
+
 ## Controles multiplataforma
 
 ### Controles predefinidos en pantalla
 
 ## Patrones de diseño
+
+### Controlador de la escena
+
+### Comunicación entre componentes
+
+### Patrón delegado
+
+### Sistema de eventos
+
+### Patrón singleton
