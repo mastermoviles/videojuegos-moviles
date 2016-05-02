@@ -20,8 +20,8 @@ Dentro del entorno del editor de Unity encontramos diferentes paneles, de los cu
 * **Scene**: En este panel vemos de forma visual los elementos de la escena actual. Podremos movernos libremente por el espacio 3D de la escena para ubicar de forma correcta cada _game object_ y tener una previsualización del escenario del juego.
 * **Inspector**: Muestra las propiedades del _game object_ o el _asset_ seleccionado actualmente en el entorno. 
  
- 
-IMAGEN EDITOR
+![Editor de Unity](imagenes/unity/unity-editor.png) 
+
  
 ### Arquitectura Orientada a Componentes
 
@@ -35,7 +35,7 @@ En Unity esta arquitectura se implementa mediante agregación. Si bien en todos 
 
 En el inspector podremos ver la lista de componentes que incorpora el objeto seleccionado actualmente, y modificar sus propiedades:
 
-IMAGEN COMPONENTES
+![Componentes de la cámara](imagenes/unity/unity-componentes-camera.png)
 
 ## La escena 3D
 
@@ -47,7 +47,7 @@ Todos los _game objects_ incorporan al menos un componente `Transform` que nos p
 
 También podemos mover un objeto de forma visual desde la vista _Scene_. Al seleccionar un objeto, bien en _Scene_ o en _Hierarchy_, veremos sobre él en _Scene_ una serie de ejes que nos indicarán que podemos moverlo. El tipo de ejes que se mostrarán dependerá del tipo de transformación que tengamos activa en la barra superior:
 
-IMAGEN MODOS
+![Modos de transformación de objetos](imagenes/unity/unity-transform.png)
 
 Las posibles transformaciones son:
 
@@ -63,13 +63,13 @@ Podemos añadir a la escena nuevos _game objects_ seleccionando en el menú la o
 
 Entre los tipos de objetos predefinidos que nos permite crear, encontramos diferentes formas geométricas como _Cube_, _Sphere_, _Capsule_ o _Plane_ entre otras. Estas figuras pueden resultarnos de utilidad como objetos _impostores_ en primeras versiones del juego en las que todavía no contamos con nuestros propios modelos gráficos. Por ejemplo, podríamos utilizar un cubo que de momento haga el papel de nuestro personaje hasta que contemos con su modelo 3D.
 
-IMAGEN MENU CREATE OTHER
+![Menú de creación de un nuevo GameObject](imagenes/unity/unity-create-gameobject.png)
 
 Podremos **organizar de forma jerárquica** los objetos de la escena mediante la vista _Hierarchy_. Si arrastramos un _game object_ sobre otro en esta vista, haremos que pase a ser su hijo en el árbol de la escena. Los objetos vacíos con un único componente `Transform` pueden sernos de gran utilidad para agrupar dentro de él varios objetos. De esta forma, moviendo el objeto padre podremos mover de forma conjunta todos los objetos que contiene. De esta forma estaremos creando objetos compuestos.
 
 También resulta de utilidad **dar nombre** a los objetos de la escena, para poder identificarlos fácilmente. Si hacemos _click_ sobre el nombre de un objeto en la vista _Hierarchy_ podremos editarlo y darle un nombre significativo (por ejemplo _Suelo_, _Pared_, _Enemigo_, etc).
 
-IMAGEN NOMBRE
+![Cambiar el nombre de un GameObject](imagenes/unity/unity-object-name.png)
 
 ### Navegación en la escena
 
