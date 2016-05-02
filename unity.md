@@ -96,6 +96,8 @@ Todo el contenido de la interfaz de usuario estará contenido en nuestra escena 
 
 El `Canvas` será el panel 2D (_lienzo_) donde podremos crear el contenido de la interfaz de usuario. Los componentes de la interfaz siempre deberán estar dentro de un `Canvas` en la jerarquía de la de escena. Si intentamos arrastrar sobre la escena un componente de la UI sin un `Canvas`, el `Canvas` se creará de forma automática.
 
+![Componente Canvas](imagenes/unity/unity-ui-canvas.png)
+
 Una propiedad importante del componente `Canvas` es _Render Mode_, que podrá tomar 3 valores:
 
 * **Screen Space - Overlay**: El `Canvas` se dibuja sobre el contenido que aparece en pantalla, ajustándose siempre al tamaño de la misma.
@@ -106,7 +108,24 @@ Una propiedad importante del componente `Canvas` es _Render Mode_, que podrá to
 
 ### Elementos de la UI
 
+![Componente Text](imagenes/unity/unity-ui-text.png)
+
+![Componente Image](imagenes/unity/unity-ui-image.png)
+
+![Componente Button](imagenes/unity/unity-ui-button.png)
+
+
 ### Posicionamiento en el espacio de la UI
+
+![Componente RectTransform](imagenes/unity/unity-ui-rect.png)
+
+![Tipos de anclaje](imagenes/unity/unity-ui-anchors.png)
+
+![Anclaje en el centro de la pantalla](imagenes/unity/unity-ui-anchor-center.png)
+
+![Anclaje en la esquina de la pantalla](imagenes/unity/unity-ui-anchor-corner.png)
+
+![Anclaje personalizado](imagenes/unity/unity-ui-anchor-custom.png)
 
 ### Escalado del Canvas
 
@@ -119,7 +138,7 @@ Podemos optar por tres modos:
 * **Constant Physical Size**
 
 
-
+<!--
 ## Assets
 
 ### Prefabs
@@ -161,3 +180,5 @@ Podemos optar por tres modos:
 ### Sistema de eventos
 
 ### Patrón singleton
+
+-->
