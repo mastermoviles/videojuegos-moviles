@@ -138,6 +138,76 @@ Podemos optar por tres modos:
 * **Constant Physical Size**
 
 
+## Realidad Virtual
+
+Existen diferentes dispositivos de realidad virtual, que nos proporcionan una inmersión casi total en la escena, reflejando en la cámara los movimientos de nuestra cabeza, y proporcionando una visión estereoscópica de la escena. Entre los dispositivos más famosos se encuentran Oculus Rift, Samsung Gear VR y Google Cardboard. Aunque todos estos dispositivos proporcionan su propio SDK que podemos integrar en las plataformas nativas de desarrollo, es de especial interés su integración en el entorno Unity, que nos permitirá realizar aplicaciones que los soporten de forma casi inmediata. A continuación veremos cómo utilizarlos con este entorno.
+
+### Oculus Rift / Samsung Gear VR
+
+A partir de Unity 5.1 encontramos en este entorno soporte nativo para los dispositivos Oculus Rift y Samsung Gear VR. Ambos utilizan el mismo SDK y herramientas, con la diferencia de que Oculus Rift funciona sobre plataformas de sobremesa, mientras que Samsung Gear VR funciona sobre móviles Samsung. 
+
+Para activar el soporte para estos dispositivos en Unity simplemente tendremos que entrar en _Player Settings_ (_Edit > Project Settings > Player_) y bien dentro de la plataforma _Standalone_ (para Oculus Rift) o _Android_ (para Samsung Gear VR) marcar la casilla _Virtual Reality Supported_, dentro de la sección _Other Settings > Rendering_.
+
+![Activar soporte de VR](imagenes/unity/unity-vr-activar.png)
+
+Una vez hecho esto, automáticamente la cámara de la escena se comportará como una cámara VR, girando cuando giremos la cabeza y renderizando una imagen para cada ojo, para así proporcionar visión estéreo. 
+
+#### Despliegue de la aplicación en un dispositivo de prueba
+
+Antes de desplegar la aplicación en un dispositivo de prueba, deberemos añadir una firma que nos deberá proporcionar Oculus para nuestro dispositivo concreto. Dicha firma sólo se necesitará durante el desarrollo, cuando la aplicación se publique ya no hará falta.
+
+Para conseguir la firma en primer lugar necesitamos obtener el ID de nuestro dispositivo. Para ello lo conectaremos al sistema y ejecutaremos el comando:
+
+```bash
+adb devices
+```
+
+En la lista de dispositivos en la primera columna veremos los IDs que buscamos, con el siguiente formato:
+
+```
+* daemon started successfully *
+1235ba5e7a311272	device
+```
+
+En este caso, el ID que buscamos sería `1235ba5e7a311272`. Una vez localizado dicho ID, iremos a la siguiente página para solicitar la firma e introduciremos el ID (necesitaremos registrarnos previamente como usuarios de Oculus Developer, si no tenemos cuenta todavía):
+
+[https://developer.oculus.com/osig/](https://developer.oculus.com/osig/)
+
+Una vez introducido el ID nos descargará un fichero `.osig` que deberá ser introducido en nuestro proyecto de Unity en el siguiente directorio:
+
+```
+Assets/Plugins/Android/assets
+```
+
+Esto lo que hará será colocar dicho fichero en el directorio `assets` del proyecto Unity resultante. Una vez hecho esto ya podremos probar la aplicación en un dispositivo Samsung con Gear VR seleccionando la plataforma _Android_ y pulsando sobre _Build & Run_. 
+
+Al desplegar la aplicación en el móvil Samsung, veremos que al ejecutarla nos pide conectar el dispositivo Gear VR al móvil. Una vez conectado, se ejecutará la aplicación y podremos ver nuestra escena de Unity de forma inmersiva.
+
+![Conectar el dispositivo Gear VR](imagenes/unity/unity-vr-conectar.png)
+
+Sin embargo, veremos que la imagen aparece algo distorsionada. Esto se debe a que aunque la cámara renderiza en estéreo y responde al movimiento de la cabeza, no se realiza la corrección adecuada a la imagen para 
+
+![Activar modo de desarrollador](imagenes/unity/unity-vr-developer.png)
+
+![Componente OVR](imagenes/unity/unity-vr-ovr.png)
+
+![Resultado con OVRCameraRig](imagenes/unity/unity-vr-gear.png)
+
+### Google Cardboard
+
+Unity no incluye soporte nativo para Google Cardboard, pero podemos encontrar un _plugin_ muy sencillo de utilizar en la web oficial:
+
+[https://developers.google.com/cardboard/unity](https://developers.google.com/cardboard/unity)
+
+El plugin consiste en un paquete de _assets_ que podemos incluir en nuestro proyecto (deberemos añadir todo su contenido).
+
+La forma más sencilla de añadir soporte para Cardboard es añadir a nuestra cámara el _script_ `StereoController`:
+
+![Componente Stereo Controller](imagenes/unity/unity-vr-cb-stereo.png)
+
+![Aplicación con Google Cardboard](imagenes/unity/unity-vr-cb.png)
+
+
 <!--
 ## Assets
 
