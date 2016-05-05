@@ -185,7 +185,15 @@ Al desplegar la aplicación en el móvil Samsung, veremos que al ejecutarla nos 
 
 ![Conectar el dispositivo Gear VR](imagenes/unity/unity-vr-conectar.png)
 
-Sin embargo, veremos que la imagen aparece algo distorsionada. Esto se debe a que aunque la cámara renderiza en estéreo y responde al movimiento de la cabeza, no se realiza la corrección adecuada a la imagen para 
+Sin embargo, veremos que la imagen aparece algo distorsionada al verla a través de las lentes del Gear VR. Esto se debe a que aunque la cámara renderiza en estéreo y responde al movimiento de la cabeza, no se realiza la corrección adecuada a la imagen para verla a través de las lentes del Gear VR.
+
+#### Utilidades de Oculus
+
+#### Modo de desarrollador
+
+En los casos anteriores hemos probado la aplicación con el dispositivo Gear VR. Sin embargo, durante el desarrollo nos podría interesar poder probar la aplicación en el móvil sin la necesidad de estar desconectándolo continuamente del ordenador para conectarlo al Gear VR (el puerto USB para conectarlo a Gear es el mismo con el que lo conectamos al ordenador).
+
+Podemos conseguir esto activando el modo desarrollador de Gear VR en el dispositivo móvil Samsung. Para poder hacer esto antes deberemos haber instalado alguna aplicación nuestra con la firma `osig`, en caso contrario no nos permitirá activarlo.
 
 ![Activar modo de desarrollador](imagenes/unity/unity-vr-developer.png)
 
