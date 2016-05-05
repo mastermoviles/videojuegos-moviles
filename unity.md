@@ -195,7 +195,11 @@ En los casos anteriores hemos probado la aplicación con el dispositivo Gear VR.
 
 Podemos conseguir esto activando el modo desarrollador de Gear VR en el dispositivo móvil Samsung. Para poder hacer esto antes deberemos haber instalado alguna aplicación nuestra con la firma `osig`, en caso contrario no nos permitirá activarlo.
 
+Para activar el modo de desarrollador de Gear VR deberemos entra en _Ajustes > Aplicaciones > Administrador de aplicaciones > Gear VR Service > Almacenamiento > Administrar almacenamiento_ y pulsar repetidas veces sobre _VR Service Version_. Tras hacer esto nos aparecerán opciones para activar el modo de desarrollador.
+
 ![Activar modo de desarrollador](imagenes/unity/unity-vr-developer.png)
+
+Con este modo activo podremos lanzar la aplicación en el móvil sin tener que conectar el dispositivo Gear VR, lo cual agilizará el desarrollo. 
 
 ![Componente OVR](imagenes/unity/unity-vr-ovr.png)
 
