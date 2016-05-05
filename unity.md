@@ -189,9 +189,17 @@ Sin embargo, veremos que la imagen aparece algo distorsionada al verla a través
 
 #### Utilidades de Oculus
 
+
+
+![Componente OVR](imagenes/unity/unity-vr-ovr.png)
+
+![Resultado con OVRCameraRig](imagenes/unity/unity-vr-gear.png)
+
+
+
 #### Modo de desarrollador
 
-En los casos anteriores hemos probado la aplicación con el dispositivo Gear VR. Sin embargo, durante el desarrollo nos podría interesar poder probar la aplicación en el móvil sin la necesidad de estar desconectándolo continuamente del ordenador para conectarlo al Gear VR (el puerto USB para conectarlo a Gear es el mismo con el que lo conectamos al ordenador).
+En los casos anteriores hemos probado la aplicación con el dispositivo Gear VR. Sin embargo, durante el desarrollo nos podría interesar poder probar la aplicación en el móvil sin la necesidad de tener que conectarlo al Gear VR.
 
 Podemos conseguir esto activando el modo desarrollador de Gear VR en el dispositivo móvil Samsung. Para poder hacer esto antes deberemos haber instalado alguna aplicación nuestra con la firma `osig`, en caso contrario no nos permitirá activarlo.
 
@@ -199,11 +207,8 @@ Para activar el modo de desarrollador de Gear VR deberemos entra en _Ajustes > A
 
 ![Activar modo de desarrollador](imagenes/unity/unity-vr-developer.png)
 
-Con este modo activo podremos lanzar la aplicación en el móvil sin tener que conectar el dispositivo Gear VR, lo cual agilizará el desarrollo. 
+Con este modo activo podremos lanzar la aplicación en el móvil sin tener que conectar el dispositivo Gear VR, lo cual agilizará el desarrollo. Esta forma de probar la aplicación tendrá la limitación de que no reconocerá el giro de la cámara, ya que los sensores que utilizan estas aplicaciones para obtener la inclinación de la cabeza van integrados en el dispositivo Gear VR.
 
-![Componente OVR](imagenes/unity/unity-vr-ovr.png)
-
-![Resultado con OVRCameraRig](imagenes/unity/unity-vr-gear.png)
 
 ### Google Cardboard
 
