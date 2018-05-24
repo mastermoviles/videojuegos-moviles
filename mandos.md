@@ -1574,7 +1574,12 @@ player->setVelocity(estadoHorizontal.value);
 
 Cocos2d-x en Android soporta los mandos estándar para videojuegos, y también contiene optimizaciones para tipos concretos de mando como son los de tipo Ouya TV, Moga y Nibiru. Deberemos hacer algunos cambios en el proyecto Android para soportar cualquier tipo de mando _hardware_.
 
-En primer lugar, deberemos añadir al _workspace_ de Eclipse la librería `libControllerManualAdapter` y añadirla como librería de nuestro proyecto Cocos2d-x. Esta librería la podremos encontrar en el directorio `$COCOS_HOME/platform/android/ControllerManualAdapter`.
+En primer lugar, deberemos añadir al proyecto de Android Studio las librerías de apoyo para la gestión de mandos de videojuegos. Para ello, cambiaremos en el fichero `settings.gradle` la referencia al módulo `libcocos2dx` por `libcocos2dx-with-controller`, que incluye las librerías y clases de apoyo necesarias:
+
+```
+include ':libcocos2dx'
+project(':libcocos2dx').projectDir = new File(settingsDir, '../cocos2d/cocos/platform/android/libcocos2dx-with-controller')
+```
 
 Una vez añadida la librería, añadiremos los siguientes cambios a la actividad `AppActivity`:
 
