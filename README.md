@@ -4,11 +4,11 @@ Los dispositivos actuales cuentan con una elevada potencia gráfica, comparable 
 
 # Compatibilidad
 
-El código fuente proporcionado en este libro ha sido probado con la libreria _Cocos2Dx_ versión **3.14**
+El código fuente proporcionado en este libro ha sido probado con la libreria _Cocos2Dx_ versión **3.16**
 
 # Copyright
 
-_Copyright_ 2016-2017 Universidad de Alicante. Todos los derechos reservados.
+_Copyright_ 2017-2018 Universidad de Alicante. Todos los derechos reservados.
 
 Este documento está protegido por _copyright_ y se distribuye bajo licencias que restringen su uso, copia y distribución. Se restringe al uso estrictamente personal y como material didáctico del Máster Universitario en Desarrollo de Software para Dispositivos Móviles, curso 2016-2017, de la Universidad de Alicante.
 
