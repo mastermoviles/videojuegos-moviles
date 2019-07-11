@@ -1,0 +1,52 @@
+site_name: VPDM - Cocos2d-x
+use_directory_urls: false
+
+nav:
+- Introducción: 'index.md'
+- Videojuegos para móviles: 'videojuegos_para_moviles.md'
+- El motor Cocos2d-x: 'introduccion_a_cocos2d-x.md'
+- Sprites y colisiones: 'sprites_e_interaccion.md'
+- Escenario y fondos: 'escenario_y_fondos.md'
+- Motor de físicas: 'motor_de_fisicas.md'
+- Controles del videojuego: 'mandos.md'
+- Adaptación a móviles: 'adaptacion_a_moviles.md'
+- Servicios y redes sociales para juegos: 'redes_sociales.md'
+- Motor Unity: 'unity.md'
+- Tecnologías nativas: 'nativo.md'
+
+theme:
+    language: es
+    name: 'material'
+    palette:
+        primary: 'Teal'
+        accent: 'Teal'
+    font:
+        text: 'Roboto'
+        code: 'Roboto Mono'
+    logo: 'imagenes/logo.png'
+
+# Ponemos como idioma de búsqueda el inglés
+# para conseguir que busque correctamente
+# todas las palabras en castellano, sin eliminar
+# los excesivos derivados que se definen en
+# https://github.com/MihaiValentin/lunr-languages/blob/master/lunr.es.js
+
+extra:
+    search:
+        language: 'en'
+
+extra_javascript:
+  - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
+
+markdown_extensions:
+    - admonition
+    - codehilite:
+        linenums: true
+    - footnotes
+    - meta
+    - sane_lists
+    - toc:
+       permalink: true
+       toc_depth: 3
+    - pymdownx.superfences
+    - pymdownx.arithmatex

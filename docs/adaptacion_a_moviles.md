@@ -39,15 +39,15 @@ En este ejemplo hemos especificado:
 
 Las reglas que seguiremos para trabajar con estas resoluciones son:
 
-* En el código del juego siempre utilizaremos la **resolución de diseño**. Es decir, en el ejemplo anterior consideraremos que siempre tenemos una resolución de 480 x 320 puntos al posicionar _sprites_, ubicar elementos del HUD, mostrar elementos del escenario, etc. El contenido que hayamos dibujado en el espacio de diseño se estirará para ocupar toda la pantalla. 
+* En el código del juego siempre utilizaremos la **resolución de diseño**. Es decir, en el ejemplo anterior consideraremos que siempre tenemos una resolución de 480 x 320 puntos al posicionar _sprites_, ubicar elementos del HUD, mostrar elementos del escenario, etc. El contenido que hayamos dibujado en el espacio de diseño se estirará para ocupar toda la pantalla.
 
-![Resolución de diseño y resolución de pantalla](pantalla_disenyo.png)
+![Resolución de diseño y resolución de pantalla](imagenes/adaptacion/pantalla_disenyo.png)
 
-* La **resolución de recursos** nos indica la resolución de pantalla para la que están preparados los recursos en el caso ideal, es decir, en el que cada píxel de la imagen del recurso corresponde exactamente a un píxel en pantalla. En el caso de nuestro ejemplo, la resolución para la que están preparados los recursos es el doble que la resolución de diseño. Es decir, un _sprite_ cuya imagen tenga 80 x 80 pixels que esté pensado para que se dibuje con su tamaño original en una pantalla de 960 x 640, en un espacio de diseño de 480 x 320 ocuparía un espacio de 40 x 40 puntos. Decimos en este caso que su _factor de escala_ es 2.0, ya cada punto de nuestro espacio de diseño corresponde a 2 x 2 pixels de la imagen del recurso. Si la resolución real de pantalla fuera de 480 x 320, coincidiendo con la resolución de diseño, la imagen del _sprite_ tendrá que escalarse a mitad de tamaño (reduciendo la definición de la imagen original a la mitad, ya que la definición del _sprite_ es mayor de lo que nos permite mostrar la pantalla); en el caso de tener una resolución de pantalla de 960 x 640 el _sprite_ se mostraría en su tamaño real con todos sus _pixels_ (aunque en el código lo posicionemos y obtengamos su tamaño en puntos); y si contamos con una pantalla de 1920 x 1280 el _sprite_ tendría que escalarse al doble de su tamaño (en este caso la resolución del _sprite_ no sería suficiente para aprovechar toda la definición de la pantalla). 
+* La **resolución de recursos** nos indica la resolución de pantalla para la que están preparados los recursos en el caso ideal, es decir, en el que cada píxel de la imagen del recurso corresponde exactamente a un píxel en pantalla. En el caso de nuestro ejemplo, la resolución para la que están preparados los recursos es el doble que la resolución de diseño. Es decir, un _sprite_ cuya imagen tenga 80 x 80 pixels que esté pensado para que se dibuje con su tamaño original en una pantalla de 960 x 640, en un espacio de diseño de 480 x 320 ocuparía un espacio de 40 x 40 puntos. Decimos en este caso que su _factor de escala_ es 2.0, ya cada punto de nuestro espacio de diseño corresponde a 2 x 2 pixels de la imagen del recurso. Si la resolución real de pantalla fuera de 480 x 320, coincidiendo con la resolución de diseño, la imagen del _sprite_ tendrá que escalarse a mitad de tamaño (reduciendo la definición de la imagen original a la mitad, ya que la definición del _sprite_ es mayor de lo que nos permite mostrar la pantalla); en el caso de tener una resolución de pantalla de 960 x 640 el _sprite_ se mostraría en su tamaño real con todos sus _pixels_ (aunque en el código lo posicionemos y obtengamos su tamaño en puntos); y si contamos con una pantalla de 1920 x 1280 el _sprite_ tendría que escalarse al doble de su tamaño (en este caso la resolución del _sprite_ no sería suficiente para aprovechar toda la definición de la pantalla).
 
-![Resolución de recursos](pantalla_recursos.png)
+![Resolución de recursos](imagenes/adaptacion/pantalla_recursos.png)
 
-Con esto podemos ver que aunque trabajemos con una resolución de diseño pequeña, esto no implica que el juego se vaya a ver con poca resolución. Ésta resolución de diseño simplemente es un sistema de coordenadas de referencia para situar los objetos en la escena. La resolución que realmente determinará la definición de los gráficos del juego es la resolución de recursos. 
+Con esto podemos ver que aunque trabajemos con una resolución de diseño pequeña, esto no implica que el juego se vaya a ver con poca resolución. Ésta resolución de diseño simplemente es un sistema de coordenadas de referencia para situar los objetos en la escena. La resolución que realmente determinará la definición de los gráficos del juego es la resolución de recursos.
 
 Con el método `Director::setContentScaleFactor` estableceremos la relación existente entre la relación de recursos y la de diseño. Por ejemplo, si la resolución de recursos es el doble que la de diseño, el factor de escala será 2. En caso de que la relación de aspecto de estas resoluciones no coincidiese, tendríamos que decidir si tomar como referencia el alto o el ancho de la imagen a la hora de calcular el factor de escala.
 
@@ -115,37 +115,37 @@ Con el método `setDesignResolutionSize` establecemos la resolución de diseño 
 
 * `ResolutionPolicy::SHOW_ALL`: Hace que todo el contenido de la resolución de diseño quede dentro de la pantalla, dejando franjas negras en los laterales si la relación de aspecto no es la misma. Estas franjas negras hacen que desperdiciemos espacio de pantalla y causan un efecto bastante negativo, por lo que a pesar de la sencillez de esta estrategia, **no será recomendable** si buscamos un producto con un buen acabado.
 * `ResolutionPolicy::EXACT_FIT`: Hace que el contenido dentro de la resolución de diseño se estire para adaptarse a la resolución de pantalla, deformando el contenido si la relación de aspecto no es la misma. Aunque en este caso se llene la pantalla, la deformación de la imagen también causará muy mal efecto y por lo tanto debemos **evitar utilizar esta técnica**.
-* `ResolutionPolicy::NO_BORDER`: Ajusta el contenido de la resolución de diseño a la resolución de pantalla, sin dejar borde y sin deformar el contenido, pero dejando parte de éste fuera de la pantalla si la relación de aspecto no coincide. En este caso no habrá problema si implementamos el juego de forma correcta, ayudándonos de los métodos `Director::getInstance()->getVisibleSize()` y `Director::getInstance()->getVisibleOrigin()` que nos darán el tamaño y el origen, respectivamente, de la zona visible de nuestra resolución de diseño. De esta forma deberemos asegurarnos de dibujar todos los componentes del HUD dentro de esta zona, y a la hora de implementar _scroll_ lo alinearemos de forma correcta con el origen de la zona visible. 
-* `ResolutionPolicy::FIXED_HEIGHT`, `ResolutionPolicy::FIXED_WIDTH` modifican la resolución de diseño para que tenga la misma relación de aspecto que la resolución de pantalla, manteniendo fija la altura o la anchura de diseño respectivamente. Podremos consultar la resolución de diseño con `Director::getInstance()->getWinSize()`. En estos casos toda la resolución de diseño es visible en pantalla, pero ésta puede variar en altura o en anchura, según la estrategia indicada. 
+* `ResolutionPolicy::NO_BORDER`: Ajusta el contenido de la resolución de diseño a la resolución de pantalla, sin dejar borde y sin deformar el contenido, pero dejando parte de éste fuera de la pantalla si la relación de aspecto no coincide. En este caso no habrá problema si implementamos el juego de forma correcta, ayudándonos de los métodos `Director::getInstance()->getVisibleSize()` y `Director::getInstance()->getVisibleOrigin()` que nos darán el tamaño y el origen, respectivamente, de la zona visible de nuestra resolución de diseño. De esta forma deberemos asegurarnos de dibujar todos los componentes del HUD dentro de esta zona, y a la hora de implementar _scroll_ lo alinearemos de forma correcta con el origen de la zona visible.
+* `ResolutionPolicy::FIXED_HEIGHT`, `ResolutionPolicy::FIXED_WIDTH` modifican la resolución de diseño para que tenga la misma relación de aspecto que la resolución de pantalla, manteniendo fija la altura o la anchura de diseño respectivamente. Podremos consultar la resolución de diseño con `Director::getInstance()->getWinSize()`. En estos casos toda la resolución de diseño es visible en pantalla, pero ésta puede variar en altura o en anchura, según la estrategia indicada.
 
-![Ejemplos de estrategias con una pantalla 4:3](pantalla_4_3.png)
+![Ejemplos de estrategias con una pantalla 4:3](imagenes/adaptacion/pantalla_4_3.png)
 
-![Ejemplos de estrategias en una pantalla 16:9](pantalla_16_9.png)
+![Ejemplos de estrategias en una pantalla 16:9](imagenes/adaptacion/pantalla_16_9.png)
 
-¿Qué estrategia debemos utilizar? Dependerá de lo que busquemos en nuestro juego, pero normalmente nos quedaremos con `NO_BORDER`, `FIXED_HEIGHT` o `FIXED_WIDTH`. 
+¿Qué estrategia debemos utilizar? Dependerá de lo que busquemos en nuestro juego, pero normalmente nos quedaremos con `NO_BORDER`, `FIXED_HEIGHT` o `FIXED_WIDTH`.
 
 ### Estrategia NO_BORDER
 
-Se trata de una estrategia adecuada por ejemplo para juegos de rol con vista cenital y _scroll_ en cualquier dirección. El personaje estará centrado en pantalla y se podrá mover en cualquier dirección, así que nos da igual la parte que quede cortada siempre que en el caso de haber HUD nos aseguremos de dibujarlo dentro de la zona visible. 
+Se trata de una estrategia adecuada por ejemplo para juegos de rol con vista cenital y _scroll_ en cualquier dirección. El personaje estará centrado en pantalla y se podrá mover en cualquier dirección, así que nos da igual la parte que quede cortada siempre que en el caso de haber HUD nos aseguremos de dibujarlo dentro de la zona visible.
 
-Para conseguir dibujar el HUD de forma adecuada con esta estrategia es importante tener en cuenta las propiedades `visibleOrigin` y `visibleSize`, que nos indicarán la zona de nuestra _espacio de diseño_ que va a ser visible realmente en pantalla. 
+Para conseguir dibujar el HUD de forma adecuada con esta estrategia es importante tener en cuenta las propiedades `visibleOrigin` y `visibleSize`, que nos indicarán la zona de nuestra _espacio de diseño_ que va a ser visible realmente en pantalla.
 
-![Zona visible con NO_BORDER](pantalla_visible_size.png)
+![Zona visible con NO_BORDER](imagenes/adaptacion/pantalla_visible_size.png)
 
 ### Estrategias FIXED_WIDTH y FIXED_HEIGHT
 
-Estas dos estrategias, a diferencia de todas las demás, tienen la particularidad de modificar la resolución de diseño, manteniendo inalterado siempre al menos el ancho (`FIXED_WIDTH`) o el alto (`FIXED_HEIGHT`). Podemos consultar la resolución de diseño que ha resultado tras la modificación con la propiedad `winSize`. 
+Estas dos estrategias, a diferencia de todas las demás, tienen la particularidad de modificar la resolución de diseño, manteniendo inalterado siempre al menos el ancho (`FIXED_WIDTH`) o el alto (`FIXED_HEIGHT`). Podemos consultar la resolución de diseño que ha resultado tras la modificación con la propiedad `winSize`.
 
-![Cambios en resolución de diseño](pantalla_fixed.png)
+![Cambios en resolución de diseño](imagenes/adaptacion/pantalla_fixed.png)
 
 
-Si tenemos por ejemplo un plataformas de avance horizontal, normalmente querremos que la altura sea fija, por lo que `FIXED_HEIGHT` podría ser la opción más adecuada. 
+Si tenemos por ejemplo un plataformas de avance horizontal, normalmente querremos que la altura sea fija, por lo que `FIXED_HEIGHT` podría ser la opción más adecuada.
 
-![Juego de avance horizontal](pantalla_fixed_height.png)
+![Juego de avance horizontal](imagenes/adaptacion/pantalla_fixed_height.png)
 
-Si por el contrario es un juego que avanza verticalmente (por ejemplo juegos de naves), será más adecuado `FIXED_WIDTH`. 
+Si por el contrario es un juego que avanza verticalmente (por ejemplo juegos de naves), será más adecuado `FIXED_WIDTH`.
 
-![Juego de avance vertical](pantalla_fixed_width.png)
+![Juego de avance vertical](imagenes/adaptacion/pantalla_fixed_width.png)
 
 
 ## Posicionamiento de los elementos de la GUI
@@ -186,23 +186,23 @@ Muchos elementos del HUD deberán estar alineados con las esquinas de la pantall
 
 ![HUD del juego](imagenes/adaptacion/gui.png)
 
-Por ejemplo, para un elemento que vaya a estar en la esquina superior izquierda, un valor correcto para el `anchorPoint` sería `(0,1)`, para que así cuando lo ubiquemos en dicha posición sea su esquina superior izquierda la que coincida con la esquina de la pantalla. 
+Por ejemplo, para un elemento que vaya a estar en la esquina superior izquierda, un valor correcto para el `anchorPoint` sería `(0,1)`, para que así cuando lo ubiquemos en dicha posición sea su esquina superior izquierda la que coincida con la esquina de la pantalla.
 
 ```cpp
 Size visibleSize = Director::getInstance()->getVisibleSize();
 Vec2 origin = Director::getInstance()->getVisibleOrigin();
-    
+
 button->setAnchorPoint(Vec2(0.0, 1.0));
 button->setPosition(Point(origin.x + 5, origin.y + visibleSize.height - 5));    
 ```
 
 Por otro lado, si queremos que el elemento quede alineado en la esquina superior derecha, será mejor especificar como `anchorPoint` el valor `(1,1)`, para que así al ubicarlo en dicha posición sea su esquina superior derecha. Aunque el nodo cambie de tamaño, su esquina superior derecha siempre se mantendrá en el mismo punto en pantalla.
 
-Para los elementos con texto variable, como por ejemplo la puntuación, cuando los ajustemos a la derecha será conveniente que reservemos espacio suficiente para todos los valores que queramos que pueda tomar, para que así al ir aumentando el número de dígitos de la puntuación no se vaya desplazando el texto. En este caso puede ser recomendable utilizar una fuente monoespaciada y rellenar con ceros el número máximo de dígitos que queramos que pueda tener. Por ejemplo, `SCORE: 00010`. 
+Para los elementos con texto variable, como por ejemplo la puntuación, cuando los ajustemos a la derecha será conveniente que reservemos espacio suficiente para todos los valores que queramos que pueda tomar, para que así al ir aumentando el número de dígitos de la puntuación no se vaya desplazando el texto. En este caso puede ser recomendable utilizar una fuente monoespaciada y rellenar con ceros el número máximo de dígitos que queramos que pueda tener. Por ejemplo, `SCORE: 00010`.
 
 ### Menús
 
-A parte del HUD, los menús del juego son otro elemento con el que deberemos llevar especial cuidado. En este caso lo normal será tener centrados los _items_ del menú en pantalla, habitualmente con una disposición vertical. Los botones del menú (y todos los botones de la interfaz en general) deberán tener un tamaño suficiente para abarcar la yema del dedo en cualquier dispositivo. Esto nos llevará a tener en el móvil botones que ocuparán gran parte de la pantalla. Si trasladamos la aplicación a un _tablet_, la estrategia de cocos2d-x será la de escalar la pantalla, lo cual puede producir que los menús se vean innecesariamente grandes. 
+A parte del HUD, los menús del juego son otro elemento con el que deberemos llevar especial cuidado. En este caso lo normal será tener centrados los _items_ del menú en pantalla, habitualmente con una disposición vertical. Los botones del menú (y todos los botones de la interfaz en general) deberán tener un tamaño suficiente para abarcar la yema del dedo en cualquier dispositivo. Esto nos llevará a tener en el móvil botones que ocuparán gran parte de la pantalla. Si trasladamos la aplicación a un _tablet_, la estrategia de cocos2d-x será la de escalar la pantalla, lo cual puede producir que los menús se vean innecesariamente grandes.
 
 Podemos plantearnos la posibilidad de implementar menús alternativos para teléfonos y _tablets_, que aprovechen en cada caso la pantalla de forma adecuada, o limitar el tamaño de los elementos del menú cuando el tamaño físico de la pantalla sea mayor al de un móvil, para así evitar ocupar más espacio de pantalla que el necesario para poderlos pulsar fácilmente.
 
@@ -212,7 +212,7 @@ Podemos plantearnos la posibilidad de implementar menús alternativos para telé
 
 ## Depuración del cambio de densidad de pantalla
 
-Para comprobar que nuestra aplicación se adapta de forma correcta podemos utilizar diferentes tamaños de ventana durante el desarrollo. Sin embargo, también será necesario comprobar lo que ocurre al tener diferentes densidades de pantalla, teniendo algunos dispositivos resoluciones superiores a la de nuestra máquina de desarrollo. 
+Para comprobar que nuestra aplicación se adapta de forma correcta podemos utilizar diferentes tamaños de ventana durante el desarrollo. Sin embargo, también será necesario comprobar lo que ocurre al tener diferentes densidades de pantalla, teniendo algunos dispositivos resoluciones superiores a la de nuestra máquina de desarrollo.
 
 
 Para resolver este problema podemos utilizar la función `GLView::setFrameZoomFactor`. Con esta función podemos aplicar un factor de _zoom_ al contenido de la ventana. De esta forma podemos tener altas resoluciones, como los 2048x1536 pixeles de un iPad retina, dentro del espacio de nuestra pantalla.
@@ -233,11 +233,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
     GLView* eglView = Director::getInstance()->getOpenGLView();
     eglView->setFrameSize(1536, 2048);
     eglView->setFrameZoomFactor(0.4f);
-    
+
     // Soporte multi-resolucion
     cocos2d::Director::getInstance()->getOpenGLView()->setDesignResolutionSize(
                                          768, 1024, ResolutionPolicy::FIXED_WIDTH);
-    
+
     // turn on display FPS
     director->setDisplayStats(true);
 
@@ -279,8 +279,8 @@ Por ejemplo, en el caso anterior en el que buscábamos emular diferentes resoluc
 Podemos introducir código condicional para las diferentes plataformas soportadas:
 
 * `CC_PLATFORM_IOS`
-* `CC_PLATFORM_ANDROID` 
-* `CC_PLATFORM_WP8` 
+* `CC_PLATFORM_ANDROID`
+* `CC_PLATFORM_WP8`
 * `CC_PLATFORM_BLACKBERRY`  
 * `CC_PLATFORM_WIN32`  
 * `CC_PLATFORM_LINUX`  
@@ -294,7 +294,7 @@ Esto nos permitirá por ejemplo incluir servicios que sólo estarán disponibles
 
 Aunque utilicemos un motor o librería de alto nivel para implementar nuestro videojuego, como puede ser Unity o Cocos2d-x, por debajo estas librerías siempre estarán utilizando OpenGL. Concretamente, en los dispositivos móviles utilizarán OpenGL ES, una versión reducida de OpenGL pensada para este tipo de dispositivos. Según las características del dispositivo se utilizará OpenGL ES 1.0 o OpenGL ES 2.0. Las primeras generaciones de iPhone soportaban únicamente OpenGL ES 1.0, mientras que actualmente se pueden utilizar ambas versiones de la librería. Actualmente podemos encontrar OpenGL ES 2.0 en prácticamente la totalidad de dispositivos Android e iOS disponibles. Por este motivo será importante tener algunas nociones sobre cómo gestiona los gráficos OpenGL.
 
-Los gráficos a mostrar en pantalla se almacenan en memoria de vídeo como texturas. La memoria de vídeo es un recurso crítico (se suele compartir con la RAM del dispositivo), por lo que deberemos optimizar las texturas para ocupar la mínima cantidad de memoria posible. Para aprovechar al máximo la memoria, se recomienda que las texturas tengan de tamaño una potencia de 2 (por ejemplo 128x128, 256x256, 512x512, 1024x1024, o 2048x2048), ya que son las dimensiones con las que trabaja la memoria de vídeo. En OpenGL ES 1.0 el tamaño máximo de las texturas es de 1024x1024, mientras que en OpenGL ES 2.0 este tamaño se amplía hasta 2048x2048, 
+Los gráficos a mostrar en pantalla se almacenan en memoria de vídeo como texturas. La memoria de vídeo es un recurso crítico (se suele compartir con la RAM del dispositivo), por lo que deberemos optimizar las texturas para ocupar la mínima cantidad de memoria posible. Para aprovechar al máximo la memoria, se recomienda que las texturas tengan de tamaño una potencia de 2 (por ejemplo 128x128, 256x256, 512x512, 1024x1024, o 2048x2048), ya que son las dimensiones con las que trabaja la memoria de vídeo. En OpenGL ES 1.0 el tamaño máximo de las texturas es de 1024x1024, mientras que en OpenGL ES 2.0 este tamaño se amplía hasta 2048x2048,
 
 Existen diferentes formatos de textura:
 
@@ -312,7 +312,7 @@ que ocupa en memoria y en disco (aumentará significativamente el tamaño del pa
 
 
 
-En caso de necesitar utilizar `RGB4444` con texturas en las que tenemos degradado, podemos 
+En caso de necesitar utilizar `RGB4444` con texturas en las que tenemos degradado, podemos
 aplicar a la textura el efecto _dithering_ para que el degradado se represente de una forma más adecuada utilizando un reducido número de colores. Esto se consigue mezclando píxeles de distintos colores y modificando la proporción de cada color conforme avanza el degradado, evitando así el efecto de degradado escalonado que obtendríamos al representar las texturas con un menor número de colores.
 
 ![Mejora de texturas con dithering](imagenes/juegos/texturas_dithering.jpg)
