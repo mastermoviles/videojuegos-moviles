@@ -1,641 +1,378 @@
 
+<!DOCTYPE doctype html>
 
-
-
-<!doctype html>
-<html lang="es" class="no-js">
-  <head>
-    
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta http-equiv="x-ua-compatible" content="ie=edge">
-      
-      
-      
-      
-        <meta name="lang:clipboard.copy" content="Copiar al portapapeles">
-      
-        <meta name="lang:clipboard.copied" content="Copiado al portapapeles">
-      
-        <meta name="lang:search.language" content="en">
-      
-        <meta name="lang:search.pipeline.stopwords" content="True">
-      
-        <meta name="lang:search.pipeline.trimmer" content="True">
-      
-        <meta name="lang:search.result.none" content="No se encontraron documentos">
-      
-        <meta name="lang:search.result.one" content="1 documento encontrado">
-      
-        <meta name="lang:search.result.other" content="# documentos encontrados">
-      
-        <meta name="lang:search.tokenizer" content="[\s\-]+">
-      
-      <link rel="shortcut icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
-    
-    
-      
-        <title>Motor Unity - VPDM - Cocos2d-x</title>
-      
-    
-    
-      <link rel="stylesheet" href="assets/stylesheets/application.0284f74d.css">
-      
-        <link rel="stylesheet" href="assets/stylesheets/application-palette.01803549.css">
-      
-      
-        
-        
-        <meta name="theme-color" content="#009688">
-      
-    
-    
-      <script src="assets/javascripts/modernizr.74668098.js"></script>
-    
-    
-      
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
-        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
-      
-    
-    <link rel="stylesheet" href="assets/fonts/material-icons.css">
-    
-    
-    
-      
-    
-    
-  </head>
-  
-    
-    
-    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
-  
-    <svg class="md-svg">
-      <defs>
-        
-        
-      </defs>
-    </svg>
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
-    
-      <a href="#el-motor-unity" tabindex="1" class="md-skip">
+<html class="no-js" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="ie=edge" http-equiv="x-ua-compatible"/>
+<meta content="Copiar al portapapeles" name="lang:clipboard.copy"/>
+<meta content="Copiado al portapapeles" name="lang:clipboard.copied"/>
+<meta content="en" name="lang:search.language"/>
+<meta content="True" name="lang:search.pipeline.stopwords"/>
+<meta content="True" name="lang:search.pipeline.trimmer"/>
+<meta content="No se encontraron documentos" name="lang:search.result.none"/>
+<meta content="1 documento encontrado" name="lang:search.result.one"/>
+<meta content="# documentos encontrados" name="lang:search.result.other"/>
+<meta content="[\s\-]+" name="lang:search.tokenizer"/>
+<link href="assets/images/favicon.png" rel="shortcut icon"/>
+<meta content="mkdocs-1.0.4, mkdocs-material-4.4.0" name="generator"/>
+<title>Motor Unity - VPDM - Cocos2d-x</title>
+<link href="assets/stylesheets/application.0284f74d.css" rel="stylesheet"/>
+<link href="assets/stylesheets/application-palette.01803549.css" rel="stylesheet"/>
+<meta content="#009688" name="theme-color"/>
+<script src="assets/javascripts/modernizr.74668098.js"></script>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&amp;display=fallback" rel="stylesheet"/>
+<style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+<link href="assets/fonts/material-icons.css" rel="stylesheet"/>
+</head>
+<body data-md-color-accent="teal" data-md-color-primary="teal" dir="ltr">
+<svg class="md-svg">
+<defs>
+</defs>
+</svg>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+<a class="md-skip" href="#el-motor-unity" tabindex="1">
         Saltar a contenido
       </a>
-    
-    
-      <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid">
-    <div class="md-flex">
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="index.html" title="VPDM - Cocos2d-x" class="md-header-nav__button md-logo">
-          
-            <img src="imagenes/logo.png" width="24" height="24">
-          
-        </a>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
-      </div>
-      <div class="md-flex__cell md-flex__cell--stretch">
-        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          
-            <span class="md-header-nav__topic">
+<header class="md-header" data-md-component="header">
+<nav class="md-header-nav md-grid">
+<div class="md-flex">
+<div class="md-flex__cell md-flex__cell--shrink">
+<a class="md-header-nav__button md-logo" href="index.html" title="VPDM - Cocos2d-x">
+<img height="24" src="imagenes/logo.png" width="24"/>
+</a>
+</div>
+<div class="md-flex__cell md-flex__cell--shrink">
+<label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+</div>
+<div class="md-flex__cell md-flex__cell--stretch">
+<div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+<span class="md-header-nav__topic">
               VPDM - Cocos2d-x
             </span>
-            <span class="md-header-nav__topic">
+<span class="md-header-nav__topic">
               
                 Motor Unity
               
             </span>
-          
-        </div>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        
-          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-          
+</div>
+</div>
+<div class="md-flex__cell md-flex__cell--shrink">
+<label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
 <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
-      <label class="md-icon md-search__icon" for="__search"></label>
-      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
-        &#xE5CD;
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="query" data-md-state="active" name="query" placeholder="Búsqueda" spellcheck="false" type="text"/>
+<label class="md-icon md-search__icon" for="__search"></label>
+<button class="md-icon md-search__icon" data-md-component="reset" tabindex="-1" type="reset">
+        
       </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result">
-          <div class="md-search-result__meta">
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="result">
+<div class="md-search-result__meta">
             Teclee para comenzar búsqueda
           </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
+<ol class="md-search-result__list"></ol>
 </div>
-        
-      </div>
-      
-    </div>
-  </nav>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
 </header>
-    
-    <div class="md-container">
-      
-        
-      
-      
-      <main class="md-main">
-        <div class="md-main__inner md-grid" data-md-component="container">
-          
-            
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" data-md-level="0">
-  <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="index.html" title="VPDM - Cocos2d-x" class="md-nav__button md-logo">
-      
-        <img src="imagenes/logo.png" width="48" height="48">
-      
-    </a>
+<div class="md-container">
+<main class="md-main">
+<div class="md-main__inner md-grid" data-md-component="container">
+<div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title md-nav__title--site" for="__drawer">
+<a class="md-nav__button md-logo" href="index.html" title="VPDM - Cocos2d-x">
+<img height="48" src="imagenes/logo.png" width="48"/>
+</a>
     VPDM - Cocos2d-x
   </label>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="index.html" title="Introducción" class="md-nav__link">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="index.html" title="Introducción">
       Introducción
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="videojuegos_para_moviles.html" title="Videojuegos para móviles" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="videojuegos_para_moviles.html" title="Videojuegos para móviles">
       Videojuegos para móviles
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="introduccion_a_cocos2d-x.html" title="El motor Cocos2d-x" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="introduccion_a_cocos2d-x.html" title="El motor Cocos2d-x">
       El motor Cocos2d-x
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="sprites_e_interaccion.html" title="Sprites y colisiones" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="sprites_e_interaccion.html" title="Sprites y colisiones">
       Sprites y colisiones
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="escenario_y_fondos.html" title="Escenario y fondos" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="escenario_y_fondos.html" title="Escenario y fondos">
       Escenario y fondos
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="motor_de_fisicas.html" title="Motor de físicas" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="motor_de_fisicas.html" title="Motor de físicas">
       Motor de físicas
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="mandos.html" title="Controles del videojuego" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="mandos.html" title="Controles del videojuego">
       Controles del videojuego
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="adaptacion_a_moviles.html" title="Adaptación a móviles" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="adaptacion_a_moviles.html" title="Adaptación a móviles">
       Adaptación a móviles
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="redes_sociales.html" title="Servicios y redes sociales para juegos" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="redes_sociales.html" title="Servicios y redes sociales para juegos">
       Servicios y redes sociales para juegos
     </a>
-  </li>
-
-    
-      
-      
-      
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-toggle md-nav__toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
         Motor Unity
       </label>
-    
-    <a href="unity.html" title="Motor Unity" class="md-nav__link md-nav__link--active">
+<a class="md-nav__link md-nav__link--active" href="unity.html" title="Motor Unity">
       Motor Unity
     </a>
-    
-      
 <nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#introduccion-a-unity" title="Introducción a Unity" class="md-nav__link">
+<label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#introduccion-a-unity" title="Introducción a Unity">
     Introducción a Unity
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#el-editor-de-unity" title="El editor de Unity" class="md-nav__link">
+<nav class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#el-editor-de-unity" title="El editor de Unity">
     El editor de Unity
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#arquitectura-orientada-a-componentes" title="Arquitectura Orientada a Componentes" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#arquitectura-orientada-a-componentes" title="Arquitectura Orientada a Componentes">
     Arquitectura Orientada a Componentes
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#la-escena-3d" title="La escena 3D" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#la-escena-3d" title="La escena 3D">
     La escena 3D
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#posicionamiento-de-los-objetos-en-la-escena" title="Posicionamiento de los objetos en la escena" class="md-nav__link">
+<nav class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#posicionamiento-de-los-objetos-en-la-escena" title="Posicionamiento de los objetos en la escena">
     Posicionamiento de los objetos en la escena
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#anadir-game-objects-a-la-escena" title="Añadir game objects a la escena" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#anadir-game-objects-a-la-escena" title="Añadir game objects a la escena">
     Añadir game objects a la escena
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#navegacion-en-la-escena" title="Navegación en la escena" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#navegacion-en-la-escena" title="Navegación en la escena">
     Navegación en la escena
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#interfaz-de-usuario" title="Interfaz de usuario" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#interfaz-de-usuario" title="Interfaz de usuario">
     Interfaz de usuario
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#canvas" title="Canvas" class="md-nav__link">
+<nav class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#canvas" title="Canvas">
     Canvas
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#elementos-de-la-ui" title="Elementos de la UI" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#elementos-de-la-ui" title="Elementos de la UI">
     Elementos de la UI
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#posicionamiento-en-el-espacio-de-la-ui" title="Posicionamiento en el espacio de la UI" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#posicionamiento-en-el-espacio-de-la-ui" title="Posicionamiento en el espacio de la UI">
     Posicionamiento en el espacio de la UI
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#escalado-del-canvas" title="Escalado del Canvas" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#escalado-del-canvas" title="Escalado del Canvas">
     Escalado del Canvas
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#realidad-virtual" title="Realidad Virtual" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#realidad-virtual" title="Realidad Virtual">
     Realidad Virtual
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#oculus-rift-samsung-gear-vr" title="Oculus Rift / Samsung Gear VR" class="md-nav__link">
+<nav class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#oculus-rift-samsung-gear-vr" title="Oculus Rift / Samsung Gear VR">
     Oculus Rift / Samsung Gear VR
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#google-cardboard" title="Google Cardboard" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#google-cardboard" title="Google Cardboard">
     Google Cardboard
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
+</ul>
 </nav>
-    
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="nativo.html" title="Tecnologías nativas" class="md-nav__link">
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="nativo.html" title="Tecnologías nativas">
       Tecnologías nativas
     </a>
-  </li>
-
-    
-  </ul>
+</li>
+</ul>
 </nav>
-                  </div>
-                </div>
-              </div>
-            
-            
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
 <nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#introduccion-a-unity" title="Introducción a Unity" class="md-nav__link">
+<label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#introduccion-a-unity" title="Introducción a Unity">
     Introducción a Unity
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#el-editor-de-unity" title="El editor de Unity" class="md-nav__link">
+<nav class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#el-editor-de-unity" title="El editor de Unity">
     El editor de Unity
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#arquitectura-orientada-a-componentes" title="Arquitectura Orientada a Componentes" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#arquitectura-orientada-a-componentes" title="Arquitectura Orientada a Componentes">
     Arquitectura Orientada a Componentes
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#la-escena-3d" title="La escena 3D" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#la-escena-3d" title="La escena 3D">
     La escena 3D
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#posicionamiento-de-los-objetos-en-la-escena" title="Posicionamiento de los objetos en la escena" class="md-nav__link">
+<nav class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#posicionamiento-de-los-objetos-en-la-escena" title="Posicionamiento de los objetos en la escena">
     Posicionamiento de los objetos en la escena
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#anadir-game-objects-a-la-escena" title="Añadir game objects a la escena" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#anadir-game-objects-a-la-escena" title="Añadir game objects a la escena">
     Añadir game objects a la escena
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#navegacion-en-la-escena" title="Navegación en la escena" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#navegacion-en-la-escena" title="Navegación en la escena">
     Navegación en la escena
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#interfaz-de-usuario" title="Interfaz de usuario" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#interfaz-de-usuario" title="Interfaz de usuario">
     Interfaz de usuario
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#canvas" title="Canvas" class="md-nav__link">
+<nav class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#canvas" title="Canvas">
     Canvas
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#elementos-de-la-ui" title="Elementos de la UI" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#elementos-de-la-ui" title="Elementos de la UI">
     Elementos de la UI
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#posicionamiento-en-el-espacio-de-la-ui" title="Posicionamiento en el espacio de la UI" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#posicionamiento-en-el-espacio-de-la-ui" title="Posicionamiento en el espacio de la UI">
     Posicionamiento en el espacio de la UI
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#escalado-del-canvas" title="Escalado del Canvas" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#escalado-del-canvas" title="Escalado del Canvas">
     Escalado del Canvas
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#realidad-virtual" title="Realidad Virtual" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#realidad-virtual" title="Realidad Virtual">
     Realidad Virtual
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#oculus-rift-samsung-gear-vr" title="Oculus Rift / Samsung Gear VR" class="md-nav__link">
+<nav class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#oculus-rift-samsung-gear-vr" title="Oculus Rift / Samsung Gear VR">
     Oculus Rift / Samsung Gear VR
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#google-cardboard" title="Google Cardboard" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#google-cardboard" title="Google Cardboard">
     Google Cardboard
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
+</ul>
 </nav>
-                  </div>
-                </div>
-              </div>
-            
-          
-          <div class="md-content">
-            <article class="md-content__inner md-typeset">
-              
-                
-                
-                <h1 id="el-motor-unity">El motor Unity<a class="headerlink" href="#el-motor-unity" title="Permanent link">&para;</a></h1>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content">
+<article class="md-content__inner md-typeset"><a class="md-icon md-content__icon" download href="pdf/combined.pdf" title="PDF Export"></a>
+<h1 id="el-motor-unity">El motor Unity<a class="headerlink" href="#el-motor-unity" title="Permanent link">¶</a></h1>
 <p><strong>Unity</strong> es un motor genérico para la creación de videojuegos 2D y 3D enfocado hacia el desarrollo casual. La curva de aprendizaje del motor es bastante suave, especialmente si lo comparamos con motores más complejos como Unreal Engine 4, y nos permitirá realizar un desarrollo rápido de videojuegos. Esta característica hace este motor muy apropiado también para crear prototipos rápidos de nuestros juegos.</p>
 <p>A partir de la versión Unity 5, existen dos ediciones: <em>Personal</em> y <em>Profesional</em>. La primera es gratuita e incluye todas las funcionalidades del motor. La segunda incluye funcionalidades adicionales de soporte (construcción en la nube, herramientas de trabajo en equipo, etc), y es de pago (suscripción de $75 o pago único de $1.500). La versión <em>Personal</em> podrá ser utilizada por cualquier individuo o empresa cuyas ganancias anuales no superen los $100.000.</p>
 <p>Uno de los puntos fuertes de Unity es la posibilidad de exportar a gran cantidad de plataformas. Soporta las <strong>plataformas móviles iOS, Android, Windows Phone y Blackberry</strong>, y además también permite exportar a web (WebGL), a videoconsolas (PS4, PS3, PS Vita, Xbox One, Xbox 360, Wii U, etc) y a ordenadores (Mac, Windows y Linux). </p>
-<h2 id="introduccion-a-unity">Introducción a Unity<a class="headerlink" href="#introduccion-a-unity" title="Permanent link">&para;</a></h2>
-<h3 id="el-editor-de-unity">El editor de Unity<a class="headerlink" href="#el-editor-de-unity" title="Permanent link">&para;</a></h3>
+<h2 id="introduccion-a-unity">Introducción a Unity<a class="headerlink" href="#introduccion-a-unity" title="Permanent link">¶</a></h2>
+<h3 id="el-editor-de-unity">El editor de Unity<a class="headerlink" href="#el-editor-de-unity" title="Permanent link">¶</a></h3>
 <p>Unity incorpora su propia herramienta integrada para la creación de videojuegos, que nos permite incluso crear algunos videojuegos de forma visual sin la necesidad de programar. </p>
 <p>Dentro del entorno del editor de Unity encontramos diferentes paneles, de los cuales destacamos los siguientes:</p>
 <ul>
@@ -644,20 +381,20 @@
 <li><strong>Scene</strong>: En este panel vemos de forma visual los elementos de la escena actual. Podremos movernos libremente por el espacio 3D de la escena para ubicar de forma correcta cada <em>game object</em> y tener una previsualización del escenario del juego.</li>
 <li><strong>Inspector</strong>: Muestra las propiedades del <em>game object</em> o el <em>asset</em> seleccionado actualmente en el entorno. </li>
 </ul>
-<p><img alt="Editor de Unity" src="imagenes/unity/unity-editor.png" /> </p>
-<h3 id="arquitectura-orientada-a-componentes">Arquitectura Orientada a Componentes<a class="headerlink" href="#arquitectura-orientada-a-componentes" title="Permanent link">&para;</a></h3>
+<p><img alt="Editor de Unity" src="imagenes/unity/unity-editor.png"> </img></p>
+<h3 id="arquitectura-orientada-a-componentes">Arquitectura Orientada a Componentes<a class="headerlink" href="#arquitectura-orientada-a-componentes" title="Permanent link">¶</a></h3>
 <p>Como hemos comentado, <strong>todos</strong> los elementos de la escena son objetos de tipo <code>GameObject</code> organizados de forma jerárquica. Todos los objetos son del mismo tipo, independientemente de la función que desempeñen en el juego. Lo que diferencia a unos de otros son los <em>componentes</em> que incorporen. Cada objeto podrá contener varios componentes, y estos componentes determinarán las funciones del objeto.</p>
 <p>Por ejemplo, un objeto que incorpore un componente <code>Camera</code> será capaz de renderizar en pantalla lo que se vea en la escena desde su punto de vista. Si además incorpora un componente <code>Light</code>, emitirá luz que se proyectará sobre otros elementos de la escena, y si tiene un componente <code>Renderer</code>, tendrá un contenido gráfico que se renderizará dentro de la escena. </p>
 <p>Esto es lo que se conoce como <strong>Arquitectura Basada en Componentes</strong>, que nos proporciona la ventaja de que las funcionalidades de los componentes se podrán reutilizar en diferentes tipos de entidades del juego. Es especialmente útil cuando tener un gran número de diferentes entidades en el juego, pero que comparten módulos de funcionalidad.</p>
 <p>En Unity esta arquitectura se implementa mediante agregación. Si bien en todos los objetos de la escena son objetos que heredan de <code>GameObject</code>, éstos podrán contener un conjunto de componentes de distintos tipos (<code>Light</code>, <code>Camera</code>, <code>Renderer</code>, etc) que determinarán el comportamiento del objeto.</p>
 <p>En el inspector podremos ver la lista de componentes que incorpora el objeto seleccionado actualmente, y modificar sus propiedades:</p>
-<p><img alt="Componentes de la cámara" src="imagenes/unity/unity-componentes-camera.png" /></p>
-<h2 id="la-escena-3d">La escena 3D<a class="headerlink" href="#la-escena-3d" title="Permanent link">&para;</a></h2>
+<p><img alt="Componentes de la cámara" src="imagenes/unity/unity-componentes-camera.png"/></p>
+<h2 id="la-escena-3d">La escena 3D<a class="headerlink" href="#la-escena-3d" title="Permanent link">¶</a></h2>
 <p>El el editor de Unity veremos la escena con la que estemos trabajando actualmente, tanto de forma visual (<em>Scene</em>) como de forma jerárquica (<em>Hierarchy</em>). Nos podremos mover por ella y podremos añadir diferentes tipos de objetos. </p>
-<h3 id="posicionamiento-de-los-objetos-en-la-escena">Posicionamiento de los objetos en la escena<a class="headerlink" href="#posicionamiento-de-los-objetos-en-la-escena" title="Permanent link">&para;</a></h3>
+<h3 id="posicionamiento-de-los-objetos-en-la-escena">Posicionamiento de los objetos en la escena<a class="headerlink" href="#posicionamiento-de-los-objetos-en-la-escena" title="Permanent link">¶</a></h3>
 <p>Todos los <em>game objects</em> incorporan al menos un componente <code>Transform</code> que nos permite situarlo en la escena, indicando su traslación, orientación y escala. Podremos introducir esta información en el editor, para así poder ajustar la posición del objeto de forma precisa. </p>
 <p>También podemos mover un objeto de forma visual desde la vista <em>Scene</em>. Al seleccionar un objeto, bien en <em>Scene</em> o en <em>Hierarchy</em>, veremos sobre él en <em>Scene</em> una serie de ejes que nos indicarán que podemos moverlo. El tipo de ejes que se mostrarán dependerá del tipo de transformación que tengamos activa en la barra superior:</p>
-<p><img alt="Modos de transformación de objetos" src="imagenes/unity/unity-transform.png" /></p>
+<p><img alt="Modos de transformación de objetos" src="imagenes/unity/unity-transform.png"/></p>
 <p>Las posibles transformaciones son:</p>
 <ul>
 <li><strong>Traslación</strong>: Los ejes aparecerán como flechas y nos permitirán cambiar la posición del objeto.</li>
@@ -665,14 +402,14 @@
 <li><strong>Escalado</strong>: Veremos los ejes acabando en cajas, indicando que podemos escalar el objeto en <em>x</em>, <em>y</em>, <em>z</em>.</li>
 </ul>
 <p>Si pinchamos sobre uno de los ejes y arrastramos, trasladaremos, rotaremos, o escalaremos el objeto sólo en dicha eje. Si pinchamos sobre el objeto, pero no sobre ninguno de los ejes, podremos trasladarlo, rotarlo y escalarlo en todos los ejes al mismo tiempo.</p>
-<h3 id="anadir-game-objects-a-la-escena">Añadir <em>game objects</em> a la escena<a class="headerlink" href="#anadir-game-objects-a-la-escena" title="Permanent link">&para;</a></h3>
+<h3 id="anadir-game-objects-a-la-escena">Añadir <em>game objects</em> a la escena<a class="headerlink" href="#anadir-game-objects-a-la-escena" title="Permanent link">¶</a></h3>
 <p>Podemos añadir a la escena nuevos <em>game objects</em> seleccionando en el menú la opción <em>GameObject &gt; Create Empty</em>, lo cual creará un nuevo objeto vacío con un único componente <code>Transform</code>, al que le deberíamos añadir los componentes que necesitásemos, o bien podemos crear objetos ya predefinidos mediante <em>GameObject &gt; Create Other</em>. </p>
 <p>Entre los tipos de objetos predefinidos que nos permite crear, encontramos diferentes formas geométricas como <em>Cube</em>, <em>Sphere</em>, <em>Capsule</em> o <em>Plane</em> entre otras. Estas figuras pueden resultarnos de utilidad como objetos <em>impostores</em> en primeras versiones del juego en las que todavía no contamos con nuestros propios modelos gráficos. Por ejemplo, podríamos utilizar un cubo que de momento haga el papel de nuestro personaje hasta que contemos con su modelo 3D.</p>
-<p><img alt="Menú de creación de un nuevo GameObject" src="imagenes/unity/unity-create-gameobject.png" /></p>
+<p><img alt="Menú de creación de un nuevo GameObject" src="imagenes/unity/unity-create-gameobject.png"/></p>
 <p>Podremos <strong>organizar de forma jerárquica</strong> los objetos de la escena mediante la vista <em>Hierarchy</em>. Si arrastramos un <em>game object</em> sobre otro en esta vista, haremos que pase a ser su hijo en el árbol de la escena. Los objetos vacíos con un único componente <code>Transform</code> pueden sernos de gran utilidad para agrupar dentro de él varios objetos. De esta forma, moviendo el objeto padre podremos mover de forma conjunta todos los objetos que contiene. De esta forma estaremos creando objetos compuestos.</p>
 <p>También resulta de utilidad <strong>dar nombre</strong> a los objetos de la escena, para poder identificarlos fácilmente. Si hacemos <em>click</em> sobre el nombre de un objeto en la vista <em>Hierarchy</em> podremos editarlo y darle un nombre significativo (por ejemplo <em>Suelo</em>, <em>Pared</em>, <em>Enemigo</em>, etc).</p>
-<p><img alt="Cambiar el nombre de un GameObject" src="imagenes/unity/unity-object-name.png" /></p>
-<h3 id="navegacion-en-la-escena">Navegación en la escena<a class="headerlink" href="#navegacion-en-la-escena" title="Permanent link">&para;</a></h3>
+<p><img alt="Cambiar el nombre de un GameObject" src="imagenes/unity/unity-object-name.png"/></p>
+<h3 id="navegacion-en-la-escena">Navegación en la escena<a class="headerlink" href="#navegacion-en-la-escena" title="Permanent link">¶</a></h3>
 <p>Además de podemos añadir objetos a la escena y moverlos a diferentes posiciones, deberemos poder movernos por la escena para posicionarnos en los puntos de vista que nos interesen para crear el contenido. Será importante conocer una serie de atajos de teclado para poder movernos con fluidez a través de la escena.</p>
 <p>Encontramos tres tipos de movimientos básicos para movernos por la escena en el editor:</p>
 <ul>
@@ -685,12 +422,12 @@
 <li><strong>Ver un objeto</strong>: Si nos interesa ir rápidamente a un punto donde veamos de cerca un objeto concreto de la escena, podemos hacer doble <em>click</em> sobre dicho objeto en la vista <em>Hierarchy</em>.</li>
 <li><strong>Alineación con un objeto</strong>: Alinea la vista de la escena con el objeto seleccionado. Es especialmente útil cuando se utiliza con la cámara, ya que veremos la escena tal como se estaría bien desde la camara. Para hacer esto, seleccionaremos el <em>game object</em> con el que nos queramos alinear y seleccionaremos la opción del menú <em>GameObject &gt; Align View To Selected</em>.</li>
 </ul>
-<h2 id="interfaz-de-usuario">Interfaz de usuario<a class="headerlink" href="#interfaz-de-usuario" title="Permanent link">&para;</a></h2>
+<h2 id="interfaz-de-usuario">Interfaz de usuario<a class="headerlink" href="#interfaz-de-usuario" title="Permanent link">¶</a></h2>
 <p>El sistema con el que cuenta Unity para crear la interfaz de usuario se introdujo a partir de la versión 4.6. Se trata de un sistema bastante versátil, que utilizado de forma adecuada nos permite crear interfaces como por ejemplo los menús o el HUD del juego que se adapten a diferentes tamaños y formas de pantalla.</p>
 <p>Todo el contenido de la interfaz de usuario estará contenido en nuestra escena dentro de un elemento tipo <code>Canvas</code> (es decir, un <em>game object</em> que cuente con un componente <code>Canvas</code>). Dentro de él ubicaremos todos los componentes de la interfaz, como por ejemplo imágenes, etiquetas de texto o botones. </p>
-<h3 id="canvas">Canvas<a class="headerlink" href="#canvas" title="Permanent link">&para;</a></h3>
+<h3 id="canvas">Canvas<a class="headerlink" href="#canvas" title="Permanent link">¶</a></h3>
 <p>El <code>Canvas</code> será el panel 2D (<em>lienzo</em>) donde podremos crear el contenido de la interfaz de usuario. Los componentes de la interfaz siempre deberán estar dentro de un <code>Canvas</code> en la jerarquía de la de escena. Si intentamos arrastrar sobre la escena un componente de la UI sin un <code>Canvas</code>, el <code>Canvas</code> se creará de forma automática.</p>
-<p><img alt="Componente Canvas" src="imagenes/unity/unity-ui-canvas.png" /></p>
+<p><img alt="Componente Canvas" src="imagenes/unity/unity-ui-canvas.png"/></p>
 <p>Una propiedad importante del componente <code>Canvas</code> es <em>Render Mode</em>, que podrá tomar 3 valores:</p>
 <ul>
 <li><strong>Screen Space - Overlay</strong>: El <code>Canvas</code> se dibuja sobre el contenido que aparece en pantalla, ajustándose siempre al tamaño de la misma.</li>
@@ -700,17 +437,17 @@
 <blockquote>
 <p>En la previsualización de la escena, cuando tengamos un <code>Canvas</code> de tipo <em>Screen Space</em> es posible que lo veamos de un tamaño mucho mayor que el resto de elementos de la escena. Esto se debe a que las unidades con las que trabaja internamente el <code>Canvas</code> son <em>pixels</em> en pantalla, mientras que es habitual que los elementos de la escena tengan dimensiones de alrededor de una unidad. Al ejecutar el juego no habrá ningún problema ya que el <code>Canvas</code> se ajustará al tamaño de la pantalla o de la cámara.</p>
 </blockquote>
-<h3 id="elementos-de-la-ui">Elementos de la UI<a class="headerlink" href="#elementos-de-la-ui" title="Permanent link">&para;</a></h3>
-<p><img alt="Componente Text" src="imagenes/unity/unity-ui-text.png" /></p>
-<p><img alt="Componente Image" src="imagenes/unity/unity-ui-image.png" /></p>
-<p><img alt="Componente Button" src="imagenes/unity/unity-ui-button.png" /></p>
-<h3 id="posicionamiento-en-el-espacio-de-la-ui">Posicionamiento en el espacio de la UI<a class="headerlink" href="#posicionamiento-en-el-espacio-de-la-ui" title="Permanent link">&para;</a></h3>
-<p><img alt="Componente RectTransform" src="imagenes/unity/unity-ui-rect.png" /></p>
-<p><img alt="Tipos de anclaje" src="imagenes/unity/unity-ui-anchors.png" /></p>
-<p><img alt="Anclaje en el centro de la pantalla" src="imagenes/unity/unity-ui-anchor-center.png" /></p>
-<p><img alt="Anclaje en la esquina de la pantalla" src="imagenes/unity/unity-ui-anchor-corner.png" /></p>
-<p><img alt="Anclaje personalizado" src="imagenes/unity/unity-ui-anchor-custom.png" /></p>
-<h3 id="escalado-del-canvas">Escalado del Canvas<a class="headerlink" href="#escalado-del-canvas" title="Permanent link">&para;</a></h3>
+<h3 id="elementos-de-la-ui">Elementos de la UI<a class="headerlink" href="#elementos-de-la-ui" title="Permanent link">¶</a></h3>
+<p><img alt="Componente Text" src="imagenes/unity/unity-ui-text.png"/></p>
+<p><img alt="Componente Image" src="imagenes/unity/unity-ui-image.png"/></p>
+<p><img alt="Componente Button" src="imagenes/unity/unity-ui-button.png"/></p>
+<h3 id="posicionamiento-en-el-espacio-de-la-ui">Posicionamiento en el espacio de la UI<a class="headerlink" href="#posicionamiento-en-el-espacio-de-la-ui" title="Permanent link">¶</a></h3>
+<p><img alt="Componente RectTransform" src="imagenes/unity/unity-ui-rect.png"/></p>
+<p><img alt="Tipos de anclaje" src="imagenes/unity/unity-ui-anchors.png"/></p>
+<p><img alt="Anclaje en el centro de la pantalla" src="imagenes/unity/unity-ui-anchor-center.png"/></p>
+<p><img alt="Anclaje en la esquina de la pantalla" src="imagenes/unity/unity-ui-anchor-corner.png"/></p>
+<p><img alt="Anclaje personalizado" src="imagenes/unity/unity-ui-anchor-custom.png"/></p>
+<h3 id="escalado-del-canvas">Escalado del Canvas<a class="headerlink" href="#escalado-del-canvas" title="Permanent link">¶</a></h3>
 <p>Normalmente en nuestro <code>Canvas</code> encontraremos un componente adicional que es el <code>CanvasScaler</code>. Se trata de un elemento importante a la hora de conseguir interfaces adaptables, ya que nos permite personalizar la forma en la que se escala el contenido del <code>Canvas</code> a distintos tamaños de pantalla.</p>
 <p>Podemos optar por tres modos:</p>
 <ul>
@@ -718,12 +455,12 @@
 <li><strong>Scale With Screen Size</strong></li>
 <li><strong>Constant Physical Size</strong></li>
 </ul>
-<h2 id="realidad-virtual">Realidad Virtual<a class="headerlink" href="#realidad-virtual" title="Permanent link">&para;</a></h2>
+<h2 id="realidad-virtual">Realidad Virtual<a class="headerlink" href="#realidad-virtual" title="Permanent link">¶</a></h2>
 <p>Existen diferentes dispositivos de realidad virtual, que nos proporcionan una inmersión casi total en la escena, reflejando en la cámara los movimientos de nuestra cabeza, y proporcionando una visión estereoscópica de la escena. Entre los dispositivos más famosos se encuentran Oculus Rift, Samsung Gear VR y Google Cardboard. Aunque todos estos dispositivos proporcionan su propio SDK que podemos integrar en las plataformas nativas de desarrollo, es de especial interés su integración en el entorno Unity, que nos permitirá realizar aplicaciones que los soporten de forma casi inmediata. A continuación veremos cómo utilizarlos con este entorno.</p>
-<h3 id="oculus-rift-samsung-gear-vr">Oculus Rift / Samsung Gear VR<a class="headerlink" href="#oculus-rift-samsung-gear-vr" title="Permanent link">&para;</a></h3>
+<h3 id="oculus-rift-samsung-gear-vr">Oculus Rift / Samsung Gear VR<a class="headerlink" href="#oculus-rift-samsung-gear-vr" title="Permanent link">¶</a></h3>
 <p>A partir de Unity 5.1 encontramos en este entorno soporte nativo para los dispositivos Oculus Rift y Samsung Gear VR. Ambos utilizan el mismo SDK y herramientas, con la diferencia de que Oculus Rift funciona sobre plataformas de sobremesa, mientras que Samsung Gear VR funciona sobre móviles Samsung. </p>
 <p>Para activar el soporte para estos dispositivos en Unity simplemente tendremos que entrar en <em>Player Settings</em> (<em>Edit &gt; Project Settings &gt; Player</em>) y bien dentro de la plataforma <em>Standalone</em> (para Oculus Rift) o <em>Android</em> (para Samsung Gear VR) marcar la casilla <em>Virtual Reality Supported</em>, dentro de la sección <em>Other Settings &gt; Rendering</em>.</p>
-<p><img alt="Activar soporte de VR" src="imagenes/unity/unity-vr-activar.png" /></p>
+<p><img alt="Activar soporte de VR" src="imagenes/unity/unity-vr-activar.png"/></p>
 <p>Una vez hecho esto, automáticamente la cámara de la escena se comportará como una cámara VR, girando cuando giremos la cabeza y renderizando una imagen para cada ojo, para así proporcionar visión estéreo. </p>
 <h4>Despliegue de la aplicación en un dispositivo de prueba</h4>
 <p>Antes de desplegar la aplicación en un dispositivo de prueba, deberemos añadir una firma que nos deberá proporcionar Oculus para nuestro dispositivo concreto. Dicha firma sólo se necesitará durante el desarrollo, cuando la aplicación se publique ya no hará falta.</p>
@@ -731,48 +468,45 @@
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>adb devices
 </pre></div>
 </td></tr></table>
-
 <p>En la lista de dispositivos en la primera columna veremos los IDs que buscamos, con el siguiente formato:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">*</span> <span class="n">daemon</span> <span class="n">started</span> <span class="n">successfully</span> <span class="o">*</span>
 <span class="mi">1235</span><span class="n">ba5e7a311272</span>    <span class="n">device</span>
 </pre></div>
 </td></tr></table>
-
 <p>En este caso, el ID que buscamos sería <code>1235ba5e7a311272</code>. Una vez localizado dicho ID, iremos a la siguiente página para solicitar la firma e introduciremos el ID (necesitaremos registrarnos previamente como usuarios de Oculus Developer, si no tenemos cuenta todavía):</p>
 <p><a href="https://developer.oculus.com/osig/">https://developer.oculus.com/osig/</a></p>
 <p>Una vez introducido el ID nos descargará un fichero <code>.osig</code> que deberá ser introducido en nuestro proyecto de Unity en el siguiente directorio:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">Assets</span><span class="o">/</span><span class="n">Plugins</span><span class="o">/</span><span class="n">Android</span><span class="o">/</span><span class="n">assets</span>
 </pre></div>
 </td></tr></table>
-
 <p>Esto lo que hará será colocar dicho fichero en el directorio <code>assets</code> del proyecto Unity resultante. Una vez hecho esto ya podremos probar la aplicación en un dispositivo Samsung con Gear VR seleccionando la plataforma <em>Android</em> y pulsando sobre <em>Build &amp; Run</em>. </p>
 <p>Al desplegar la aplicación en el móvil Samsung, veremos que al ejecutarla nos pide conectar el dispositivo Gear VR al móvil. Una vez conectado, se ejecutará la aplicación y podremos ver nuestra escena de Unity de forma inmersiva.</p>
-<p><img alt="Conectar el dispositivo Gear VR" src="imagenes/unity/unity-vr-conectar.png" /></p>
+<p><img alt="Conectar el dispositivo Gear VR" src="imagenes/unity/unity-vr-conectar.png"/></p>
 <p>Sin embargo, veremos que la imagen aparece algo distorsionada al verla a través de las lentes del Gear VR. Esto se debe a que aunque la cámara renderiza en estéreo y responde al movimiento de la cabeza, no se realiza la corrección adecuada a la imagen para verla a través de las lentes del Gear VR.</p>
 <h4>Utilidades de Oculus</h4>
 <p>Aunque la cámara de Unity puede ser utilizada para aplicaciones de VR, hemos visto que tiene algunas carencias como por ejemplo el no realizar una corrección de la distorsión que realiza la lente. </p>
-<p><img alt="Resultado con OVRCameraRig" src="imagenes/unity/unity-vr-gear.png" /></p>
+<p><img alt="Resultado con OVRCameraRig" src="imagenes/unity/unity-vr-gear.png"/></p>
 <p>Para poder resolver estas carencias y tener la posibilidad de configurar e implementar diferentes componentes de la aplicación VR, Oculus proporciona una serie de utilidades en forma de paquete de <em>assets</em> para Unity que podemos descargar desde su web:</p>
 <p><a href="https://developer.oculus.com/downloads/">https://developer.oculus.com/downloads/</a></p>
 <p>Desde esta página podremos bajar tanto versiones actualizadas del <em>plugin</em> de Oculus/Gear para Unity (<em>OVR Plugin for Unity 5</em>) como las utilidades adicionales (<em>Oculus Utilities for Unity 5</em>). </p>
 <p>Para instalar el <em>plugin</em> simplemente tendremos que buscar dentro del directorio de instalación de Unity el directorio <code>VR</code> (en caso de MacOS tendremos que mirar dentro del contenido del paquete <code>Unity</code> para localizar dicho directorio), y dentro de él sustituir el directorio <code>oculus</code> y todo su contenido por el proporcionado por el <em>plugin</em>.</p>
 <p>Una vez actualizado el <em>plugin</em> podremos añadir las <em>utilities</em> cargándolo en el proyecto como paquete de <em>assets</em>. </p>
 <p>Uno de los <em>assets</em> más útiles es el <em>prefab</em> <code>OVRCameraRig</code>. Podemos utilizarlo en la escena en lugar de la cámara de Unity, y nos permitirá configurar diferentes propiedades de la cámara en la escena 3D, como por ejemplo la distancia entre los ojos. Además, aplicará de forma correcta la corrección a la distorsión introducida por las lentes.</p>
-<p><img alt="Componente OVR" src="imagenes/unity/unity-vr-ovr.png" /></p>
+<p><img alt="Componente OVR" src="imagenes/unity/unity-vr-ovr.png"/></p>
 <h4>Modo de desarrollador</h4>
 <p>En los casos anteriores hemos probado la aplicación con el dispositivo Gear VR. Sin embargo, durante el desarrollo nos podría interesar poder probar la aplicación en el móvil sin la necesidad de tener que conectarlo al Gear VR.</p>
 <p>Podemos conseguir esto activando el modo desarrollador de Gear VR en el dispositivo móvil Samsung. Para poder hacer esto antes deberemos haber instalado alguna aplicación nuestra con la firma <code>osig</code>, en caso contrario no nos permitirá activarlo.</p>
 <p>Para activar el modo de desarrollador de Gear VR deberemos entra en <em>Ajustes &gt; Aplicaciones &gt; Administrador de aplicaciones &gt; Gear VR Service &gt; Almacenamiento &gt; Administrar almacenamiento</em> y pulsar repetidas veces sobre <em>VR Service Version</em>. Tras hacer esto nos aparecerán opciones para activar el modo de desarrollador.</p>
-<p><img alt="Activar modo de desarrollador" src="imagenes/unity/unity-vr-developer.png" /></p>
+<p><img alt="Activar modo de desarrollador" src="imagenes/unity/unity-vr-developer.png"/></p>
 <p>Con este modo activo podremos lanzar la aplicación en el móvil sin tener que conectar el dispositivo Gear VR, lo cual agilizará el desarrollo. Esta forma de probar la aplicación tendrá la limitación de que no reconocerá el giro de la cámara, ya que los sensores que utilizan estas aplicaciones para obtener la inclinación de la cabeza van integrados en el dispositivo Gear VR.</p>
-<h3 id="google-cardboard">Google Cardboard<a class="headerlink" href="#google-cardboard" title="Permanent link">&para;</a></h3>
+<h3 id="google-cardboard">Google Cardboard<a class="headerlink" href="#google-cardboard" title="Permanent link">¶</a></h3>
 <p>Unity no incluye soporte nativo para Google Cardboard, pero podemos encontrar un <em>plugin</em> muy sencillo de utilizar en la web oficial:</p>
 <p><a href="https://developers.google.com/cardboard/unity">https://developers.google.com/cardboard/unity</a></p>
 <p>El plugin consiste en un paquete de <em>assets</em> que podemos incluir en nuestro proyecto (deberemos añadir todo su contenido).</p>
 <p>La forma más sencilla de añadir soporte para Cardboard es añadir a nuestra cámara el <em>script</em> <code>StereoController</code>:</p>
-<p><img alt="Componente Stereo Controller" src="imagenes/unity/unity-vr-cb-stereo.png" /></p>
-<p><img alt="Aplicación con Google Cardboard" src="imagenes/unity/unity-vr-cb.png" /></p>
+<p><img alt="Componente Stereo Controller" src="imagenes/unity/unity-vr-cb-stereo.png"/></p>
+<p><img alt="Aplicación con Google Cardboard" src="imagenes/unity/unity-vr-cb.png"/></p>
 <!--
 ## Assets
 
@@ -817,81 +551,57 @@
 ### Patrón singleton
 
 -->
-                
-                  
-                
-              
-              
-                
-
-
-              
-            </article>
-          </div>
-        </div>
-      </main>
-      
-        
+</article>
+</div>
+</div>
+</main>
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
-        
-          <a href="redes_sociales.html" title="Servicios y redes sociales para juegos" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-            </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
+<div class="md-footer-nav">
+<nav class="md-footer-nav__inner md-grid">
+<a class="md-flex md-footer-nav__link md-footer-nav__link--prev" href="redes_sociales.html" rel="prev" title="Servicios y redes sociales para juegos">
+<div class="md-flex__cell md-flex__cell--shrink">
+<i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+</div>
+<div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+<span class="md-flex__ellipsis">
+<span class="md-footer-nav__direction">
                   Anterior
                 </span>
                 Servicios y redes sociales para juegos
               </span>
-            </div>
-          </a>
-        
-        
-          <a href="nativo.html" title="Tecnologías nativas" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
+</div>
+</a>
+<a class="md-flex md-footer-nav__link md-footer-nav__link--next" href="nativo.html" rel="next" title="Tecnologías nativas">
+<div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+<span class="md-flex__ellipsis">
+<span class="md-footer-nav__direction">
                   Siguiente
                 </span>
                 Tecnologías nativas
               </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
+</div>
+<div class="md-flex__cell md-flex__cell--shrink">
+<i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+</div>
+</a>
+</nav>
+</div>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-footer-copyright">
         
         powered by
         <a href="https://www.mkdocs.org">MkDocs</a>
         and
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
-      </div>
-      
-    </div>
-  </div>
+</div>
+</div>
+</div>
 </footer>
-      
-    </div>
-    
-      <script src="assets/javascripts/application.245445c6.js"></script>
-      
-      <script>app.initialize({version:"1.0.4",url:{base:"."}})</script>
-      
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-      
-    
-  </body>
+</div>
+<script src="assets/javascripts/application.245445c6.js"></script>
+<script>app.initialize({version:"1.0.4",url:{base:"."}})</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
 </html>

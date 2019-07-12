@@ -1,695 +1,416 @@
 
+<!DOCTYPE doctype html>
 
-
-
-<!doctype html>
-<html lang="es" class="no-js">
-  <head>
-    
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta http-equiv="x-ua-compatible" content="ie=edge">
-      
-      
-      
-      
-        <meta name="lang:clipboard.copy" content="Copiar al portapapeles">
-      
-        <meta name="lang:clipboard.copied" content="Copiado al portapapeles">
-      
-        <meta name="lang:search.language" content="en">
-      
-        <meta name="lang:search.pipeline.stopwords" content="True">
-      
-        <meta name="lang:search.pipeline.trimmer" content="True">
-      
-        <meta name="lang:search.result.none" content="No se encontraron documentos">
-      
-        <meta name="lang:search.result.one" content="1 documento encontrado">
-      
-        <meta name="lang:search.result.other" content="# documentos encontrados">
-      
-        <meta name="lang:search.tokenizer" content="[\s\-]+">
-      
-      <link rel="shortcut icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
-    
-    
-      
-        <title>Controles del videojuego - VPDM - Cocos2d-x</title>
-      
-    
-    
-      <link rel="stylesheet" href="assets/stylesheets/application.0284f74d.css">
-      
-        <link rel="stylesheet" href="assets/stylesheets/application-palette.01803549.css">
-      
-      
-        
-        
-        <meta name="theme-color" content="#009688">
-      
-    
-    
-      <script src="assets/javascripts/modernizr.74668098.js"></script>
-    
-    
-      
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
-        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
-      
-    
-    <link rel="stylesheet" href="assets/fonts/material-icons.css">
-    
-    
-    
-      
-    
-    
-  </head>
-  
-    
-    
-    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
-  
-    <svg class="md-svg">
-      <defs>
-        
-        
-      </defs>
-    </svg>
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
-    
-      <a href="#controles-del-videojuego" tabindex="1" class="md-skip">
+<html class="no-js" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="ie=edge" http-equiv="x-ua-compatible"/>
+<meta content="Copiar al portapapeles" name="lang:clipboard.copy"/>
+<meta content="Copiado al portapapeles" name="lang:clipboard.copied"/>
+<meta content="en" name="lang:search.language"/>
+<meta content="True" name="lang:search.pipeline.stopwords"/>
+<meta content="True" name="lang:search.pipeline.trimmer"/>
+<meta content="No se encontraron documentos" name="lang:search.result.none"/>
+<meta content="1 documento encontrado" name="lang:search.result.one"/>
+<meta content="# documentos encontrados" name="lang:search.result.other"/>
+<meta content="[\s\-]+" name="lang:search.tokenizer"/>
+<link href="assets/images/favicon.png" rel="shortcut icon"/>
+<meta content="mkdocs-1.0.4, mkdocs-material-4.4.0" name="generator"/>
+<title>Controles del videojuego - VPDM - Cocos2d-x</title>
+<link href="assets/stylesheets/application.0284f74d.css" rel="stylesheet"/>
+<link href="assets/stylesheets/application-palette.01803549.css" rel="stylesheet"/>
+<meta content="#009688" name="theme-color"/>
+<script src="assets/javascripts/modernizr.74668098.js"></script>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&amp;display=fallback" rel="stylesheet"/>
+<style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+<link href="assets/fonts/material-icons.css" rel="stylesheet"/>
+</head>
+<body data-md-color-accent="teal" data-md-color-primary="teal" dir="ltr">
+<svg class="md-svg">
+<defs>
+</defs>
+</svg>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+<a class="md-skip" href="#controles-del-videojuego" tabindex="1">
         Saltar a contenido
       </a>
-    
-    
-      <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid">
-    <div class="md-flex">
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="index.html" title="VPDM - Cocos2d-x" class="md-header-nav__button md-logo">
-          
-            <img src="imagenes/logo.png" width="24" height="24">
-          
-        </a>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
-      </div>
-      <div class="md-flex__cell md-flex__cell--stretch">
-        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          
-            <span class="md-header-nav__topic">
+<header class="md-header" data-md-component="header">
+<nav class="md-header-nav md-grid">
+<div class="md-flex">
+<div class="md-flex__cell md-flex__cell--shrink">
+<a class="md-header-nav__button md-logo" href="index.html" title="VPDM - Cocos2d-x">
+<img height="24" src="imagenes/logo.png" width="24"/>
+</a>
+</div>
+<div class="md-flex__cell md-flex__cell--shrink">
+<label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+</div>
+<div class="md-flex__cell md-flex__cell--stretch">
+<div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+<span class="md-header-nav__topic">
               VPDM - Cocos2d-x
             </span>
-            <span class="md-header-nav__topic">
+<span class="md-header-nav__topic">
               
                 Controles del videojuego
               
             </span>
-          
-        </div>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        
-          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-          
+</div>
+</div>
+<div class="md-flex__cell md-flex__cell--shrink">
+<label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
 <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
-      <label class="md-icon md-search__icon" for="__search"></label>
-      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
-        &#xE5CD;
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="query" data-md-state="active" name="query" placeholder="Búsqueda" spellcheck="false" type="text"/>
+<label class="md-icon md-search__icon" for="__search"></label>
+<button class="md-icon md-search__icon" data-md-component="reset" tabindex="-1" type="reset">
+        
       </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result">
-          <div class="md-search-result__meta">
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="result">
+<div class="md-search-result__meta">
             Teclee para comenzar búsqueda
           </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
+<ol class="md-search-result__list"></ol>
 </div>
-        
-      </div>
-      
-    </div>
-  </nav>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
 </header>
-    
-    <div class="md-container">
-      
-        
-      
-      
-      <main class="md-main">
-        <div class="md-main__inner md-grid" data-md-component="container">
-          
-            
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" data-md-level="0">
-  <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="index.html" title="VPDM - Cocos2d-x" class="md-nav__button md-logo">
-      
-        <img src="imagenes/logo.png" width="48" height="48">
-      
-    </a>
+<div class="md-container">
+<main class="md-main">
+<div class="md-main__inner md-grid" data-md-component="container">
+<div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title md-nav__title--site" for="__drawer">
+<a class="md-nav__button md-logo" href="index.html" title="VPDM - Cocos2d-x">
+<img height="48" src="imagenes/logo.png" width="48"/>
+</a>
     VPDM - Cocos2d-x
   </label>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="index.html" title="Introducción" class="md-nav__link">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="index.html" title="Introducción">
       Introducción
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="videojuegos_para_moviles.html" title="Videojuegos para móviles" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="videojuegos_para_moviles.html" title="Videojuegos para móviles">
       Videojuegos para móviles
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="introduccion_a_cocos2d-x.html" title="El motor Cocos2d-x" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="introduccion_a_cocos2d-x.html" title="El motor Cocos2d-x">
       El motor Cocos2d-x
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="sprites_e_interaccion.html" title="Sprites y colisiones" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="sprites_e_interaccion.html" title="Sprites y colisiones">
       Sprites y colisiones
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="escenario_y_fondos.html" title="Escenario y fondos" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="escenario_y_fondos.html" title="Escenario y fondos">
       Escenario y fondos
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="motor_de_fisicas.html" title="Motor de físicas" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="motor_de_fisicas.html" title="Motor de físicas">
       Motor de físicas
     </a>
-  </li>
-
-    
-      
-      
-      
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-toggle md-nav__toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
         Controles del videojuego
       </label>
-    
-    <a href="mandos.html" title="Controles del videojuego" class="md-nav__link md-nav__link--active">
+<a class="md-nav__link md-nav__link--active" href="mandos.html" title="Controles del videojuego">
       Controles del videojuego
     </a>
-    
-      
 <nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#teclado-en-cocos2d-x" title="Teclado en Cocos2d-x" class="md-nav__link">
+<label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#teclado-en-cocos2d-x" title="Teclado en Cocos2d-x">
     Teclado en Cocos2d-x
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#pantalla-tactil" title="Pantalla táctil" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pantalla-tactil" title="Pantalla táctil">
     Pantalla táctil
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pantalla-tactil-en-cocos2d-x" title="Pantalla táctil en Cocos2d-x" class="md-nav__link">
+<nav class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pantalla-tactil-en-cocos2d-x" title="Pantalla táctil en Cocos2d-x">
     Pantalla táctil en Cocos2d-x
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#eventos-de-la-pantalla-tactil-en-cocos2d-x" title="Eventos de la pantalla táctil en Cocos2d-x" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#eventos-de-la-pantalla-tactil-en-cocos2d-x" title="Eventos de la pantalla táctil en Cocos2d-x">
     Eventos de la pantalla táctil en Cocos2d-x
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#prioridad-de-los-eventos" title="Prioridad de los eventos" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#prioridad-de-los-eventos" title="Prioridad de los eventos">
     Prioridad de los eventos
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#consumo-de-eventos" title="Consumo de eventos" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#consumo-de-eventos" title="Consumo de eventos">
     Consumo de eventos
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#nodo-objetivo-del-listener" title="Nodo objetivo del listener" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#nodo-objetivo-del-listener" title="Nodo objetivo del listener">
     Nodo objetivo del listener
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#pantalla-multitactil" title="Pantalla multitáctil" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pantalla-multitactil" title="Pantalla multitáctil">
     Pantalla multitáctil
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#acelerometro" title="Acelerómetro" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#acelerometro" title="Acelerómetro">
     Acelerómetro
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#mandos" title="Mandos" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mandos" title="Mandos">
     Mandos
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#buenas-practicas-para-juegos-basados-en-control-pad" title="Buenas prácticas para juegos basados en control pad" class="md-nav__link">
+<nav class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#buenas-practicas-para-juegos-basados-en-control-pad" title="Buenas prácticas para juegos basados en control pad">
     Buenas prácticas para juegos basados en control pad
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#mandos-virtuales" title="Mandos virtuales" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mandos-virtuales" title="Mandos virtuales">
     Mandos virtuales
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#controles-virtuales" title="Controles virtuales" class="md-nav__link">
+<nav class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#controles-virtuales" title="Controles virtuales">
     Controles virtuales
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#pad-virtual" title="Pad virtual" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pad-virtual" title="Pad virtual">
     Pad virtual
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#stick-virtual" title="Stick virtual" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stick-virtual" title="Stick virtual">
     Stick virtual
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#stick-virtual-con-posicionamiento-automatico" title="Stick virtual con posicionamiento automático" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stick-virtual-con-posicionamiento-automatico" title="Stick virtual con posicionamiento automático">
     Stick virtual con posicionamiento automático
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#mandos-fisicos" title="Mandos físicos" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mandos-fisicos" title="Mandos físicos">
     Mandos físicos
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tipos-de-mandos-fisicos" title="Tipos de mandos físicos" class="md-nav__link">
+<nav class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tipos-de-mandos-fisicos" title="Tipos de mandos físicos">
     Tipos de mandos físicos
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#controladores-fisicos-en-cocos2d-x" title="Controladores físicos en Cocos2d-x" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#controladores-fisicos-en-cocos2d-x" title="Controladores físicos en Cocos2d-x">
     Controladores físicos en Cocos2d-x
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
+</ul>
 </nav>
-    
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="adaptacion_a_moviles.html" title="Adaptación a móviles" class="md-nav__link">
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="adaptacion_a_moviles.html" title="Adaptación a móviles">
       Adaptación a móviles
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="redes_sociales.html" title="Servicios y redes sociales para juegos" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="redes_sociales.html" title="Servicios y redes sociales para juegos">
       Servicios y redes sociales para juegos
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="unity.html" title="Motor Unity" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="unity.html" title="Motor Unity">
       Motor Unity
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="nativo.html" title="Tecnologías nativas" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="nativo.html" title="Tecnologías nativas">
       Tecnologías nativas
     </a>
-  </li>
-
-    
-  </ul>
+</li>
+</ul>
 </nav>
-                  </div>
-                </div>
-              </div>
-            
-            
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
 <nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#teclado-en-cocos2d-x" title="Teclado en Cocos2d-x" class="md-nav__link">
+<label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#teclado-en-cocos2d-x" title="Teclado en Cocos2d-x">
     Teclado en Cocos2d-x
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#pantalla-tactil" title="Pantalla táctil" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pantalla-tactil" title="Pantalla táctil">
     Pantalla táctil
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pantalla-tactil-en-cocos2d-x" title="Pantalla táctil en Cocos2d-x" class="md-nav__link">
+<nav class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pantalla-tactil-en-cocos2d-x" title="Pantalla táctil en Cocos2d-x">
     Pantalla táctil en Cocos2d-x
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#eventos-de-la-pantalla-tactil-en-cocos2d-x" title="Eventos de la pantalla táctil en Cocos2d-x" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#eventos-de-la-pantalla-tactil-en-cocos2d-x" title="Eventos de la pantalla táctil en Cocos2d-x">
     Eventos de la pantalla táctil en Cocos2d-x
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#prioridad-de-los-eventos" title="Prioridad de los eventos" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#prioridad-de-los-eventos" title="Prioridad de los eventos">
     Prioridad de los eventos
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#consumo-de-eventos" title="Consumo de eventos" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#consumo-de-eventos" title="Consumo de eventos">
     Consumo de eventos
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#nodo-objetivo-del-listener" title="Nodo objetivo del listener" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#nodo-objetivo-del-listener" title="Nodo objetivo del listener">
     Nodo objetivo del listener
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#pantalla-multitactil" title="Pantalla multitáctil" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pantalla-multitactil" title="Pantalla multitáctil">
     Pantalla multitáctil
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#acelerometro" title="Acelerómetro" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#acelerometro" title="Acelerómetro">
     Acelerómetro
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#mandos" title="Mandos" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mandos" title="Mandos">
     Mandos
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#buenas-practicas-para-juegos-basados-en-control-pad" title="Buenas prácticas para juegos basados en control pad" class="md-nav__link">
+<nav class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#buenas-practicas-para-juegos-basados-en-control-pad" title="Buenas prácticas para juegos basados en control pad">
     Buenas prácticas para juegos basados en control pad
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#mandos-virtuales" title="Mandos virtuales" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mandos-virtuales" title="Mandos virtuales">
     Mandos virtuales
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#controles-virtuales" title="Controles virtuales" class="md-nav__link">
+<nav class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#controles-virtuales" title="Controles virtuales">
     Controles virtuales
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#pad-virtual" title="Pad virtual" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pad-virtual" title="Pad virtual">
     Pad virtual
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#stick-virtual" title="Stick virtual" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stick-virtual" title="Stick virtual">
     Stick virtual
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#stick-virtual-con-posicionamiento-automatico" title="Stick virtual con posicionamiento automático" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stick-virtual-con-posicionamiento-automatico" title="Stick virtual con posicionamiento automático">
     Stick virtual con posicionamiento automático
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#mandos-fisicos" title="Mandos físicos" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mandos-fisicos" title="Mandos físicos">
     Mandos físicos
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tipos-de-mandos-fisicos" title="Tipos de mandos físicos" class="md-nav__link">
+<nav class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tipos-de-mandos-fisicos" title="Tipos de mandos físicos">
     Tipos de mandos físicos
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#controladores-fisicos-en-cocos2d-x" title="Controladores físicos en Cocos2d-x" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#controladores-fisicos-en-cocos2d-x" title="Controladores físicos en Cocos2d-x">
     Controladores físicos en Cocos2d-x
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
+</ul>
 </nav>
-                  </div>
-                </div>
-              </div>
-            
-          
-          <div class="md-content">
-            <article class="md-content__inner md-typeset">
-              
-                
-                
-                <h1 id="controles-del-videojuego">Controles del videojuego<a class="headerlink" href="#controles-del-videojuego" title="Permanent link">&para;</a></h1>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content">
+<article class="md-content__inner md-typeset"><a class="md-icon md-content__icon" download href="pdf/combined.pdf" title="PDF Export"></a>
+<h1 id="controles-del-videojuego">Controles del videojuego<a class="headerlink" href="#controles-del-videojuego" title="Permanent link">¶</a></h1>
 <p>La principal forma de control del móvil es la pantalla táctil, por lo que los videojuegos diseñados específicamente para móviles normalmente se adaptan a esta forma de entrada. Encontramos también algunos juegos diseñados para ser manejados mediante el acelerómetro. Sin embargo, cuando se quiere trasladar a móvil un juego diseñado originalmente para otro sistema en el que contamos con teclado, ratón o <em>joystick</em> deberemos adaptar su forma de manejo, ya que en la mayoría de casos no contamos con dichos mecanismos de entrada en móviles. </p>
 <p>Vamos a ver los diferentes mecanismos de entrada que podemos utilizar en los videojuegos para móviles, y una serie de buenas prácticas a la hora de implementar el control de estos videojuegos.</p>
-<h2 id="teclado-en-cocos2d-x">Teclado en Cocos2d-x<a class="headerlink" href="#teclado-en-cocos2d-x" title="Permanent link">&para;</a></h2>
+<h2 id="teclado-en-cocos2d-x">Teclado en Cocos2d-x<a class="headerlink" href="#teclado-en-cocos2d-x" title="Permanent link">¶</a></h2>
 <p>Cocos2d-x soporta eventos de teclado, pero éstos no funcionan en plataformas móviles. Aunque nuestro proyecto esté orientado exclusivamente a estas plataformas, si el control de nuestro juego se realiza mediante mando es recomendable que implementemos también la posibilidad de controlarlo mediante teclado. Esto será de gran utilidad durante el desarrollo, ya que no existe forma de emular un mando, y la forma más parecida al mando para manejar nuestro juego en las pruebas que hagamos durante el desarrollo es el control mediante teclado. </p>
 <p>Para leer los eventos de teclado desde Cocos2d-x podemos utilizar la clase <code>EventListenerKeyboard</code> como se muestra a continuación: </p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
@@ -747,7 +468,6 @@
 <span class="kt">void</span> <span class="n">MiEscena</span><span class="o">::</span><span class="n">onKeyUp</span><span class="p">(</span><span class="n">EventKeyboard</span><span class="o">::</span><span class="n">KeyCode</span> <span class="n">code</span><span class="p">,</span> <span class="n">Event</span> <span class="o">*</span><span class="n">event</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-
 <p>Por ejemplo, para reconocer los controles izquierda-derecha mediante las teclas A-D podríamos escribir los métodos <code>onKeyDown</code> y <code>onKeyUp</code> como se muestra a continuación:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
@@ -792,11 +512,10 @@
 <span class="p">}</span>  
 </pre></div>
 </td></tr></table>
-
-<h2 id="pantalla-tactil">Pantalla táctil<a class="headerlink" href="#pantalla-tactil" title="Permanent link">&para;</a></h2>
+<h2 id="pantalla-tactil">Pantalla táctil<a class="headerlink" href="#pantalla-tactil" title="Permanent link">¶</a></h2>
 <p>Como hemos comentado, es el mecanismo más habitual de entrada en los videojuegos para móviles. En muchos tipos de videojuegos esta es la forma de control más natural. Por ejemplo, tenemos <em>puzzles</em> en los que tenemos que interactuar con diferentes elementos del escenario tocando sobre ellos. También en el género <em>tower defense</em> resulta natural posicionar nuestras diferentes unidades tocando sobre la pantalla, o de forma más amplia en el género de la estrategia interactuar con nuestros recursos y unidades pulsando sobre ellos.</p>
 <p>La pantalla táctil tiene ciertas similitudes con el control mediante ratón, pudiendo trasladar muchos juegos que originalmente se controlaban mediante ratón a dispositivos táctiles. Sin embargo, debemos tener en cuenta algunas diferencias importantes. Los juegos en los que el ratón se utiliza para el control de la cámara y para apuntar deslizándolo (como es el caso fundamentalmente de los <em>First Person Shooters</em>), encontraremos una pérdida al pasarlos a la pantalla táctil, y no será trivial implementarlo de forma correcta. Sin embargo, aquellos en los que se utilice para seleccionar elementos mediante el puntero ganarán con la pantalla táctil, ya que será más rápido pulsar sobre estos elementos con el dedo que tener que deslizar el puntero del ratón. Además, tenemos que tener en cuenta una ventaja muy importante de la pantalla táctil sobre el ratón: es multitáctil. Esto quiere decir que podemos tener al mismo tiempo varios contactos en pantalla, cosa que con el ratón no es posible. Esto nos da un gran abanico de posibilidades a la hora de implementar el control en nuestros videojuegos.</p>
-<h3 id="pantalla-tactil-en-cocos2d-x">Pantalla táctil en Cocos2d-x<a class="headerlink" href="#pantalla-tactil-en-cocos2d-x" title="Permanent link">&para;</a></h3>
+<h3 id="pantalla-tactil-en-cocos2d-x">Pantalla táctil en Cocos2d-x<a class="headerlink" href="#pantalla-tactil-en-cocos2d-x" title="Permanent link">¶</a></h3>
 <p>Vamos a ver la forma de implementar este mecanismo de control en Cocos2d-x. Para la detección de eventos de la pantalla táctil crearemos un <em>listener</em> de tipo <code>EventListenerTouch</code>:</p>
 <p>Encontramos dos variantes:</p>
 <ul>
@@ -807,8 +526,7 @@
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">auto</span> <span class="n">listener</span> <span class="o">=</span> <span class="n">EventListenerTouchOneByOne</span><span class="o">::</span><span class="n">create</span><span class="p">();</span>
 </pre></div>
 </td></tr></table>
-
-<h3 id="eventos-de-la-pantalla-tactil-en-cocos2d-x">Eventos de la pantalla táctil en Cocos2d-x<a class="headerlink" href="#eventos-de-la-pantalla-tactil-en-cocos2d-x" title="Permanent link">&para;</a></h3>
+<h3 id="eventos-de-la-pantalla-tactil-en-cocos2d-x">Eventos de la pantalla táctil en Cocos2d-x<a class="headerlink" href="#eventos-de-la-pantalla-tactil-en-cocos2d-x" title="Permanent link">¶</a></h3>
 <p>Hablaremos de un <strong>gesto</strong> táctil para referirnos a la secuencia que consiste en tocar sobre la pantalla, deslizar el dedo, y levantarlo de la pantalla. Durante el gesto se producirán tres tipos de eventos:</p>
 <ul>
 <li><code>onTouchBegan</code>: Evento de comienzo de un gesto. En este evento podemos decidir si queremos procesar el resto del gesto o no. En caso de no estar interesados en este gesto ya no recibiremos ningún evento más del mismo (ni de movimiento ni de finalización).</li>
@@ -816,7 +534,7 @@
 <li><code>onTouchEnded</code>: Evento de finalización del gesto. Al levantar el dedo de la pantalla el gesto finalizará. </li>
 </ul>
 <p>Podemos indicar <em>callbacks</em> para estos eventos mediante funciones <em>lambda</em>, o utilizandos la macro <code>CC_CALLBACK_2</code>. </p>
-<p>Comenzamos con el evento de comienzo del gesto. La función <em>callback</em> deberá devolver un <em>booleano</em> indicando si estamos interesados en el gesto o no. Por ejemplo, podemos considerar que nos interesa el gesto si hemos pulsado sobre un determinado <em>sprite</em>, y que no nos interesa en caso contrario.<br />
+<p>Comenzamos con el evento de comienzo del gesto. La función <em>callback</em> deberá devolver un <em>booleano</em> indicando si estamos interesados en el gesto o no. Por ejemplo, podemos considerar que nos interesa el gesto si hemos pulsado sobre un determinado <em>sprite</em>, y que no nos interesa en caso contrario.<br/>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
@@ -848,27 +566,24 @@
 <span class="p">};</span>
 </pre></div>
 </td></tr></table>
-
-<h3 id="prioridad-de-los-eventos">Prioridad de los eventos<a class="headerlink" href="#prioridad-de-los-eventos" title="Permanent link">&para;</a></h3>
+<h3 id="prioridad-de-los-eventos">Prioridad de los eventos<a class="headerlink" href="#prioridad-de-los-eventos" title="Permanent link">¶</a></h3>
 <p>Una vez definidos los eventos, añadimos el <em>listener</em> a la escena:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">m_node</span><span class="o">-&gt;</span><span class="n">getEventDispatcher</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">addEventListenerWithSceneGraphPriority</span><span class="p">(</span><span class="n">listener</span><span class="p">,</span> <span class="n">m_sprite</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>En este caso <code>m_node</code> sería el nodo principal que contiene nuestra escena, y <code>m_sprite</code> el nodo que queremos que actúe como objetivo (<em>target</em>) de nuestro <em>listener</em>. </p>
 <p>Podemos añadir el <em>listener</em>  con dos sistemas de prioridad distintos:</p>
 <ul>
 <li><strong>Prioridad de grafo de la escena</strong>: La prioridad en la que se ejecutan los diferentes <em>listeners</em> viene determinada por el orden de los nodos en el grafo de la escena. El nodo que pasamos como <em>target</em> al añadir el <em>listener</em> será el que determine dicha prioridad. Se ejecutarán antes los eventos definidos sobre nodos que queden delante de otros en la pantalla (es decir, primero aquellos que tengan mayor Z). </li>
 <li><strong>Prioridad fija</strong>: En este caso la prioridad se especifica mediante un valor fijo al añadir el <em>listener</em>.</li>
 </ul>
-<h3 id="consumo-de-eventos">Consumo de eventos<a class="headerlink" href="#consumo-de-eventos" title="Permanent link">&para;</a></h3>
+<h3 id="consumo-de-eventos">Consumo de eventos<a class="headerlink" href="#consumo-de-eventos" title="Permanent link">¶</a></h3>
 <p>Al crear un <em>listener</em> podemos indicar que consuma los eventos:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">listener</span><span class="o">-&gt;</span><span class="n">setSwallowTouches</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>Si hacemos esto, en caso de que nuestro <em>listener</em> devuelva <code>true</code> en <code>onTouchBegan</code> consumirá el evento y éste no pasará a otros <em>listeners</em> de menor prioridad. En caso contrario, el evento se propagará al siguiente <em>listener</em></p>
-<h3 id="nodo-objetivo-del-listener">Nodo objetivo del <em>listener</em><a class="headerlink" href="#nodo-objetivo-del-listener" title="Permanent link">&para;</a></h3>
+<h3 id="nodo-objetivo-del-listener">Nodo objetivo del <em>listener</em><a class="headerlink" href="#nodo-objetivo-del-listener" title="Permanent link">¶</a></h3>
 <p>Hemos visto que al utilizar prioridad basada en el grafo de la escena cada <em>listener</em> tiene un nodo objetivo. Podemos aprovechar esto para utilizar dicho nodo como nodo sobre el que estamos interesados en pulsar:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
@@ -899,27 +614,23 @@
 <span class="p">};</span>
 </pre></div>
 </td></tr></table>
-
 <p>Con <code>Event::getCurrentTarget</code> podemos obtener el nodo que actúa de <em>target</em>. Podemos convertir las coordenadas globales del <em>touch</em> a coordenadas locales del nodo <em>target</em>, y en caso de estar dentro del área que ocupa dicho nodo entonces devolvemos <code>true</code> para seguir procesando eventos de este gesto. De esta forma podemos hacer por ejemplo que al pulsar sobre nuestro <em>sprite</em> podamos arrastrarlo por la pantalla, mientras que si pulsamos fuera este <em>listener</em> no hará nada. </p>
-<h3 id="pantalla-multitactil">Pantalla multitáctil<a class="headerlink" href="#pantalla-multitactil" title="Permanent link">&para;</a></h3>
+<h3 id="pantalla-multitactil">Pantalla multitáctil<a class="headerlink" href="#pantalla-multitactil" title="Permanent link">¶</a></h3>
 <p>Cocos2d-x soporta pantalla multitáctil, pero por defecto se encuentra deshabilitada en iOS. Para habilitar el soporte para recibir varios contactos simultáneos en esta plataforma, deberemos abrir el fichero <code>AppController.mm</code> y localizar la siguiente línea:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span><span class="n">eaglView</span> <span class="nl">setMultipleTouchEnabled</span><span class="p">:</span><span class="nb">NO</span><span class="p">];</span>
 </pre></div>
 </td></tr></table>
-
 <p>La modificaremos de forma que si que esté habilitado el soporte para múltiples contactos:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">[</span><span class="n">eaglView</span> <span class="nl">setMultipleTouchEnabled</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
 </pre></div>
 </td></tr></table>
-
 <p>En Android no será necesario que hagamos nada, el soporte para pantalla multitáctil está habilitado por defecto.</p>
-<h2 id="acelerometro">Acelerómetro<a class="headerlink" href="#acelerometro" title="Permanent link">&para;</a></h2>
+<h2 id="acelerometro">Acelerómetro<a class="headerlink" href="#acelerometro" title="Permanent link">¶</a></h2>
 <p>Encontramos también algunos juegos en los que el mecanismo de control más natural es el uso del acelerómetro. Por ejemplo juegos que cambian la gravedad en la escena según la inclinación del móvil, como es el caso de los juegos en los que manejamos una bola a través de un laberinto, o juegos de conducción en los que la inclinación del móvil hace de volante. </p>
 <p>En Cocos2d-x implementaremos soporte para el acelerómetro mediante un <em>listener</em> de tipo <code>EventListenerAcceleration</code>. Para que este <em>listener</em> funcione, en primer lugar deberemos activar el uso del acelerómetro:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">Device</span><span class="o">::</span><span class="n">setAccelerometerEnabled</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>Una vez hecho esto, creamos el <em>listener</em> especificando directamente un <em>callback</em> mediante una función <em>lambda</em>:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -928,12 +639,10 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-
 <p>También podemos utilizar la macro <code>CC_CALLBACK_2</code>:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">auto</span> <span class="n">listener</span> <span class="o">=</span> <span class="n">EventListenerAcceleration</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="n">CC_CALLBACK_2</span><span class="p">(</span><span class="n">Game</span><span class="o">::</span><span class="n">onAcceleration</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span>
 </pre></div>
 </td></tr></table>
-
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
@@ -943,14 +652,12 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-
 <p>Por último, añadiremos el <em>listener</em> al gestor de eventos de la escena:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">m_node</span><span class="o">-&gt;</span><span class="n">getEventDispatcher</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">addEventListenerWithSceneGraphPriority</span><span class="p">(</span><span class="n">listener</span><span class="p">,</span> <span class="n">m_node</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>Es importante tener en cuenta que en los juegos que se manejen mediante acelerómetro, al no ser necesario tocar la pantalla, no debemos permitir que esta se apague de forma automática por inactividad. Esto no se puede hacer directamente con Cocos2d-x, sino que tendremos que especificarlo de forma nativa para cada plataforma.</p>
-<h2 id="mandos">Mandos<a class="headerlink" href="#mandos" title="Permanent link">&para;</a></h2>
+<h2 id="mandos">Mandos<a class="headerlink" href="#mandos" title="Permanent link">¶</a></h2>
 <p>Los juegos diseñados para videoconsolas o máquinas recreativas se manejan normalmente mediante <em>joystick</em> o <em>pad</em>. Al portar uno de estos juegos a móvil podemos optar por:</p>
 <ul>
 <li>Adaptar el control de videojuego a pantalla táctil. Esto implica grandes cambios en el diseño del juego y en el <em>gameplay</em> y no siempre es posible hacerlo.</li>
@@ -958,7 +665,7 @@
 <li>Añadir soporte para mandos físicos. Nos permitirá trasladar la misma experiencia de juego que la versión de videoconsola/recreativa pero necesita que el usuario cuente con este dispositivo. Se pierde una de las ventajas de los juegos móviles, que es el llevarlos siempre con nosotros.  </li>
 </ul>
 <p>Vamos ahora a centrarnos en este tipo de juegos y en la forma de diseñar un control adecuado para ellos. Veremos tanto la forma de incorporar un <em>pad</em> virtual como la forma de añadir soporte para diferentes tipos de mandos físicos. Dentro de estos mandos encontramos tanto mandos soportados por las APIs oficiales de iOS y Android, como mandos con APIs de terceros, como por ejemplo iCade.</p>
-<h3 id="buenas-practicas-para-juegos-basados-en-control-pad">Buenas prácticas para juegos basados en <em>control pad</em><a class="headerlink" href="#buenas-practicas-para-juegos-basados-en-control-pad" title="Permanent link">&para;</a></h3>
+<h3 id="buenas-practicas-para-juegos-basados-en-control-pad">Buenas prácticas para juegos basados en <em>control pad</em><a class="headerlink" href="#buenas-practicas-para-juegos-basados-en-control-pad" title="Permanent link">¶</a></h3>
 <p>Si queremos implementar un juego cuyo manejo esté basado en <em>control pad</em>, será recomendable seguir las siguientes prácticas:</p>
 <ul>
 <li>Permitir el manejo del juego mediante <em>pad</em> virtual en pantalla si no se dispone de mando real.</li>
@@ -967,10 +674,10 @@
 <li>Respetaremos la función estándar de cada botón. El botón de <em>pausa</em> del mando debe permitir pausar el juego en cualquier momento. Determinados botones se suelen utilizar para realizar las mismas acciones en todos los juegos (saltos, ataque, acción, etc). Deberemos intentar seguir estas convenciones.</li>
 <li>La pantalla del móvil no debe apagarse mientras utilizamos el juego con el mando externo.</li>
 </ul>
-<h2 id="mandos-virtuales">Mandos virtuales<a class="headerlink" href="#mandos-virtuales" title="Permanent link">&para;</a></h2>
+<h2 id="mandos-virtuales">Mandos virtuales<a class="headerlink" href="#mandos-virtuales" title="Permanent link">¶</a></h2>
 <p>Cuando la mecanica de nuestro juego exige que se controles mediante un mando tradicional, y no contamos con ningún mando <em>hardware</em> que podamos utilizar, la única solución será introducir en nuestro juego un mando virtual en pantalla. </p>
 <p>Vamos a ver diferentes tipos de mandos que podemos implementar en pantalla, emulando controles tanto digitales como analógicos.</p>
-<h3 id="controles-virtuales">Controles virtuales<a class="headerlink" href="#controles-virtuales" title="Permanent link">&para;</a></h3>
+<h3 id="controles-virtuales">Controles virtuales<a class="headerlink" href="#controles-virtuales" title="Permanent link">¶</a></h3>
 <p>Antes de implementar un mecanismo de control concreto, es conveniente generar una estructura de clases que haga de fachada y nos permita implementar el control del videojuego de forma genérica, sin hacer referencia expresa al teclado, mandos físicos, o mandos virtuales. </p>
 <p>En esta sección proponemos un sistema de control virtual basado en herencia. Implementaremos una clase <code>VirtualControls</code> que nos dará la información necesaria para leer los controles que necesite nuestro videojuego. Por ejemplo, si necesitamos un <em>joystick</em> analógico con dos ejes (horizontal y vertical) y tres botones digitales, nuestra clase nos dará información sobre estos controles virtuales, sin determinar qué mecanismo concreto se utiliza para implementarlos. Esto será responsabilidad de las subclases de <code>VirtualControls</code>, que serán las que implementen el mapeo entre un mecanismo de control concreto y los controles virtuales definidos en <code>VirtualControls</code>. De esta forma, simplemente cambiando la subclase de <code>VirtualControls</code> que instanciamos podremos cambiar la forma de controlar el videojuego.</p>
 <p>Vamos a ver un ejemplo de implementación de sistema genérico de control. En primer lugar definiremos los botones y ejes virtuales que necesitamos reconocer en el videojuego:</p>
@@ -1001,7 +708,6 @@
 <span class="p">};</span>
 </pre></div>
 </td></tr></table>
-
 <p>En este caso hemos definido tres botones (acción, izquierda y derecha), y dos ejes (horizontal y vertical), aunque podríamos adaptar esto a las necesidades de cada juego. Indicamos mediante constantes el número de botones y ejes, e identificamos cada uno mediante elementos mediante enumeraciones.</p>
 <p>Los <strong>botones</strong> tendrán como estado un <em>booleano</em> (pulsado o no pulsado), mientras que los <strong>ejes</strong> tendrán como valor un valor de tipo <em>float</em> entre -1 y 1 (palanca totalmente inclinada en un sentido o en el contrario), y valdrá 0 si está en reposo. </p>
 <p>Mostramos a continuación la estructura completa que podría tener la clase que implemente el <em>control virtual</em>:</p>
@@ -1060,7 +766,6 @@
 <span class="p">};</span>
 </pre></div>
 </td></tr></table>
-
 <p>Como vemos, la clase controla el estado de los botones (pulsados o sin pulsar) y el de los ejes, que oscilará entre <code>-1</code> (totalmente a la izquierda) y <code>1</code> (totalmente a la derecha). Deberemos poder leer el estado de estos controles virtuales en cualquier momento. Para ello hemos incorporado las propiedades <code>buttonState</code> y <code>axisState</code>, en las que almacenamos este estado, y proporcionamos los métodos <code>isButtonPressed</code> y <code>getAxis</code> para consultarlos.</p>
 <p>Definimos también los eventos <code>onButtonPressed</code> y <code>onButtonReleased</code> para los cuales podremos definir <em>callbacks</em>. De esta forma podremos tener constancia de que un botón ha sido pulsado o soltado, sin tener que comprobar continuamente su estado.</p>
 <p>Además, incluimos la posibilidad de devolver un nodo (método <code>getNode</code>) que nos permita pintar controles virtuales en pantalla (de momento estará vacío), y también un método para cargar los recursos necesarios para pintar estos controles (<code>preloadResources</code>). Estos métodos se definirán en las subclases de <code>VirtualControls</code>.</p>
@@ -1088,7 +793,6 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-
 <p>También será necesario definir los métodos para poder leer el estado de los controles (botones y ejes):</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -1105,7 +809,6 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-
 <p>De momento sólo hemos definido en esta clase los controles que se utilizarán en el juego y lo métodos para consultarlos, pero de momento no se ha establecido la forma de darles valor a estos controles. Esto es algo que deberá implementar cada subclase concreta. Sin embargo, para depuración puede ser conveniente poder activar al control por teclado.</p>
 <p>Vamos a hacer que la clase base implemente controles de teclado para depuración. En primer lugar actualizamos la definición de la clase <code>VirtualControls</code>. Añadimos a ella los <em>callbacks</em> necesarios para recibir los controles de teclado, y un método para activar el control por teclado en nuestro juego (<code>addKeyboardListeners</code>):</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
@@ -1133,7 +836,6 @@
 <span class="p">};</span>
 </pre></div>
 </td></tr></table>
-
 <p>A continuación, en la implementación de la clase introducimos el código de los <em>callbacks</em> de los eventos de teclado: las teclas <em>Cursor Izquierda</em> y <em>Cursor Derecha</em> modificarán el valor del eje horizontal (al mismo tiempo que el estado de los botones <code>BUTTON_LEFT</code> y <code>BUTTON_RIGHT</code>), y la tecla espacio modificará el estado del botón <code>BUTTON_ACTION</code>:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
@@ -1218,7 +920,6 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-
 <p>De esta forma mapeamos la lectura del teclado sobre nuestro sistema de control virtual. Debemos añadir también un método que cree el <em>listener</em> necesario para escuchar los eventos de teclado, y programarlo para que avise a los <em>callbacks</em> definidos anteriormente. Esto lo podemos hacer de la siguiente forma:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
@@ -1243,7 +944,6 @@
        <span class="o">-&gt;</span><span class="n">addEventListenerWithSceneGraphPriority</span><span class="p">(</span><span class="n">listener</span><span class="p">,</span> <span class="n">node</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>Mostramos a continuación el código completo de la clase <code>VirtualControls</code>:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>  1
   2
@@ -1492,9 +1192,8 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-
 <p>A continuación veremos cómo crear subclases de <code>VirtualControls</code> que nos permitan implementar formar alternativas de control, con un mando dibujado sobre pantalla. Además de incorporar un mando virtual en pantalla, podremos aprovechar esta estructura de clases para implementar otros mecanismos de control alternativos como acelerómetro o mandos físicos.</p>
-<h3 id="pad-virtual">Pad virtual<a class="headerlink" href="#pad-virtual" title="Permanent link">&para;</a></h3>
+<h3 id="pad-virtual">Pad virtual<a class="headerlink" href="#pad-virtual" title="Permanent link">¶</a></h3>
 <p>El <em>pad</em> virtual consiste en dibujar la cruceta de control digital sobre la pantalla y mediante los eventos de la pantalla táctil detectar cuándo se pulsa sobre él. Esta es la forma más sencilla de implementar un control virtual, y será suficiente en el caso de juegos que sólo requieran controles digitales.</p>
 <p>Aprovecharemos la clase <code>VirtualControls</code> introducida en el apartado anterior, y crearemos una subclase que lea la entrada a partir de un <em>pad</em> virtual en pantalla, y mapee dicha entrada sobre los eventos de control virtuales genéricos definidos en la <code>VirtualControls</code> (ejes horizontal y vertical y estado de los botones).</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
@@ -1524,7 +1223,6 @@
 <span class="p">};</span>
 </pre></div>
 </td></tr></table>
-
 <p>Crearemos los diferentes botones del <em>pad</em> virtual como <em>sprites</em>, los posicionaremos en pantalla, y programaremos los eventos necesarios para detectar cuándo pulsamos sobre ellos. Vamos a ver un ejemplo sencillo con tres botones, un <em>pad</em> direccional con botones para movernos a la izquierda y derecha, y un botón de acción:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -1537,7 +1235,6 @@
     <span class="p">...</span>
 </pre></div>
 </td></tr></table>
-
 <p>Además, añadimos un <em>listener</em> para leer los eventos de la pantalla táctil que se produzcan sobre los controles anteriores: </p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -1546,7 +1243,6 @@
     <span class="n">cocos2d</span><span class="o">::</span><span class="n">EventListenerTouchOneByOne</span> <span class="o">*</span><span class="n">m_listener</span><span class="p">;</span>
 </pre></div>
 </td></tr></table>
-
 <p>Vamos a pasar ahora a ver la implementación de la clase <code>VirtualPad</code>. En primer lugar, podemos proporcionar un método para cargar los recursos necesarios para dibujar el mando en pantalla. Podemos cargarlos desde un <em>sprite sheet</em>:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
@@ -1563,13 +1259,12 @@
     <span class="k">auto</span> <span class="n">spriteFrameCache</span> <span class="o">=</span> <span class="n">SpriteFrameCache</span><span class="o">::</span><span class="n">getInstance</span><span class="p">();</span>
 
     <span class="c1">//Si no estaba el spritesheet en la caché lo cargo</span>
-    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">spriteFrameCache</span><span class="o">-&gt;</span><span class="n">getSpriteFrameByName</span><span class="p">(</span><span class="s">&quot;boton-direccion.png&quot;</span><span class="p">))</span> <span class="p">{</span>
-        <span class="n">spriteFrameCache</span><span class="o">-&gt;</span><span class="n">addSpriteFramesWithFile</span><span class="p">(</span><span class="s">&quot;mando.plist&quot;</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">spriteFrameCache</span><span class="o">-&gt;</span><span class="n">getSpriteFrameByName</span><span class="p">(</span><span class="s">"boton-direccion.png"</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">spriteFrameCache</span><span class="o">-&gt;</span><span class="n">addSpriteFramesWithFile</span><span class="p">(</span><span class="s">"mando.plist"</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-
 <p>A continuación vamos a ver cómo crear la interfaz del <em>pad</em> virtual en pantalla, posicionando de forma correcta los gráficos que hemos cargado y añadiendo los correspondiente <em>listeners</em> de pantalla táctil sobre ellos. Algo que debemos tener en cuenta al posicionar los controles es que éstos siempre deben quedar en la parte visible de la pantalla. Por ejemplo, al inicializar nuestro <em>pad</em> virtual podemos posicionar los botones de la siguiente forma:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
@@ -1597,13 +1292,13 @@
 24</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">Size</span> <span class="n">visibleSize</span> <span class="o">=</span> <span class="n">Director</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getVisibleSize</span><span class="p">();</span>
 <span class="n">Vec2</span> <span class="n">visibleOrigin</span> <span class="o">=</span> <span class="n">Director</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getVisibleOrigin</span><span class="p">();</span>
 
-<span class="n">m_buttonLeft</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">&quot;boton-direccion.png&quot;</span><span class="p">);</span>
+<span class="n">m_buttonLeft</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">"boton-direccion.png"</span><span class="p">);</span>
 <span class="n">m_buttonLeft</span><span class="o">-&gt;</span><span class="n">setAnchorPoint</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
 <span class="n">m_buttonLeft</span><span class="o">-&gt;</span><span class="n">setPosition</span><span class="p">(</span><span class="n">visibleOrigin</span><span class="p">.</span><span class="n">x</span><span class="o">+</span><span class="n">kPAD_MARGIN</span><span class="p">,</span> <span class="n">visibleOrigin</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="n">kPAD_MARGIN</span><span class="p">);</span>
 <span class="n">m_buttonLeft</span><span class="o">-&gt;</span><span class="n">setOpacity</span><span class="p">(</span><span class="mi">127</span><span class="p">);</span>
 <span class="n">m_buttonLeft</span><span class="o">-&gt;</span><span class="n">setTag</span><span class="p">(</span><span class="n">Button</span><span class="o">::</span><span class="n">BUTTON_LEFT</span><span class="p">);</span>
 
-<span class="n">m_buttonRight</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">&quot;boton-direccion.png&quot;</span><span class="p">);</span>
+<span class="n">m_buttonRight</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">"boton-direccion.png"</span><span class="p">);</span>
 <span class="n">m_buttonRight</span><span class="o">-&gt;</span><span class="n">setAnchorPoint</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
 <span class="n">m_buttonRight</span><span class="o">-&gt;</span><span class="n">setScaleX</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
 <span class="n">m_buttonRight</span><span class="o">-&gt;</span><span class="n">setOpacity</span><span class="p">(</span><span class="mi">127</span><span class="p">);</span>
@@ -1612,7 +1307,7 @@
                            <span class="n">kPAD_MARGIN</span><span class="p">,</span> <span class="n">visibleOrigin</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="n">kPAD_MARGIN</span><span class="p">);</span>
 <span class="n">m_buttonRight</span><span class="o">-&gt;</span><span class="n">setTag</span><span class="p">(</span><span class="n">Button</span><span class="o">::</span><span class="n">BUTTON_RIGHT</span><span class="p">);</span>
 
-<span class="n">m_buttonAction</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">&quot;boton-accion.png&quot;</span><span class="p">);</span>
+<span class="n">m_buttonAction</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">"boton-accion.png"</span><span class="p">);</span>
 <span class="n">m_buttonAction</span><span class="o">-&gt;</span><span class="n">setAnchorPoint</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
 <span class="n">m_buttonAction</span><span class="o">-&gt;</span><span class="n">setPosition</span><span class="p">(</span><span class="n">visibleOrigin</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">visibleSize</span><span class="p">.</span><span class="n">width</span> <span class="o">-</span> <span class="n">kPAD_MARGIN</span><span class="p">,</span> 
                             <span class="n">visibleOrigin</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="n">kPAD_MARGIN</span><span class="p">);</span>
@@ -1620,9 +1315,8 @@
 <span class="n">m_buttonAction</span><span class="o">-&gt;</span><span class="n">setTag</span><span class="p">(</span><span class="n">Button</span><span class="o">::</span><span class="n">BUTTON_ACTION</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>En este ejemplo vemos además que hacemos los botones <strong>semitransparentes</strong>. Esta es una práctica habitual, que hará que los botones virtuales afecten menos al apartado visual de nuestro videojuego.</p>
-<p><img alt="Pad virtual" src="imagenes/mandos/virtual-pad.png" /></p>
+<p><img alt="Pad virtual" src="imagenes/mandos/virtual-pad.png"/></p>
 <p>También podemos observar que hemos aprovechado la propiedad <em>tag</em> de los botones para identificarlos mediante los elementos de la enumeración <code>Button</code>. Veremos que esto será de especial interés cuando procesemos los eventos, para saber a qué botón virtual corresponde cada botón en pantalla.</p>
 <p>Una vez hemos creado los <em>sprites</em> de los botones los añadiremos a la pantalla:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
@@ -1636,14 +1330,12 @@
 <span class="n">m_node</span><span class="o">-&gt;</span><span class="n">setLocalZOrder</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>Tras esto, debemos definir un <em>listener</em> de eventos táctiles para detectar cuándo pulsamos sobre ellos: </p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">m_listener</span> <span class="o">=</span> <span class="n">EventListenerTouchOneByOne</span><span class="o">::</span><span class="n">create</span><span class="p">();</span>
 <span class="n">m_listener</span><span class="o">-&gt;</span><span class="n">setSwallowTouches</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>Aprovecharemos las funciones <code>onButttonPressed</code> y <code>onButtonReleased</code> definidas en la superclase <code>VirtualControls</code> para avisar al <em>callback</em> que tuviesen asignado (si hubiese alguno) de que un botón ha sido pulsado o liberado, y actualizaremos también el estado de los botones (<code>buttonState</code>).</p>
 <p>Empezamos detectando cuando comienza un contacto en pantalla. Si se ha pulsado sobre unos de los botones, lo marcaremos como <em>pulsado</em> y llamamos a los <em>callbacks</em> correspondientes (si no son <code>NULL</code>):</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
@@ -1689,7 +1381,6 @@
 <span class="p">};</span>
 </pre></div>
 </td></tr></table>
-
 <p>En este caso <code>target</code> se refiere al botón sobre el que se ha definido el <em>listener</em>. Comprobamos si hemos pulsado sobre el área del botón (<code>target</code>) y en tal caso anotamos que dicho botón está pulsado y avisamos al <em>callback</em> correspondiente, en caso de que se haya asignado uno.</p>
 <p>De forma similar podemos programar el evento de finalización del contacto, y en ese caso marcamos el botón como <em>no pulsado</em> y llamamos al <em>callback</em> correspondiente:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
@@ -1713,7 +1404,6 @@
 <span class="p">};</span>
 </pre></div>
 </td></tr></table>
-
 <p>Obtenemos el botón (<code>target</code>) sobre el que se ha definido el <em>listener</em> y anotamos que el botón ya no está pulsado, además de llamar al <em>callback</em> correspondiente en caso de estar asignado.</p>
 <p>Por último, añadiremos el <em>listener</em> sobre cada uno de los botones. Podemos observar que hay una instancia del <em>listener</em> para cada botón, con lo que en cada uno de ellos el <code>target</code> será un único botón concreto:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
@@ -1723,7 +1413,6 @@
 <span class="n">m_node</span><span class="o">-&gt;</span><span class="n">getEventDispatcher</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">addEventListenerWithSceneGraphPriority</span><span class="p">(</span><span class="n">m_listener</span><span class="o">-&gt;</span><span class="n">clone</span><span class="p">(),</span> <span class="n">m_buttonAction</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>Mostramos a continuación el código completo de esta implementación sencilla de un <em>pad</em> virtual:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>  1
   2
@@ -1881,8 +1570,8 @@
     <span class="k">auto</span> <span class="n">spriteFrameCache</span> <span class="o">=</span> <span class="n">SpriteFrameCache</span><span class="o">::</span><span class="n">getInstance</span><span class="p">();</span>
 
     <span class="c1">//Si no estaba el spritesheet en la caché lo cargo</span>
-    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">spriteFrameCache</span><span class="o">-&gt;</span><span class="n">getSpriteFrameByName</span><span class="p">(</span><span class="s">&quot;boton-direccion.png&quot;</span><span class="p">))</span> <span class="p">{</span>
-        <span class="n">spriteFrameCache</span><span class="o">-&gt;</span><span class="n">addSpriteFramesWithFile</span><span class="p">(</span><span class="s">&quot;mando.plist&quot;</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">spriteFrameCache</span><span class="o">-&gt;</span><span class="n">getSpriteFrameByName</span><span class="p">(</span><span class="s">"boton-direccion.png"</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">spriteFrameCache</span><span class="o">-&gt;</span><span class="n">addSpriteFramesWithFile</span><span class="p">(</span><span class="s">"mando.plist"</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
@@ -1892,14 +1581,14 @@
         <span class="n">Size</span> <span class="n">visibleSize</span> <span class="o">=</span> <span class="n">Director</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getVisibleSize</span><span class="p">();</span>
         <span class="n">Vec2</span> <span class="n">visibleOrigin</span> <span class="o">=</span> <span class="n">Director</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getVisibleOrigin</span><span class="p">();</span>
 
-        <span class="n">m_buttonLeft</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">&quot;boton-direccion.png&quot;</span><span class="p">);</span>
+        <span class="n">m_buttonLeft</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">"boton-direccion.png"</span><span class="p">);</span>
         <span class="n">m_buttonLeft</span><span class="o">-&gt;</span><span class="n">setAnchorPoint</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
         <span class="n">m_buttonLeft</span><span class="o">-&gt;</span><span class="n">setPosition</span><span class="p">(</span><span class="n">visibleOrigin</span><span class="p">.</span><span class="n">x</span><span class="o">+</span><span class="n">kPAD_MARGIN</span><span class="p">,</span> 
                                   <span class="n">visibleOrigin</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="n">kPAD_MARGIN</span><span class="p">);</span>
         <span class="n">m_buttonLeft</span><span class="o">-&gt;</span><span class="n">setOpacity</span><span class="p">(</span><span class="mi">127</span><span class="p">);</span>
         <span class="n">m_buttonLeft</span><span class="o">-&gt;</span><span class="n">setTag</span><span class="p">(</span><span class="n">Button</span><span class="o">::</span><span class="n">BUTTON_LEFT</span><span class="p">);</span>
 
-        <span class="n">m_buttonRight</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">&quot;boton-direccion.png&quot;</span><span class="p">);</span>
+        <span class="n">m_buttonRight</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">"boton-direccion.png"</span><span class="p">);</span>
         <span class="n">m_buttonRight</span><span class="o">-&gt;</span><span class="n">setAnchorPoint</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
         <span class="n">m_buttonRight</span><span class="o">-&gt;</span><span class="n">setScaleX</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
         <span class="n">m_buttonRight</span><span class="o">-&gt;</span><span class="n">setOpacity</span><span class="p">(</span><span class="mi">127</span><span class="p">);</span>
@@ -1908,7 +1597,7 @@
                                    <span class="n">kPAD_MARGIN</span><span class="p">,</span> <span class="n">visibleOrigin</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="n">kPAD_MARGIN</span><span class="p">);</span>
         <span class="n">m_buttonRight</span><span class="o">-&gt;</span><span class="n">setTag</span><span class="p">(</span><span class="n">Button</span><span class="o">::</span><span class="n">BUTTON_RIGHT</span><span class="p">);</span>
 
-        <span class="n">m_buttonAction</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">&quot;boton-accion.png&quot;</span><span class="p">);</span>
+        <span class="n">m_buttonAction</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">"boton-accion.png"</span><span class="p">);</span>
         <span class="n">m_buttonAction</span><span class="o">-&gt;</span><span class="n">setAnchorPoint</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
         <span class="n">m_buttonAction</span><span class="o">-&gt;</span><span class="n">setPosition</span><span class="p">(</span><span class="n">visibleOrigin</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">visibleSize</span><span class="p">.</span><span class="n">width</span> <span class="o">-</span> 
                                     <span class="n">kPAD_MARGIN</span><span class="p">,</span> <span class="n">visibleOrigin</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="n">kPAD_MARGIN</span><span class="p">);</span>
@@ -1966,8 +1655,7 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-
-<h3 id="stick-virtual">Stick virtual<a class="headerlink" href="#stick-virtual" title="Permanent link">&para;</a></h3>
+<h3 id="stick-virtual">Stick virtual<a class="headerlink" href="#stick-virtual" title="Permanent link">¶</a></h3>
 <p>El <em>stick</em> virtual emula el <em>stick</em> analógico de un mando. Podremos pulsar sobre él y arrastrar para así graduar cuánto queremos moverlo en una determinada dirección. En el caso del <em>pad</em> por ejemplo la dirección izquierda puede estar pulsada o no estarlo. En el <em>stick</em> podemos moverlo más o menos a la izquierda. Podremos leer el estado del <em>stick</em> analógico a partir del valor de sus ejes vertical y horizontal, que tomarán valores reales entre <code>-1</code> y <code>1</code>.</p>
 <p>Para crear el aspecto visual de nuestro <em>stick</em> analógico utilizaremos dos <em>sprites</em>, uno para la base, que no se moverá nunca, y otro para la "palanca", que se desplazará conforme la arrastremos:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
@@ -1977,7 +1665,6 @@
     <span class="n">cocos2d</span><span class="o">::</span><span class="n">Sprite</span> <span class="o">*</span><span class="n">m_stickLeftBase</span><span class="p">;</span>
 </pre></div>
 </td></tr></table>
-
 <p>Además, para facilitar la gestión del <em>stick</em> almacenaremos su posición central y el radio en el que puede moverse:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -1990,7 +1677,6 @@
     <span class="n">cocos2d</span><span class="o">::</span><span class="n">Point</span> <span class="n">m_centerStick</span><span class="p">;</span>
 </pre></div>
 </td></tr></table>
-
 <p>Una vez definidas estas propiedades de la clase de nuestro <em>stick</em> vamos a pasar a implementar el código. Inicializaremos los <em>sprites</em> que componen el <em>stick</em> de la siguiente forma:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
@@ -2009,12 +1695,12 @@
 15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">Size</span> <span class="n">visibleSize</span> <span class="o">=</span> <span class="n">Director</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getVisibleSize</span><span class="p">();</span>
 <span class="n">Vec2</span> <span class="n">visibleOrigin</span> <span class="o">=</span> <span class="n">Director</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getVisibleOrigin</span><span class="p">();</span>
 
-<span class="n">m_stickLeftBase</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">&quot;base-stick.png&quot;</span><span class="p">);</span>
+<span class="n">m_stickLeftBase</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">"base-stick.png"</span><span class="p">);</span>
 <span class="n">m_stickLeftBase</span><span class="o">-&gt;</span><span class="n">setAnchorPoint</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
 <span class="n">m_stickLeftBase</span><span class="o">-&gt;</span><span class="n">setPosition</span><span class="p">(</span><span class="n">visibleOrigin</span><span class="p">.</span><span class="n">x</span><span class="o">+</span><span class="n">kSTICK_MARGIN</span><span class="p">,</span> <span class="n">visibleOrigin</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="n">kSTICK_MARGIN</span><span class="p">);</span>
 <span class="n">m_stickLeftBase</span><span class="o">-&gt;</span><span class="n">setOpacity</span><span class="p">(</span><span class="mi">127</span><span class="p">);</span>
 
-<span class="n">m_stickLeft</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">&quot;bola-stick.png&quot;</span><span class="p">);</span>
+<span class="n">m_stickLeft</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">"bola-stick.png"</span><span class="p">);</span>
 <span class="n">m_stickLeft</span><span class="o">-&gt;</span><span class="n">setAnchorPoint</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">));</span>
 <span class="n">m_stickLeft</span><span class="o">-&gt;</span><span class="n">setOpacity</span><span class="p">(</span><span class="mi">127</span><span class="p">);</span>
 
@@ -2023,9 +1709,8 @@
 <span class="n">m_stickLeft</span><span class="o">-&gt;</span><span class="n">setPosition</span><span class="p">(</span><span class="n">m_centerStick</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>Como podemos ver, posicionamos en primer lugar la base del <em>stick</em> en la esquina inferior-izquierda de la pantalla, haciéndola semiopaca. Tras esto, creamos la palanca y la posicionamos justo en el centro de la base. Definimos <code>m_centerStick</code> como la posición central de la base de la palanca, y <code>m_radioStick</code> como el radio en el que la palanca podrá moverse. Este radio se obtiene a partir de la media anchura y altura de la base, restándole la media anchura y altura de la palanca, para que así esta última quede siempre dentro de la base al desplazarla.</p>
-<p><img alt="Stick virtual" src="imagenes/mandos/virtual-stick.png" /></p>
+<p><img alt="Stick virtual" src="imagenes/mandos/virtual-stick.png"/></p>
 <p>Una vez creado y configurado el <em>stick</em>, lo añadimos a la pantalla:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -2036,14 +1721,12 @@
 <span class="n">m_node</span><span class="o">-&gt;</span><span class="n">setLocalZOrder</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>A continuación, definiremos un <em>listener</em> de eventos táctiles para controlar el <em>stick</em>:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">EventListenerTouchOneByOne</span><span class="o">*</span> <span class="n">listener</span> <span class="o">=</span> <span class="n">EventListenerTouchOneByOne</span><span class="o">::</span><span class="n">create</span><span class="p">();</span>
 <span class="n">listener</span><span class="o">-&gt;</span><span class="n">setSwallowTouches</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>En el evento del comienzo del contacto comprobaremos si estamos tocando dentro de la palanca, y en tal caso devolveremos <code>true</code> para seguir procesando el gesto. En caso contrario, devolvemos <code>false</code> para ignorar los siguientes eventos de movimiento de dicho contacto.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
@@ -2076,7 +1759,6 @@
 <span class="p">};</span>
 </pre></div>
 </td></tr></table>
-
 <p>El evento más importante será el de movimiento del contacto:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
@@ -2105,7 +1787,6 @@
 <span class="p">};</span>
 </pre></div>
 </td></tr></table>
-
 <p>En este caso calculamos el desplazamiento (<em>offset</em>) de la posición a la que hemos movido el dedo respecto a la posición del contacto que inició el gesto (<code>getStartLocation()</code>). En función de dicho desplazamiento calculamos el valor de cada uno de los ejes, no permitiendo que se salga nunca del radio permitido (esto lo hacemos con la función <code>clamp</code>, para hacer que <code>offset</code> nunca pueda ser mayor que la posición máxima ni menor que la mínima). </p>
 <p>Por último, en el evento de finalización del gesto volveremos a poner ambos ejes en la posición central (0,0):</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
@@ -2125,12 +1806,10 @@
 <span class="p">};</span>
 </pre></div>
 </td></tr></table>
-
 <p>Añadiremos el <em>listener</em> al gestor de eventos:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">m_node</span><span class="o">-&gt;</span><span class="n">getEventDispatcher</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">addEventListenerWithSceneGraphPriority</span><span class="p">(</span><span class="n">listener</span><span class="p">,</span> <span class="n">m_stickLeft</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>Para terminar incluimos el código completo de la clase que implementa el <em>stick</em> analógico y un botón digital:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>  1
   2
@@ -2332,8 +2011,8 @@
     <span class="k">auto</span> <span class="n">spriteFrameCache</span> <span class="o">=</span> <span class="n">SpriteFrameCache</span><span class="o">::</span><span class="n">getInstance</span><span class="p">();</span>
 
     <span class="c1">//Si no estaba el spritesheet en la caché lo cargo</span>
-    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">spriteFrameCache</span><span class="o">-&gt;</span><span class="n">getSpriteFrameByName</span><span class="p">(</span><span class="s">&quot;boton-direccion.png&quot;</span><span class="p">))</span> <span class="p">{</span>
-        <span class="n">spriteFrameCache</span><span class="o">-&gt;</span><span class="n">addSpriteFramesWithFile</span><span class="p">(</span><span class="s">&quot;mando.plist&quot;</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">spriteFrameCache</span><span class="o">-&gt;</span><span class="n">getSpriteFrameByName</span><span class="p">(</span><span class="s">"boton-direccion.png"</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">spriteFrameCache</span><span class="o">-&gt;</span><span class="n">addSpriteFramesWithFile</span><span class="p">(</span><span class="s">"mando.plist"</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
@@ -2343,13 +2022,13 @@
         <span class="n">Size</span> <span class="n">visibleSize</span> <span class="o">=</span> <span class="n">Director</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getVisibleSize</span><span class="p">();</span>
         <span class="n">Vec2</span> <span class="n">visibleOrigin</span> <span class="o">=</span> <span class="n">Director</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getVisibleOrigin</span><span class="p">();</span>
 
-        <span class="n">m_stickLeftBase</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">&quot;base-stick.png&quot;</span><span class="p">);</span>
+        <span class="n">m_stickLeftBase</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">"base-stick.png"</span><span class="p">);</span>
         <span class="n">m_stickLeftBase</span><span class="o">-&gt;</span><span class="n">setAnchorPoint</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
         <span class="n">m_stickLeftBase</span><span class="o">-&gt;</span><span class="n">setPosition</span><span class="p">(</span><span class="n">visibleOrigin</span><span class="p">.</span><span class="n">x</span><span class="o">+</span><span class="n">kSTICK_MARGIN</span><span class="p">,</span>
                                      <span class="n">visibleOrigin</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="n">kSTICK_MARGIN</span><span class="p">);</span>
         <span class="n">m_stickLeftBase</span><span class="o">-&gt;</span><span class="n">setOpacity</span><span class="p">(</span><span class="mi">127</span><span class="p">);</span>
 
-        <span class="n">m_stickLeft</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">&quot;bola-stick.png&quot;</span><span class="p">);</span>
+        <span class="n">m_stickLeft</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">"bola-stick.png"</span><span class="p">);</span>
         <span class="n">m_stickLeft</span><span class="o">-&gt;</span><span class="n">setAnchorPoint</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">));</span>
         <span class="n">m_stickLeft</span><span class="o">-&gt;</span><span class="n">setOpacity</span><span class="p">(</span><span class="mi">127</span><span class="p">);</span>
 
@@ -2359,7 +2038,7 @@
                         <span class="n">m_stickLeftBase</span><span class="o">-&gt;</span><span class="n">getContentSize</span><span class="p">()</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">;</span>
         <span class="n">m_stickLeft</span><span class="o">-&gt;</span><span class="n">setPosition</span><span class="p">(</span><span class="n">m_centerStick</span><span class="p">);</span>
 
-        <span class="n">m_buttonAction</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">&quot;boton-accion.png&quot;</span><span class="p">);</span>
+        <span class="n">m_buttonAction</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">"boton-accion.png"</span><span class="p">);</span>
         <span class="n">m_buttonAction</span><span class="o">-&gt;</span><span class="n">setAnchorPoint</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
         <span class="n">m_buttonAction</span><span class="o">-&gt;</span><span class="n">setPosition</span><span class="p">(</span><span class="n">visibleOrigin</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">visibleSize</span><span class="p">.</span><span class="n">width</span> <span class="o">-</span> 
                                     <span class="n">kSTICK_MARGIN</span><span class="p">,</span> <span class="n">visibleOrigin</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="n">kSTICK_MARGIN</span><span class="p">);</span>
@@ -2459,11 +2138,10 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-
-<h3 id="stick-virtual-con-posicionamiento-automatico">Stick virtual con posicionamiento automático<a class="headerlink" href="#stick-virtual-con-posicionamiento-automatico" title="Permanent link">&para;</a></h3>
+<h3 id="stick-virtual-con-posicionamiento-automatico">Stick virtual con posicionamiento automático<a class="headerlink" href="#stick-virtual-con-posicionamiento-automatico" title="Permanent link">¶</a></h3>
 <p>El <em>stick</em> virtual tiene el problema de no tener <em>feedback</em> físico, por lo que si tenemos la atención centrada en la escena del juego es posible que no sepamos si estamos tocando en el centro del mando o no, al intentar hacer un moviemiento. Para evitar esto podemos hacer que al tocar sobre la pantalla el <em>stick</em> se sitúe automáticamente centrado en la posición donde hemos tocado. Así sabremos que siempre tocamos en el centro, y sólo tendremos que arrastrar.</p>
 <p>Una posible estrategia para implementar este tipo de <em>sticks</em> es dividir el tamaño de la pantalla en dos: el lado izquierdo dedicado al <em>stick</em> analógico, y el lado derecho a los botones de acción. Al pulsar en cualquier lugar del lado izquierdo crearemos un <em>stick</em> analógico en dicha posición, y al arrastrar moveremos sus ejes. Al pulsar en el lado derecho realizaremos una acción (por ejemplo saltar). Deberemos crear una variante adecuada para nuestro tipo de juego. </p>
-<p><img alt="Stick virtual con autoposicionamiento" src="imagenes/mandos/virtual-stick-auto.png" /></p>
+<p><img alt="Stick virtual con autoposicionamiento" src="imagenes/mandos/virtual-stick-auto.png"/></p>
 <p>Crearemos los <em>sprites</em> necesarios para el <em>stick</em> analógico autoposicionado de forma similar al caso anterior, pero con la diferencia de que en este caso los haremos invisibles y no les daremos ninguna posición inicial:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
@@ -2479,18 +2157,17 @@
 12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">Size</span> <span class="n">visibleSize</span> <span class="o">=</span> <span class="n">Director</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getVisibleSize</span><span class="p">();</span>
 <span class="n">Vec2</span> <span class="n">visibleOrigin</span> <span class="o">=</span> <span class="n">Director</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getVisibleOrigin</span><span class="p">();</span>
 
-<span class="n">m_stickLeftBase</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">&quot;base-stick.png&quot;</span><span class="p">);</span>
+<span class="n">m_stickLeftBase</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">"base-stick.png"</span><span class="p">);</span>
 <span class="n">m_stickLeftBase</span><span class="o">-&gt;</span><span class="n">setAnchorPoint</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">));</span>
 <span class="n">m_stickLeftBase</span><span class="o">-&gt;</span><span class="n">setVisible</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
 
-<span class="n">m_stickLeft</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">&quot;bola-stick.png&quot;</span><span class="p">);</span>
+<span class="n">m_stickLeft</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">"bola-stick.png"</span><span class="p">);</span>
 <span class="n">m_stickLeft</span><span class="o">-&gt;</span><span class="n">setAnchorPoint</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">));</span>
 <span class="n">m_stickLeft</span><span class="o">-&gt;</span><span class="n">setVisible</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
 
 <span class="n">m_radioStick</span> <span class="o">=</span> <span class="n">m_stickLeftBase</span><span class="o">-&gt;</span><span class="n">getContentSize</span><span class="p">()</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">-</span> <span class="n">m_stickLeft</span><span class="o">-&gt;</span><span class="n">getContentSize</span><span class="p">()</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">;</span>
 </pre></div>
 </td></tr></table>
-
 <p>Los añadimos a la pantalla:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -2501,14 +2178,12 @@
 <span class="n">m_node</span><span class="o">-&gt;</span><span class="n">setLocalZOrder</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>Y creamos un <em>listener</em> para los eventos de la pantalla táctil:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">EventListenerTouchOneByOne</span><span class="o">*</span> <span class="n">listener</span> <span class="o">=</span> <span class="n">EventListenerTouchOneByOne</span><span class="o">::</span><span class="n">create</span><span class="p">();</span>
 <span class="n">listener</span><span class="o">-&gt;</span><span class="n">setSwallowTouches</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>Donde si que introduciremos notables diferencias es en los eventos del <em>listener</em>. En primer lugar, <code>onTouchBegan</code> comprobará si tocamos en la mitad izquierda de la pantalla, y en tal caso hará aparecer el <em>stick</em> en la posición donde hemos tocado y devolverá <code>true</code> para seguir procesando el gesto. En caso contrario devuelve <code>false</code> para ignorar los siguientes eventos de movimento de dicho gesto (en tal caso se deja que lo procese el <em>listener</em> encargado de los botones de acción a la derecha):</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
@@ -2545,7 +2220,6 @@
 <span class="p">};</span>
 </pre></div>
 </td></tr></table>
-
 <p>Destacamos que en este caso utilizamos también la propiedad <code>m_centerStick</code>, pero no le damos una posición fija en la actualización, sino que la modificamos cada vez que comenzamos un nuevo gesto táctil en <code>onTouchBegan</code>.</p>
 <p>En segundo lugar, <code>onTouchMoved</code> se comporará igual que en el caso del <em>stick</em> con posición fija:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
@@ -2573,7 +2247,6 @@
 <span class="p">};</span>
 </pre></div>
 </td></tr></table>
-
 <p>Por último, <code>onTouchEnded</code> tiene como diferencia que en este caso volveremos a ocultar el <em>stick</em>:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -2590,7 +2263,6 @@
 <span class="p">};</span>
 </pre></div>
 </td></tr></table>
-
 <p>A continuación incluimos el código completo de las clases que incorporan el <em>stick</em> analógico con posicionamiento automático, combinado con un botón de acción en la parte derecha:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>  1
   2
@@ -2786,8 +2458,8 @@
     <span class="k">auto</span> <span class="n">spriteFrameCache</span> <span class="o">=</span> <span class="n">SpriteFrameCache</span><span class="o">::</span><span class="n">getInstance</span><span class="p">();</span>
 
     <span class="c1">//Si no estaba el spritesheet en la caché lo cargo</span>
-    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">spriteFrameCache</span><span class="o">-&gt;</span><span class="n">getSpriteFrameByName</span><span class="p">(</span><span class="s">&quot;boton-direccion.png&quot;</span><span class="p">))</span> <span class="p">{</span>
-        <span class="n">spriteFrameCache</span><span class="o">-&gt;</span><span class="n">addSpriteFramesWithFile</span><span class="p">(</span><span class="s">&quot;mando.plist&quot;</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">spriteFrameCache</span><span class="o">-&gt;</span><span class="n">getSpriteFrameByName</span><span class="p">(</span><span class="s">"boton-direccion.png"</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">spriteFrameCache</span><span class="o">-&gt;</span><span class="n">addSpriteFramesWithFile</span><span class="p">(</span><span class="s">"mando.plist"</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
@@ -2797,18 +2469,18 @@
         <span class="n">Size</span> <span class="n">visibleSize</span> <span class="o">=</span> <span class="n">Director</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getVisibleSize</span><span class="p">();</span>
         <span class="n">Vec2</span> <span class="n">visibleOrigin</span> <span class="o">=</span> <span class="n">Director</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getVisibleOrigin</span><span class="p">();</span>
 
-        <span class="n">m_stickLeftBase</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">&quot;base-stick.png&quot;</span><span class="p">);</span>
+        <span class="n">m_stickLeftBase</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">"base-stick.png"</span><span class="p">);</span>
         <span class="n">m_stickLeftBase</span><span class="o">-&gt;</span><span class="n">setAnchorPoint</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">));</span>
         <span class="n">m_stickLeftBase</span><span class="o">-&gt;</span><span class="n">setVisible</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
 
-        <span class="n">m_stickLeft</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">&quot;bola-stick.png&quot;</span><span class="p">);</span>
+        <span class="n">m_stickLeft</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">"bola-stick.png"</span><span class="p">);</span>
         <span class="n">m_stickLeft</span><span class="o">-&gt;</span><span class="n">setAnchorPoint</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">));</span>
         <span class="n">m_stickLeft</span><span class="o">-&gt;</span><span class="n">setVisible</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
 
         <span class="n">m_radioStick</span> <span class="o">=</span> <span class="n">m_stickLeftBase</span><span class="o">-&gt;</span><span class="n">getContentSize</span><span class="p">()</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">-</span> 
                        <span class="n">m_stickLeft</span><span class="o">-&gt;</span><span class="n">getContentSize</span><span class="p">()</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">;</span>
 
-        <span class="n">m_buttonAction</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">&quot;boton-accion.png&quot;</span><span class="p">);</span>
+        <span class="n">m_buttonAction</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">createWithSpriteFrameName</span><span class="p">(</span><span class="s">"boton-accion.png"</span><span class="p">);</span>
         <span class="n">m_buttonAction</span><span class="o">-&gt;</span><span class="n">setAnchorPoint</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
         <span class="n">m_buttonAction</span><span class="o">-&gt;</span><span class="n">setOpacity</span><span class="p">(</span><span class="mi">127</span><span class="p">);</span>
         <span class="n">m_buttonAction</span><span class="o">-&gt;</span><span class="n">setPosition</span><span class="p">(</span><span class="n">visibleOrigin</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">visibleSize</span><span class="p">.</span><span class="n">width</span> <span class="o">-</span> 
@@ -2907,34 +2579,33 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-
 <blockquote>
 <p>Es importante remarcar que con esta implementación de controles virtuales podremos reemplazar un tipo de control por otro sin afectar al código de nuestro juego, que siempre utilizará <code>VirtualControls</code>. Simplemente cambiando la subclase concreta que instanciamos podremos alternar entre diferentes formas de control.</p>
 </blockquote>
-<h2 id="mandos-fisicos">Mandos físicos<a class="headerlink" href="#mandos-fisicos" title="Permanent link">&para;</a></h2>
+<h2 id="mandos-fisicos">Mandos físicos<a class="headerlink" href="#mandos-fisicos" title="Permanent link">¶</a></h2>
 <p>Vamos a ver en esta sección diferentes tipos de mandos <em>hardware</em> que podremos integrar en nuestros videojuegos.</p>
-<h3 id="tipos-de-mandos-fisicos">Tipos de mandos físicos<a class="headerlink" href="#tipos-de-mandos-fisicos" title="Permanent link">&para;</a></h3>
+<h3 id="tipos-de-mandos-fisicos">Tipos de mandos físicos<a class="headerlink" href="#tipos-de-mandos-fisicos" title="Permanent link">¶</a></h3>
 <h4>Controladores oficiales iOS</h4>
 <p>La especificación de mandos para dispositivos iOS aparece a partir de iOS 7. En dicha versión del SDK se incorpora el <em>framework</em> <code>GameController</code> que nos permitirá añadir soporte para este tipo de mandos, que llevan la etiqueta MFI (<em>Made for iPhone/iPod/iPad</em>), la cual se refiere a todos los dispositivos <em>hardware</em> diseñados para estos dispositivos iOS. </p>
 <p>https://developer.apple.com/library/ios/documentation/ServicesDiscovery/Conceptual/GameControllerPG/Introduction/Introduction.html</p>
-<p><img alt="MOGA ACE Power" src="imagenes/mandos/moga-ace-power.png" />
-<img alt="Logitech Powershell" src="imagenes/mandos/logitech-powershell.png" />
-<img alt="Steelseries Stratus" src="imagenes/mandos/steelseries-stratus.jpg" /></p>
+<p><img alt="MOGA ACE Power" src="imagenes/mandos/moga-ace-power.png"/>
+<img alt="Logitech Powershell" src="imagenes/mandos/logitech-powershell.png"/>
+<img alt="Steelseries Stratus" src="imagenes/mandos/steelseries-stratus.jpg"/></p>
 <h4>Controladores oficiales Android</h4>
 <p>El soporte para controladores de juego en Android está presente a partir de la API 9, aunque se han ido incorporando mejoras en APIs sucesivas.</p>
 <p>http://developer.android.com/training/game-controllers/index.html</p>
 <p>Encontramos en Android diferentes mandos que soportan el estándar definido en esta plataforma. También tenemos mandos que nos proporcionan su SDK específico para que podamos optimizar su integración en nuestro juego, como por ejemplo los mandos de OUYA TV, Moga y Nibiru.</p>
-<p><img alt="MOGA PRO Power" src="imagenes/mandos/moga-pro-power.jpg" />
-<img alt="Amazon Fire TV Controller" src="imagenes/mandos/amazon-fire-controller.jpg" />
-<img alt="OUYA TV Controller" src="imagenes/mandos/ouya-controller_original.jpg" />
-<img alt="Nyko Playpad" src="imagenes/mandos/nyko-playpad.png" /></p>
+<p><img alt="MOGA PRO Power" src="imagenes/mandos/moga-pro-power.jpg"/>
+<img alt="Amazon Fire TV Controller" src="imagenes/mandos/amazon-fire-controller.jpg"/>
+<img alt="OUYA TV Controller" src="imagenes/mandos/ouya-controller_original.jpg"/>
+<img alt="Nyko Playpad" src="imagenes/mandos/nyko-playpad.png"/></p>
 <h4>Controladores iCade</h4>
 <p>Estos controladores no utilizan la API oficial, ya que salieron a la venta antes de que ésta existiese. Se comportan como un teclado <em>bluetooth</em>, por lo que para utilizarlos simplemente deberemos conocer a qué tecla está mapeado cada botón. Está diseñado para ser utilizado con el iPad, pero puede utilizarse en cualquier dispositivo móvil que lo reconozca como teclado <em>bluetooth</em>.</p>
 <p>En los siguientes enlaces se puede encontrar documentación para integrar estos controladores en nuestras aplicaciones:</p>
 <p>http://www.ionaudio.com/downloads/ION%20Arcade%20Dev%20Resource%20v1.5.pdf</p>
 <p>http://www.raywenderlich.com/8618/adding-icade-support-to-your-game</p>
-<p><img alt="iCade" src="imagenes/mandos/icade.jpg" /></p>
-<h3 id="controladores-fisicos-en-cocos2d-x">Controladores físicos en Cocos2d-x<a class="headerlink" href="#controladores-fisicos-en-cocos2d-x" title="Permanent link">&para;</a></h3>
+<p><img alt="iCade" src="imagenes/mandos/icade.jpg"/></p>
+<h3 id="controladores-fisicos-en-cocos2d-x">Controladores físicos en Cocos2d-x<a class="headerlink" href="#controladores-fisicos-en-cocos2d-x" title="Permanent link">¶</a></h3>
 <p>Cocos2d-x soporta tanto los mandos oficiales de Android como los oficiales de iOS, ofreciéndonos una API única para utilizarlos en cualquiera de estas plataformas. </p>
 <p>Vamos a centrarnos en la API común de Cocos2d-x y en las cuestiones específicas para utilizarla en Android e iOS.</p>
 <h4>Eventos del mando</h4>
@@ -3027,7 +2698,6 @@
 <span class="kt">void</span> <span class="n">MiEscena</span><span class="o">::</span><span class="n">onDisconnectedController</span><span class="p">(</span><span class="n">Controller</span><span class="o">*</span> <span class="n">controller</span><span class="p">,</span> <span class="n">Event</span><span class="o">*</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-
 <p>A continuación veremos con más detalle estos eventos.</p>
 <h4>Conexión y desconexión del mando</h4>
 <p>Los mandos se conectarán de forma inalámbrica al móvil, por lo que deberemos poder conectar nuevos mandos, o desconectar los que tenemos conectados. </p>
@@ -3041,9 +2711,9 @@
 7
 8
 9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">MiEscena</span><span class="o">::</span><span class="n">onConnectController</span><span class="p">(</span><span class="n">Controller</span><span class="o">*</span> <span class="n">controller</span><span class="p">,</span> <span class="n">Event</span><span class="o">*</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span> 
-    <span class="n">CCLOG</span><span class="p">(</span><span class="s">&quot;Tag:%d&quot;</span><span class="p">,</span> <span class="n">controller</span><span class="o">-&gt;</span><span class="n">getTag</span><span class="p">());</span>
-    <span class="n">CCLOG</span><span class="p">(</span><span class="s">&quot;Id:%d&quot;</span><span class="p">,</span> <span class="n">controller</span><span class="o">-&gt;</span><span class="n">getDeviceId</span><span class="p">());</span>
-    <span class="n">CCLOG</span><span class="p">(</span><span class="s">&quot;Nombre:%s&quot;</span><span class="p">,</span> <span class="n">controller</span><span class="o">-&gt;</span><span class="n">getDeviceName</span><span class="p">().</span><span class="n">c_str</span><span class="p">());</span>
+    <span class="n">CCLOG</span><span class="p">(</span><span class="s">"Tag:%d"</span><span class="p">,</span> <span class="n">controller</span><span class="o">-&gt;</span><span class="n">getTag</span><span class="p">());</span>
+    <span class="n">CCLOG</span><span class="p">(</span><span class="s">"Id:%d"</span><span class="p">,</span> <span class="n">controller</span><span class="o">-&gt;</span><span class="n">getDeviceId</span><span class="p">());</span>
+    <span class="n">CCLOG</span><span class="p">(</span><span class="s">"Nombre:%s"</span><span class="p">,</span> <span class="n">controller</span><span class="o">-&gt;</span><span class="n">getDeviceName</span><span class="p">().</span><span class="n">c_str</span><span class="p">());</span>
 <span class="p">}</span>
 
 <span class="kt">void</span> <span class="n">MiEscena</span><span class="o">::</span><span class="n">onDisconnectedController</span><span class="p">(</span><span class="n">Controller</span><span class="o">*</span> <span class="n">controller</span><span class="p">,</span> <span class="n">Event</span><span class="o">*</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span> 
@@ -3051,15 +2721,13 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-
 <p>Como vemos, una propiedad de los controladores es su etiqueta (<em>tag</em>). Podemos poner una etiqueta a los mandos para poder acceder a ellos de forma sencilla con <code>setTag</code> y consultarla con <code>getTag</code>. Esta etiqueta será un número entero. Por ejemplo, podríamos utilizar las etiquetas <code>1</code> y <code>2</code> para identificar los mandos para el primer y segundo jugador respectivamente. Podremos localizar uno de estos mandos de forma inmediata con el método estático <code>Controller::getControllerByTag</code>.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">Controller</span><span class="o">*</span> <span class="n">primerJugador</span> <span class="o">=</span> <span class="n">Controller</span><span class="o">::</span><span class="n">getControllerByTag</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <h4>Pulsación de teclas</h4>
 <p>A partir de un objeto <code>Controller</code> podremos conocer el estado de sus botones con el método <code>getKeyStatus</code>. Este método recibe como parámetro el código del botón que queremos consultar. En la siguiente imagen mostramos los grupos de botones que encontramos en los mandos para móviles:</p>
-<p><img alt="Botones de los mandos" src="imagenes/mandos/controller-num.png" /></p>
+<p><img alt="Botones de los mandos" src="imagenes/mandos/controller-num.png"/></p>
 <p>Los códigos para los botones de cada grupo se encuentran en la enumeración <code>Key</code> y son:</p>
 <ol>
 <li>Analógico izquierdo: <code>JOYSTICK_LEFT_X</code>, <code>JOYSTICK_LEFT_Y</code>, <code>BUTTON_LEFT_THUMBSTICK</code></li>
@@ -3075,7 +2743,6 @@
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">KeyStatus</span> <span class="n">estado</span> <span class="o">=</span> <span class="n">primerJugador</span><span class="o">-&gt;</span><span class="n">getKeyStatus</span><span class="p">(</span><span class="n">BUTTON_A</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>El estado es una estructura que nos da la siguiente información:</p>
 <ul>
 <li><code>isPressed</code>: Booleano que nos indica si está presionado el botón (para el caso de botones digitales).</li>
@@ -3098,16 +2765,14 @@
 <span class="n">player</span><span class="o">-&gt;</span><span class="n">setVelocity</span><span class="p">(</span><span class="n">estadoHorizontal</span><span class="p">.</span><span class="n">value</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <h4>Configuración de mandos para Android</h4>
 <p>Cocos2d-x en Android soporta los mandos estándar para videojuegos, y también contiene optimizaciones para tipos concretos de mando como son los de tipo Ouya TV, Moga y Nibiru. Deberemos hacer algunos cambios en el proyecto Android para soportar cualquier tipo de mando <em>hardware</em>.</p>
 <p>En primer lugar, deberemos añadir al proyecto de Android Studio las librerías de apoyo para la gestión de mandos de videojuegos. Para ello, cambiaremos en el fichero <code>settings.gradle</code> la referencia al módulo <code>libcocos2dx</code> por <code>libcocos2dx-with-controller</code>, que incluye las librerías y clases de apoyo necesarias:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">include</span> <span class="s1">&#39;</span><span class="s">:libcocos2dx</span><span class="s1">&#39;</span>
-<span class="nv">project</span><span class="ss">(</span><span class="s1">&#39;</span><span class="s">:libcocos2dx</span><span class="s1">&#39;</span><span class="ss">)</span>.<span class="nv">projectDir</span> <span class="o">=</span> <span class="nv">new</span> <span class="nv">File</span><span class="ss">(</span><span class="nv">settingsDir</span>, <span class="s1">&#39;</span><span class="s">../cocos2d/cocos/platform/android/libcocos2dx-with-controller</span><span class="s1">&#39;</span><span class="ss">)</span>
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">include</span> <span class="s1">'</span><span class="s">:libcocos2dx</span><span class="s1">'</span>
+<span class="nv">project</span><span class="ss">(</span><span class="s1">'</span><span class="s">:libcocos2dx</span><span class="s1">'</span><span class="ss">)</span>.<span class="nv">projectDir</span> <span class="o">=</span> <span class="nv">new</span> <span class="nv">File</span><span class="ss">(</span><span class="nv">settingsDir</span>, <span class="s1">'</span><span class="s">../cocos2d/cocos/platform/android/libcocos2dx-with-controller</span><span class="s1">'</span><span class="ss">)</span>
 </pre></div>
 </td></tr></table>
-
 <p>Una vez añadida la librería, añadiremos los siguientes cambios a la actividad <code>AppActivity</code>:</p>
 <ul>
 <li>Haremos que la actividad herede de <code>GameControllerActivity</code>.</li>
@@ -3120,7 +2785,6 @@
 <span class="k">this</span><span class="o">.</span><span class="na">connectController</span><span class="o">(</span><span class="n">DRIVERTYPE_OUYA</span><span class="o">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>Por ejemplo, para dar soporte específico a controladores de tipo OUYA tendríamos:</p>
 <p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -3141,81 +2805,57 @@ También será necesario que en nuestro dispositivo Android descarguemos los <em
 <h4>Configuración de mandos para iOS</h4>
 <p>En el caso de iOS, para que nuestro proyecto soporte los mandos oficiales aparecidos a partir de iOS 7, tendremos que añadir el <em>framework</em> <code>GameController.Framework</code> a nuestro proyecto.</p>
 <p>Además, será importante que en nuestro proyecto llamemos a <code>Controller::startDiscoveryController()</code> para que inicie la búsqueda de mandos y establezca una conexión con ellos, tal como hemos indicado anteriormente.</p>
-                
-                  
-                
-              
-              
-                
-
-
-              
-            </article>
-          </div>
-        </div>
-      </main>
-      
-        
+</article>
+</div>
+</div>
+</main>
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
-        
-          <a href="motor_de_fisicas.html" title="Motor de físicas" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-            </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
+<div class="md-footer-nav">
+<nav class="md-footer-nav__inner md-grid">
+<a class="md-flex md-footer-nav__link md-footer-nav__link--prev" href="motor_de_fisicas.html" rel="prev" title="Motor de físicas">
+<div class="md-flex__cell md-flex__cell--shrink">
+<i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+</div>
+<div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+<span class="md-flex__ellipsis">
+<span class="md-footer-nav__direction">
                   Anterior
                 </span>
                 Motor de físicas
               </span>
-            </div>
-          </a>
-        
-        
-          <a href="adaptacion_a_moviles.html" title="Adaptación a móviles" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
+</div>
+</a>
+<a class="md-flex md-footer-nav__link md-footer-nav__link--next" href="adaptacion_a_moviles.html" rel="next" title="Adaptación a móviles">
+<div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+<span class="md-flex__ellipsis">
+<span class="md-footer-nav__direction">
                   Siguiente
                 </span>
                 Adaptación a móviles
               </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
+</div>
+<div class="md-flex__cell md-flex__cell--shrink">
+<i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+</div>
+</a>
+</nav>
+</div>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-footer-copyright">
         
         powered by
         <a href="https://www.mkdocs.org">MkDocs</a>
         and
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
-      </div>
-      
-    </div>
-  </div>
+</div>
+</div>
+</div>
 </footer>
-      
-    </div>
-    
-      <script src="assets/javascripts/application.245445c6.js"></script>
-      
-      <script>app.initialize({version:"1.0.4",url:{base:"."}})</script>
-      
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-      
-    
-  </body>
+</div>
+<script src="assets/javascripts/application.245445c6.js"></script>
+<script>app.initialize({version:"1.0.4",url:{base:"."}})</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
 </html>

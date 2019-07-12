@@ -1,546 +1,315 @@
 
+<!DOCTYPE doctype html>
 
-
-
-<!doctype html>
-<html lang="es" class="no-js">
-  <head>
-    
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta http-equiv="x-ua-compatible" content="ie=edge">
-      
-      
-      
-      
-        <meta name="lang:clipboard.copy" content="Copiar al portapapeles">
-      
-        <meta name="lang:clipboard.copied" content="Copiado al portapapeles">
-      
-        <meta name="lang:search.language" content="en">
-      
-        <meta name="lang:search.pipeline.stopwords" content="True">
-      
-        <meta name="lang:search.pipeline.trimmer" content="True">
-      
-        <meta name="lang:search.result.none" content="No se encontraron documentos">
-      
-        <meta name="lang:search.result.one" content="1 documento encontrado">
-      
-        <meta name="lang:search.result.other" content="# documentos encontrados">
-      
-        <meta name="lang:search.tokenizer" content="[\s\-]+">
-      
-      <link rel="shortcut icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
-    
-    
-      
-        <title>El motor Cocos2d-x - VPDM - Cocos2d-x</title>
-      
-    
-    
-      <link rel="stylesheet" href="assets/stylesheets/application.0284f74d.css">
-      
-        <link rel="stylesheet" href="assets/stylesheets/application-palette.01803549.css">
-      
-      
-        
-        
-        <meta name="theme-color" content="#009688">
-      
-    
-    
-      <script src="assets/javascripts/modernizr.74668098.js"></script>
-    
-    
-      
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
-        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
-      
-    
-    <link rel="stylesheet" href="assets/fonts/material-icons.css">
-    
-    
-    
-      
-    
-    
-  </head>
-  
-    
-    
-    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
-  
-    <svg class="md-svg">
-      <defs>
-        
-        
-      </defs>
-    </svg>
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
-    
-      <a href="#el-motor-cocos2d-x" tabindex="1" class="md-skip">
+<html class="no-js" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="ie=edge" http-equiv="x-ua-compatible"/>
+<meta content="Copiar al portapapeles" name="lang:clipboard.copy"/>
+<meta content="Copiado al portapapeles" name="lang:clipboard.copied"/>
+<meta content="en" name="lang:search.language"/>
+<meta content="True" name="lang:search.pipeline.stopwords"/>
+<meta content="True" name="lang:search.pipeline.trimmer"/>
+<meta content="No se encontraron documentos" name="lang:search.result.none"/>
+<meta content="1 documento encontrado" name="lang:search.result.one"/>
+<meta content="# documentos encontrados" name="lang:search.result.other"/>
+<meta content="[\s\-]+" name="lang:search.tokenizer"/>
+<link href="assets/images/favicon.png" rel="shortcut icon"/>
+<meta content="mkdocs-1.0.4, mkdocs-material-4.4.0" name="generator"/>
+<title>El motor Cocos2d-x - VPDM - Cocos2d-x</title>
+<link href="assets/stylesheets/application.0284f74d.css" rel="stylesheet"/>
+<link href="assets/stylesheets/application-palette.01803549.css" rel="stylesheet"/>
+<meta content="#009688" name="theme-color"/>
+<script src="assets/javascripts/modernizr.74668098.js"></script>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&amp;display=fallback" rel="stylesheet"/>
+<style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+<link href="assets/fonts/material-icons.css" rel="stylesheet"/>
+</head>
+<body data-md-color-accent="teal" data-md-color-primary="teal" dir="ltr">
+<svg class="md-svg">
+<defs>
+</defs>
+</svg>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+<a class="md-skip" href="#el-motor-cocos2d-x" tabindex="1">
         Saltar a contenido
       </a>
-    
-    
-      <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid">
-    <div class="md-flex">
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="index.html" title="VPDM - Cocos2d-x" class="md-header-nav__button md-logo">
-          
-            <img src="imagenes/logo.png" width="24" height="24">
-          
-        </a>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
-      </div>
-      <div class="md-flex__cell md-flex__cell--stretch">
-        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          
-            <span class="md-header-nav__topic">
+<header class="md-header" data-md-component="header">
+<nav class="md-header-nav md-grid">
+<div class="md-flex">
+<div class="md-flex__cell md-flex__cell--shrink">
+<a class="md-header-nav__button md-logo" href="index.html" title="VPDM - Cocos2d-x">
+<img height="24" src="imagenes/logo.png" width="24"/>
+</a>
+</div>
+<div class="md-flex__cell md-flex__cell--shrink">
+<label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+</div>
+<div class="md-flex__cell md-flex__cell--stretch">
+<div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+<span class="md-header-nav__topic">
               VPDM - Cocos2d-x
             </span>
-            <span class="md-header-nav__topic">
+<span class="md-header-nav__topic">
               
                 El motor Cocos2d-x
               
             </span>
-          
-        </div>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        
-          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-          
+</div>
+</div>
+<div class="md-flex__cell md-flex__cell--shrink">
+<label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
 <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
-      <label class="md-icon md-search__icon" for="__search"></label>
-      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
-        &#xE5CD;
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="query" data-md-state="active" name="query" placeholder="Búsqueda" spellcheck="false" type="text"/>
+<label class="md-icon md-search__icon" for="__search"></label>
+<button class="md-icon md-search__icon" data-md-component="reset" tabindex="-1" type="reset">
+        
       </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result">
-          <div class="md-search-result__meta">
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="result">
+<div class="md-search-result__meta">
             Teclee para comenzar búsqueda
           </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
+<ol class="md-search-result__list"></ol>
 </div>
-        
-      </div>
-      
-    </div>
-  </nav>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
 </header>
-    
-    <div class="md-container">
-      
-        
-      
-      
-      <main class="md-main">
-        <div class="md-main__inner md-grid" data-md-component="container">
-          
-            
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" data-md-level="0">
-  <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="index.html" title="VPDM - Cocos2d-x" class="md-nav__button md-logo">
-      
-        <img src="imagenes/logo.png" width="48" height="48">
-      
-    </a>
+<div class="md-container">
+<main class="md-main">
+<div class="md-main__inner md-grid" data-md-component="container">
+<div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title md-nav__title--site" for="__drawer">
+<a class="md-nav__button md-logo" href="index.html" title="VPDM - Cocos2d-x">
+<img height="48" src="imagenes/logo.png" width="48"/>
+</a>
     VPDM - Cocos2d-x
   </label>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="index.html" title="Introducción" class="md-nav__link">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="index.html" title="Introducción">
       Introducción
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="videojuegos_para_moviles.html" title="Videojuegos para móviles" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="videojuegos_para_moviles.html" title="Videojuegos para móviles">
       Videojuegos para móviles
     </a>
-  </li>
-
-    
-      
-      
-      
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-toggle md-nav__toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
         El motor Cocos2d-x
       </label>
-    
-    <a href="introduccion_a_cocos2d-x.html" title="El motor Cocos2d-x" class="md-nav__link md-nav__link--active">
+<a class="md-nav__link md-nav__link--active" href="introduccion_a_cocos2d-x.html" title="El motor Cocos2d-x">
       El motor Cocos2d-x
     </a>
-    
-      
 <nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#instalacion-de-cocos2d-x" title="Instalación de Cocos2d-x" class="md-nav__link">
+<label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#instalacion-de-cocos2d-x" title="Instalación de Cocos2d-x">
     Instalación de Cocos2d-x
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#creacion-del-proyecto-con-cocos" title="Creación del proyecto con Cocos" class="md-nav__link">
+<nav class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#creacion-del-proyecto-con-cocos" title="Creación del proyecto con Cocos">
     Creación del proyecto con Cocos
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#creacion-del-proyecto-desde-la-terminal" title="Creación del proyecto desde la terminal" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#creacion-del-proyecto-desde-la-terminal" title="Creación del proyecto desde la terminal">
     Creación del proyecto desde la terminal
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#tipos-de-datos" title="Tipos de datos" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tipos-de-datos" title="Tipos de datos">
     Tipos de datos
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#componentes-de-un-videojuego" title="Componentes de un videojuego" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#componentes-de-un-videojuego" title="Componentes de un videojuego">
     Componentes de un videojuego
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#pantallas" title="Pantallas" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pantallas" title="Pantallas">
     Pantallas
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#escena-2d" title="Escena 2D" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#escena-2d" title="Escena 2D">
     Escena 2D
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#transiciones-entre-escenas" title="Transiciones entre escenas" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#transiciones-entre-escenas" title="Transiciones entre escenas">
     Transiciones entre escenas
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#interfaz-de-usuario" title="Interfaz de usuario" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#interfaz-de-usuario" title="Interfaz de usuario">
     Interfaz de usuario
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#gestion-de-la-memoria" title="Gestión de la memoria" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#gestion-de-la-memoria" title="Gestión de la memoria">
     Gestión de la memoria
   </a>
-  
 </li>
-      
-      
-      
-      
-      
-    </ul>
-  
+</ul>
 </nav>
-    
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="sprites_e_interaccion.html" title="Sprites y colisiones" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="sprites_e_interaccion.html" title="Sprites y colisiones">
       Sprites y colisiones
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="escenario_y_fondos.html" title="Escenario y fondos" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="escenario_y_fondos.html" title="Escenario y fondos">
       Escenario y fondos
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="motor_de_fisicas.html" title="Motor de físicas" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="motor_de_fisicas.html" title="Motor de físicas">
       Motor de físicas
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="mandos.html" title="Controles del videojuego" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="mandos.html" title="Controles del videojuego">
       Controles del videojuego
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="adaptacion_a_moviles.html" title="Adaptación a móviles" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="adaptacion_a_moviles.html" title="Adaptación a móviles">
       Adaptación a móviles
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="redes_sociales.html" title="Servicios y redes sociales para juegos" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="redes_sociales.html" title="Servicios y redes sociales para juegos">
       Servicios y redes sociales para juegos
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="unity.html" title="Motor Unity" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="unity.html" title="Motor Unity">
       Motor Unity
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="nativo.html" title="Tecnologías nativas" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="nativo.html" title="Tecnologías nativas">
       Tecnologías nativas
     </a>
-  </li>
-
-    
-  </ul>
+</li>
+</ul>
 </nav>
-                  </div>
-                </div>
-              </div>
-            
-            
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
 <nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#instalacion-de-cocos2d-x" title="Instalación de Cocos2d-x" class="md-nav__link">
+<label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#instalacion-de-cocos2d-x" title="Instalación de Cocos2d-x">
     Instalación de Cocos2d-x
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#creacion-del-proyecto-con-cocos" title="Creación del proyecto con Cocos" class="md-nav__link">
+<nav class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#creacion-del-proyecto-con-cocos" title="Creación del proyecto con Cocos">
     Creación del proyecto con Cocos
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#creacion-del-proyecto-desde-la-terminal" title="Creación del proyecto desde la terminal" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#creacion-del-proyecto-desde-la-terminal" title="Creación del proyecto desde la terminal">
     Creación del proyecto desde la terminal
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#tipos-de-datos" title="Tipos de datos" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tipos-de-datos" title="Tipos de datos">
     Tipos de datos
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#componentes-de-un-videojuego" title="Componentes de un videojuego" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#componentes-de-un-videojuego" title="Componentes de un videojuego">
     Componentes de un videojuego
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#pantallas" title="Pantallas" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pantallas" title="Pantallas">
     Pantallas
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#escena-2d" title="Escena 2D" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#escena-2d" title="Escena 2D">
     Escena 2D
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#transiciones-entre-escenas" title="Transiciones entre escenas" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#transiciones-entre-escenas" title="Transiciones entre escenas">
     Transiciones entre escenas
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#interfaz-de-usuario" title="Interfaz de usuario" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#interfaz-de-usuario" title="Interfaz de usuario">
     Interfaz de usuario
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#gestion-de-la-memoria" title="Gestión de la memoria" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#gestion-de-la-memoria" title="Gestión de la memoria">
     Gestión de la memoria
   </a>
-  
 </li>
-      
-      
-      
-      
-      
-    </ul>
-  
+</ul>
 </nav>
-                  </div>
-                </div>
-              </div>
-            
-          
-          <div class="md-content">
-            <article class="md-content__inner md-typeset">
-              
-                
-                
-                <h1 id="el-motor-cocos2d-x">El motor cocos2d-x<a class="headerlink" href="#el-motor-cocos2d-x" title="Permanent link">&para;</a></h1>
+</div>
+</div>
+</div>
+<div class="md-content">
+<article class="md-content__inner md-typeset"><a class="md-icon md-content__icon" download href="pdf/combined.pdf" title="PDF Export"></a>
+<h1 id="el-motor-cocos2d-x">El motor cocos2d-x<a class="headerlink" href="#el-motor-cocos2d-x" title="Permanent link">¶</a></h1>
 <p>Uno de los motores más conocidos y utilizados para desarrollo de videojuegos para
 dispositivos móviles es <strong>Cocos2D</strong>. Existe gran
 cantidad de juegos para iOS implementados con este motor. Aunque inicialmente se trataba de un motor escrito en Objective-C únicamente para iOS, actualmente contamos con <strong>Cocos2d-x</strong> 
 (http://www.cocos2d-x.org) que es la versión multiplataforma de este motor. El juego se desarrolla con C++, y puede ser
 portado directamente a distintos tipos de dispositivos (Android, iOS, Windows Phone, etc). </p>
 <p>Vamos a comenzar estudiando la forma de crear los diferentes componentes de un videojuego mediante el motor Cocos2d-x. </p>
-<h2 id="instalacion-de-cocos2d-x">Instalación de Cocos2d-x<a class="headerlink" href="#instalacion-de-cocos2d-x" title="Permanent link">&para;</a></h2>
+<h2 id="instalacion-de-cocos2d-x">Instalación de Cocos2d-x<a class="headerlink" href="#instalacion-de-cocos2d-x" title="Permanent link">¶</a></h2>
 <p>Existen dos formas de instalar Cocos2d-x: </p>
 <ul>
 <li>Instalar únicamente el <em>framework</em>, con lo que tendremos todo el código fuente de la librería y comandos del terminal para crear nuevos proyectos que la utilicen</li>
 <li>Instalar todo el <em>kit</em> de herramientas de Cocos, que nos proporciona una interfaz para la creación de nuevos proyectos, una herramienta visual para la creación de escenas (<em>Cocos Studio</em>), y la posibilidad de utilizar una versión precompilada de la librería, lo cual ahorrará mucho tiempo de compilación en nuestro proyecto. </li>
 </ul>
 <p>Elegiremos la primera opción si queremos modificar el código de la librería y hacer alguna contribución al proyecto, mientras que en otros casos sería más conveniente utilizar la segunda.</p>
-<h3 id="creacion-del-proyecto-con-cocos">Creación del proyecto con Cocos<a class="headerlink" href="#creacion-del-proyecto-con-cocos" title="Permanent link">&para;</a></h3>
+<h3 id="creacion-del-proyecto-con-cocos">Creación del proyecto con Cocos<a class="headerlink" href="#creacion-del-proyecto-con-cocos" title="Permanent link">¶</a></h3>
 <p>Si instalamos el <em>kit</em> completo de herramientas, contaremos con la herramienta <em>Cocos</em> que nos permitirá crear un nuevo proyecto multiplataforma con esta librería, y gestionar los proyectos existentes.</p>
-<p><img alt="&quot;Herramienta Cocos&quot;" src="imagenes/cocos/cocos-projects.png" /></p>
+<p><img alt='"Herramienta Cocos"' src="imagenes/cocos/cocos-projects.png"/></p>
 <p>Al crear un nuevo proyecto nos dejará elegir:</p>
 <ul>
 <li><strong>Nombre del proyecto</strong>. </li>
@@ -550,8 +319,8 @@ portado directamente a distintos tipos de dispositivos (Android, iOS, Windows Ph
 <li><strong>Editor</strong>. Nos permite indicar si queremos utilizar <em>Cocos Studio</em> para la edición visual de las escenas.</li>
 <li><strong>SDKs</strong>. Nos permite incluir <em>plugins</em> adicionales para integrar servicios nativos de la plataforma o servicios de terceros, como por ejemplo redes sociales o analíticas.</li>
 </ul>
-<p><img alt="&quot;Nuevo proyecto con Cocos&quot;" src="imagenes/cocos/cocos-new-project.png" /></p>
-<h3 id="creacion-del-proyecto-desde-la-terminal">Creación del proyecto desde la terminal<a class="headerlink" href="#creacion-del-proyecto-desde-la-terminal" title="Permanent link">&para;</a></h3>
+<p><img alt='"Nuevo proyecto con Cocos"' src="imagenes/cocos/cocos-new-project.png"/></p>
+<h3 id="creacion-del-proyecto-desde-la-terminal">Creación del proyecto desde la terminal<a class="headerlink" href="#creacion-del-proyecto-desde-la-terminal" title="Permanent link">¶</a></h3>
 <p>Tanto si tenemos el <em>kit</em> completo como sólo el <em>framework</em>, tendremos la opción de crear un nuevo proyecto desde la terminal. </p>
 <p>Al descargar y descomprimir Cocos2d-x, veremos en el directorio raiz de la libreria un script llamado <code>setup.py</code>. Este hay que ejecutarlo una vez después de haber descomprimido la libreria (si utilizamos el instalador esto se hará de forma automática). Este mismo script nos introducira en nuestro fichero <code>~/.profile</code> las rutas necesarias para utilizar la libreria desde línea de comandos. De manera manual podríamos cargar dichas variables mediante el comando  <code>source ~/.profile</code>, pero eso se realizará de manera automática cada vez que abramos una nueva terminal. </p>
 <p>De esta manera tendremos acceso a un script llamado <code>cocos</code>que permite entre otras cosas crear la plantilla para un nuevo proyecto Cocos2d-x multiplataforma. 
@@ -563,7 +332,6 @@ Deberemos proporcionar la siguiente información:</p>
                     -d MisProyectosCocos
 </pre></div>
 </td></tr></table>
-
 <p>Esto nos creará un proyecto (carpeta) <code>MiJuego</code> en la subcarpeta <code>MisProyectosCocos</code> del directorio donde nos encontremos. El lenguaje utilizado será C++ (<code>-l cpp</code>). La plantilla del nuevo proyecto será la misma para todos los sistema soportados. Por ejemplo, si queremos
 trabajar con la versión de iOS, dentro del directorio de nuestro proyecto entraremos en la
 subcarpeta <code>proj.ios_mac</code> y abriremos el proyecto Xcode. Todas las plataformas
@@ -576,8 +344,7 @@ podemos acceder de la siguiente forma:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">Director</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span>
 </pre></div>
 </td></tr></table>
-
-<h2 id="tipos-de-datos">Tipos de datos<a class="headerlink" href="#tipos-de-datos" title="Permanent link">&para;</a></h2>
+<h2 id="tipos-de-datos">Tipos de datos<a class="headerlink" href="#tipos-de-datos" title="Permanent link">¶</a></h2>
 <p>Como hemos comentado, Cocos2d-x proviene del motor Cocos2d para iOS. Este motor estaba 
 implementado en Objective-C, sobre la API Cocoa Touch, y por lo tanto estaba muy vinculado
 a sus tipos de datos. </p>
@@ -590,9 +357,9 @@ gestión de memoria que utilizan todos los objetos de la librería.</p>
 <p>Encontramos también una serie de tipos de datos geométricos: <code>Point</code>, 
 <code>Rect</code> y <code>Size</code>. Estos tipos de datos incorporan también algunas
 operaciones, por ejemplo para comprobar si dos rectángulos intersectan.</p>
-<h2 id="componentes-de-un-videojuego">Componentes de un videojuego<a class="headerlink" href="#componentes-de-un-videojuego" title="Permanent link">&para;</a></h2>
+<h2 id="componentes-de-un-videojuego">Componentes de un videojuego<a class="headerlink" href="#componentes-de-un-videojuego" title="Permanent link">¶</a></h2>
 <p>Cuando diseñemos un juego deberemos identificar las distintas entidades 
-  que encontraremos en él. Normalmente en los juegos<br />
+  que encontraremos en él. Normalmente en los juegos<br/>
   2D tendremos una pantalla del juego, que tendrá un fondo y una serie 
   de personajes u objetos que se mueven en este escenario. Estos objetos que se 
   mueven en el escenario se conocen como <em>sprites</em>. Además, tendremos 
@@ -623,14 +390,13 @@ operaciones, por ejemplo para comprobar si dos rectángulos intersectan.</p>
     en la pantalla.</p>
 </li>
 </ul>
-<p><img alt="Componentes de un juego" src="imagenes/juegos/componentes.gif" /></p>
+<p><img alt="Componentes de un juego" src="imagenes/juegos/componentes.gif"/></p>
 <!-- 
 A continuación veremos con más detalle cada uno de estos componentes, 
   viendo como ejemplo las clases de Cocos2D con las que podemos implementar cada una de ellas.
  -->
-
 <p>A continuación veremos cómo implementar con Cocos2d-x cada uno de estos componentes.</p>
-<h2 id="pantallas">Pantallas<a class="headerlink" href="#pantallas" title="Permanent link">&para;</a></h2>
+<h2 id="pantallas">Pantallas<a class="headerlink" href="#pantallas" title="Permanent link">¶</a></h2>
 <p>En el juego tenemos diferentes pantallas, cada una con un comportamiento distinto. La principal
 será la pantalla en la que se desarrolla el juego, aunque también encontramos otras pantallas
 para los menús y otras opciones. También podemos referirnos a estas pantallas como escenas o
@@ -670,8 +436,8 @@ todos estos detalles.</p>
     que tendrá normalmente los componentes que hemos visto anteriormente.</p>
 </li>
 </ul>
-<p><img alt="Mapa de pantallas típico de un juego" src="imagenes/juegos/estados.gif" /></p>
-<h2 id="escena-2d">Escena 2D<a class="headerlink" href="#escena-2d" title="Permanent link">&para;</a></h2>
+<p><img alt="Mapa de pantallas típico de un juego" src="imagenes/juegos/estados.gif"/></p>
+<h2 id="escena-2d">Escena 2D<a class="headerlink" href="#escena-2d" title="Permanent link">¶</a></h2>
 <p>En Cocos2D cada pantalla se representa mediante un objeto de tipo <code>Scene</code>.
   En la pantalla del juego se dibujarán todos los elementos necesarios (fondos, <em>sprites</em>, etc) para construir 
   la escena del juego. De esta manera tendremos el fondo, nuestro personaje, los 
@@ -692,7 +458,7 @@ a mostrar en pantalla, que podrían ser a su vez otras capas. Es decir, la escen
 se representará como un grafo, en el que tenemos una jerarquía de nodos, en la que
 determinados nodos, como es el caso de la escena o las capas, podrán contener otros nodos.
 Este tipo de representación se conoce como <strong>escena 2D</strong>.</p>
-<p><img alt="Grafo de la escena 2D" src="imagenes/juegos/cocos2d_scene2d.jpg" /></p>
+<p><img alt="Grafo de la escena 2D" src="imagenes/juegos/cocos2d_scene2d.jpg"/></p>
 <p>Normalmente para cada pantalla del juego tendremos una capa principal, y encapsularemos
 el funcionamiento de dicha pantalla en una subclase de <code>Layer</code>, por ejemplo:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
@@ -714,7 +480,6 @@ el funcionamiento de dicha pantalla en una subclase de <code>Layer</code>, por e
 <span class="p">};</span>
 </pre></div>
 </td></tr></table>
-
 <p>Crearemos la escena a partir de su capa principal. Todos los nodos, incluyendo
 la escena, se instanciarán mediante el método de factoría <code>create</code>. 
 Este método de factoría se genera de forma estática con la macro <code>CREATE_FUNC</code>, por
@@ -735,7 +500,6 @@ un nodo como hijo de otro nodo con el método <code>addChild</code>:</p>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-
 <p>Cuando instanciamos un nodo mediante el método de factoría <code>create</code>, llamará
 a su método <code>init</code> para inicializarse. Si sobrescribimos dicho método en la capa
 podremos definir la forma en la que se inicializa:</p>
@@ -766,26 +530,23 @@ podremos definir la forma en la que se inicializa:</p>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-
 <p>El orden en el que se mostrarán las capas es lo que se conoce como orden Z, 
   que indica la profundidad de esta capa en la escena. La primera capa será 
   la más cercana al punto de vista del usuario, mientras que la última 
   será la más lejana. Por lo tanto, las primeras capas que añadamos 
   quedarán por delante de las siguientes capas. Este orden Z se puede controlar
   mediante la propiedad <code>zOrder</code> de los nodos.</p>
-<h2 id="transiciones-entre-escenas">Transiciones entre escenas<a class="headerlink" href="#transiciones-entre-escenas" title="Permanent link">&para;</a></h2>
+<h2 id="transiciones-entre-escenas">Transiciones entre escenas<a class="headerlink" href="#transiciones-entre-escenas" title="Permanent link">¶</a></h2>
 <p>Mostraremos la escena inicial del juego con el método <code>runWithScene</code> del director:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">Director</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">runWithScene</span><span class="p">(</span><span class="n">MenuPrincipal</span><span class="o">::</span><span class="n">scene</span><span class="p">());</span>
 </pre></div>
 </td></tr></table>
-
 <p>Con esto pondremos en marcha el motor del juego mostrando la escena indicada. Si el motor
 ya está en marcha y queremos cambiar de escena, deberemos hacerlo con el método
 <code>replaceScene</code>:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">Director</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">replaceScene</span><span class="p">(</span><span class="n">Puntuaciones</span><span class="o">::</span><span class="n">scene</span><span class="p">());</span>
 </pre></div>
 </td></tr></table>
-
 <p>También podemos implementar transiciones entre escenas de forma animada utilizando como escena
 una serie de clases todas ellas con prefijo <code>Transition-</code>, que heredan de <code>TransitionScene</code>,
 que a su vez hereda de <code>Scene</code>. Podemos mostrar una transición animada reemplazando la
@@ -799,10 +560,9 @@ escena actual por una escena de transición:</p>
 <span class="n">Director</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">replaceScene</span><span class="p">(</span><span class="n">transition</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>Podemos observar que la escena de transición se construye a partir de la duración de la 
 transición, y de la escena que debe mostrarse una vez finalice la transición.</p>
-<h2 id="interfaz-de-usuario">Interfaz de usuario<a class="headerlink" href="#interfaz-de-usuario" title="Permanent link">&para;</a></h2>
+<h2 id="interfaz-de-usuario">Interfaz de usuario<a class="headerlink" href="#interfaz-de-usuario" title="Permanent link">¶</a></h2>
 <p>Encontramos distintos tipos de nodos que podemos añadir a la escena para crear nuestra interfaz de
 usuario, como por ejemplo menús y etiquetas de texto, que nos pueden servir por ejemplo para mostrar
 el marcador de puntuación, o el mensaje <em>Game Over</em>. </p>
@@ -815,11 +575,10 @@ el marcador de puntuación, o el mensaje <em>Game Over</em>. </p>
 de fuente ya existen y añadirla a la escena con <code>addChild</code> (por ejemplo añadiéndola como hija
 de la capa principal de la escena). Se define mediante la clase <code>LabelTTF</code>:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">LabelTTF</span><span class="o">*</span> <span class="n">label</span> <span class="o">=</span> <span class="n">LabelTTF</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="s">&quot;Game Over&quot;</span><span class="p">,</span> <span class="s">&quot;Arial&quot;</span><span class="p">,</span> <span class="mi">24</span><span class="p">);</span>
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">LabelTTF</span><span class="o">*</span> <span class="n">label</span> <span class="o">=</span> <span class="n">LabelTTF</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="s">"Game Over"</span><span class="p">,</span> <span class="s">"Arial"</span><span class="p">,</span> <span class="mi">24</span><span class="p">);</span>
 <span class="k">this</span><span class="o">-&gt;</span><span class="n">addChild</span><span class="p">(</span><span class="n">label</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>Sin embargo, en un videojuego debemos cuidar al máximo el aspecto y la personalización de los gráficos.
 Por lo tanto, suele ser más adecuado crear nuestros propios tipos de fuentes. La mayoría de motores de
 videojuegos soportan el formato <code>.fnt</code>, con el que podemos definir fuentes de tipo
@@ -828,12 +587,11 @@ como <strong>Angel Code</strong> o <strong>Hiero</strong> (http://www.n4te.com/h
 Una vez creada la fuente con este formato, podemos mostrar una cadena con dicha fuente mediante
 la clase <code>LabelBMFont</code>:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">LabelBMFont</span> <span class="o">*</span><span class="n">label</span> <span class="o">=</span> <span class="n">LabelBMFont</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="s">&quot;Game Over&quot;</span><span class="p">,</span> <span class="s">&quot;fuente.fnt&quot;</span><span class="p">);</span>
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">LabelBMFont</span> <span class="o">*</span><span class="n">label</span> <span class="o">=</span> <span class="n">LabelBMFont</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="s">"Game Over"</span><span class="p">,</span> <span class="s">"fuente.fnt"</span><span class="p">);</span>
 <span class="k">this</span><span class="o">-&gt;</span><span class="n">addChild</span><span class="p">(</span><span class="n">label</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
-<p><img alt="Herramienta Hiero Font Tool" src="imagenes/juegos/herramientas_hiero.jpg" /></p>
+<p><img alt="Herramienta Hiero Font Tool" src="imagenes/juegos/herramientas_hiero.jpg"/></p>
 <p>Por otro lado, también podemos crear menús de opciones. Normalmente en la pantalla principal del juego
 siempre encontraremos un menú con todas las opciones que nos ofrece dicho juego. Los menús se crean con
 la clase <code>Menu</code>, a la que añadiremos una serie de <em>items</em>, de tipo <code>MenuItem</code> (o subclases suyas), 
@@ -853,13 +611,13 @@ otro tipo de <em>item</em>:</p>
 11
 12
 13</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">MenuItemImage</span> <span class="o">*</span><span class="n">item1</span> <span class="o">=</span> <span class="n">MenuItemImage</span><span class="o">::</span><span class="n">create</span><span class="p">(</span>
-      <span class="s">&quot;nuevo_juego.png&quot;</span><span class="p">,</span> <span class="s">&quot;nuevo_juego_selected.png&quot;</span><span class="p">,</span> <span class="n">CC_CALLBACK_1</span><span class="p">(</span><span class="n">MenuPrincipal</span><span class="o">::</span><span class="n">menuNuevoJuegoCallback</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span>
+      <span class="s">"nuevo_juego.png"</span><span class="p">,</span> <span class="s">"nuevo_juego_selected.png"</span><span class="p">,</span> <span class="n">CC_CALLBACK_1</span><span class="p">(</span><span class="n">MenuPrincipal</span><span class="o">::</span><span class="n">menuNuevoJuegoCallback</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span>
 
 <span class="n">MenuItemImage</span> <span class="o">*</span><span class="n">item2</span> <span class="o">=</span> <span class="n">MenuItemImage</span><span class="o">::</span><span class="n">create</span><span class="p">(</span>
-      <span class="s">&quot;continuar.png&quot;</span><span class="p">,</span> <span class="s">&quot;continuar_selected.png&quot;</span><span class="p">,</span> <span class="n">CC_CALLBACK_1</span><span class="p">(</span><span class="n">MenuPrincipal</span><span class="o">::</span><span class="n">menuContinuarCallback</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span>
+      <span class="s">"continuar.png"</span><span class="p">,</span> <span class="s">"continuar_selected.png"</span><span class="p">,</span> <span class="n">CC_CALLBACK_1</span><span class="p">(</span><span class="n">MenuPrincipal</span><span class="o">::</span><span class="n">menuContinuarCallback</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span>
 
 <span class="n">MenuItemImage</span> <span class="o">*</span><span class="n">item3</span> <span class="o">=</span> <span class="n">MenuItemImage</span><span class="o">::</span><span class="n">create</span><span class="p">(</span>
-      <span class="s">&quot;opciones.png&quot;</span><span class="p">,</span> <span class="s">&quot;opciones_selected.png&quot;</span><span class="p">,</span> <span class="n">CC_CALLBACK_1</span><span class="p">(</span><span class="n">MenuPrincipal</span><span class="o">::</span><span class="n">menuOpcionesCallback</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span>
+      <span class="s">"opciones.png"</span><span class="p">,</span> <span class="s">"opciones_selected.png"</span><span class="p">,</span> <span class="n">CC_CALLBACK_1</span><span class="p">(</span><span class="n">MenuPrincipal</span><span class="o">::</span><span class="n">menuOpcionesCallback</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span>
 
 <span class="n">Menu</span><span class="o">*</span> <span class="n">menu</span> <span class="o">=</span> <span class="n">Menu</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="n">item1</span><span class="p">,</span> <span class="n">item2</span><span class="p">,</span> <span class="n">item3</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
 <span class="n">menu</span><span class="o">-&gt;</span><span class="n">alignItemsVertically</span><span class="p">();</span>    
@@ -867,7 +625,6 @@ otro tipo de <em>item</em>:</p>
 <span class="k">this</span><span class="o">-&gt;</span><span class="n">addChild</span><span class="p">(</span><span class="n">menu</span><span class="p">);</span>  
 </pre></div>
 </td></tr></table>
-
 <p>Vemos que para cada <em>item</em> del menú añadimos dos imágenes. Una para su estado normal, y otra
 para cuando esté pulsado. También propocionamos la acción a realizar cuando se pulse sobre cada opción,
 mediante un par <em>target-selector</em>: el <em>target</em> es el objeto sobre el que se 
@@ -883,11 +640,10 @@ deberán tener la siguiente forma:</p>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-
 <p>Una vez creadas las opciones, construirmos un menú a partir de ellas,
 organizamos los <em>items</em> (podemos disponerlos en vertical de forma automática como vemos en el ejemplo), y
 añadimos el menú a la escena.</p>
-<h2 id="gestion-de-la-memoria">Gestión de la memoria<a class="headerlink" href="#gestion-de-la-memoria" title="Permanent link">&para;</a></h2>
+<h2 id="gestion-de-la-memoria">Gestión de la memoria<a class="headerlink" href="#gestion-de-la-memoria" title="Permanent link">¶</a></h2>
 <p>La memoria en Cocos2d-x se gestiona mediante cuenta de referencias, siguiendo el mismo
 mecanismo de gestión de memoria que utiliza Cocos2d al estar implementado en Objective-C. 
 Este mecanismo consiste en que los objetos de la librería (todos aquellos derivan de
@@ -1159,81 +915,57 @@ dispositivo, al cargar el fichero deberíamos especificar esta información:
 </td></tr></table>
 
 -->
-                
-                  
-                
-              
-              
-                
-
-
-              
-            </article>
-          </div>
-        </div>
-      </main>
-      
-        
+</article>
+</div>
+</div>
+</main>
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
-        
-          <a href="videojuegos_para_moviles.html" title="Videojuegos para móviles" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-            </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
+<div class="md-footer-nav">
+<nav class="md-footer-nav__inner md-grid">
+<a class="md-flex md-footer-nav__link md-footer-nav__link--prev" href="videojuegos_para_moviles.html" rel="prev" title="Videojuegos para móviles">
+<div class="md-flex__cell md-flex__cell--shrink">
+<i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+</div>
+<div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+<span class="md-flex__ellipsis">
+<span class="md-footer-nav__direction">
                   Anterior
                 </span>
                 Videojuegos para móviles
               </span>
-            </div>
-          </a>
-        
-        
-          <a href="sprites_e_interaccion.html" title="Sprites y colisiones" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
+</div>
+</a>
+<a class="md-flex md-footer-nav__link md-footer-nav__link--next" href="sprites_e_interaccion.html" rel="next" title="Sprites y colisiones">
+<div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+<span class="md-flex__ellipsis">
+<span class="md-footer-nav__direction">
                   Siguiente
                 </span>
                 Sprites y colisiones
               </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
+</div>
+<div class="md-flex__cell md-flex__cell--shrink">
+<i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+</div>
+</a>
+</nav>
+</div>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-footer-copyright">
         
         powered by
         <a href="https://www.mkdocs.org">MkDocs</a>
         and
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
-      </div>
-      
-    </div>
-  </div>
+</div>
+</div>
+</div>
 </footer>
-      
-    </div>
-    
-      <script src="assets/javascripts/application.245445c6.js"></script>
-      
-      <script>app.initialize({version:"1.0.4",url:{base:"."}})</script>
-      
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-      
-    
-  </body>
+</div>
+<script src="assets/javascripts/application.245445c6.js"></script>
+<script>app.initialize({version:"1.0.4",url:{base:"."}})</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
 </html>

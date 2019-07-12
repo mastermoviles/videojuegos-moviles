@@ -1,573 +1,330 @@
 
+<!DOCTYPE doctype html>
 
-
-
-<!doctype html>
-<html lang="es" class="no-js">
-  <head>
-    
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta http-equiv="x-ua-compatible" content="ie=edge">
-      
-      
-      
-      
-        <meta name="lang:clipboard.copy" content="Copiar al portapapeles">
-      
-        <meta name="lang:clipboard.copied" content="Copiado al portapapeles">
-      
-        <meta name="lang:search.language" content="en">
-      
-        <meta name="lang:search.pipeline.stopwords" content="True">
-      
-        <meta name="lang:search.pipeline.trimmer" content="True">
-      
-        <meta name="lang:search.result.none" content="No se encontraron documentos">
-      
-        <meta name="lang:search.result.one" content="1 documento encontrado">
-      
-        <meta name="lang:search.result.other" content="# documentos encontrados">
-      
-        <meta name="lang:search.tokenizer" content="[\s\-]+">
-      
-      <link rel="shortcut icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
-    
-    
-      
-        <title>Escenario y fondos - VPDM - Cocos2d-x</title>
-      
-    
-    
-      <link rel="stylesheet" href="assets/stylesheets/application.0284f74d.css">
-      
-        <link rel="stylesheet" href="assets/stylesheets/application-palette.01803549.css">
-      
-      
-        
-        
-        <meta name="theme-color" content="#009688">
-      
-    
-    
-      <script src="assets/javascripts/modernizr.74668098.js"></script>
-    
-    
-      
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
-        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
-      
-    
-    <link rel="stylesheet" href="assets/fonts/material-icons.css">
-    
-    
-    
-      
-    
-    
-  </head>
-  
-    
-    
-    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
-  
-    <svg class="md-svg">
-      <defs>
-        
-        
-      </defs>
-    </svg>
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
-    
-      <a href="#escenario-y-fondo" tabindex="1" class="md-skip">
+<html class="no-js" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="ie=edge" http-equiv="x-ua-compatible"/>
+<meta content="Copiar al portapapeles" name="lang:clipboard.copy"/>
+<meta content="Copiado al portapapeles" name="lang:clipboard.copied"/>
+<meta content="en" name="lang:search.language"/>
+<meta content="True" name="lang:search.pipeline.stopwords"/>
+<meta content="True" name="lang:search.pipeline.trimmer"/>
+<meta content="No se encontraron documentos" name="lang:search.result.none"/>
+<meta content="1 documento encontrado" name="lang:search.result.one"/>
+<meta content="# documentos encontrados" name="lang:search.result.other"/>
+<meta content="[\s\-]+" name="lang:search.tokenizer"/>
+<link href="assets/images/favicon.png" rel="shortcut icon"/>
+<meta content="mkdocs-1.0.4, mkdocs-material-4.4.0" name="generator"/>
+<title>Escenario y fondos - VPDM - Cocos2d-x</title>
+<link href="assets/stylesheets/application.0284f74d.css" rel="stylesheet"/>
+<link href="assets/stylesheets/application-palette.01803549.css" rel="stylesheet"/>
+<meta content="#009688" name="theme-color"/>
+<script src="assets/javascripts/modernizr.74668098.js"></script>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&amp;display=fallback" rel="stylesheet"/>
+<style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+<link href="assets/fonts/material-icons.css" rel="stylesheet"/>
+</head>
+<body data-md-color-accent="teal" data-md-color-primary="teal" dir="ltr">
+<svg class="md-svg">
+<defs>
+</defs>
+</svg>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+<a class="md-skip" href="#escenario-y-fondo" tabindex="1">
         Saltar a contenido
       </a>
-    
-    
-      <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid">
-    <div class="md-flex">
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="index.html" title="VPDM - Cocos2d-x" class="md-header-nav__button md-logo">
-          
-            <img src="imagenes/logo.png" width="24" height="24">
-          
-        </a>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
-      </div>
-      <div class="md-flex__cell md-flex__cell--stretch">
-        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          
-            <span class="md-header-nav__topic">
+<header class="md-header" data-md-component="header">
+<nav class="md-header-nav md-grid">
+<div class="md-flex">
+<div class="md-flex__cell md-flex__cell--shrink">
+<a class="md-header-nav__button md-logo" href="index.html" title="VPDM - Cocos2d-x">
+<img height="24" src="imagenes/logo.png" width="24"/>
+</a>
+</div>
+<div class="md-flex__cell md-flex__cell--shrink">
+<label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+</div>
+<div class="md-flex__cell md-flex__cell--stretch">
+<div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+<span class="md-header-nav__topic">
               VPDM - Cocos2d-x
             </span>
-            <span class="md-header-nav__topic">
+<span class="md-header-nav__topic">
               
                 Escenario y fondos
               
             </span>
-          
-        </div>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        
-          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-          
+</div>
+</div>
+<div class="md-flex__cell md-flex__cell--shrink">
+<label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
 <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
-      <label class="md-icon md-search__icon" for="__search"></label>
-      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
-        &#xE5CD;
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="query" data-md-state="active" name="query" placeholder="Búsqueda" spellcheck="false" type="text"/>
+<label class="md-icon md-search__icon" for="__search"></label>
+<button class="md-icon md-search__icon" data-md-component="reset" tabindex="-1" type="reset">
+        
       </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result">
-          <div class="md-search-result__meta">
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="result">
+<div class="md-search-result__meta">
             Teclee para comenzar búsqueda
           </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
+<ol class="md-search-result__list"></ol>
 </div>
-        
-      </div>
-      
-    </div>
-  </nav>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
 </header>
-    
-    <div class="md-container">
-      
-        
-      
-      
-      <main class="md-main">
-        <div class="md-main__inner md-grid" data-md-component="container">
-          
-            
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" data-md-level="0">
-  <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="index.html" title="VPDM - Cocos2d-x" class="md-nav__button md-logo">
-      
-        <img src="imagenes/logo.png" width="48" height="48">
-      
-    </a>
+<div class="md-container">
+<main class="md-main">
+<div class="md-main__inner md-grid" data-md-component="container">
+<div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title md-nav__title--site" for="__drawer">
+<a class="md-nav__button md-logo" href="index.html" title="VPDM - Cocos2d-x">
+<img height="48" src="imagenes/logo.png" width="48"/>
+</a>
     VPDM - Cocos2d-x
   </label>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="index.html" title="Introducción" class="md-nav__link">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="index.html" title="Introducción">
       Introducción
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="videojuegos_para_moviles.html" title="Videojuegos para móviles" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="videojuegos_para_moviles.html" title="Videojuegos para móviles">
       Videojuegos para móviles
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="introduccion_a_cocos2d-x.html" title="El motor Cocos2d-x" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="introduccion_a_cocos2d-x.html" title="El motor Cocos2d-x">
       El motor Cocos2d-x
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="sprites_e_interaccion.html" title="Sprites y colisiones" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="sprites_e_interaccion.html" title="Sprites y colisiones">
       Sprites y colisiones
     </a>
-  </li>
-
-    
-      
-      
-      
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-toggle md-nav__toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
         Escenario y fondos
       </label>
-    
-    <a href="escenario_y_fondos.html" title="Escenario y fondos" class="md-nav__link md-nav__link--active">
+<a class="md-nav__link md-nav__link--active" href="escenario_y_fondos.html" title="Escenario y fondos">
       Escenario y fondos
     </a>
-    
-      
 <nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#escenario-de-tipo-mosaico" title="Escenario de tipo mosaico" class="md-nav__link">
+<label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#escenario-de-tipo-mosaico" title="Escenario de tipo mosaico">
     Escenario de tipo mosaico
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#capas-de-patrones" title="Capas de patrones" class="md-nav__link">
+<nav class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#capas-de-patrones" title="Capas de patrones">
     Capas de patrones
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#colisiones-con-el-mapa" title="Colisiones con el mapa" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#colisiones-con-el-mapa" title="Colisiones con el mapa">
     Colisiones con el mapa
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#modificacion-del-mapa" title="Modificación del mapa" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#modificacion-del-mapa" title="Modificación del mapa">
     Modificación del mapa
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#capas-de-objetos" title="Capas de objetos" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#capas-de-objetos" title="Capas de objetos">
     Capas de objetos
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#scroll-del-escenario" title="Scroll del escenario" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#scroll-del-escenario" title="Scroll del escenario">
     Scroll del escenario
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#limites-del-escenario" title="Límites del escenario" class="md-nav__link">
+<nav class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#limites-del-escenario" title="Límites del escenario">
     Límites del escenario
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#scroll-parallax" title="Scroll parallax" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#scroll-parallax" title="Scroll parallax">
     Scroll parallax
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#reproduccion-de-audio" title="Reproducción de audio" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#reproduccion-de-audio" title="Reproducción de audio">
     Reproducción de audio
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#musica-de-fondo" title="Música de fondo" class="md-nav__link">
+<nav class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#musica-de-fondo" title="Música de fondo">
     Música de fondo
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#efectos-de-sonido" title="Efectos de sonido" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#efectos-de-sonido" title="Efectos de sonido">
     Efectos de sonido
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
+</ul>
 </nav>
-    
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="motor_de_fisicas.html" title="Motor de físicas" class="md-nav__link">
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="motor_de_fisicas.html" title="Motor de físicas">
       Motor de físicas
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="mandos.html" title="Controles del videojuego" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="mandos.html" title="Controles del videojuego">
       Controles del videojuego
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="adaptacion_a_moviles.html" title="Adaptación a móviles" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="adaptacion_a_moviles.html" title="Adaptación a móviles">
       Adaptación a móviles
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="redes_sociales.html" title="Servicios y redes sociales para juegos" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="redes_sociales.html" title="Servicios y redes sociales para juegos">
       Servicios y redes sociales para juegos
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="unity.html" title="Motor Unity" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="unity.html" title="Motor Unity">
       Motor Unity
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="nativo.html" title="Tecnologías nativas" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="nativo.html" title="Tecnologías nativas">
       Tecnologías nativas
     </a>
-  </li>
-
-    
-  </ul>
+</li>
+</ul>
 </nav>
-                  </div>
-                </div>
-              </div>
-            
-            
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
 <nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#escenario-de-tipo-mosaico" title="Escenario de tipo mosaico" class="md-nav__link">
+<label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#escenario-de-tipo-mosaico" title="Escenario de tipo mosaico">
     Escenario de tipo mosaico
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#capas-de-patrones" title="Capas de patrones" class="md-nav__link">
+<nav class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#capas-de-patrones" title="Capas de patrones">
     Capas de patrones
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#colisiones-con-el-mapa" title="Colisiones con el mapa" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#colisiones-con-el-mapa" title="Colisiones con el mapa">
     Colisiones con el mapa
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#modificacion-del-mapa" title="Modificación del mapa" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#modificacion-del-mapa" title="Modificación del mapa">
     Modificación del mapa
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#capas-de-objetos" title="Capas de objetos" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#capas-de-objetos" title="Capas de objetos">
     Capas de objetos
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#scroll-del-escenario" title="Scroll del escenario" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#scroll-del-escenario" title="Scroll del escenario">
     Scroll del escenario
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#limites-del-escenario" title="Límites del escenario" class="md-nav__link">
+<nav class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#limites-del-escenario" title="Límites del escenario">
     Límites del escenario
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#scroll-parallax" title="Scroll parallax" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#scroll-parallax" title="Scroll parallax">
     Scroll parallax
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#reproduccion-de-audio" title="Reproducción de audio" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#reproduccion-de-audio" title="Reproducción de audio">
     Reproducción de audio
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#musica-de-fondo" title="Música de fondo" class="md-nav__link">
+<nav class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#musica-de-fondo" title="Música de fondo">
     Música de fondo
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#efectos-de-sonido" title="Efectos de sonido" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#efectos-de-sonido" title="Efectos de sonido">
     Efectos de sonido
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
+</ul>
 </nav>
-                  </div>
-                </div>
-              </div>
-            
-          
-          <div class="md-content">
-            <article class="md-content__inner md-typeset">
-              
-                
-                
-                <h1 id="escenario-y-fondo">Escenario y fondo<a class="headerlink" href="#escenario-y-fondo" title="Permanent link">&para;</a></h1>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content">
+<article class="md-content__inner md-typeset"><a class="md-icon md-content__icon" download href="pdf/combined.pdf" title="PDF Export"></a>
+<h1 id="escenario-y-fondo">Escenario y fondo<a class="headerlink" href="#escenario-y-fondo" title="Permanent link">¶</a></h1>
 <p>Hasta el momento hemos visto cómo crear los diferentes elementos dinámicos (<em>sprites</em>) de
 nuestro juego, como por ejemplo nuestro personaje, los enemigos, o los disparos. Pero todos estos elementos
 normalmente se moverán sobre un escenario. Vamos a ver en esta sesión la forma en la que podemos construir
 este escenario, los fondos, y también cómo añadir música de fondo y efectos de sonido.      </p>
-<h2 id="escenario-de-tipo-mosaico">Escenario de tipo mosaico<a class="headerlink" href="#escenario-de-tipo-mosaico" title="Permanent link">&para;</a></h2>
+<h2 id="escenario-de-tipo-mosaico">Escenario de tipo mosaico<a class="headerlink" href="#escenario-de-tipo-mosaico" title="Permanent link">¶</a></h2>
 <p>En los juegos normalmente tendremos un fondo sobre el que se mueven los personajes. 
   Muchas veces los escenarios del juego son muy extensos y no caben enteros en 
   la pantalla. De esta forma lo que se hace es ver sólo la parte del escenario 
@@ -585,31 +342,30 @@ Para evitar este problema lo que haremos normalmente en este tipo de juegos
   es construir el fondo como un mosaico. Nos crearemos una imagen con los elementos 
   básicos que vamos a necesitar para nuestro fondo, y construiremos el 
   fondo como un mosaico en el que se utilizan estos elementos. </p>
-<p><img alt="Mosaico de elementos del fondo" src="imagenes/juegos/fondo.gif" /></p>
+<p><img alt="Mosaico de elementos del fondo" src="imagenes/juegos/fondo.gif"/></p>
 <p>Encontramos herramientas que nos permiten hacer esto de forma sencilla, como 
 <strong>Tiled</strong> (http://www.mapeditor.org). 
 Con esta herramienta deberemos proporcionar una textura con las distintas piezas con las
 que construiremos el mosaico, y podemos combinar estas piezas de forma visual para 
 construir mapas extensos.</p>
-<p><img alt="Herramienta Tiled Map Editor" src="imagenes/juegos/herramientas_tiled.jpg" /></p>
+<p><img alt="Herramienta Tiled Map Editor" src="imagenes/juegos/herramientas_tiled.jpg"/></p>
 <p>Deberemos proporcionar una imagen con un conjunto de patrones (<em>Mapa &gt; Nuevo conjunto
 de patrones</em>). Deberemos indicar el ancho y alto de cada "pieza" (<em>tile</em>), para que así sea
 capaz de particionar la imagen y obtener de ella los diferentes patrones con los que
 construir el mapa. Una vez cargados estos patrones, podremos seleccionar cualquiera de ellos
 y asignarlo a las diferentes celdas del mapa.</p>
-<p><img alt="Patrones para crear el mosaico" src="imagenes/juegos/fondo_matriz.gif" /></p>
+<p><img alt="Patrones para crear el mosaico" src="imagenes/juegos/fondo_matriz.gif"/></p>
 <p>El resultado se guardará en un fichero de tipo <code>.tmx</code>, basado en XML, que la
 mayor parte de motores 2D son capaces de leer. En Cocos2D tenemos la clase <code>CCTMXTiledMap</code>, 
 que puede inicializarse a partir del fichero <code>.tmx</code>:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">TMXTiledMap</span> <span class="o">*</span><span class="n">fondo</span> <span class="o">=</span> <span class="n">TMXTiledMap</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="s">&quot;mapa.tmx&quot;</span><span class="p">);</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">TMXTiledMap</span> <span class="o">*</span><span class="n">fondo</span> <span class="o">=</span> <span class="n">TMXTiledMap</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="s">"mapa.tmx"</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>Este objeto es un nodo (hereda de <code>Node</code>), por lo que podemos añadirlo a pantalla 
 (con <code>addChild</code>) y aplicar cualquier transformación de las vistas anterioremente.</p>
 <p>Las dimesiones del mapa serán <em>(columnas<em>ancho)x(filas</em>alto)</em>, siendo <em>ancho x alto</em> las
 dimensiones de cada <em>tile</em>, y <em>columnas x filas</em> el número de celdas que tiene el mapa. </p>
-<p><img alt="Ejemplo de fondo construido con los elementos anteriores" src="imagenes/juegos/ej_fondo.gif" /></p>
+<p><img alt="Ejemplo de fondo construido con los elementos anteriores" src="imagenes/juegos/ej_fondo.gif"/></p>
 <p>Hemos visto la creación básica de un escenario con <em>Tiled Map Editor</em>, pero esta herramienta nos 
 da más facilidades para la creación de los fondos. En el caso anterior hemos visto como crear el fondo
 a partir de una única capa de mosaico, pero podemos hacer que nuestros fondos se compongan de varias
@@ -619,7 +375,7 @@ de patrones nos permitirán crear el aspecto visual del fondo mediante un mosaic
 mientras que las de objetos nos permiten marcar diferentes zonas del mapa, por ejemplo para indicar puntos
 en los que aparecen enemigos, o el punto en el que se debe situar nuestro personaje al comenzar el nivel.
 Vamos a ver cada uno de estos tipos de capas con más detenimiento.</p>
-<h3 id="capas-de-patrones">Capas de patrones<a class="headerlink" href="#capas-de-patrones" title="Permanent link">&para;</a></h3>
+<h3 id="capas-de-patrones">Capas de patrones<a class="headerlink" href="#capas-de-patrones" title="Permanent link">¶</a></h3>
 <p>Como hemos indicado anteriormente, las capas de patrones nos permiten definir el aspecto del nivel
 mediante un mosaico, utilizando un conjunto de patrones para fijar el contenido de cada celda del mosaico.
 Cuando creamos varias capas de patrones, será importante fijar su orden, ya que las capas que estén
@@ -627,7 +383,7 @@ al frente taparán a las que estén atrás. Este orden viene determinado por el 
 aparecen en la lista del panel derecho. Las capas al comienzo de la lista quedarán por delante de las
 demás. Podemos cambiar el orden de las capas en esta lista mediante los botones con las flechas hacia arriba
 y hacia abajo para conseguir situar cada una de ellas en la profundidad adecuada.</p>
-<p><img alt="Capas del escenario" src="imagenes/tiled/tiled_capas.jpg" /></p>
+<p><img alt="Capas del escenario" src="imagenes/tiled/tiled_capas.jpg"/></p>
 <p>Las utilidades de esta división en capas son varias:</p>
 <ul>
 <li><strong>Aspecto</strong>: Un primer motivo para utilizar diferentes capas puede ser simplemente por
@@ -649,11 +405,10 @@ con las celdas y modificar en el programa el contenido de las mismas para poder 
 elementos consumibles.</p>
 <p>La base para hacer todo esto es poder obtener cada capa individual del mapa para poder trabajar con
 sus elementos. Esto lo haremos con la clase <code>CCTMXLayer</code>:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">TMXLayer</span> <span class="o">*</span><span class="n">capa</span> <span class="o">=</span> <span class="n">fondo</span><span class="o">-&gt;</span><span class="n">layerNamed</span><span class="p">(</span><span class="s">&quot;muros&quot;</span><span class="p">);</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">TMXLayer</span> <span class="o">*</span><span class="n">capa</span> <span class="o">=</span> <span class="n">fondo</span><span class="o">-&gt;</span><span class="n">layerNamed</span><span class="p">(</span><span class="s">"muros"</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
-<h3 id="colisiones-con-el-mapa">Colisiones con el mapa<a class="headerlink" href="#colisiones-con-el-mapa" title="Permanent link">&para;</a></h3>
+<h3 id="colisiones-con-el-mapa">Colisiones con el mapa<a class="headerlink" href="#colisiones-con-el-mapa" title="Permanent link">¶</a></h3>
 <p>La detección de colisiones con los muros del fondo será muy útil en juegos de tipo RPG o de plataformas. 
 Para hacer esto lo primero que debemos hacer es obtener la capa que define los elementos que se comportan
 como "muro" tal como hemos visto anteriormente. De esta capa necesitaremos tener alguna forma de identificar
@@ -662,7 +417,7 @@ propiedades que nuestro programa podrá leer y así comprobar si se trata de un 
 colisionar o no. Para asignar propiedades a un objeto del conjunto de patrones dentro de <em>Tiled</em> 
 podemos pulsar con el botón derecho sobre él, y seleccionar <em>Propiedades del Patrón...</em>. Se abrirá
 un cuadro como el siguiente donde podremos definir dichas propiedades:</p>
-<p><img alt="Propiedades de los patrones" src="imagenes/tiled/tiled_propiedades.jpg" /></p>
+<p><img alt="Propiedades de los patrones" src="imagenes/tiled/tiled_propiedades.jpg"/></p>
 <p>Lo que deberemos hacer es marcar todos los objetos del conjunto de patrones que sirvan para definir muros
 con una misma propiedad que los marque como tal.</p>
 <p>En el código de nuestro juego podremos leer estas propiedades de la siguiente forma:</p>
@@ -683,7 +438,7 @@ con una misma propiedad que los marque como tal.</p>
 <span class="k">if</span> <span class="p">(</span><span class="n">tileGid</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">auto</span> <span class="n">properties</span> <span class="o">=</span> <span class="n">fondo</span><span class="o">-&gt;</span><span class="n">getPropertiesForGID</span><span class="p">(</span><span class="n">tileGid</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">properties</span><span class="p">.</span><span class="n">isNull</span><span class="p">())</span> <span class="p">{</span>
-        <span class="kt">bool</span> <span class="n">collision</span> <span class="o">=</span>  <span class="n">properties</span><span class="p">.</span><span class="n">asValueMap</span><span class="p">().</span><span class="n">at</span><span class="p">(</span><span class="s">&quot;colisionable&quot;</span><span class="p">).</span><span class="n">asBool</span><span class="p">();</span>
+        <span class="kt">bool</span> <span class="n">collision</span> <span class="o">=</span>  <span class="n">properties</span><span class="p">.</span><span class="n">asValueMap</span><span class="p">().</span><span class="n">at</span><span class="p">(</span><span class="s">"colisionable"</span><span class="p">).</span><span class="n">asBool</span><span class="p">();</span>
         <span class="k">if</span><span class="p">(</span><span class="n">collision</span><span class="p">)</span> <span class="p">{</span>
             <span class="p">...</span>
         <span class="p">}</span>
@@ -691,7 +446,6 @@ con una misma propiedad que los marque como tal.</p>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-
 <p>El <em>gid</em> de cada celda nos indica el tipo de objeto de patrón que tenemos en ella. Si la celda está
 vacía el <em>gid</em> será <code>0</code>. En una versión más sencilla, podríamos considerar que todas
 las celdas de la capa son colisionables y simplemente comprobar si el <em>gid</em> es distinto de <code>0</code>.
@@ -730,7 +484,6 @@ el tamaño de cada celda):</p>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-
 <blockquote>
 <p>Hay que destacar que las coordenadas <em>y</em> del mapa están invertidas respecto a las
 de la escena. Por ese motivo es necesario calcular la altura total y hacer la resta.</p>
@@ -756,7 +509,6 @@ una celda dada:</p>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-
 <p>Por último, crearemos un método que nos diga si una determinada celda es colisionable o no. Consideraremos 
 que las celdas fuera del mapa no son colisionables (aunque según el caso podría interesarnos hacerlo al revés):</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
@@ -789,13 +541,13 @@ que las celdas fuera del mapa no son colisionables (aunque según el caso podrí
         <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="n">TMXLayer</span> <span class="o">*</span><span class="n">layerMuros</span> <span class="o">=</span> <span class="n">_tiledMap</span><span class="o">-&gt;</span><span class="n">getLayer</span><span class="p">(</span><span class="s">&quot;muros&quot;</span><span class="p">);</span>
+    <span class="n">TMXLayer</span> <span class="o">*</span><span class="n">layerMuros</span> <span class="o">=</span> <span class="n">_tiledMap</span><span class="o">-&gt;</span><span class="n">getLayer</span><span class="p">(</span><span class="s">"muros"</span><span class="p">);</span>
 
     <span class="kt">int</span> <span class="n">tileGid</span> <span class="o">=</span> <span class="n">layerMuros</span><span class="o">-&gt;</span><span class="n">getTileGIDAt</span><span class="p">(</span><span class="n">tileCoords</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">tileGid</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">auto</span> <span class="n">properties</span> <span class="o">=</span> <span class="n">_tiledMap</span><span class="o">-&gt;</span><span class="n">getPropertiesForGID</span><span class="p">(</span><span class="n">tileGid</span><span class="p">);</span>
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">properties</span><span class="p">.</span><span class="n">isNull</span><span class="p">())</span> <span class="p">{</span>
-            <span class="kt">bool</span> <span class="n">collision</span> <span class="o">=</span> <span class="n">properties</span><span class="p">.</span><span class="n">asValueMap</span><span class="p">().</span><span class="n">at</span><span class="p">(</span><span class="s">&quot;colisionable&quot;</span><span class="p">).</span><span class="n">asBool</span><span class="p">();</span>
+            <span class="kt">bool</span> <span class="n">collision</span> <span class="o">=</span> <span class="n">properties</span><span class="p">.</span><span class="n">asValueMap</span><span class="p">().</span><span class="n">at</span><span class="p">(</span><span class="s">"colisionable"</span><span class="p">).</span><span class="n">asBool</span><span class="p">();</span>
             <span class="k">return</span> <span class="n">collision</span><span class="p">;</span>
         <span class="p">}</span>
     <span class="p">}</span>
@@ -804,7 +556,6 @@ que las celdas fuera del mapa no son colisionables (aunque según el caso podrí
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-
 <p>Una vez hecho esto, podremos calcular las colisiones con las celdas adyacentes a nuestro personaje y tomar las acciones oportunas.
 Por ejemplo, en el caso sencillo en el que sólo necesitamos calcular las colisiones a la izquierda y a la derecha, podremos
 utilizar el siguiente código:</p>
@@ -867,7 +618,6 @@ utilizar el siguiente código:</p>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-
 <p>Por supuesto, la forma de obtener estas celdas dependerá del tamaño del <em>sprite</em>. Si ocupase más de una celda
 deberemos hacer la comprobación con todas las celdas de nuestro entorno a las que pudiera alcanzar.</p>
 <p>Una vez detectada la colisión, el último paso hemos visto que consistiría en parar el movimiento del 
@@ -875,29 +625,26 @@ deberemos hacer la comprobación con todas las celdas de nuestro entorno a las q
 derecha) nos será de gran ayuda, ya que sabremos que deberemos posicionarlo justo pegado a esa celda en el
 lateral que ha colisionado con ella. En el ejemplo anterior, según colisione con la celda izquierda o derecha,
 posicionamos al <em>sprite</em> pegado a la derecha o a la izquierda del muro respectivamente.</p>
-<h3 id="modificacion-del-mapa">Modificación del mapa<a class="headerlink" href="#modificacion-del-mapa" title="Permanent link">&para;</a></h3>
+<h3 id="modificacion-del-mapa">Modificación del mapa<a class="headerlink" href="#modificacion-del-mapa" title="Permanent link">¶</a></h3>
 <p>En muchos casos nos interesará tener en el mapa objetos que podamos modificar. Por ejemplo, monedas u otros
 items que podamos recolectar, u objetos que podemos destruir. Para conseguir esto podemos definir una capa
 con dichos objetos, y marcarlos con una propiedad que nos indique que son "recolectables" o "destruibles".
 Una vez hecho esto, desde nuestro código podemos obtener la capa que contenga dichos objetos recolectables,
 por ejemplo "monedas":</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">TMXLayer</span> <span class="o">*</span><span class="n">monedas</span> <span class="o">=</span> <span class="n">fondo</span><span class="o">-&gt;</span><span class="n">getLayer</span><span class="p">(</span><span class="s">&quot;monedas&quot;</span><span class="p">);</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">TMXLayer</span> <span class="o">*</span><span class="n">monedas</span> <span class="o">=</span> <span class="n">fondo</span><span class="o">-&gt;</span><span class="n">getLayer</span><span class="p">(</span><span class="s">"monedas"</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>De esta capa podremos eliminar los objetos "recolectables" cuando nuestro personaje los recoja. Para hacer
 esto podemos utilizar el siguiente método:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">monedas</span><span class="o">-&gt;</span><span class="n">removeTileAt</span><span class="p">(</span><span class="n">tileCoord</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>También podríamos cambiar el tipo de elemento que se muestra en una celda (por ejemplo para que al tocar
 una moneda cambie de color). Esto lo haremos especificando el nuevo <em>gid</em> que tendrá
 la celda:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">monedas</span><span class="o">-&gt;</span><span class="n">setTileGID</span><span class="p">(</span><span class="n">GID_MONEDA_ROJA</span><span class="p">,</span><span class="n">tileCoord</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>Para cambiar o modificar los elementos recolectables primero deberemos comprobar si nuestro personaje 
 "colisiona" con la celda en la que se encuentran, de forma similar a lo visto en el punto anterior:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
@@ -917,7 +664,7 @@ la celda:</p>
 <span class="k">if</span> <span class="p">(</span><span class="n">tileGid</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">auto</span> <span class="n">properties</span> <span class="o">=</span> <span class="n">fondo</span><span class="o">-&gt;</span><span class="n">getPropertiesForGID</span><span class="p">(</span><span class="n">tileGid</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">properties</span><span class="p">.</span><span class="n">isNull</span><span class="p">())</span> <span class="p">{</span>
-        <span class="kt">bool</span> <span class="n">recolectable</span> <span class="o">=</span> <span class="n">properties</span><span class="p">.</span><span class="n">asValueMap</span><span class="p">().</span><span class="n">at</span><span class="p">(</span><span class="s">&quot;recolectable&quot;</span><span class="p">).</span><span class="n">asBool</span><span class="p">();</span>
+        <span class="kt">bool</span> <span class="n">recolectable</span> <span class="o">=</span> <span class="n">properties</span><span class="p">.</span><span class="n">asValueMap</span><span class="p">().</span><span class="n">at</span><span class="p">(</span><span class="s">"recolectable"</span><span class="p">).</span><span class="n">asBool</span><span class="p">();</span>
         <span class="k">if</span><span class="p">(</span><span class="n">recolectable</span><span class="p">)</span> <span class="p">{</span>
             <span class="n">monedas</span><span class="o">-&gt;</span><span class="n">removeTileAt</span><span class="p">(</span><span class="n">tileCoords</span><span class="p">);</span>
         <span class="p">}</span>
@@ -925,10 +672,9 @@ la celda:</p>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-
 <p>En este caso únicamente comprobamos la celda en la que se encuentra nuestro personaje, no las adyacentes.
 Si el personaje fuese de mayor tamaño deberíamos comprobar todas las celdas del entorno que pudiera abarcar.</p>
-<h3 id="capas-de-objetos">Capas de objetos<a class="headerlink" href="#capas-de-objetos" title="Permanent link">&para;</a></h3>
+<h3 id="capas-de-objetos">Capas de objetos<a class="headerlink" href="#capas-de-objetos" title="Permanent link">¶</a></h3>
 <p>Hasta el momento hemos visto las capas de patrones, que se construyen como un mosaico de celdas que definirá el
 aspecto del fondo. Existe otro tipo de capa que podemos incluir en nuestro diseño del fondo que no se limita
 al mosaico de celdas, sino que nos permite marcar cualquier región del mapa sin ajustarse a la rejilla de celdas.
@@ -939,38 +685,35 @@ dos iconos que nos permitirán crear nuevos objetos y seleccionar y cambiar las 
 existentes. Pulsando el botón con el "cubo azul" podremos añadir un nuevo objeto a la escena. El objeto 
 se definirá como un rectángulo (deberemos pulsar y arrastrar el ratón sobre el escenario para definir
 dicho rectángulo).</p>
-<p><img alt="Capa de objetos" src="imagenes/tiled/tiled_object.jpg" /></p>
+<p><img alt="Capa de objetos" src="imagenes/tiled/tiled_object.jpg"/></p>
 <p>Tras crear un objeto, podremos cambiar a la herramienta para la selección y modificación de objetos, 
 seleccionar el objeto que acabamos de crear, pulsar sobre él con el botón derecho, y seleccionar
 la opción <em>Propiedades del Objeto ...</em>. Veremos una ventana como la siguiente, en la que podremos darle
 un nombre, modificar sus dimensiones, y añadir una lista de propiedades.</p>
-<p><img alt="Propiedades de los objetos" src="imagenes/tiled/tiled_objectprop.jpg" /></p>
+<p><img alt="Propiedades de los objetos" src="imagenes/tiled/tiled_objectprop.jpg"/></p>
 <h4>Lectura de la capa de objetos</h4>
 <p>Una vez le hayamos dado un nombre al objeto, podremos obtenerlo desde el código de nuestro juego. Para ello
 primero deberemos obtener la capa de objetos (representada con la clase <code>TMXObjectGroup</code>) a 
 partir del nombre que le hemos dado (<code>objetos</code> en este ejemplo):</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">TMXObjectGroup</span> <span class="o">*</span><span class="n">objects</span> <span class="o">=</span> <span class="n">fondo</span><span class="o">-&gt;</span><span class="n">getObjectGroup</span><span class="p">(</span><span class="s">&quot;objetos&quot;</span><span class="p">);</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">TMXObjectGroup</span> <span class="o">*</span><span class="n">objects</span> <span class="o">=</span> <span class="n">fondo</span><span class="o">-&gt;</span><span class="n">getObjectGroup</span><span class="p">(</span><span class="s">"objetos"</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>A partir de esta capa podremos obtener uno de sus objetos dando su nombre. Por ejemplo, si hemos creado
 un objeto con nombre <code>inicio</code>, podremos obtenerlo de la siguiente forma:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">auto</span> <span class="n">inicio</span> <span class="o">=</span> <span class="n">objects</span><span class="o">-&gt;</span><span class="n">getObject</span><span class="p">(</span><span class="s">&quot;inicio&quot;</span><span class="p">);</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">auto</span> <span class="n">inicio</span> <span class="o">=</span> <span class="n">objects</span><span class="o">-&gt;</span><span class="n">getObject</span><span class="p">(</span><span class="s">"inicio"</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>Como vemos, el objeto se obtiene como un diccionario. De él podemos obtener diferentes propiedades,
 como sus coordenadas:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">inicio</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">).</span><span class="n">asInt</span><span class="p">();</span>
-<span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">inicio</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="s">&quot;y&quot;</span><span class="p">).</span><span class="n">asInt</span><span class="p">();</span>
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">inicio</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="s">"x"</span><span class="p">).</span><span class="n">asInt</span><span class="p">();</span>
+<span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">inicio</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="s">"y"</span><span class="p">).</span><span class="n">asInt</span><span class="p">();</span>
 
 <span class="n">_sprite</span><span class="o">-&gt;</span><span class="n">setPosition</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">));</span>
 </pre></div>
 </td></tr></table>
-
 <p>De esta forma en el código obtenemos la posición que ocupa el objeto y podemos utilizar esta posición
 para su propósito (por ejemplo para situar en ella inicialmente a nuestro personaje, o hacer que en
 ese punto aparezcan nuevos enemigos).</p>
@@ -996,20 +739,20 @@ ese punto aparezcan nuevos enemigos).</p>
 16
 17
 18
-19</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">TMXObjectGroup</span> <span class="o">*</span><span class="n">groupEdges</span> <span class="o">=</span> <span class="n">_tiledMap</span><span class="o">-&gt;</span><span class="n">getTiledMap</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getObjectGroup</span><span class="p">(</span><span class="s">&quot;MyEdges&quot;</span><span class="p">);</span>
+19</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">TMXObjectGroup</span> <span class="o">*</span><span class="n">groupEdges</span> <span class="o">=</span> <span class="n">_tiledMap</span><span class="o">-&gt;</span><span class="n">getTiledMap</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getObjectGroup</span><span class="p">(</span><span class="s">"MyEdges"</span><span class="p">);</span>
 
 <span class="n">ValueVector</span> <span class="n">edges</span> <span class="o">=</span> <span class="n">groupsEdges</span><span class="o">-&gt;</span><span class="n">getObjects</span><span class="p">();</span>
 
 <span class="k">for</span><span class="p">(</span><span class="n">Value</span> <span class="nl">edge</span> <span class="p">:</span> <span class="n">edges</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">ValueVector</span> <span class="n">polyline</span> <span class="o">=</span> <span class="n">edge</span><span class="p">.</span><span class="n">asValueMap</span><span class="p">().</span><span class="n">at</span><span class="p">(</span><span class="s">&quot;polylinePoints&quot;</span><span class="p">).</span><span class="n">asValueVector</span><span class="p">();</span>
+    <span class="n">ValueVector</span> <span class="n">polyline</span> <span class="o">=</span> <span class="n">edge</span><span class="p">.</span><span class="n">asValueMap</span><span class="p">().</span><span class="n">at</span><span class="p">(</span><span class="s">"polylinePoints"</span><span class="p">).</span><span class="n">asValueVector</span><span class="p">();</span>
 
     <span class="c1">// Calculamos la coordenadas absolutas del objeto</span>
-    <span class="kt">float</span> <span class="n">x</span> <span class="o">=</span> <span class="n">edge</span><span class="p">.</span><span class="n">asValueMap</span><span class="p">().</span><span class="n">at</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">).</span><span class="n">asFloat</span><span class="p">()</span> <span class="o">+</span> <span class="n">_tiledMap</span><span class="o">-&gt;</span><span class="n">getTiledMap</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getPositionX</span><span class="p">();</span>
-    <span class="kt">float</span> <span class="n">y</span> <span class="o">=</span> <span class="n">edge</span><span class="p">.</span><span class="n">asValueMap</span><span class="p">().</span><span class="n">at</span><span class="p">(</span><span class="s">&quot;y&quot;</span><span class="p">).</span><span class="n">asFloat</span><span class="p">()</span> <span class="o">+</span> <span class="n">_tiledMap</span><span class="o">-&gt;</span><span class="n">getTiledMap</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getPositionY</span><span class="p">();</span>
+    <span class="kt">float</span> <span class="n">x</span> <span class="o">=</span> <span class="n">edge</span><span class="p">.</span><span class="n">asValueMap</span><span class="p">().</span><span class="n">at</span><span class="p">(</span><span class="s">"x"</span><span class="p">).</span><span class="n">asFloat</span><span class="p">()</span> <span class="o">+</span> <span class="n">_tiledMap</span><span class="o">-&gt;</span><span class="n">getTiledMap</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getPositionX</span><span class="p">();</span>
+    <span class="kt">float</span> <span class="n">y</span> <span class="o">=</span> <span class="n">edge</span><span class="p">.</span><span class="n">asValueMap</span><span class="p">().</span><span class="n">at</span><span class="p">(</span><span class="s">"y"</span><span class="p">).</span><span class="n">asFloat</span><span class="p">()</span> <span class="o">+</span> <span class="n">_tiledMap</span><span class="o">-&gt;</span><span class="n">getTiledMap</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getPositionY</span><span class="p">();</span>
 
     <span class="k">for</span><span class="p">(</span><span class="n">Value</span> <span class="nl">point</span><span class="p">:</span> <span class="n">polyline</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">float</span> <span class="n">px</span> <span class="o">=</span> <span class="n">point</span><span class="p">.</span><span class="n">asValueMap</span><span class="p">().</span><span class="n">at</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">).</span><span class="n">asFloat</span><span class="p">()</span> <span class="o">+</span> <span class="n">x</span><span class="p">;</span>
-        <span class="kt">float</span> <span class="n">py</span> <span class="o">=</span> <span class="n">point</span><span class="p">.</span><span class="n">asValueMap</span><span class="p">().</span><span class="n">at</span><span class="p">(</span><span class="s">&quot;y&quot;</span><span class="p">).</span><span class="n">asFloat</span><span class="p">()</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>
+        <span class="kt">float</span> <span class="n">px</span> <span class="o">=</span> <span class="n">point</span><span class="p">.</span><span class="n">asValueMap</span><span class="p">().</span><span class="n">at</span><span class="p">(</span><span class="s">"x"</span><span class="p">).</span><span class="n">asFloat</span><span class="p">()</span> <span class="o">+</span> <span class="n">x</span><span class="p">;</span>
+        <span class="kt">float</span> <span class="n">py</span> <span class="o">=</span> <span class="n">point</span><span class="p">.</span><span class="n">asValueMap</span><span class="p">().</span><span class="n">at</span><span class="p">(</span><span class="s">"y"</span><span class="p">).</span><span class="n">asFloat</span><span class="p">()</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>
 
         <span class="c1">// Hacemos algo con (px, py)    </span>
         <span class="p">...</span>
@@ -1017,18 +760,16 @@ ese punto aparezcan nuevos enemigos).</p>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-
 <blockquote>
 <p>Si no conocemos cómo está organizada la capa de objetos, podemos consultar el fuente XML del fichero <code>.tmx</code>. También tenemos la opción de imprimir en la consola el objeto que nos devuelve <code>getObjects</code>, y de esta forma veremos su estructura en JSON y podremos así escribir el código para leerlo.</p>
 </blockquote>
-<h2 id="scroll-del-escenario">Scroll del escenario<a class="headerlink" href="#scroll-del-escenario" title="Permanent link">&para;</a></h2>
+<h2 id="scroll-del-escenario">Scroll del escenario<a class="headerlink" href="#scroll-del-escenario" title="Permanent link">¶</a></h2>
 <p>Cuando en el juego tenemos un mapa más extenso que el tamaño de la pantalla, tendremos que implementar
 <em>scroll</em> para movernos por él. Para hacer <em>scroll</em> podemos desplazar la capa principal del
 juego, que contiene tanto el mapa de fondo como los <em>sprites</em>:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">this</span><span class="o">-&gt;</span><span class="n">setPosition</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="n">scrollX</span><span class="p">,</span> <span class="n">scrollY</span><span class="p">));</span>
 </pre></div>
 </td></tr></table>
-
 <p>En este ejemplo anterior, <code>this</code> sería nuestra capa principal. En este
 caso es importante resaltar que si queremos implementar un HUD (para mostrar puntuaciones, número de vidas,
 etc) la capa del HUD no debe añadirse como hija de la capa principal, sino que deberemos añadirla
@@ -1053,13 +794,12 @@ personaje deberemos centrar el mapa:</p>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-
 <p>El método anterior deberá invocarse cada vez que se cambie la posición del <em>sprite</em>. Lo que hará
 es desplazar todo el escenario del juego de forma que el <em>sprite</em> quede situado justo en el centro
 de la pantalla. Podemos observar que se obtiene el tamaño de la pantalla a partir de <code>Director</code>, 
 y calculamos el desplazamiento <em>(x,y)</em> necesario para que el <em>sprite</em> quede situado justo
 en el punto central.</p>
-<h3 id="limites-del-escenario">Límites del escenario<a class="headerlink" href="#limites-del-escenario" title="Permanent link">&para;</a></h3>
+<h3 id="limites-del-escenario">Límites del escenario<a class="headerlink" href="#limites-del-escenario" title="Permanent link">¶</a></h3>
 <p>El problema de la implementación anterior es que el escenario no es infinito, y cuando lleguemos a sus
 límites normalmente querremos no salirnos de ellos para no dejar en la pantalla espacio vacío. Deberemos
 por lo tanto detener el <em>scroll</em> del fondo cuando hayamos llegado a su límite. Esto podemos resolverlo
@@ -1119,13 +859,12 @@ añadiendo algunos <code>if</code> al código anterior:</p>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-
 <p>Con este código evitaremos que en el visor veamos zonas fuera de los límites del mapa. La posición 
 mínima que se mostrará será <code>0</code>, y la máxima el tamaño del mapa (se calcula como el número
 de celdas <code>mapSize</code> por el tamaño de cada celda <code>tileSize</code>).</p>
 <p>Cuando lleguemos a estos límites nuestro personaje seguirá moviéndose, pero ya no estará centrado
 en la pantalla, el mapa permanecerá fijo y el personaje se moverá sobre él.</p>
-<h3 id="scroll-parallax">Scroll parallax<a class="headerlink" href="#scroll-parallax" title="Permanent link">&para;</a></h3>
+<h3 id="scroll-parallax">Scroll parallax<a class="headerlink" href="#scroll-parallax" title="Permanent link">¶</a></h3>
 <p>En juegos 2D podemos crear una ilusión de profundidad creando varias capas de fondo y haciendo que
 las capas más lejanas se muevan a velocidad más lenta que las más cercanas al hacer <em>scroll</em>. Esto
 es lo que se conoce como <em>scroll parallax</em>.</p>
@@ -1147,12 +886,11 @@ hacer que cada uno de ellos se desplace a una velocidad distinta.  </p>
 <span class="k">this</span><span class="o">-&gt;</span><span class="n">addChild</span><span class="p">(</span><span class="n">parallax</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>Podemos añadir cualquier nodo como capa al <em>scroll parallax</em>, como por ejemplo <em>sprites</em>
 o <em>tilemaps</em>. Con <em>parallax ratio</em> especificamos la velocidad a la que se mueve la capa. Si
 ponemos un <em>ratio</em> de 1 hacemos que se mueva a la velocidad real que estemos moviendo la capa
 principal de nuestra escena. Si ponemos <code>0.5</code>, se moverá a mitad de la velocidad.</p>
-<h2 id="reproduccion-de-audio">Reproducción de audio<a class="headerlink" href="#reproduccion-de-audio" title="Permanent link">&para;</a></h2>
+<h2 id="reproduccion-de-audio">Reproducción de audio<a class="headerlink" href="#reproduccion-de-audio" title="Permanent link">¶</a></h2>
 <p>En un videojuego normalmente reproduciremos una música de fondo, normalmente de forma cíclica, y una serie
 de efectos de sonido (disparos, explosiones, etc). En Cocos2D tenemos la librería CocosDenshion que nos
 permite reproducir este tipo de audio de forma apropiada para videojuegos. </p>
@@ -1163,7 +901,7 @@ permite reproducir este tipo de audio de forma apropiada para videojuegos. </p>
 3
 4
 5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;SimpleAudioEngine.h&quot;</span><span class="cp"></span>
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">"SimpleAudioEngine.h"</span><span class="cp"></span>
 
 <span class="p">...</span>
 
@@ -1171,14 +909,12 @@ permite reproducir este tipo de audio de forma apropiada para videojuegos. </p>
     <span class="n">CocosDenshion</span><span class="o">::</span><span class="n">SimpleAudioEngine</span><span class="o">::</span><span class="n">getInstance</span><span class="p">();</span>
 </pre></div>
 </td></tr></table>
-
-<h3 id="musica-de-fondo">Música de fondo<a class="headerlink" href="#musica-de-fondo" title="Permanent link">&para;</a></h3>
+<h3 id="musica-de-fondo">Música de fondo<a class="headerlink" href="#musica-de-fondo" title="Permanent link">¶</a></h3>
 <p>Podemos reproducir como música de fondo cualquier formato soportado por el dispositivo (MP3, M4A, etc).
 Para ello utilizaremos el método <code>playBackgroundMusic</code> del objeto <em>audio engine</em>: </p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">audio</span><span class="o">-&gt;</span><span class="n">playBackgroundMusic</span><span class="p">(</span><span class="s">&quot;musica.m4a&quot;</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">audio</span><span class="o">-&gt;</span><span class="n">playBackgroundMusic</span><span class="p">(</span><span class="s">"musica.m4a"</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>Lo habitual será reproducir la música en bucle, por ejemplo mientras estamos en un menú o en un nivel
 del juego. Por ese motivo contamos con el segundo parámetro (<em>loop</em>) que nos permite utilizar
 de forma sencilla esta característica.</p>
@@ -1186,14 +922,12 @@ de forma sencilla esta característica.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">audio</span><span class="o">-&gt;</span><span class="n">stopBackgroundMusic</span><span class="p">();</span>
 </pre></div>
 </td></tr></table>
-
 <p>También podemos a través de este objeto cambiar el volumen de la música de fondo (se debe
 espeficiar un valor de <code>0</code> a <code>1</code>):</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">audio</span><span class="o">-&gt;</span><span class="n">setBackgroundMusicVolume</span><span class="p">(</span><span class="mf">0.9</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
-<h3 id="efectos-de-sonido">Efectos de sonido<a class="headerlink" href="#efectos-de-sonido" title="Permanent link">&para;</a></h3>
+<h3 id="efectos-de-sonido">Efectos de sonido<a class="headerlink" href="#efectos-de-sonido" title="Permanent link">¶</a></h3>
 <p>Los efectos de sonido sonarán cuando suceda un determinado evento (disparo, explosión, pulsación de un 
 botón), y será normalmente una reproducción de corta duración. Una característica de estos efectos es
 que deben sonar de forma inmediata al suceder el evento que los produce. Causaría un mal efecto que un 
@@ -1204,18 +938,16 @@ es importante que todos estos efectos se encuentren de antemano preparados para 
 evitar estos retardos.</p>
 <p>Con Cocos2D podremos precargar un fichero de audio de la siguiente forma:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">audio</span><span class="o">-&gt;</span><span class="n">preloadEffect</span><span class="p">(</span><span class="s">&quot;explosion.caf&quot;</span><span class="p">);</span>
-<span class="n">audio</span><span class="o">-&gt;</span><span class="n">preloadEffect</span><span class="p">(</span><span class="s">&quot;disparo.caf&quot;</span><span class="p">);</span>
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">audio</span><span class="o">-&gt;</span><span class="n">preloadEffect</span><span class="p">(</span><span class="s">"explosion.caf"</span><span class="p">);</span>
+<span class="n">audio</span><span class="o">-&gt;</span><span class="n">preloadEffect</span><span class="p">(</span><span class="s">"disparo.caf"</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>Esto deberemos hacerlo una única vez antes de comenzar el juego (un buen lugar puede ser el método
 <code>init</code> de nuestra capa del juego). Una vez cargados, podremos reproducirlos de forma inmediata
 con <code>playEffect</code>:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">audio</span><span class="o">-&gt;</span><span class="n">playEffect</span><span class="p">(</span><span class="s">&quot;explosion.caf&quot;</span><span class="p">);</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">audio</span><span class="o">-&gt;</span><span class="n">playEffect</span><span class="p">(</span><span class="s">"explosion.caf"</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <!-- 
 También tenemos la opción de reproducir un sonido con efectos de _pitch_, _pan_ y
 _gain_:
@@ -1235,14 +967,12 @@ grabados en mono.
 corresponde al sonido original del audio.
 
  -->
-
 <p>Una vez no vayamos a utilizar estos efectos de sonido, deberemos liberarlos de memoria:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">audio</span><span class="o">-&gt;</span><span class="n">unloadEffect</span><span class="p">(</span><span class="s">&quot;explosion.caf&quot;</span><span class="p">);</span>
-<span class="n">audio</span><span class="o">-&gt;</span><span class="n">unloadEffect</span><span class="p">(</span><span class="s">&quot;disparo.caf&quot;</span><span class="p">);</span>
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">audio</span><span class="o">-&gt;</span><span class="n">unloadEffect</span><span class="p">(</span><span class="s">"explosion.caf"</span><span class="p">);</span>
+<span class="n">audio</span><span class="o">-&gt;</span><span class="n">unloadEffect</span><span class="p">(</span><span class="s">"disparo.caf"</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>Esto se puede hacer cuando vayamos a pasar a otra escena en la que no se vayan a necesitar
 estos efectos.</p>
 <p>Por último, al igual que en el caso de la música de fondo, podremos cambiar el volumen de los efectos
@@ -1250,85 +980,60 @@ de sonido con:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">audio</span><span class="o">-&gt;</span><span class="n">setEffectsVolume</span><span class="p">(</span><span class="mf">0.6</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
 <p>De esta forma podremos tener dos niveles de volumen independientes para la música de fondo y para
 los efectos de sonido. Los videojuegos normalmente nos presentan en sus opciones la posibilidad de
 que el usuario ajuste cada uno de estos dos volúmenes según sus preferencias.</p>
-                
-                  
-                
-              
-              
-                
-
-
-              
-            </article>
-          </div>
-        </div>
-      </main>
-      
-        
+</article>
+</div>
+</div>
+</main>
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
-        
-          <a href="sprites_e_interaccion.html" title="Sprites y colisiones" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-            </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
+<div class="md-footer-nav">
+<nav class="md-footer-nav__inner md-grid">
+<a class="md-flex md-footer-nav__link md-footer-nav__link--prev" href="sprites_e_interaccion.html" rel="prev" title="Sprites y colisiones">
+<div class="md-flex__cell md-flex__cell--shrink">
+<i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+</div>
+<div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+<span class="md-flex__ellipsis">
+<span class="md-footer-nav__direction">
                   Anterior
                 </span>
                 Sprites y colisiones
               </span>
-            </div>
-          </a>
-        
-        
-          <a href="motor_de_fisicas.html" title="Motor de físicas" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
+</div>
+</a>
+<a class="md-flex md-footer-nav__link md-footer-nav__link--next" href="motor_de_fisicas.html" rel="next" title="Motor de físicas">
+<div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+<span class="md-flex__ellipsis">
+<span class="md-footer-nav__direction">
                   Siguiente
                 </span>
                 Motor de físicas
               </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
+</div>
+<div class="md-flex__cell md-flex__cell--shrink">
+<i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+</div>
+</a>
+</nav>
+</div>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-footer-copyright">
         
         powered by
         <a href="https://www.mkdocs.org">MkDocs</a>
         and
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
-      </div>
-      
-    </div>
-  </div>
+</div>
+</div>
+</div>
 </footer>
-      
-    </div>
-    
-      <script src="assets/javascripts/application.245445c6.js"></script>
-      
-      <script>app.initialize({version:"1.0.4",url:{base:"."}})</script>
-      
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-      
-    
-  </body>
+</div>
+<script src="assets/javascripts/application.245445c6.js"></script>
+<script>app.initialize({version:"1.0.4",url:{base:"."}})</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
 </html>
