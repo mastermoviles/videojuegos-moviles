@@ -1,6 +1,11 @@
 site_name: VPDM - Cocos2d-x
 use_directory_urls: false
 
+plugins:
+    - search
+    - pdf-export:
+        combined: true
+
 nav:
 - Introducción: 'index.md'
 - Videojuegos para móviles: 'videojuegos_para_moviles.md'
