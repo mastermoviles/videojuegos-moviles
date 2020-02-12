@@ -1,298 +1,609 @@
 
-<!DOCTYPE doctype html>
 
-<html class="no-js" lang="es">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="ie=edge" http-equiv="x-ua-compatible"/>
-<meta content="Copiar al portapapeles" name="lang:clipboard.copy"/>
-<meta content="Copiado al portapapeles" name="lang:clipboard.copied"/>
-<meta content="en" name="lang:search.language"/>
-<meta content="True" name="lang:search.pipeline.stopwords"/>
-<meta content="True" name="lang:search.pipeline.trimmer"/>
-<meta content="No se encontraron documentos" name="lang:search.result.none"/>
-<meta content="1 documento encontrado" name="lang:search.result.one"/>
-<meta content="# documentos encontrados" name="lang:search.result.other"/>
-<meta content="[\s\-]+" name="lang:search.tokenizer"/>
-<link href="assets/images/favicon.png" rel="shortcut icon"/>
-<meta content="mkdocs-1.0.4, mkdocs-material-4.4.0" name="generator"/>
-<title>Videojuegos para móviles - VPDM - Cocos2d-x</title>
-<link href="assets/stylesheets/application.0284f74d.css" rel="stylesheet"/>
-<link href="assets/stylesheets/application-palette.01803549.css" rel="stylesheet"/>
-<meta content="#009688" name="theme-color"/>
-<script src="assets/javascripts/modernizr.74668098.js"></script>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&amp;display=fallback" rel="stylesheet"/>
-<style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
-<link href="assets/fonts/material-icons.css" rel="stylesheet"/>
-</head>
-<body data-md-color-accent="teal" data-md-color-primary="teal" dir="ltr">
-<svg class="md-svg">
-<defs>
-</defs>
-</svg>
-<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
-<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
-<label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
-<a class="md-skip" href="#videojuegos-para-moviles" tabindex="1">
+
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copiar al portapapeles">
+      
+        <meta name="lang:clipboard.copied" content="Copiado al portapapeles">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No se encontraron documentos">
+      
+        <meta name="lang:search.result.one" content="1 documento encontrado">
+      
+        <meta name="lang:search.result.other" content="# documentos encontrados">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
+    
+    
+      
+        <title>Introducción a los videojuegos móviles - Videojuegos para Dispositivos Móviles</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/application.0284f74d.css">
+      
+        <link rel="stylesheet" href="assets/stylesheets/application-palette.01803549.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#videojuegos-para-moviles" tabindex="1" class="md-skip">
         Saltar a contenido
       </a>
-<header class="md-header" data-md-component="header">
-<nav class="md-header-nav md-grid">
-<div class="md-flex">
-<div class="md-flex__cell md-flex__cell--shrink">
-<a class="md-header-nav__button md-logo" href="index.html" title="VPDM - Cocos2d-x">
-<img height="24" src="imagenes/logo.png" width="24"/>
-</a>
-</div>
-<div class="md-flex__cell md-flex__cell--shrink">
-<label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
-</div>
-<div class="md-flex__cell md-flex__cell--stretch">
-<div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-<span class="md-header-nav__topic">
-              VPDM - Cocos2d-x
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="index.html" title="Videojuegos para Dispositivos Móviles" class="md-header-nav__button md-logo">
+          
+            <img src="imagenes/logo.png" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Videojuegos para Dispositivos Móviles
             </span>
-<span class="md-header-nav__topic">
+            <span class="md-header-nav__topic">
               
-                Videojuegos para móviles
+                Introducción a los videojuegos móviles
               
             </span>
-</div>
-</div>
-<div class="md-flex__cell md-flex__cell--shrink">
-<label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
 <div class="md-search" data-md-component="search" role="dialog">
-<label class="md-search__overlay" for="__search"></label>
-<div class="md-search__inner" role="search">
-<form class="md-search__form" name="search">
-<input autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="query" data-md-state="active" name="query" placeholder="Búsqueda" spellcheck="false" type="text"/>
-<label class="md-icon md-search__icon" for="__search"></label>
-<button class="md-icon md-search__icon" data-md-component="reset" tabindex="-1" type="reset">
-        
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
       </button>
-</form>
-<div class="md-search__output">
-<div class="md-search__scrollwrap" data-md-scrollfix="">
-<div class="md-search-result" data-md-component="result">
-<div class="md-search-result__meta">
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
             Teclee para comenzar búsqueda
           </div>
-<ol class="md-search-result__list"></ol>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</nav>
+        
+      </div>
+      
+    </div>
+  </nav>
 </header>
-<div class="md-container">
-<main class="md-main">
-<div class="md-main__inner md-grid" data-md-component="container">
-<div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
-<div class="md-sidebar__scrollwrap">
-<div class="md-sidebar__inner">
-<nav class="md-nav md-nav--primary" data-md-level="0">
-<label class="md-nav__title md-nav__title--site" for="__drawer">
-<a class="md-nav__button md-logo" href="index.html" title="VPDM - Cocos2d-x">
-<img height="48" src="imagenes/logo.png" width="48"/>
-</a>
-    VPDM - Cocos2d-x
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="index.html" title="Videojuegos para Dispositivos Móviles" class="md-nav__button md-logo">
+      
+        <img src="imagenes/logo.png" width="48" height="48">
+      
+    </a>
+    Videojuegos para Dispositivos Móviles
   </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="index.html" title="Introducción">
-      Introducción
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="index.html" title="Presentación" class="md-nav__link">
+      Presentación
     </a>
-</li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-toggle md-nav__toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-        Videojuegos para móviles
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Introducción a los videojuegos móviles
       </label>
-<a class="md-nav__link md-nav__link--active" href="videojuegos_para_moviles.html" title="Videojuegos para móviles">
-      Videojuegos para móviles
+    
+    <a href="videojuegos_para_moviles.html" title="Introducción a los videojuegos móviles" class="md-nav__link md-nav__link--active">
+      Introducción a los videojuegos móviles
     </a>
+    
+      
 <nav class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">Tabla de contenidos</label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#historia-de-los-videojuegos-en-moviles" title="Historia de los videojuegos en móviles">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#historia-de-los-videojuegos-en-moviles" title="Historia de los videojuegos en móviles" class="md-nav__link">
     Historia de los videojuegos en móviles
   </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#motores-para-videojuegos" title="Motores para videojuegos">
-    Motores para videojuegos
+      
+        <li class="md-nav__item">
+  <a href="#el-motor-del-videojuego" title="El motor del videojuego" class="md-nav__link">
+    El motor del videojuego
   </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#motores-y-librerias-para-el-desarrollo-de-videojuegos-para-moviles" title="Motores y librerías para el desarrollo de videojuegos para móviles">
-    Motores y librerías para el desarrollo de videojuegos para móviles
+      
+        <li class="md-nav__item">
+  <a href="#tecnologias-para-el-desarrollo-de-videojuegos-para-moviles" title="Tecnologías para el desarrollo de videojuegos para móviles" class="md-nav__link">
+    Tecnologías para el desarrollo de videojuegos para móviles
   </a>
-<nav class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#unreal-engine-4" title="Unreal Engine 4">
-    Unreal Engine 4
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#unity" title="Unity">
-    Unity
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#game-maker-studio" title="Game Maker: Studio">
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#game-maker-studio" title="Game Maker: Studio" class="md-nav__link">
     Game Maker: Studio
   </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#cocos2d-x" title="Cocos2d-x">
+        
+          <li class="md-nav__item">
+  <a href="#unreal-engine-4" title="Unreal Engine 4" class="md-nav__link">
+    Unreal Engine 4
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unity" title="Unity" class="md-nav__link">
+    Unity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cocos2d-x" title="Cocos2d-x" class="md-nav__link">
     Cocos2d-x
   </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#spritekit-y-scenekit" title="SpriteKit y SceneKit">
-    SpriteKit y SceneKit
+        
+          <li class="md-nav__item">
+  <a href="#tecnologias-nativas-spritekit-y-scenekit" title="Tecnologías nativas: SpriteKit y SceneKit" class="md-nav__link">
+    Tecnologías nativas: SpriteKit y SceneKit
   </a>
+  
 </li>
-</ul>
-</nav>
+        
+      </ul>
+    </nav>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#caracteristicas-de-los-videojuegos-para-moviles" title="Características de los videojuegos para móviles">
+      
+        <li class="md-nav__item">
+  <a href="#caracteristicas-de-los-videojuegos-para-moviles" title="Características de los videojuegos para móviles" class="md-nav__link">
     Características de los videojuegos para móviles
   </a>
+  
 </li>
-</ul>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="introduccion_a_cocos2d-x.html" title="El motor Cocos2d-x">
-      El motor Cocos2d-x
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Fundamentos de los motores
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Fundamentos de los motores
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="fundamentos-motores.html" title="Escena y nodos" class="md-nav__link">
+      Escena y nodos
     </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="sprites_e_interaccion.html" title="Sprites y colisiones">
-      Sprites y colisiones
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="motor_de_fisicas.html" title="Físicas" class="md-nav__link">
+      Físicas
     </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="escenario_y_fondos.html" title="Escenario y fondos">
-      Escenario y fondos
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="sprites_e_interaccion.html" title="_Sprites_" class="md-nav__link">
+      _Sprites_
     </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="motor_de_fisicas.html" title="Motor de físicas">
-      Motor de físicas
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="escenario_y_fondos.html" title="Fondo y _scroll_" class="md-nav__link">
+      Fondo y _scroll_
     </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="mandos.html" title="Controles del videojuego">
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Motores para  móviles
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Motores para  móviles
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="spritekit.html" title="SpriteKit" class="md-nav__link">
+      SpriteKit
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="scenekit.html" title="SceneKit" class="md-nav__link">
+      SceneKit
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="cocos2d-x.html" title="Cocos2d-x" class="md-nav__link">
+      Cocos2d-x
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="unity.html" title="Unity" class="md-nav__link">
+      Unity
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="box2d.html" title="Box2D" class="md-nav__link">
+      Box2D
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="mandos.html" title="Controles del videojuego" class="md-nav__link">
       Controles del videojuego
     </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="adaptacion_a_moviles.html" title="Adaptación a móviles">
-      Adaptación a móviles
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="adaptacion_a_moviles.html" title="Adaptación a diferentes dispositivos" class="md-nav__link">
+      Adaptación a diferentes dispositivos
     </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="redes_sociales.html" title="Servicios y redes sociales para juegos">
-      Servicios y redes sociales para juegos
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="redes_sociales.html" title="Logros y marcadores" class="md-nav__link">
+      Logros y marcadores
     </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="unity.html" title="Motor Unity">
-      Motor Unity
-    </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="nativo.html" title="Tecnologías nativas">
-      Tecnologías nativas
-    </a>
-</li>
-</ul>
+  </li>
+
+    
+  </ul>
 </nav>
-</div>
-</div>
-</div>
-<div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-<div class="md-sidebar__scrollwrap">
-<div class="md-sidebar__inner">
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
 <nav class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">Tabla de contenidos</label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#historia-de-los-videojuegos-en-moviles" title="Historia de los videojuegos en móviles">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#historia-de-los-videojuegos-en-moviles" title="Historia de los videojuegos en móviles" class="md-nav__link">
     Historia de los videojuegos en móviles
   </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#motores-para-videojuegos" title="Motores para videojuegos">
-    Motores para videojuegos
+      
+        <li class="md-nav__item">
+  <a href="#el-motor-del-videojuego" title="El motor del videojuego" class="md-nav__link">
+    El motor del videojuego
   </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#motores-y-librerias-para-el-desarrollo-de-videojuegos-para-moviles" title="Motores y librerías para el desarrollo de videojuegos para móviles">
-    Motores y librerías para el desarrollo de videojuegos para móviles
+      
+        <li class="md-nav__item">
+  <a href="#tecnologias-para-el-desarrollo-de-videojuegos-para-moviles" title="Tecnologías para el desarrollo de videojuegos para móviles" class="md-nav__link">
+    Tecnologías para el desarrollo de videojuegos para móviles
   </a>
-<nav class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#unreal-engine-4" title="Unreal Engine 4">
-    Unreal Engine 4
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#unity" title="Unity">
-    Unity
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#game-maker-studio" title="Game Maker: Studio">
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#game-maker-studio" title="Game Maker: Studio" class="md-nav__link">
     Game Maker: Studio
   </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#cocos2d-x" title="Cocos2d-x">
+        
+          <li class="md-nav__item">
+  <a href="#unreal-engine-4" title="Unreal Engine 4" class="md-nav__link">
+    Unreal Engine 4
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unity" title="Unity" class="md-nav__link">
+    Unity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cocos2d-x" title="Cocos2d-x" class="md-nav__link">
     Cocos2d-x
   </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#spritekit-y-scenekit" title="SpriteKit y SceneKit">
-    SpriteKit y SceneKit
+        
+          <li class="md-nav__item">
+  <a href="#tecnologias-nativas-spritekit-y-scenekit" title="Tecnologías nativas: SpriteKit y SceneKit" class="md-nav__link">
+    Tecnologías nativas: SpriteKit y SceneKit
   </a>
+  
 </li>
-</ul>
-</nav>
+        
+      </ul>
+    </nav>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#caracteristicas-de-los-videojuegos-para-moviles" title="Características de los videojuegos para móviles">
+      
+        <li class="md-nav__item">
+  <a href="#caracteristicas-de-los-videojuegos-para-moviles" title="Características de los videojuegos para móviles" class="md-nav__link">
     Características de los videojuegos para móviles
   </a>
+  
 </li>
-</ul>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
-</div>
-</div>
-</div>
-<div class="md-content">
-<article class="md-content__inner md-typeset"><a class="md-icon md-content__icon" download href="pdf/combined.pdf" title="PDF Export"></a>
-<h1 id="videojuegos-para-moviles">Videojuegos para móviles<a class="headerlink" href="#videojuegos-para-moviles" title="Permanent link">¶</a></h1>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="videojuegos-para-moviles">Videojuegos para móviles<a class="headerlink" href="#videojuegos-para-moviles" title="Permanent link">&para;</a></h1>
 <p>Sin duda uno de los tipos de aplicaciones que más famosos se han hecho en el mercado de los móviles son los videojuegos. Con estos teléfonos los usuarios pueden descargar juegos a través de
 las diferentes tiendas online, normalmente a precios muy reducidos en relación a otras plataformas de videojuegos, y cuentan con la gran ventaja de que son dispositivos que siempre llevamos
 con nosotros.</p>
 <p>En este primer capítulo vamos a ver las características particulares de los videojuegos para móviles, y las herramientas y librerías que podemos utilizar para desarrollarlos y portarlos a las diferentes plataformas móviles, especialmente Android e iOS.</p>
-<h2 id="historia-de-los-videojuegos-en-moviles">Historia de los videojuegos en móviles<a class="headerlink" href="#historia-de-los-videojuegos-en-moviles" title="Permanent link">¶</a></h2>
+<h2 id="historia-de-los-videojuegos-en-moviles">Historia de los videojuegos en móviles<a class="headerlink" href="#historia-de-los-videojuegos-en-moviles" title="Permanent link">&para;</a></h2>
 <p>Los primeros juegos que podíamos encontrar en los móviles eran 
   normalmente juegos muy sencillos tipo puzzle o de mesa, o en todo caso juegos de acción muy simples similares a los primeros videojuegos aparecidos antes de los 80. El primer juego que apareció fue el Snake, que se incluyó preinstalado en
   determinados modelos de móviles Nokia (como por ejemplo el 3210) a partir de 1997. Se trataba de un juego monocromo, cuya versión original data de finales de los 70. Su traslado a los móviles Nokia supuso un enorme éxito, convirtiéndose en un icono de los dispositivos de esta compañía. Este era el único juego que venía preinstalado en estos móviles, y no contábamos con la posibilidad de descargar ningún otro.</p>
-<p><img alt="Snake para Nokia" src="imagenes/juegos/snake.jpg"/></p>
+<p><img alt="Snake para Nokia" src="imagenes/juegos/snake.jpg" /></p>
 <p>Con el avance de la tecnología, aparecieron móviles capaces de instalar nuevas aplicaciones. El sistema operativo más común era SymbianOS, pero casi todos los móviles, independientemente del sistema operativo que incorporasen, también soportaban la instalación de aplicación Java (plataforma Java ME). Esto, junto con el éxito que había cosechado <em>Snake</em>, dió lugar a la aparición de un gran número de videojuegos para las plataformas Symbian y Java ME.</p>
 <p>Con esto aparecieron juegos algo más complejos, similares a los que habían aparecido bastantes años antes para ordenadores 
   y consolas de 8 bits. Estos juegos irían mejorando conforme los teléfonos móviles evolucionaban, hasta llegar incluso a tener juegos sencillos en 3D. Los videojuegos fueron el tipo de aplicación Java más común para estos móviles, llegando al punto de que los móviles con soporte para Java ME comercialmente
@@ -300,48 +611,54 @@ con nosotros.</p>
 <p>Además teníamos la ventaja de que en aquel momento ya existía una gran comunidad de programadores en Java, a los que no les costaría aprender a desarrollar este tipo de juegos para móviles, por lo que el número de juegos disponible crecería rápidamente. El poder descargar y añadir estos juegos al móvil de forma sencilla, como cualquier otra aplicación Java, hará estos juegos especialmente atractivos para los usuarios, permitiendo disponer continuamente de nuevos juegos en sus móviles.</p>
 <p>Pero fue con la llegada del iPhone en 2007 y la App Store en 2008 cuando realmente se produjo el <em>boom</em> de los videojuegos para móviles. La facilidad para obtener los contenidos en la tienda de Apple, junto a la capacidad de estos dispositivos para reproducir videojuegos causaron que en muy poco tiempo ésta pasase a ser la principal plataforma de videojuegos en móviles, incluso ganando terreno rápidamente a las videoconsolas portátiles.</p>
 <p>En la actualidad las plataformas Android e iOS son el principal mercado de videojuegos para móviles, superando ya a las videoconsolas portátiles. Por detrás quedan otras plataformas como Windows Phone o Blackberry, en las que también podemos encontrar una gran cantidad de videojuegos disponibles. La capacidad de los dispositivos actuales permite que veamos videojuegos técnicamente cercanos a los que podemos encontrar en algunas videoconsolas de sobremesa.</p>
-<h2 id="motores-para-videojuegos">Motores para videojuegos<a class="headerlink" href="#motores-para-videojuegos" title="Permanent link">¶</a></h2>
+<h2 id="el-motor-del-videojuego">El motor del videojuego<a class="headerlink" href="#el-motor-del-videojuego" title="Permanent link">&para;</a></h2>
 <p>Normalmente los juegos consisten en una serie de niveles. Cada vez que superemos un nivel, entraremos en uno nuevo en el que se habrá incrementado la dificultad, y posiblemente encontremos algún elemento nuevo, como nuevos tipos de enemigos y nuevos poderes a utilizar, pero la mecánica del juego en esencia será la misma. </p>
-<p>Por este motivo, en el desarrollo de videojuegos es conveniente que el código fuente resulte lo más genérico y reutilizable posible, llevando la definición de los niveles a ficheros de datos (por ejemplo con formato xml o json), que contendrán la estructura del escenario, los enemigos que aparecerán en él, y otros elementos con los que podamos interactuar. De esta forma, cada vez que iniciemos un nuevo nivel, la cargarán los datos del fichero del nivel, y se aplicará sobre ellos la mecánica genérica del juego. Este código genérico capaz de leer, interpretar y reproducir los niveles de nuestro juego es lo que conoceremos como <strong>motor del juego</strong>.</p>
+<p>Por este motivo, en el desarrollo de videojuegos es conveniente que el código fuente resulte lo más genérico y reutilizable posible, llevando la definición de los niveles a ficheros de datos (por ejemplo con formato <em>xml</em> o <em>json</em>), que contendrán la estructura del escenario, los enemigos que aparecerán en él, y otros elementos con los que podamos interactuar. De esta forma, cada vez que iniciemos un nuevo nivel, la cargarán los datos del fichero del nivel, y se aplicará sobre ellos la mecánica genérica del juego. Este código genérico capaz de leer, interpretar y reproducir los niveles de nuestro juego es lo que conoceremos como <strong>motor del juego</strong>.</p>
 <p>Entre los ficheros de datos que podrá cargar nuestro motor (recursos conocidos habitualmente como <strong>assets</strong>) encontramos por ejemplo los gráficos del juego, fuentes, <em>clips</em> de audio, la estructura de cada nivel, e incluso <em>scripts</em> (programas en lenguajes de alto nivel que definen el comportamiento de las entidades del juego). </p>
 <p>En muchas ocasiones encontramos motores desarrollados para implementar un videojuego concreto. En estos casos, podremos añadir nuevos contenidos a nuestro juego (niveles, personajes, etc) añadiendo nuevos ficheros de datos que lea el motor sin tener que modificar el fuente. Sin embargo, conforme ha ido evolucionando la tecnología han ido apareciendo motores genéricos pensados para poder crear cualquier tipo de videojuego (o casi cualquiera). En estos casos ya no se lleva a los "datos" simplemente los contenidos del juego, sino también el comportamiento del mismo (normalmente mediante <em>scripting</em>). </p>
-<p>El uso de este tipo de motores nos proporcionará una serie de ventajas:
-* <strong>Independencia del <em>hardware</em></strong>: Esto es de especial importancia en el caso de las plataformas móviles. Si contamos con un motor genérico implementado para diferentes plataformas (Android, iOS, Windows Phone), podremos crear nuestro juego una única vez sobre dicho motor (con los tipos de ficheros de datos que soporte), y exportarlo a todas las plataformas soportadas.
-* <strong>Mejora del flujo de trabajo en el equipo de desarrollo</strong>: Cada miembro del equipo de desarrollo trabajará sobre sus propios <em>assets</em>: el diseñador del juego con los datos de los niveles; el artista gráfico con las texturas, modelos, y animaciones 3D; músicos y técnicos de sonido con <em>clips</em> de audio; y programadores con <em>scripts</em>. El motor se encargará de integrar todos estos elementos en el juego.
-* <strong>Centrarnos en lo que hace nuestro juego diferente</strong>: El contar con estos motores nos permitirá crear juegos complejos centrándonos en el diseño y contenidos del juego, sin tener que implementar nosotros el motor genérico. Es decir, nos centramos en aquello que hace a nuestros juego distinto a los demás (contenidos), y no en aquello que es común a todos los juegos (motor).
-* <strong>Menor coste de desarrollo y <em>time to market</em></strong>: Evitar tener que implementar el motor a bajo nivel supondrá un notable ahorro en el coste del desarrollo, especialmente conforme el <em>hardware</em> se hace más complejo, y nos permitirá llegar más rápidamente al mercado. </p>
-<h2 id="motores-y-librerias-para-el-desarrollo-de-videojuegos-para-moviles">Motores y librerías para el desarrollo de videojuegos para móviles<a class="headerlink" href="#motores-y-librerias-para-el-desarrollo-de-videojuegos-para-moviles" title="Permanent link">¶</a></h2>
-<p>Encontramos diferentes motores y librerías que nos permiten exportar videojuegos a distintas plataformas móviles. Vamos a realizar una revisión de las principales tecnologías disponibles que agruparemos en tres diferentes categorías:</p>
+<p>El uso de este tipo de motores nos proporcionará una serie de ventajas:</p>
+<ul>
+<li><strong>Independencia del <em>hardware</em></strong>: Esto es de especial importancia en el caso de las plataformas móviles. Si contamos con un motor genérico implementado para diferentes plataformas (Android, iOS, Windows Phone), podremos crear nuestro juego una única vez sobre dicho motor (con los tipos de ficheros de datos que soporte), y exportarlo a todas las plataformas soportadas.</li>
+<li><strong>Mejora del flujo de trabajo en el equipo de desarrollo</strong>: Cada miembro del equipo de desarrollo trabajará sobre sus propios <em>assets</em>: el diseñador del juego con los datos de los niveles; el artista gráfico con las texturas, modelos, y animaciones 3D; músicos y técnicos de sonido con <em>clips</em> de audio; y programadores con <em>scripts</em>. El motor se encargará de integrar todos estos elementos en el juego.</li>
+<li><strong>Centrarnos en lo que hace nuestro juego diferente</strong>: El contar con estos motores nos permitirá crear juegos complejos centrándonos en el diseño y contenidos del juego, sin tener que implementar nosotros el motor genérico. Es decir, nos centramos en aquello que hace a nuestros juego distinto a los demás (contenidos), y no en aquello que es común a todos los juegos (motor).</li>
+<li><strong>Menor coste de desarrollo y <em>time to market</em></strong>: Evitar tener que implementar el motor a bajo nivel supondrá un notable ahorro en el coste del desarrollo, especialmente conforme el <em>hardware</em> se hace más complejo, y nos permitirá llegar más rápidamente al mercado. </li>
+</ul>
+<h2 id="tecnologias-para-el-desarrollo-de-videojuegos-para-moviles">Tecnologías para el desarrollo de videojuegos para móviles<a class="headerlink" href="#tecnologias-para-el-desarrollo-de-videojuegos-para-moviles" title="Permanent link">&para;</a></h2>
+<p>Encontramos diferentes motores y librerías que nos permiten crear videojuegos para distintas plataformas móviles. Vamos a realizar una revisión de las principales tecnologías disponibles que agruparemos en tres diferentes categorías:</p>
 <ul>
 <li><strong>Motores completos</strong>: Motores completos que nos permitirán crear casi cualquier tipo de videojuego (2D y 3D) mediante sus propias herramientas de creación de contenidos. En estos casos la programación suele hacerse mediante lenguajes de <em>script</em>. En este grupo encontramos motores como <strong>Unreal Engine 4</strong> o <strong>Unity</strong>.</li>
 <li><strong>Herramientas de creación de videojuegos</strong>: Herramientas visuales que nos permiten crear videojuegos de forma sencilla, en muchos casos sin la necesidad de saber programar. En estas herramientas suele estar más restringido el tipo de juegos que se pueden realizar, limitándose normalmente a juegos 2D. Dentro de este grupo encontramos herramientas como <strong>Game Maker: Studio</strong>, <strong>Construct2</strong> y <strong>Gamesalad</strong>.</li>
 <li><strong>Frameworks para el desarrollo de videojuegos</strong>: En este grupo encontramos librerías multiplataforma (normalmente <em>Open Source</em>) orientadas al desarrollo de videojuegos. No cuentan con las herramientas de creación de contenidos de los casos anteriores, sino que casi todo lo tendremos que hacer mediante programación, pero nos permitirán escribir el juego una única vez y portarlo a diferentes plataformas móviles. En este grupo destacamos los <em>frameworks</em> multiplataforma <strong>Cocos2d-x</strong> (desarrollo en C++) y <strong>libgdx</strong> (desarrollo en Java). Además, dentro de este grupo también encontramos los <em>frameworks</em> nativos de la plataforma iOS <strong>SpriteKit</strong> (juegos 2D) y <strong>SceneKit</strong> (juegos 3D).</li>
 </ul>
 <p>A continuación veremos más detalles de cada uno de los motores anteriores.</p>
-<h3 id="unreal-engine-4">Unreal Engine 4<a class="headerlink" href="#unreal-engine-4" title="Permanent link">¶</a></h3>
-<p>Con este motor se han creado videojuegos como los juegos de la saga <em>Gears of War</em>, o <em>Daylight</em>, o <em>Street Fighter V</em>. Actualmente Unreal Engine 4 (UE4) es gratuito para todos los desarrolladores. </p>
-<p>Tiene un lenguaje de <em>scripting</em> visual (<em>blueprints</em>) y también nos permite incorporar componentes en C++. Los videojuegos desarrollados con UE4 pueden empaquetarse como aplicaciones Android o iOS (además de PC, Mac, y videoconsolas como PS4 y Xbox One), y podemos distribuirlos en la App Store y en Google Play Market teniendo que pagar a Epic Games sólo un porcentaje de los <em>royalties</em> en caso de que superemos cierto nivel de ganancias.</p>
-<h3 id="unity">Unity<a class="headerlink" href="#unity" title="Permanent link">¶</a></h3>
-<p>Nos permite crear videojuegos para un gran número de plataformas (entre ellas iOS, Android y Windows Phone). En este caso tenemos un motor capaz de realizar juegos tanto 3D como 2D, y resulta más accesible para desarrolladores noveles que el motor anterior. Además, permite realizar videojuegos de tamaño algo más reducido. </p>
-<p>A partir de Unity 5 existe una versión gratuita que podemos utilizar siempre que no superemos cierto nivel de ganancias anuales como particular o empresa. Esta versión incluye todas las funcionalidades del motor. Los juegos realizados con este motor podrán publicarse de forma comercial libres de <em>royalties</em>. </p>
-<h3 id="game-maker-studio">Game Maker: Studio<a class="headerlink" href="#game-maker-studio" title="Permanent link">¶</a></h3>
+<h3 id="game-maker-studio">Game Maker: Studio<a class="headerlink" href="#game-maker-studio" title="Permanent link">&para;</a></h3>
 <p>Se trata de una herramienta para crear juegos 2D sencillos. Cuenta con una herramienta visual que simplifica la creación de contenidos, y que nos permite crear videojuegos incluso sin necesidad de programar. Permite generar juegos para Windows de forma gratuita, pero para exportar a otras plataformas como Android o iOS deberemos adquirir una licencia de pago.</p>
 <p>Encontramos opciones similartes, como el motor Construct2 (en este caso la herramienta está sólo para Windows), o Gamesalad (que cuenta con una licencia de pago mensual).</p>
-<h3 id="cocos2d-x">Cocos2d-x<a class="headerlink" href="#cocos2d-x" title="Permanent link">¶</a></h3>
-<p>A parte de los motores anteriores, que incorporan sus propias herramientas con las que podemos crear videojuegos de forma visual de forma independiente a la plataformas, también encontramos motores Open Source más sencillos que podemos utilizar para determinadas plataformas concretas. En este caso, no solemos contar con herramientas visuales completas para la creación del videojuego, como es el caso de los anteriores, sino simplemente con <em>frameworks</em> y librerías que nos ayudarán a implementar los videojuegos, aislándonos de las capas de más bajo nivel como OpenGL o OpenAL, y ofreciéndonos un marco que nos simplificará la implementación del videojuego. </p>
+<h3 id="unreal-engine-4">Unreal Engine 4<a class="headerlink" href="#unreal-engine-4" title="Permanent link">&para;</a></h3>
+<p>Con este motor se han creado videojuegos como los juegos de la saga <em>Gears of War</em>, o <em>Daylight</em>, o <em>Street Fighter V</em>. Actualmente Unreal Engine 4 (UE4) es gratuito para todos los desarrolladores. </p>
+<p>Tiene un lenguaje de <em>scripting</em> visual (<em>blueprints</em>) y también nos permite incorporar componentes en C++. Los videojuegos desarrollados con UE4 pueden empaquetarse como aplicaciones Android o iOS (además de PC, Mac, y videoconsolas como PS4 y Xbox One), y podemos distribuirlos en la App Store y en Google Play Market teniendo que pagar a Epic Games sólo un porcentaje de los <em>royalties</em> en caso de que superemos cierto nivel de ganancias.</p>
+<h3 id="unity">Unity<a class="headerlink" href="#unity" title="Permanent link">&para;</a></h3>
+<p>Nos permite crear videojuegos para un gran número de plataformas (entre ellas iOS, Android y Windows Phone). En este caso tenemos un motor capaz de realizar juegos tanto 3D como 2D, y resulta más accesible para desarrolladores noveles que el motor anterior. Además, permite realizar videojuegos de tamaño algo más reducido. </p>
+<p>A partir de Unity 5 existe una versión gratuita que podemos utilizar siempre que no superemos cierto nivel de ganancias anuales como particular o empresa. Esta versión incluye todas las funcionalidades del motor. Los juegos realizados con este motor podrán publicarse de forma comercial libres de <em>royalties</em>. </p>
+<h3 id="cocos2d-x">Cocos2d-x<a class="headerlink" href="#cocos2d-x" title="Permanent link">&para;</a></h3>
+<p>Aparte de los motores anteriores, que incorporan sus propias herramientas con las que podemos crear videojuegos de forma visual de forma independiente a la plataformas, también encontramos motores Open Source más sencillos que podemos utilizar para determinadas plataformas concretas. En este caso, no solemos contar con herramientas visuales completas para la creación del videojuego, como es el caso de los anteriores, sino simplemente con <em>frameworks</em> y librerías que nos ayudarán a implementar los videojuegos, aislándonos de las capas de más bajo nivel como OpenGL (Metal en caso de iOS si utilizamos <em>Cocos2d-x 4.0</em> o superior) o OpenAL, y ofreciéndonos un marco que nos simplificará la implementación del videojuego. </p>
 <p>Uno de estos motores es <strong>Cocos2d-x</strong>, que nos permite crear en C++ videojuegos para las principales plataformas móviles (iOS, Android, Windows Phone, Blackberry, etc).</p>
 <p>Aunque el propio motor no incorpore herramientas de creación de contenidos, se integra bien con herramientas externas como Tiled o Texture Packer que nos permiten editar escenarios u hojas de <em>sprites</em> respectivamente.</p>
 <p>Una opción similar es libgdx. En este caso se programa en lenguaje Java, y para pasar a iOS realiza una traducción automática de Java a C++.</p>
 <p>Estos motores tienen como ventaja el acceso al código fuente del motor, en el que puede participar la comunidad, y también generan un tamaño de paquete más reducido que motores más complejos como Unity o sobre todo UE4.</p>
-<h3 id="spritekit-y-scenekit">SpriteKit y SceneKit<a class="headerlink" href="#spritekit-y-scenekit" title="Permanent link">¶</a></h3>
-<p>De forma alternativa, en iOS contamos con dos <em>frameworks</em> nativos de la plataforma orientados a la creación de videojuegos: <strong>SpriteKit</strong> y <strong>SceneKit</strong>, para juegos 2D y 3D respectivamente. Al ser nativos, nos permitirán crear videojuegos optimizados para esta plataforma y reducir el tamaño del paquete de la aplicación, pero sólo podrán ser utilizados en iOS.</p>
-<h2 id="caracteristicas-de-los-videojuegos-para-moviles">Características de los videojuegos para móviles<a class="headerlink" href="#caracteristicas-de-los-videojuegos-para-moviles" title="Permanent link">¶</a></h2>
+<h3 id="tecnologias-nativas-spritekit-y-scenekit">Tecnologías nativas: SpriteKit y SceneKit<a class="headerlink" href="#tecnologias-nativas-spritekit-y-scenekit" title="Permanent link">&para;</a></h3>
+<p>Aunque el uso de motores multiplataforma nos aporta una gran cantidad de ventajas, es algunos casos nos podría interesar desarrollar videojuegos utilizando las tecnologías nativas de la plataforma. Una posible razón para hacer esto es la de conseguir reducir el tamaño de la aplicación lo máximo posible, lo cual puede ser conveniente en juegos sencillos que no necesiten un motor complejo.</p>
+<p>La tecnología nativa para desarrollo de videojuegos que podemos encontrar en las principales plataformas móviles es <strong>OpenGL ES</strong>. Se trata de una librería de bajo nivel, sobre la que tendremos que construir nuestro propio motor adaptado a las necesidades de nuestro videojuego. </p>
+<p>En el momento de la escritura de este texto, OpenGL ES es la única opción nativa en el caso de <strong>Android</strong>, recomendándose utilizar el <strong>NDK</strong> para la implementación de nuestro propio motor del videojuego, y así poderlo optimizar al máximo.</p>
+<p>En <strong>Windows Phone</strong> encontraremos también la API nativa <strong>XNA</strong>. Contamos con el entorno XNA Game Studio dedicado al desarrollo de videojuegos en la plataforma de Microsoft.</p>
+<p>Sin embargo, la plataforma que mayor número de opciones nativas nos ofrece es la de Apple. En <strong>iOS</strong>, además de <strong>OpenGL ES</strong>, encontramos <strong>Metal</strong>, una librería gráfica similar a bajo nivel optimizada para esta plataforma. A parte de las opciones a bajo nivel, tenemos también dos librerías de alto nivel para el desarrollo de videojuegos 2D y 3D respectivamente: <strong>SpriteKit</strong> y <strong>SceneKit</strong>. Al ser nativos, nos permitirán crear videojuegos optimizados para esta plataforma y reducir el tamaño del paquete de la aplicación, pero sólo podrán ser utilizados en iOS.</p>
+<h2 id="caracteristicas-de-los-videojuegos-para-moviles">Características de los videojuegos para móviles<a class="headerlink" href="#caracteristicas-de-los-videojuegos-para-moviles" title="Permanent link">&para;</a></h2>
 <p>Los dispositivos móviles presentan diferencias notables respecto a los equipos de sobremesa (ordenadores y consolas), en relación a la capacidad del <em>hardware</em>, la interfaz, y el tipo de uso que se les da. Esto tendrá importantes repercusiones en el diseño de videojuegos para estos dispositivos.</p>
 <p>Vamos a revisar a continuación los principales aspectos que tendremos que tener en cuenta a la hora de diseñar videojuegos para dispositivos móviles:</p>
 <ul>
 <li><strong>Limitaciones de la memoria</strong>. En los primeros dispositivos (Java ME) la memoría suponía una gran limitación, ya que en algunos dispositivos contábamos con tan solo 128kb para todo el juego. Con el avance de la tecnología esta limitación se ha ido atenuando y hoy en día ya no supone algo crítico. Sin embargo, deberemos llevar especial cuidado con la memoria de vídeo. Por este motivo será importante seleccionar un formato de textura adecuado (el más compacto que cumpla con las necesidades para el videojuego), y será común comprimir las texturas. También es importante empaquetar nuestros gráficos de forma óptima para así aprovechar al máximo el espacio de las texturas. Encontraremos herramientas como Texture Packer que se encargan de realizar esta tarea.</li>
 <li><strong>Tamaño de la aplicación</strong>. Los videojuegos para plataformas de sobremesa habitualmente ocupan varios gigas. En un móvil la distribución de juegos siempre es digital, por lo que deberemos reducir este tamaño en la medida de lo posible, tanto para evitar tener que descargar un paquete demasiado grande a través de la limitada conexión del móvil, como para evitar que ocupe demasiado espacio en la memoria de almacenamiento del dispositivo (que en algunos dispositivos es escaso). Para poder descargar un juego vía conexión de datos no debería exceder los 20Mb, por lo que será recomendable conseguir empaquetarlo en un espacio menor, para que los usuarios puedan acceder a él sin necesidad de disponer de Wi-Fi. Esto nos dará una importante ventaja competitiva. Para esto es importante hacer una buena elección del motor a utilizar. Motores complejos como Unity 5 generan paquetes con un tamaño mínimo de unas 20Mb, mientras que otros motores como Cocos2d-x nos permitirían tener juegos a partir de unas 5Mb. Si nuestro juego no necesita gráficos 3D ni otras de las características que sólo se encuentren en Unity, puede ser conveniente seleccionar un motor más sencillo como Cocos2d-x.</li>
-<li><strong>Capacidad de procesamiento</strong>. La CPU y GPU de los móviles en muchas ocasiones es más limitada que la de plataformas de sobremesa. Es importante que los juegos vayan de forma fluida, por lo que antes de distribuirlos deberemos probarlos en diferentes móviles reales para asegurarnos de que funcione bien, ya que muchas veces los emuladores funcionarán a velocidades distintas. Es conveniente empezar desarrollando un código claro y limpio, y posteriormente optimizarlo. Para optimizar el juego deberemos identificar el lugar donde tenemos el cuello de botella, que podría ser en el procesamiento, o en el dibujado de los gráficos. En el segundo caso podemos ajustar en el motor la calidad de los gráficos para cada plataforma.</li>
+<li><strong>Capacidad de procesamiento</strong>. La CPU y GPU de los móviles en muchas ocasiones es más limitada que la de plataformas de sobremesa, y muy variable entre disintos dispositivos. Es importante que los juegos vayan de forma fluida, por lo que antes de distribuirlos deberemos probarlos en diferentes móviles reales para asegurarnos de que funcione bien, ya que muchas veces los emuladores funcionarán a velocidades distintas. Es conveniente empezar desarrollando un código claro y limpio, y posteriormente optimizarlo. Para optimizar el juego deberemos identificar el lugar donde tenemos el cuello de botella, que podría ser en el procesamiento, o en el dibujado de los gráficos. En el segundo caso podemos ajustar en el motor la calidad de los gráficos para cada plataforma.</li>
 <li><strong>Pantalla reducida</strong>. Deberemos tener esto en cuenta en los 
 juegos, y hacer que todos los objetos se vean correctamente. Podemos utilizar <em>zoom</em> en determinadas zonas para poder visualizar mejor los objetos de la escena. Deberemos cuidar que todos los elementos de la interfaz puedan visualizarse correctamente y que tengan un tamaño adecuado para interactuar con ellos. Los botones u otros elementos con los que podamos interactuar en la pantalla táctil tendrán que tener al menos el tamaño de la yema del dedo. </li>
 <li><strong>Diferente interfaz de entrada</strong>. Actualmente los móviles no suelen tener teclado, y en aquellos que lo tienen este teclado es muy pequeño. Deberemos intentar proporcionar un manejo cómodo, adaptado a la interfaz de entrada con la que cuenta el móvil,
@@ -351,57 +668,81 @@ como el acelerómetro o la pantalla táctil, haciendo que el control sea lo más
 cuando recibimos una llamada entrante. Deberemos permitir que esto ocurra. Además también es conveniente que el usuario pueda pausar la partida fácilmente, ya que estos dispositivos se utilizan habitualmente para "hacer tiempo". Si estamos jugando mientras esperamos el autobús o esperamos nuestro turno en una tienda, cuando llegue nuestro turno deberemos poder interrumpir la partida inmediatamente sin perder nuestro progreso. Es fundamental hacer que cuando otra aplicación pase a segundo plano nuestro juego se pause automáticamente, para así no afectar al progreso que ha hecho el usuario. Incluso lo deseable sería que cuando salgamos de la aplicación en cualquier momento siempre se guarde el estado actual del juego, para que el usuario pueda continuar por donde se había quedado la próxima vez que juegue. Esto permitirá que el usuario pueda cerrar el juego en cualquier momento sin miedo de perder sus avances.</li>
 </ul>
 <p>Ante todo, estos deben ser atractivos para los jugadores, ya que su principal finalidad es entretener. Debemos tener en cuenta que son videojuegos que normalmente se utilizarán para hacer tiempo, por lo que es deseable que la curva de aprendizaje sea suave y que permita partidas rápidas. Dos aspectos fundamentales son la adquisición y la retención de jugadores. Tenemos que conseguir que que los usuarios prueben nuestro juego y que continuen jugando a él. Para incentivar esto deberemos ofrecerle alguna recompensa por seguir jugando, y la posibilidad de que pueda compartir estos logros con otros jugadores.</p>
-</article>
-</div>
-</div>
-</main>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
 <footer class="md-footer">
-<div class="md-footer-nav">
-<nav class="md-footer-nav__inner md-grid">
-<a class="md-flex md-footer-nav__link md-footer-nav__link--prev" href="index.html" rel="prev" title="Introducción">
-<div class="md-flex__cell md-flex__cell--shrink">
-<i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-</div>
-<div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-<span class="md-flex__ellipsis">
-<span class="md-footer-nav__direction">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="index.html" title="Presentación" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
                   Anterior
                 </span>
-                Introducción
+                Presentación
               </span>
-</div>
-</a>
-<a class="md-flex md-footer-nav__link md-footer-nav__link--next" href="introduccion_a_cocos2d-x.html" rel="next" title="El motor Cocos2d-x">
-<div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-<span class="md-flex__ellipsis">
-<span class="md-footer-nav__direction">
+            </div>
+          </a>
+        
+        
+          <a href="fundamentos-motores.html" title="Escena y nodos" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
                   Siguiente
                 </span>
-                El motor Cocos2d-x
+                Escena y nodos
               </span>
-</div>
-<div class="md-flex__cell md-flex__cell--shrink">
-<i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-</div>
-</a>
-</nav>
-</div>
-<div class="md-footer-meta md-typeset">
-<div class="md-footer-meta__inner md-grid">
-<div class="md-footer-copyright">
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
         
         powered by
         <a href="https://www.mkdocs.org">MkDocs</a>
         and
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
-</div>
-</div>
-</div>
+      </div>
+      
+    </div>
+  </div>
 </footer>
-</div>
-<script src="assets/javascripts/application.245445c6.js"></script>
-<script>app.initialize({version:"1.0.4",url:{base:"."}})</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-</body>
+      
+    </div>
+    
+      <script src="assets/javascripts/application.245445c6.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"."}})</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
 </html>

@@ -1,0 +1,1914 @@
+
+
+
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copiar al portapapeles">
+      
+        <meta name="lang:clipboard.copied" content="Copiado al portapapeles">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No se encontraron documentos">
+      
+        <meta name="lang:search.result.one" content="1 documento encontrado">
+      
+        <meta name="lang:search.result.other" content="# documentos encontrados">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
+    
+    
+      
+        <title>Box2D - Videojuegos para Dispositivos Móviles</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/application.0284f74d.css">
+      
+        <link rel="stylesheet" href="assets/stylesheets/application-palette.01803549.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#motores-de-fisicas" tabindex="1" class="md-skip">
+        Saltar a contenido
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="index.html" title="Videojuegos para Dispositivos Móviles" class="md-header-nav__button md-logo">
+          
+            <img src="imagenes/logo.png" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Videojuegos para Dispositivos Móviles
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Box2D
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Teclee para comenzar búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="index.html" title="Videojuegos para Dispositivos Móviles" class="md-nav__button md-logo">
+      
+        <img src="imagenes/logo.png" width="48" height="48">
+      
+    </a>
+    Videojuegos para Dispositivos Móviles
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="index.html" title="Presentación" class="md-nav__link">
+      Presentación
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="videojuegos_para_moviles.html" title="Introducción a los videojuegos móviles" class="md-nav__link">
+      Introducción a los videojuegos móviles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Fundamentos de los motores
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Fundamentos de los motores
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="fundamentos-motores.html" title="Escena y nodos" class="md-nav__link">
+      Escena y nodos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="motor_de_fisicas.html" title="Físicas" class="md-nav__link">
+      Físicas
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="sprites_e_interaccion.html" title="_Sprites_" class="md-nav__link">
+      _Sprites_
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="escenario_y_fondos.html" title="Fondo y _scroll_" class="md-nav__link">
+      Fondo y _scroll_
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Motores para  móviles
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Motores para  móviles
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="spritekit.html" title="SpriteKit" class="md-nav__link">
+      SpriteKit
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="scenekit.html" title="SceneKit" class="md-nav__link">
+      SceneKit
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="cocos2d-x.html" title="Cocos2d-x" class="md-nav__link">
+      Cocos2d-x
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="unity.html" title="Unity" class="md-nav__link">
+      Unity
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Box2D
+      </label>
+    
+    <a href="box2d.html" title="Box2D" class="md-nav__link md-nav__link--active">
+      Box2D
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#motor-de-fisicas-box2d" title="Motor de físicas Box2D" class="md-nav__link">
+    Motor de físicas Box2D
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#componentes-de-box2d" title="Componentes de Box2D" class="md-nav__link">
+    Componentes de Box2D
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unidades-de-medida" title="Unidades de medida" class="md-nav__link">
+    Unidades de medida
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-cuerpos" title="Tipos de cuerpos" class="md-nav__link">
+    Tipos de cuerpos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creacion-de-cuerpos" title="Creación de cuerpos" class="md-nav__link">
+    Creación de cuerpos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simulacion" title="Simulación" class="md-nav__link">
+    Simulación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formas-de-los-objetos" title="Formas de los objetos" class="md-nav__link">
+    Formas de los objetos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#propiedades-de-los-cuerpos" title="Propiedades de los cuerpos" class="md-nav__link">
+    Propiedades de los cuerpos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dinamica-de-cuerpos-rigidos" title="Dinámica de cuerpos rígidos" class="md-nav__link">
+    Dinámica de cuerpos rígidos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deteccion-de-colisiones" title="Detección de colisiones" class="md-nav__link">
+    Detección de colisiones
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#controlador-de-personaje" title="Controlador de personaje" class="md-nav__link">
+    Controlador de personaje
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#depuracion-de-las-fisicas" title="Depuración de las físicas" class="md-nav__link">
+    Depuración de las físicas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gestion-de-fisicas-con-physicseditor" title="Gestión de físicas con PhysicsEditor" class="md-nav__link">
+    Gestión de físicas con PhysicsEditor
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" title="Referencias" class="md-nav__link">
+    Referencias
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="mandos.html" title="Controles del videojuego" class="md-nav__link">
+      Controles del videojuego
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="adaptacion_a_moviles.html" title="Adaptación a diferentes dispositivos" class="md-nav__link">
+      Adaptación a diferentes dispositivos
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="redes_sociales.html" title="Logros y marcadores" class="md-nav__link">
+      Logros y marcadores
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#motor-de-fisicas-box2d" title="Motor de físicas Box2D" class="md-nav__link">
+    Motor de físicas Box2D
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#componentes-de-box2d" title="Componentes de Box2D" class="md-nav__link">
+    Componentes de Box2D
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unidades-de-medida" title="Unidades de medida" class="md-nav__link">
+    Unidades de medida
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-cuerpos" title="Tipos de cuerpos" class="md-nav__link">
+    Tipos de cuerpos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creacion-de-cuerpos" title="Creación de cuerpos" class="md-nav__link">
+    Creación de cuerpos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simulacion" title="Simulación" class="md-nav__link">
+    Simulación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formas-de-los-objetos" title="Formas de los objetos" class="md-nav__link">
+    Formas de los objetos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#propiedades-de-los-cuerpos" title="Propiedades de los cuerpos" class="md-nav__link">
+    Propiedades de los cuerpos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dinamica-de-cuerpos-rigidos" title="Dinámica de cuerpos rígidos" class="md-nav__link">
+    Dinámica de cuerpos rígidos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deteccion-de-colisiones" title="Detección de colisiones" class="md-nav__link">
+    Detección de colisiones
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#controlador-de-personaje" title="Controlador de personaje" class="md-nav__link">
+    Controlador de personaje
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#depuracion-de-las-fisicas" title="Depuración de las físicas" class="md-nav__link">
+    Depuración de las físicas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gestion-de-fisicas-con-physicseditor" title="Gestión de físicas con PhysicsEditor" class="md-nav__link">
+    Gestión de físicas con PhysicsEditor
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" title="Referencias" class="md-nav__link">
+    Referencias
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="motores-de-fisicas">Motores de físicas<a class="headerlink" href="#motores-de-fisicas" title="Permanent link">&para;</a></h1>
+<p>Un tipo de juegos que ha tenido una gran proliferación en el mercado de aplicaciones
+para móviles son aquellos juegos basados en físicas. Estos juegos son aquellos en los que
+el motor realiza una simulación física de los objetos en pantalla, siguiendo las leyes
+de la cinemática y la dinámica. Es decir, los objetos de la pantalla están sujetos a
+gravedad, cada uno de ellos tiene una masa, y cuando se produce una colisión entre ellos
+se produce una fuerza de reacción que dependerá de su velocidad y su masa. El motor de físicas se
+encarga de realizar toda esta simulación, y nosotros sólo deberemos encargarnos de
+proporcionar las propiedades de los objetos del mundo. Uno de los motores físicos más
+utilizados es Box2D, originalmente implementado en C++. Se ha utilizado para implementar juegos tan conocidos y exitosos
+como Angry Birds. Podemos encontrar ports de este motor para las distintas
+plataformas móviles. Motores como Cocos2D, libgdx y Unity incluyen una implementación de este
+motor de físicas.</p>
+<p><img alt="Angry Birds, implementado con Box2D" src="imagenes/fisicas/box2d_angry.jpg" /></p>
+<h2 id="motor-de-fisicas-box2d">Motor de físicas Box2D<a class="headerlink" href="#motor-de-fisicas-box2d" title="Permanent link">&para;</a></h2>
+<p>Vamos ahora a estudiar el motor de físicas Box2D. Es importante destacar que este motor sólo
+    se encargará de simular la física de los objetos, no de dibujarlos. Será nuestra responsabilidad
+    mostrar los objetos en la escena de forma adecuada según los datos obtenidos de la simulación física.
+    Comenzaremos viendo los principales componentes de esta librería.</p>
+<h3 id="componentes-de-box2d">Componentes de Box2D<a class="headerlink" href="#componentes-de-box2d" title="Permanent link">&para;</a></h3>
+<p>Los componentes básicos que nos permiten realizar la simulación física con Box2D son:</p>
+<ul>
+<li>
+<p><code>Body</code>: Representa un cuerpo rígido. Estos son los tipos de objetos que tendremos en el
+    mundo 2D simulado. Cada cuerpo tendrá una posición y velocidad. Los cuerpos se verán afectados por
+    la gravedad del mundo, y por la interacción con los otros cuerpos. Cada cuerpo tendrá una serie de
+    propiedades físicas, como su masa o su centro de gravedad.</p>
+</li>
+<li>
+<p><code>Fixture</code>: Es el objeto que se encarga de fijar las propiedades de un cuerpo, como su forma, coeficiente de rozamiento o densidad. Un cuerpo podría contener varias <em>fixtures</em>, para así poder crear formas más complejas combinando formas básicas.</p>
+</li>
+<li>
+<p><code>Shape</code>: Sirve para especificar la forma de una <em>fixture</em>. Hay distintos tipos de formas (subclases de
+    <code>Shape</code>), como por ejemplo <code>CircleShape</code> y <code>PolygonShape</code>, para crear cuerpos
+    con formar circulares o poligonales respectivamente.</p>
+</li>
+<li>
+<p><code>Constraint</code>: Nos permite limitar la libertad de un cuerpo. Por ejemplo podemos utilizar una
+    restricción que impida que el cuerpo pueda rotar, o para que se mueva siguiendo sólo una línea (por ejemplo
+    un objeto montado en un rail).</p>
+</li>
+<li>
+<p><code>Joint</code>: Nos permite definir uniones entre diferentes cuerpos.</p>
+</li>
+<li>
+<p><code>World</code>: Representa el mundo 2D en el que tendrá lugar la simulación. Podemos añadir una serie
+    de cuerpos al mundo. Una de las principales propiedades del mundo es la gravedad.</p>
+</li>
+</ul>
+<p>Todas las clases de la librería Box 2D tienen el prefijo <code>b2</code>. Hay que tener en cuenta
+    que se trata de clases C++, y no Objective-C.</p>
+<p>Lo primero que deberemos hacer es crear el mundo en el que se realizará la simulación física. Como parámetro
+    deberemos proporcionar un vector 2D con la gravedad del mundo:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">b2Vec2</span> <span class="n">gravity</span><span class="p">;</span>
+<span class="n">gravity</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">);</span>
+<span class="n">b2World</span> <span class="o">*</span><span class="n">world</span> <span class="o">=</span> <span class="k">new</span> <span class="n">b2World</span><span class="p">(</span><span class="n">gravity</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<h3 id="unidades-de-medida">Unidades de medida<a class="headerlink" href="#unidades-de-medida" title="Permanent link">&para;</a></h3>
+<p>Antes de crear cuerpos en el mundo, debemos entender el sistema de coordenadas de Box2D y sus unidades
+    de medida. Los objetos de Box2D se miden en metros, y la librería está optimizada para objetos de 1m, por lo que
+    deberemos hacer que los objetos que aparezcan con más frecuencia tengan esta medida.</p>
+<p>Sin embargo, los gráficos en pantalla se miden en píxeles (o puntos). Deberemos por lo tanto fijar
+    el ratio de conversión entre pixeles y metros. Por ejemplo, si los objetos con los que trabajamos normalmente
+    miden 32 pixeles, haremos que 32 pixeles equivalgan a un metro. Definimos el siguiente ratio de conversión:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">const</span> <span class="kt">float</span> <span class="n">PTM_RATIO</span> <span class="o">=</span> <span class="mf">32.0</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p><img alt="Métricas de Box2D" src="imagenes/fisicas/box2d_metricas.jpg" /></p>
+<p>Para todas las unidades de medida Box2D utiliza el sistema métrico. Por ejemplo, para la masa de los objetos
+    utiliza Kg.</p>
+<h3 id="tipos-de-cuerpos">Tipos de cuerpos<a class="headerlink" href="#tipos-de-cuerpos" title="Permanent link">&para;</a></h3>
+<p>Encontramos tres tipos diferentes de cuerpos en Box2D según la forma en la que queremos que se realice
+    la simulación con ellos:</p>
+<ul>
+<li><strong>Dinámicos</strong>: Están sometidos a las leyes físicas, y tienen una masa concreta y finita. Estos
+    cuerpos se ven afectados por la gravedad y por la interacción con los demás cuerpos.</li>
+<li><strong>Estáticos</strong>: Son cuerpos que permanecen siempre en la misma posición. Equivalen a cuerpos
+    con masa infinita. Por ejemplo, podemos hacer que el escenario sea estático. Es importante no mover aquellos cuerpos que hayan sido marcados como estáticos, ya que el motor podría no responder de forma correcta.</li>
+<li><strong>Cinemáticos</strong>: Al igual que los cuerpos estáticos tienen masa infinita y no se ven afectados
+    por otros cuerpos ni por la gravedad. Sin embargo, en esta caso no tienen una posición fija, sino que podemos moverlos por el mundo. Nos son útiles por ejemplo para proyectiles.</li>
+</ul>
+<p><img alt="Tipos de cuerpos en Box2D" src="imagenes/fisicas/box2d_cuerpos.jpg" /></p>
+<h3 id="creacion-de-cuerpos">Creación de cuerpos<a class="headerlink" href="#creacion-de-cuerpos" title="Permanent link">&para;</a></h3>
+<p>Con todo lo visto anteriormente ya podemos crear distintos cuerpos. Para crear un cuerpo
+    primero debemos crear un objeto de tipo <code>BodyDef</code> con las propiedades del cuerpo
+    a crear, como por ejemplo su posición en el mundo, su velocidad, o su tipo. Una vez hecho esto,
+    crearemos el cuerpo a partir del mundo (<code>World</code>) y
+    de la definición del cuerpo que acabamos de crear. Una vez creado el cuerpo, podremos asignarle
+    una forma y densidad mediante <em>fixtures</em>. Por ejemplo, en el siguiente caso creamos un cuerpo dinámico con forma
+    rectangular:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">b2BodyDef</span> <span class="n">bodyDef</span><span class="p">;</span>
+<span class="n">bodyDef</span><span class="p">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">b2_dynamicBody</span><span class="p">;</span>
+<span class="n">bodyDef</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">,</span> <span class="n">y</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">);</span>
+
+<span class="n">b2Body</span> <span class="o">*</span><span class="n">body</span> <span class="o">=</span> <span class="n">world</span><span class="o">-&gt;</span><span class="n">CreateBody</span><span class="p">(</span><span class="o">&amp;</span><span class="n">bodyDef</span><span class="p">);</span>
+
+<span class="n">b2PolygonShape</span> <span class="n">bodyShape</span><span class="p">;</span>
+<span class="n">bodyShape</span><span class="p">.</span><span class="n">SetAsBox</span><span class="p">((</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">,</span> <span class="p">(</span><span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">);</span>
+
+<span class="n">body</span><span class="o">-&gt;</span><span class="n">CreateFixture</span><span class="p">(</span><span class="o">&amp;</span><span class="n">bodyShape</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<p>En este caso hemos creado un cuerpo con una única <em>fixture</em> con forma de caja y densidad 1.0 <span><span class="MathJax_Preview">\frac{kg}{m^2}</span><script type="math/tex">\frac{kg}{m^2}</script></span>. La masa del cuerpo sera calculada de forma automática a partir de la forma y densidad de sus <em>fixtures</em>.</p>
+<p>De forma similar podemos también crear un cuerpo dinámico de forma circular con:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">b2BodyDef</span> <span class="n">bodyDef</span><span class="p">;</span>
+<span class="n">bodyDef</span><span class="p">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">b2_dynamicBody</span><span class="p">;</span>
+<span class="n">bodyDef</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">,</span> <span class="n">y</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">);</span>
+
+<span class="n">b2Body</span> <span class="o">*</span><span class="n">body</span> <span class="o">=</span> <span class="n">world</span><span class="o">-&gt;</span><span class="n">CreateBody</span><span class="p">(</span><span class="o">&amp;</span><span class="n">bodyDef</span><span class="p">);</span>
+
+<span class="n">b2CircleShape</span> <span class="n">bodyShape</span><span class="p">;</span>
+<span class="n">bodyShape</span><span class="p">.</span><span class="n">m_radius</span> <span class="o">=</span> <span class="n">radius</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">;</span>        
+
+<span class="n">b2Fixture</span> <span class="o">*</span><span class="n">bodyFixture</span> <span class="o">=</span> <span class="n">body</span><span class="o">-&gt;</span><span class="n">CreateFixture</span><span class="p">(</span><span class="o">&amp;</span><span class="n">bodyShape</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<p>Para definir los límites del escenario utilizaremos un cuerpo de tipo estático compuesto de varias <em>fixtures</em> con forma de arista (<em>edge</em>). En este caso en lugar de utilizar el atajo <code>CreateFixture(shape, density)</code> de los ejemplos anteriores utilizaremos la versión <code>CreateFixture(fixtureDef)</code> que crea la <em>fixture</em> a partir de las propiedades definidas en una estructura de tipo <code>b2FixtureDef</code>, lo cual nos dará mayor flexibilidad:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">b2BodyDef</span> <span class="n">limitesBodyDef</span><span class="p">;</span>
+<span class="n">limitesBodyDef</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+
+<span class="n">b2Body</span> <span class="o">*</span><span class="n">limitesBody</span> <span class="o">=</span> <span class="n">world</span><span class="o">-&gt;</span><span class="n">CreateBody</span><span class="p">(</span><span class="o">&amp;</span><span class="n">limitesBodyDef</span><span class="p">);</span>
+<span class="n">b2EdgeShape</span> <span class="n">limitesShape</span><span class="p">;</span>
+<span class="n">b2FixtureDef</span> <span class="n">fixtureDef</span><span class="p">;</span>
+<span class="n">fixtureDef</span><span class="p">.</span><span class="n">shape</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">limitesShape</span><span class="p">;</span>
+
+<span class="n">limitesShape</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="n">b2Vec2</span><span class="p">(</span><span class="mf">0.0f</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">,</span> <span class="mf">0.0f</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">),</span>
+                 <span class="n">b2Vec2</span><span class="p">(</span><span class="n">width</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">,</span> <span class="mf">0.0f</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">));</span>
+<span class="n">limitesBody</span><span class="o">-&gt;</span><span class="n">CreateFixture</span><span class="p">(</span><span class="o">&amp;</span><span class="n">fixtureDef</span><span class="p">);</span>
+
+<span class="n">limitesShape</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="n">b2Vec2</span><span class="p">(</span><span class="n">width</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">,</span> <span class="mf">0.0f</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">),</span>
+                 <span class="n">b2Vec2</span><span class="p">(</span><span class="n">width</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">,</span> <span class="n">height</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">));</span>
+<span class="n">limitesBody</span><span class="o">-&gt;</span><span class="n">CreateFixture</span><span class="p">(</span><span class="o">&amp;</span><span class="n">fixtureDef</span><span class="p">);</span>
+
+<span class="n">limitesShape</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="n">b2Vec2</span><span class="p">(</span><span class="n">width</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">,</span> <span class="n">height</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">),</span>
+                 <span class="n">b2Vec2</span><span class="p">(</span><span class="mf">0.0f</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">,</span> <span class="n">height</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">));</span>
+<span class="n">limitesBody</span><span class="o">-&gt;</span><span class="n">CreateFixture</span><span class="p">(</span><span class="o">&amp;</span><span class="n">fixtureDef</span><span class="p">);</span>
+
+<span class="n">limitesShape</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="n">b2Vec2</span><span class="p">(</span><span class="mf">0.0f</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">,</span> <span class="n">height</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">),</span>
+                 <span class="n">b2Vec2</span><span class="p">(</span><span class="mf">0.0f</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">,</span> <span class="mf">0.0f</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">));</span>
+<span class="n">limitesBody</span><span class="o">-&gt;</span><span class="n">CreateFixture</span><span class="p">(</span><span class="o">&amp;</span><span class="n">fixtureDef</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<p>En este último caso vemos que no hemos indicado ni el tipo de cuerpo ni la masa. Si no indicamos nada por defecto el cuerpo será estático y su masa será infinita.</p>
+<p>En la propiedad <code>type</code> de la estructura <code>b2BodyDef</code> podemos especificar de forma explícita el tipo de cuerpo que queremos crear, que puede ser:</p>
+<ul>
+<li><code>b2_staticBody</code>: Cuerpo estático (valor por defecto). Podemos moverlos manualmente, pero el motor no los mueve.</li>
+<li><code>b2_kinematicBody</code>: Cuerpo cinemática. Podemos darle una velocidad pero las fuerzas no tienen efecto sobre él.</li>
+<li><code>b2_dinamicBody</code>: Cuerpo dinámico. Sometido totalmente a simulación física.</li>
+</ul>
+<p>Los cuerpos tienen además una propiedad <code>userData</code> que nos permite vincular cualquier objeto con el cuerpo. Por ejemplo, podríamos vincular a un cuerpo físico el <code>Sprite</code> que queremos utilizar para mostrarlo en pantalla:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">bodyDef</span><span class="p">.</span><span class="n">userData</span> <span class="o">=</span> <span class="n">sprite</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p>De esta forma, cuando realicemos la simulación podemos obtener
+    el <em>sprite</em> vinculado al cuerpo físico y mostrarlo en pantalla
+    en la posición que corresponda.</p>
+<h3 id="simulacion">Simulación<a class="headerlink" href="#simulacion" title="Permanent link">&para;</a></h3>
+<p>Ya hemos visto cómo crear el mundo 2D y los cuerpos rígidos. Vamos a ver ahora cómo realizar
+    la simulación física dentro de este mundo. Para realizar la simulación deberemos llamar al
+    método <code>step</code> sobre el mundo, proporcionando el <em>delta time</em> transcurrido
+    desde la última actualización del mismo:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">world</span><span class="o">-&gt;</span><span class="n">Step</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">world</span><span class="o">-&gt;</span><span class="n">ClearForces</span><span class="p">();</span>
+</pre></div>
+</td></tr></table>
+
+<blockquote>
+<p><strong>Recomendación</strong>: Conviene utilizar un <em>delta time</em> fijo para el motor de físicas, para así obtener resultados predecibles en la simulación (por ejemplo 60 fps). Si el <em>frame rate</em> del <em>render</em> es distinto podemos interpolar las posiciones.</p>
+</blockquote>
+<p>Además, los algoritmos de simulación física son iterativos. Con cada iteración se busca resolver las colisiones y restricciones de los objetos del mundo para aproximar su posición y velocidad. Cuantas más iteraciones se realicen mayor precisión se obtendrá en los resultados, pero mayor coste tendrán. El segundo y el tercer    parámetro de <code>step</code> nos permiten establecer el número de veces que debe iterar el algoritmo para resolver la posición y la velocidad de los cuerpos respectivamente. Tras hacer la simulación, deberemos limpiar las fuerzas acumuladas sobre los objetos, para que no se arrastren estos resultados a próximas simulaciones.</p>
+<blockquote>
+<p><strong>Recomendación</strong>: Un valor recomendable para las iteraciones de posición y velocidad es 8 y 3 respectivamente.</p>
+</blockquote>
+<p>Tras hacer la simulación deberemos actualizar las posiciones de los <em>sprites</em> en pantalla y mostrarlos. Por ejemplo, si hemos vinculado el <code>Sprite</code> al cuerpo mediante la propiedad <code>userData</code>, podemos recuperarlo y actualizarlo de la siguiente forma:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">Sprite</span> <span class="o">*</span><span class="n">sprite</span> <span class="o">=</span> <span class="p">(</span><span class="n">Sprite</span> <span class="o">*</span><span class="p">)</span><span class="n">body</span><span class="o">-&gt;</span><span class="n">GetUserData</span><span class="p">();</span>
+<span class="n">b2Vec2</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">body</span><span class="o">-&gt;</span><span class="n">GetPosition</span><span class="p">();</span>
+<span class="kt">float</span> <span class="n">rot</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">CC_RADIANS_TO_DEGREES</span><span class="p">(</span><span class="n">b</span><span class="o">-&gt;</span><span class="n">GetAngle</span><span class="p">());</span>
+
+<span class="n">sprite</span><span class="o">-&gt;</span><span class="n">setPosition</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="n">pos</span><span class="p">.</span><span class="n">x</span><span class="o">*</span><span class="n">PTM_RATIO</span><span class="p">,</span> <span class="n">pos</span><span class="p">.</span><span class="n">y</span><span class="o">*</span><span class="n">PTM_RATIO</span><span class="p">));</span>
+<span class="n">sprite</span><span class="o">-&gt;</span><span class="n">setRotation</span><span class="p">(</span><span class="n">rot</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<h3 id="formas-de-los-objetos">Formas de los objetos<a class="headerlink" href="#formas-de-los-objetos" title="Permanent link">&para;</a></h3>
+<p>Hemos visto que mediante <em>fixtures</em> podemos asignar diferentes formas a los objetos del mundo, como círculos, polígonos y aristas.</p>
+<h4>Círculos</h4>
+<p>Es la forma más sencilla. Se crea simplemente indicando su centro y su radio, y el cálculo de colisiones con ellos es muy eficiente.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">b2CircleShape</span> <span class="n">circle</span><span class="p">;</span>
+<span class="n">circle</span><span class="p">.</span><span class="n">m_p</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">);</span> <span class="c1">// Centro</span>
+<span class="n">circle</span><span class="p">.</span><span class="n">m_radius</span> <span class="o">=</span> <span class="mf">0.5f</span><span class="p">;</span>     <span class="c1">// Radio</span>
+</pre></div>
+</td></tr></table>
+
+<h4>Polígonos</h4>
+<p>Nos permite crear formas arbitrarias convexas. Es importante destacar que los polígonos siempre serán convexos y cerrados, y sus vértices se definirán en sentido contrario a las agujas del reloj (CCW). El cálculo de colisiones con formas cóncavas es demasiado complejo para el motor de físicas.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">b2Vec2</span> <span class="n">vertices</span><span class="p">[</span><span class="n">kNUM_VERTICES</span><span class="p">];</span>  <span class="c1">// Vertices definidos en orden CCW</span>
+<span class="n">vertices</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">Set</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">);</span>
+<span class="n">vertices</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">Set</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">);</span>
+<span class="n">vertices</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">Set</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">,</span> <span class="mf">2.0f</span><span class="p">);</span>
+
+<span class="n">b2PolygonShape</span> <span class="n">polygon</span><span class="p">;</span>
+<span class="n">polygon</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="n">vertices</span><span class="p">,</span> <span class="n">kNUM_VERTICES</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<p>Un caso particular de los polígonos son las cajas. Al ser este tipo de polígonos muy común, se proporciona un método para crearlas de forma automática a partir de su media altura y anchura:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">b2PolygonShape</span> <span class="n">box</span><span class="p">;</span>
+<span class="n">bodyShape</span><span class="p">.</span><span class="n">SetAsBox</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">);</span> <span class="c1">// Crea una caja de 1m x 1m</span>
+</pre></div>
+</td></tr></table>
+
+<h4>Aristas</h4>
+<p>Las aristas (<em>edges</em>) son segmentos de línea que normalmente se utilizan para construir la geometría del escenario estático, que podrá tener una forma arbitraria. Podemos</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">b2Vec2</span> <span class="nf">v1</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">);</span> <span class="c1">// Inicio del segmento</span>
+<span class="n">b2Vec2</span> <span class="nf">v2</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">);</span> <span class="c1">// Fin del segmento</span>
+
+<span class="n">b2EdgeShape</span> <span class="n">edge</span><span class="p">;</span>
+<span class="n">edge</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<h4>Cadenas</h4>
+<p>Las cadenas nos permiten unir varias aristas para así definir la geometría estática del escenario y evitar que se puedan producir "baches" en las juntas entre diferentes aristas.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">b2Vec2</span> <span class="n">v</span><span class="p">[</span><span class="n">kNUM_VERTICES</span><span class="p">];</span>
+<span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">Set</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">);</span>
+<span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">Set</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.25f</span><span class="p">);</span>
+<span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">Set</span><span class="p">(</span><span class="mf">2.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">);</span>
+<span class="n">v</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">Set</span><span class="p">(</span><span class="mf">3.0f</span><span class="p">,</span> <span class="mf">1.25f</span><span class="p">);</span>
+
+<span class="n">b2ChainShape</span> <span class="n">chain</span><span class="p">;</span>
+<span class="n">chain</span><span class="p">.</span><span class="n">CreateChain</span><span class="p">(</span><span class="n">vs</span><span class="p">,</span> <span class="n">kNUM_VERTICES</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<blockquote>
+<p><strong>Cuidado</strong>: Las aristas de la cadena no deben intersectar entre si. Esto no está previsto por el motor, por lo que puede producir efectos inesperados.</p>
+</blockquote>
+<h4>Formas compuestas</h4>
+<p>Si ninguno de los tipos anteriores de formas se adapta a nuestras necesidades, como por ejemplo en el caso de necesitar una forma cóncava, podemos definir la forma del cuerpo como una composición de formás básicas. Esto lo podemos conseguir añadiendo múltiples <em>fixtures</em> a un cuerpo, cada una de ellas con una forma distinta. Esto será útil para cuerpos dinámicos con formas complejas.</p>
+<h3 id="propiedades-de-los-cuerpos">Propiedades de los cuerpos<a class="headerlink" href="#propiedades-de-los-cuerpos" title="Permanent link">&para;</a></h3>
+<p>Los cuerpos y <em>fixtures</em> tienen una serie de propiedades que nos permiten definir su comportamiento en la simulación física. Hemos visto algunas básicas como la masa y la forma, que se indican en el momento de crear una <em>fixture</em>. Vamos a ver ahora otras propiedades físicas de los objetos.</p>
+<h4>Resistencia al aire</h4>
+<p>Para cada cuerpo podemos indicar una constante de resistencia al aire (<em>damping</em>), tanto lineal como angular. La resistencia al aire es la fuerza que hará que la velocidad del objeto disminuya, aunque no esté en contacto con ningún otro cuerpo. Cuánta mayor sea la velocidad, más fuerza ejercerá la resistencia al aire para pararlo. Es recomendable indicar una resistencia al aire para que los cuerpos no se muevan (o roten) de forma indefinida:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">bodyDef</span><span class="p">.</span><span class="n">linearDamping</span> <span class="o">=</span> <span class="mf">0.1f</span><span class="p">;</span>
+<span class="n">bodyDef</span><span class="p">.</span><span class="n">angularDamping</span> <span class="o">=</span> <span class="mf">0.25f</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<h4>Fricción</h4>
+<p>La fricción es la fuerza que hace que un objeto se pare al deslizarse sobre otro, debido a rugosidades de la superficie. A diferencia de la resistencia al aire, esta fuerza sólo se ejercerá cuando dos <em>fixtures</em> estén en contacto. La fricción se define a nivel de <em>fixture</em>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">fixtureDef</span><span class="p">.</span><span class="n">friction</span> <span class="o">=</span> <span class="mf">0.25f</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<h4>Restitución</h4>
+<p>La restitución nos indica la forma en la que responderá un objeto al colisionar con otro, permitiendo que los objetos permanezcan juntos o reboten. Una restitución 0 indica que el objeto no rebotará el colisionar, mientras que el valor 1 indica que al colisionar rebota y en el rebote se restituye toda la velocidad que tenía en el momento previo a la colisión.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">fixtureDef</span><span class="p">.</span><span class="n">restitution</span> <span class="o">=</span> <span class="mf">0.5f</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<h3 id="dinamica-de-cuerpos-rigidos">Dinámica de cuerpos rígidos<a class="headerlink" href="#dinamica-de-cuerpos-rigidos" title="Permanent link">&para;</a></h3>
+<p>Vamos a ver con mayor detalle la forma en la que se aplican fuerzas e impulsos sobre los cuerpos del mundo.</p>
+<h4>Fuerza y masa</h4>
+<p>Siguiendo la segunda ley de Newton, la fuerza que se debe aplicar sobre un objeto para producir una determinada aceleración se calcula de la siguiente forma:</p>
+<div>
+<div class="MathJax_Preview">\mathbf{f} = m\mathbf{a}</div>
+<script type="math/tex; mode=display">\mathbf{f} = m\mathbf{a}</script>
+</div>
+<p>Sin embargo, en nuestro motor de físicas lo que realmente nos interesa es conocer la aceleración producida tras aplicar una fuerza, calculada como:</p>
+<div>
+<div class="MathJax_Preview">\mathbf{a} = \frac{1}{m}\mathbf{f}</div>
+<script type="math/tex; mode=display">\mathbf{a} = \frac{1}{m}\mathbf{f}</script>
+</div>
+<p>Podemos ver que aquí multiplicamos la fuerza por la <strong>inversa de la masa</strong>. Dado que este cálculo es frecuente, para evitar tener que calcular la inversa en cada momento, normalmente los motores almacenan la masa inversa de los cuerpos, en lugar de almacenar la masa.</p>
+<p>Almacenar la masa inversa tiene una ventaja importante. Para hacer que un cuerpo sea estático (que no se vea afectado por las fuerzas que sobre él se ejerzan) lo que haremos es dar a ese cuerpo masa infinita. Este valor infinito podría crear dificultades en el código, y la necesidad de tratar casos especiales. Si trabajamos únicamente con masa inversa, bastará con darle un valor 0 a la masa inversa para hacer el cuerpo estático.</p>
+<p>En el caso de Box2D en lugar de indicar la masa al crear una <em>fixture</em> indicamos su densidad (medida en <span><span class="MathJax_Preview">\frac{kg}{m^2}</span><script type="math/tex">\frac{kg}{m^2}</script></span>). En función del tamaño de la forma y de su densidad la librería calculará de forma automática la masa.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">fixtureDef</span><span class="p">.</span><span class="n">density</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p>Podemos modificar las propiedades de masa de un cuerpo con el método <code>SetMassData</code>.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">b2MassData</span> <span class="n">md</span><span class="p">;</span>
+<span class="n">md</span><span class="p">.</span><span class="n">mass</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">;</span>
+<span class="n">md</span><span class="p">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">b2Vec</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">);</span>
+<span class="n">md</span><span class="p">.</span><span class="n">I</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">;</span>
+
+<span class="n">body</span><span class="p">.</span><span class="n">SetMassData</span><span class="p">(</span><span class="n">md</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<p>De esta forma además de la masa podremos especificar el centro de masas y el momento de inercia. El momento de inercia nos permitirá indicar qué par de fuerzas (<em>torque</em>) deberemos ejercer para producir una determinada aceleración angular, de la misma forma que la masa nos indica qué fuerza debemos ejercer para producir una determinada aceleración lineal.</p>
+<h4><em>Torque</em> y momento de inercia</h4>
+<p>El <em>torque</em> <span><span class="MathJax_Preview">\tau</span><script type="math/tex">\tau</script></span> es a la aceleración angular <span><span class="MathJax_Preview">\alpha</span><script type="math/tex">\alpha</script></span> lo que la fuerza es a la aceleración lineal. En este caso, en lugar de tener en cuenta únicamente la masa del objeto, deberemos tener en cuenta su momento de inercia <span><span class="MathJax_Preview">I</span><script type="math/tex">I</script></span>, en el que no sólo tenemos la masa, sino cómo está repartida a lo largo del cuerpo, lo cual influirá en cómo las fuerzas afectarán a la rotación.</p>
+<div>
+<div class="MathJax_Preview">\tau = I \alpha</div>
+<script type="math/tex; mode=display">\tau = I \alpha</script>
+</div>
+<p>Por ejemplo, si tenemos un objeto con forma de bastón, habrá que hacer menos fuerza para que gire alrededor de su eje principal que alrededor de otro eje. Por lo tanto, el momento de inercia no tendrá siempre el mismo valor para un determinado objeto, sino que dependerá del eje de rotación.</p>
+<p>El momento de inercia codifica cómo está repartida la masa del objeto alrededor de su centro. Para simplificar, supongamos que nuestro cuerpo rígido está compuesto de <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> partículas cada una de ellas con una determinada masa <span><span class="MathJax_Preview">m_i</span><script type="math/tex">m_i</script></span>, y situada en una posición <span><span class="MathJax_Preview">(x_i, y_i)</span><script type="math/tex">(x_i, y_i)</script></span> respecto al centro de masas del cuerpo. El momento de inercia se calcularía de la siguiente forma (medido en <span><span class="MathJax_Preview">kg·m</span><script type="math/tex">kg·m</script></span>):</p>
+<div>
+<div class="MathJax_Preview">I = \sum^{n}_{i=1} m_i \sqrt{x_i^2 + y_i^2}</div>
+<script type="math/tex; mode=display">I = \sum^{n}_{i=1} m_i \sqrt{x_i^2 + y_i^2}</script>
+</div>
+<p>Es decir, este coeficiente no tiene en cuenta sólo la masa, sino también lo alejada que está la masa respecto del centro del centro. De esta forma, hará falta hacer más fuerza para girar un cuerpo cuando la distribución de masa esté alejada del centro.</p>
+<blockquote>
+<p>Box2D calculará de forma automática tanto el centro de masas como el momento de inercia a partir de la densidad, forma y posición de cada <em>fixture</em> que compone un cuerpo, y normalmente no necesitaremos establecer estos datos de forma manual.</p>
+</blockquote>
+<h4>Acumulador de fuerzas</h4>
+<p>Normalmente sobre un cuerpo actuarán varias fuerzas. Siguiendo el principio de D'Alembert,  un conjunto de fuerzas</p>
+<div>
+<div class="MathJax_Preview">F=\{f_1, f_2, ... f_{|F|}\}</div>
+<script type="math/tex; mode=display">F=\{f_1, f_2, ... f_{|F|}\}</script>
+</div>
+<p>actuando sobre un objeto pueden ser sustituidas por una única fuerza calculada como la suma de las fuerzas de <span><span class="MathJax_Preview">F</span><script type="math/tex">F</script></span>:</p>
+<div>
+<div class="MathJax_Preview">f = \sum^{|F|}_{i=1} f_i</div>
+<script type="math/tex; mode=display">f = \sum^{|F|}_{i=1} f_i</script>
+</div>
+<p>Para ello, cada objeto contará con un acumulador de fuerzas f donde se irán sumando todas las fuerzas que actúan sobre él (gravedad, interacción con otros objetos, suelo, etc). Cuando llegue el momento de realizar la actualización de posición y velocidad, la aceleración del objeto se calculará a partir de la fuerza que indique dicho acumulador <span><span class="MathJax_Preview">f</span><script type="math/tex">f</script></span>.</p>
+<blockquote>
+<p><strong>Poner a cero el acumulador.</strong> Una vez finalizado un paso de la simulación deberemos poner a cero los acumuladores de fuerzas de cada objeto del mundo. Por este motivo Box2D tiene un método <code>clearForces</code> que deberemos llamar antes de realizar cada paso de la simulación.</p>
+</blockquote>
+<p>Deberemos llevar cuidado con la discretización del tiempo. Si una gran fuerza se aplica durante un periodo de tiempo muy breve (por ejemplo para disparar una bala), si la aceleración producida se extiende a todo el <em>delta time</em> el incremento de velocidad producido puede ser desmesurado. Por este motivo, estas fuerzas que se aplican en un breve instante puntual de tiempo se tratarán como <strong>impulsos</strong>.</p>
+<h4>Aplicación de fuerzas</h4>
+<p>El caso más común de fuerza aplicada a los objetos es la <strong>gravedad</strong>. Si queremos hacer una simulación realista deberíamos aplicar una fuerza que produzca una aceleración de</p>
+<div>
+<div class="MathJax_Preview">a_{gravedad}=-9.8 \frac{m}{s^2}</div>
+<script type="math/tex; mode=display">a_{gravedad}=-9.8 \frac{m}{s^2}</script>
+</div>
+<p>sobre nuestros objetos en el eje <span><span class="MathJax_Preview">y</span><script type="math/tex">y</script></span> (normalmente se redondea en <span><span class="MathJax_Preview">a_{gravedad}=10</span><script type="math/tex">a_{gravedad}=10</script></span>. Considerando el vector</p>
+<div>
+<div class="MathJax_Preview">\mathbf{a}_{gravedad} = (0, a_{gravedad})</div>
+<script type="math/tex; mode=display">\mathbf{a}_{gravedad} = (0, a_{gravedad})</script>
+</div>
+<p>tenemos:</p>
+<div>
+<div class="MathJax_Preview">\mathbf{f}_{gravedad} = \mathbf{a}_{gravedad}m</div>
+<script type="math/tex; mode=display">\mathbf{f}_{gravedad} = \mathbf{a}_{gravedad}m</script>
+</div>
+<p>Los cuerpos de Box2D tienen una propiedad <code>gravityScale</code> que nos permite aplicar una gravedad distinta a cada cuerpo. Podemos especificarlo al crear el cuerpo:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">bodyDef</span><span class="p">.</span><span class="n">gravityScale</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p>También se puede tratar como una fuerza la <strong>"resistencia al aire"</strong> (<em>damping</em>) que produce que los objetos vayan frenando y no se muevan indefinidamente. Un modelo simplificado para esta fuerza que se suele utilizar en videojuegos es el siguiente:</p>
+<div>
+<div class="MathJax_Preview">\mathbf{f}_{resistencia} = -\mathbf{\hat{v}}(k_{damping} |\mathbf{v}| </div>
+<script type="math/tex; mode=display">\mathbf{f}_{resistencia} = -\mathbf{\hat{v}}(k_{damping} |\mathbf{v}| </script>
+</div>
+<p>Donde <span><span class="MathJax_Preview">k_{damping}</span><script type="math/tex">k_{damping}</script></span> es la constante de <em>damping</em> especificada para el cuerpo, y <span><span class="MathJax_Preview">\mathbf{\hat{v}}</span><script type="math/tex">\mathbf{\hat{v}}</script></span> el vector de velocidad normalizado (vector unitario con la dirección de la velocidad). Podemos ver que la fuerza actúa en el sentido opuesto a la velocidad del objeto (lo frena), y con una magnitud proporcional a la velocidad.</p>
+<p>A parte de las fuerzas de gravedad, resistencia al aire, y las fuerzas ejercidas entre cuerpos en contacto, también podemos aplicar una fuerza manualmente sobre un determinado cuerpo. Para ello deberemos indicar el vector de fuerza y el punto del objeto donde se aplicará dicha fuerza:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">body</span><span class="p">.</span><span class="n">ApplyForce</span><span class="p">(</span><span class="n">b2Vec</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">),</span> <span class="n">body</span><span class="p">.</span><span class="n">GetPosition</span><span class="p">());</span>
+</pre></div>
+</td></tr></table>
+
+<p>Las unidades en las que especificaremos la fuerza son <em>Newtons</em> (<span><span class="MathJax_Preview">N = \frac{kg·m}{s^2}</span><script type="math/tex">N = \frac{kg·m}{s^2}</script></span>).</p>
+<p>Si el punto del objeto al que aplicamos la fuerza no es su centro de masas, la fuerza producirá además que el objeto rote (a no ser que en su definición hayamos dado valor <code>TRUE</code> a su propiedad <code>fixedRotation</code>, que evitará que rote).</p>
+<p>Si nos interesa siempre aplicar la fuerza en el centro, podemos utilizar el método:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">body</span><span class="p">.</span><span class="n">ApplyForceToCenter</span><span class="p">(</span><span class="n">b2Vec</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">));</span>
+</pre></div>
+</td></tr></table>
+
+<h4>Aplicación de un par de fuerzas (<em>torque</em>)</h4>
+<p>Podemos también aplicar un par de fuerzas (<em>torque</em>) para producir una rotación del objeto alrededor de su centro de masas sin producir una traslación:</p>
+<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">body</span><span class="p">.</span><span class="n">ApplyTorque</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+El <em>torque</em> se indica en <span><span class="MathJax_Preview">N·m</span><script type="math/tex">N·m</script></span>.</p>
+<h4>Impulsos</h4>
+<p>Los impulsos producen un cambio instantáneo en la velocidad de un objeto. Podemos ver los impulsos respecto a la velocidad como vemos a las fuerzas respecto a la aceleración. Si aplicar una fuerza a un cuerpo produce una aceleración, aplicar un impulso produce un cambio de velocidad. Una diferencia importante es que no puede haber aceleración si no se aplica ninguna fuerza, mientras que si que puede haber velocidad si no se aplican impulsos, un impulso lo que provoca es un cambio en la velocidad. El impulso <span><span class="MathJax_Preview">g</span><script type="math/tex">g</script></span> necesario para producir un cambio de velocidad <span><span class="MathJax_Preview">\Delta v</span><script type="math/tex">\Delta v</script></span> será proporcional a la masa del objeto:</p>
+<div>
+<div class="MathJax_Preview">\begin{equation}
+g = m\Delta v
+\end{equation}</div>
+<script type="math/tex; mode=display">\begin{equation}
+g = m\Delta v
+\end{equation}</script>
+</div>
+<p>Al igual que en el caso de las fuerzas, el cálculo que nos interesará realizar es la obtención del cambio de velocidad a partir del impulso:</p>
+<div>
+<div class="MathJax_Preview">\begin{equation}
+\Delta v = \frac{1}{m}g
+\end{equation}</div>
+<script type="math/tex; mode=display">\begin{equation}
+\Delta v = \frac{1}{m}g
+\end{equation}</script>
+</div>
+<p>Considerando <span><span class="MathJax_Preview">\Delta v = v' - v</span><script type="math/tex">\Delta v = v' - v</script></span>, donde <span><span class="MathJax_Preview">v</span><script type="math/tex">v</script></span> es la velocidad previa a la aplicación del impulso, y <span><span class="MathJax_Preview">v'</span><script type="math/tex">v'</script></span> es la velocidad resultante, tenemos:</p>
+<div>
+<div class="MathJax_Preview">\begin{equation}
+v' = v + \frac{1}{m}g
+\end{equation}</div>
+<script type="math/tex; mode=display">\begin{equation}
+v' = v + \frac{1}{m}g
+\end{equation}</script>
+</div>
+<h4>Aplicación de impulsos</h4>
+<p>En Box2D podremos aplicar un impulso sobre un punto de un cuerpo (al igual que en el caso de la fuerza) con:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">body</span><span class="p">.</span><span class="n">ApplyImpulse</span><span class="p">(</span><span class="n">b2Vec</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">body</span><span class="p">.</span><span class="n">GetPosition</span><span class="p">());</span>
+</pre></div>
+</td></tr></table>
+
+<p>El impulso lineal se especifica en <span><span class="MathJax_Preview">N·s</span><script type="math/tex">N·s</script></span>. Podemos también aplicar un impulso angular con:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">body</span><span class="p">.</span><span class="n">ApplyAngularImpulse</span><span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<p>Las unidades en este caso son <span><span class="MathJax_Preview">N·m·s</span><script type="math/tex">N·m·s</script></span> (es decir, <span><span class="MathJax_Preview">kg\frac{m^2}{s}</span><script type="math/tex">kg\frac{m^2}{s}</script></span>).</p>
+<h4>Velocidad</h4>
+<p>Además de aplicar fuerzas e impulsos sobre los cuerpos, también podemos consultar o modificar su velocidad con <code>GetVelocity</code> y <code>SetVelocity</code>. En el caso de la velocidad trabajaremos con <span><span class="MathJax_Preview">\frac{m}{s}</span><script type="math/tex">\frac{m}{s}</script></span>.</p>
+<p>Esto puede ser útil en cuerpos de tipo <em>kinematic</em>, en los que las fuerzas nos tienen efecto (al tener masa infinita), pero que si que pueden mantener una velocidad constante, como por ejemplo un proyectil.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">body</span><span class="p">.</span><span class="n">SetVelocity</span><span class="p">(</span><span class="n">b2Vec</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">));</span>
+</pre></div>
+</td></tr></table>
+
+<p>De la misma forma, también podemos consultar y modificar la velocidad angular con <code>GetAngularVelocity</code> y <code>SetAngularVelocity</code> respectivamente. En estos casos las unidades son <span><span class="MathJax_Preview">\frac{radianes}{s}</span><script type="math/tex">\frac{radianes}{s}</script></span>.</p>
+<h4>Posición</h4>
+<p>Dado un cuerpo, cuyo centro de masas está posicionado en <span><span class="MathJax_Preview">\mathbf{p}_0</span><script type="math/tex">\mathbf{p}_0</script></span> y con rotación <span><span class="MathJax_Preview">\Theta</span><script type="math/tex">\Theta</script></span> (matriz de rotación), puede interesarnos determinar la posición de cualquier otro punto del objeto en el mundo. Supongamos que queremos conocer la posición de un punto cuyas coordenadas locales (respecto al centro de masas) son <span><span class="MathJax_Preview">\mathbf{p}_{local}</span><script type="math/tex">\mathbf{p}_{local}</script></span>. La posición global de dicho punto vendrá determinada por:</p>
+<div>
+<div class="MathJax_Preview">\mathbf{p}_{global} = \Theta \mathbf{p}_{local} + \mathbf{p}_0</div>
+<script type="math/tex; mode=display">\mathbf{p}_{global} = \Theta \mathbf{p}_{local} + \mathbf{p}_0</script>
+</div>
+<p>Para simplificar este cálculo, Box2D nos proporciona una serie de métodos con los que podemos convertir entre coordenadas locales del objeto y coordenadas globales del mundo, teniendo en cuenta la posición o orientación del objeto. Con <code>GetWorldPoint</code> podremos obtener las coordenadas globales a partir de la coordenadas locales del objeto, y con <code>GetLocalPoint</code> podremos hacer la transformación inversa.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">b2Vec</span> <span class="n">globalPos</span> <span class="o">=</span> <span class="n">body</span><span class="o">-&gt;</span><span class="n">GetWorldPoint</span><span class="p">(</span><span class="n">b2Vec</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">));</span>
+</pre></div>
+</td></tr></table>
+
+<h3 id="deteccion-de-colisiones">Detección de colisiones<a class="headerlink" href="#deteccion-de-colisiones" title="Permanent link">&para;</a></h3>
+<p>Hemos comentado que dentro de la simulación física existen interacciones entre los diferentes objetos del mundo. Encontramos diferentes formas de consultar las colisiones de los objetos del mundo con otros objetos y otros elementos.</p>
+<h4>Colisión con un punto del mundo</h4>
+<p>Un <em>test</em> sencillo consiste en comprobar si la forma de una <em>fixture</em> ocupa un determinado punto del mundo. Esto es útil por ejemplo cuando tocamos sobre la pantalla táctil, para comprobar si en el punto sobre el que hemos pulsado hay un determinado objeto. Este método se aplica sobre una <em>fixture</em> concreta:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">b2Transfrom</span> <span class="n">transform</span><span class="p">;</span>
+<span class="n">transform</span><span class="p">.</span><span class="n">SetIdentity</span><span class="p">();</span>
+<span class="n">b2Vec2</span> <span class="nf">point</span><span class="p">(</span><span class="n">touch_x</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">,</span> <span class="n">touch_y</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">);</span>
+
+<span class="kt">bool</span> <span class="n">hit</span> <span class="o">=</span> <span class="n">fixture</span><span class="o">-&gt;</span><span class="n">TestPoint</span><span class="p">(</span><span class="n">transform</span><span class="p">,</span> <span class="n">point</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<h4>Trazado de rayos</h4>
+<p>Otro <em>test</em> disponible es el trazado de rayos. Consiste en lanzar un rayo desde una determinada posición del mundo en una determinada dirección y comprobar cuál es el primer objeto del mundo físico con el que impacta.</p>
+<p>Esto es especialmente útil para implementar por ejemplo los disparos de nuestro personaje. Al ser la bala un objeto extremadamente rápido, no es conveniente simular su movimiento con el motor de físicas, ya que podría producirse el efecto conocido como <em>tunneling</em>, atravesando objetos al dar un gran salto en su posición de una iteración a la siguiente. En este caso es mejor simplemente considerar la bala como algo instantáneo, y encontrar en el mismo momento en que se dispara el objeto con el que impactaría lanzando un rayo.</p>
+<p>Puede aplicarse para una <em>fixture</em> concreta para saber si el rayo impacta con ella:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">b2RayCastInput</span> <span class="n">input</span><span class="p">;</span>
+<span class="n">input</span><span class="p">.</span><span class="n">p1</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">);</span> <span class="c1">// Punto inicial del rayo</span>
+<span class="n">input</span><span class="p">.</span><span class="n">p2</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">);</span> <span class="c1">// Punto final del rayo</span>
+<span class="n">input</span><span class="p">.</span><span class="n">maxFraction</span> <span class="o">=</span> <span class="mf">1.0f</span><span class="p">;</span>
+
+<span class="n">b2RayCastOutput</span> <span class="n">output</span><span class="p">;</span>
+<span class="kt">bool</span> <span class="n">hit</span> <span class="o">=</span> <span class="n">fixture</span><span class="o">-&gt;</span><span class="n">RayCast</span><span class="p">(</span><span class="o">&amp;</span><span class="n">output</span><span class="p">,</span> <span class="n">input</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">hit</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">b2Vec2</span> <span class="n">hitPoint</span> <span class="o">=</span> <span class="n">input</span><span class="p">.</span><span class="n">p1</span> <span class="o">+</span> <span class="n">output</span><span class="p">.</span><span class="n">fraction</span> <span class="o">*</span> <span class="p">(</span><span class="n">input</span><span class="p">.</span><span class="n">p2</span> <span class="err">–</span> <span class="n">input</span><span class="p">.</span><span class="n">p1</span><span class="p">);</span>
+    <span class="n">b2Vec2</span> <span class="n">normal</span> <span class="o">=</span> <span class="n">output</span><span class="p">.</span><span class="n">normal</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>Como salida tenemos la siguiente información del punto de impacto:</p>
+<ul>
+<li><em>Fracción</em>: Tomando como referencia el vector desde el punto inicial al final del rayo, nos indica por cuánto debemos multiplicar dicho vector para encontrar el punto de impacto. Como entrada debemos especificar la fracción máxima hasta la que vamos a buscar el impacto. Por ejemplo, si la fracción es 1.0 el punto de impacto coincidirá con el punto final del rayo, mientras que si es 0.5 el impacto estaría justo a la mitad del vector del rayo.</li>
+<li><em>Normal</em>: Nos indica la dirección normal de la superficie sobre la que ha impactado el rayo. De esta forma podremos saber si hemos impactado de lado o de frente, y así aplicar distinto nivel de daño en cada caso, o aplicar una fuerza al objeto en la dirección en la que haya recibido el impacto.</li>
+</ul>
+<p>También podría aplicarse sobre el mundo, para buscar la primera <em>fixture</em> con la que impacte. En este caso necesitaremos utilizar un objeto <code>b2RayCastCallback</code> para obtener la información del primer <em>fixture</em> con el que impacte y los datos del impacto.</p>
+<h4>Colisiones entre cuerpos</h4>
+<p>Podemos recibir notificaciones cada vez que se produzca un contacto entre objetos del mundo, para así por ejemplo aumentar el daño recibido.</p>
+<p>Podremos recibir notificaciones mediante un objeto que implemente la interfaz <code>ContactListener</code>. Esta interfaz nos forzará a definir los siguientes métodos:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">MiContactListener</span> <span class="o">:</span> <span class="k">public</span> <span class="n">b2ContactListener</span> <span class="p">{</span>
+
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">MiContactListener</span><span class="p">();</span>
+    <span class="o">~</span><span class="n">MiContactListener</span><span class="p">();</span>
+
+    <span class="c1">// Se produce un contacto entre dos cuerpos</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">BeginContact</span><span class="p">(</span><span class="n">b2Contact</span><span class="o">*</span> <span class="n">contact</span><span class="p">);</span>
+
+    <span class="c1">// El contacto entre los cuerpos ha finalizado      </span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">EndContact</span><span class="p">(</span><span class="n">b2Contact</span><span class="o">*</span> <span class="n">contact</span><span class="p">);</span>
+
+    <span class="c1">// Se ejecuta antes de resolver el contacto.</span>
+    <span class="c1">// Podemos evitar que se procese</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">PreSolve</span><span class="p">(</span><span class="n">b2Contact</span><span class="o">*</span> <span class="n">contact</span><span class="p">,</span>
+                          <span class="k">const</span> <span class="n">b2Manifold</span><span class="o">*</span> <span class="n">oldManifold</span><span class="p">);</span>    
+
+    <span class="c1">// Podemos obtener el impulso aplicado sobre los cuerpos en contacto</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">PostSolve</span><span class="p">(</span><span class="n">b2Contact</span><span class="o">*</span> <span class="n">contact</span><span class="p">,</span>
+                           <span class="k">const</span> <span class="n">b2ContactImpulse</span><span class="o">*</span> <span class="n">impulse</span><span class="p">);</span>    
+<span class="p">};</span>
+</pre></div>
+</td></tr></table>
+
+<p>Podemos obtener los cuerpos implicados en el contacto a partir del parámetro <code>Contact</code>.
+    También podemos obtener información sobre los puntos de contacto mediante la información proporcionada
+    por <code>WorldManifold</code>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">MiContactListener</span><span class="o">::</span><span class="n">BeginContact</span><span class="p">(</span><span class="n">b2Contact</span><span class="o">*</span> <span class="n">contact</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="n">b2Body</span> <span class="o">*</span><span class="n">bodyA</span> <span class="o">=</span> <span class="n">contact</span><span class="p">.</span><span class="n">fixtureA</span><span class="o">-&gt;</span><span class="n">GetBody</span><span class="p">();</span>
+    <span class="n">b2Body</span> <span class="o">*</span><span class="n">bodyB</span> <span class="o">=</span> <span class="n">contact</span><span class="p">.</span><span class="n">fixtureB</span><span class="o">-&gt;</span><span class="n">GetBody</span><span class="p">();</span>
+
+    <span class="c1">// Obtiene el punto de contacto</span>
+    <span class="n">b2WorldManifold</span> <span class="n">worldManifold</span><span class="p">;</span>
+    <span class="n">contact</span><span class="o">-&gt;</span><span class="n">GetWorldManifold</span><span class="p">(</span><span class="o">&amp;</span><span class="n">worldManifold</span><span class="p">);</span>
+
+    <span class="n">b2Vec2</span> <span class="n">point</span> <span class="o">=</span> <span class="n">worldManifold</span><span class="p">.</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+
+    <span class="c1">// Calcula la velocidad a la que se produce el impacto</span>
+    <span class="n">b2Vec2</span> <span class="n">vA</span> <span class="o">=</span> <span class="n">bodyA</span><span class="o">-&gt;</span><span class="n">GetLinearVelocityFromWorldPoint</span><span class="p">(</span><span class="n">point</span><span class="p">);</span>
+    <span class="n">b2Vec2</span> <span class="n">vB</span> <span class="o">=</span> <span class="n">bodyB</span><span class="o">-&gt;</span><span class="n">GetLinearVelocityFromWorldPoint</span><span class="p">(</span><span class="n">point</span><span class="p">);</span>
+
+    <span class="n">float32</span> <span class="n">vel</span> <span class="o">=</span> <span class="n">b2Dot</span><span class="p">(</span><span class="n">vB</span> <span class="o">-</span> <span class="n">vA</span><span class="p">,</span> <span class="n">worldManifold</span><span class="p">.</span><span class="n">normal</span><span class="p">);</span>     
+
+    <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>De esta forma, además de detectar colisiones podemos también saber la velocidad a la que han chocado,
+    para así poder aplicar un diferente nivel de daño según la fuerza del impacto.</p>
+<p>El objeto <em>manifold</em> nos da el conjunto de puntos que define el contacto. En el caso de la colisión de una esfera con una superficie siempre será un único punto, pero en el caso de una caja puede ocurrir que toda una cara de la caja colisione con la superficie. En este caso el <em>manifold</em> nos devolerá los puntos de los extremos de la cara que colisiones con la superficie.</p>
+<p>También podemos utilizar <code>PostSolve</code> para obtener el impulso ejercido sobre los cuerpos en contacto en cada instante:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">MiContactListener</span><span class="o">::</span><span class="n">PostSolve</span><span class="p">(</span><span class="n">b2Contact</span><span class="o">*</span> <span class="n">contact</span><span class="p">,</span>
+                                  <span class="k">const</span> <span class="n">b2ContactImpulse</span><span class="o">*</span> <span class="n">impulse</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="n">b2Body</span> <span class="o">*</span><span class="n">bodyA</span> <span class="o">=</span> <span class="n">contact</span><span class="p">.</span><span class="n">fixtureA</span><span class="o">-&gt;</span><span class="n">GetBody</span><span class="p">();</span>
+    <span class="n">b2Body</span> <span class="o">*</span><span class="n">bodyB</span> <span class="o">=</span> <span class="n">contact</span><span class="p">.</span><span class="n">fixtureB</span><span class="o">-&gt;</span><span class="n">GetBody</span><span class="p">();</span>
+
+    <span class="kt">float</span> <span class="n">impulso</span> <span class="o">=</span> <span class="n">impulse</span><span class="o">-&gt;</span><span class="n">GetNormalImpulses</span><span class="p">()[</span><span class="mi">0</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>Debemos tener en cuenta que <code>BeginContact</code> sólo será llamado una vez, al comienzo del contacto, mientras que <code>PostSolve</code> nos informa en cada iteración de las fuerzas ejercidas entre los cuerpos en contacto para mantener uno en reposo sobre otro.</p>
+<h4>Sensores</h4>
+<p>En el punto anterior hemos visto cómo detectar colisiones entre cuerpos que producen una respuesta (fuerza de reacción). En algunos casos nos interesa que en el motor de físicas se detecten colisiones con un cuerpo, pero que no produzcan una respuesta en la simulación física. Por ejemplo, podríamos tener una zona en la que al entrar algún cuerpo queramos que se abra alguna puerta. Esto podemos conseguirlo mediante sensores. Podemos hacer que una <em>fixture</em> se comporte como sensor mediante su propiedad <code>isSensor</code>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">fixtureDef</span><span class="p">.</span><span class="n">isSensor</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p>Al ser un sensor otros objetos atravesará esta <em>fixture</em>, pero podremos detectar las colisiones mediante los métodos <code>BeginContact</code> y <code>EndContact</code> de una <code>ContactListener</code>.</p>
+<h2 id="controlador-de-personaje">Controlador de personaje<a class="headerlink" href="#controlador-de-personaje" title="Permanent link">&para;</a></h2>
+<p>En un videojuego de plataformas debemos aplicar físicas y control de colisiones a nuestro personaje para así por ejemplo controlar el salto y las caídas, y evitar que pueda atravesar muros o el suelo. Este control suele hacerse con físicas simplificadas que aplican una gravedad al personaje y comprueban si entra en colisión con el suelo (parte inferior) o con muros (laterales). Sin embargo, podría interesarnos delegar todo este control a un motor de físicas como Box2D. Vamos a ver cómo podríamos utilizar este motor para implementar un controlador de personaje.</p>
+<p>En primer lugar deberemos crear un cuerpo físico para nuestro personaje y su geometría de colisión. Podemos para ello utilizar una caja con las dimensiones de su nodo gráfico (<code>m_playerSprite</code>). Es importante bloquear la rotación del cuerpo físico, ya que normalmente buscaremos que nuestro personaje esté siempre <em>de pie</em>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">b2BodyDef</span> <span class="n">bodyDef</span><span class="p">;</span>
+<span class="n">bodyDef</span><span class="p">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">b2BodyType</span><span class="o">::</span><span class="n">b2_dynamicBody</span><span class="p">;</span>
+<span class="n">bodyDef</span><span class="p">.</span><span class="n">fixedRotation</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+
+<span class="n">b2PolygonShape</span> <span class="n">shapeBoundingBox</span><span class="p">;</span>
+<span class="n">shapeBoundingBox</span><span class="p">.</span><span class="n">SetAsBox</span><span class="p">(</span><span class="n">m_playerSprite</span><span class="o">-&gt;</span><span class="n">getContentSize</span><span class="p">().</span><span class="n">width</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">,</span>
+                          <span class="n">m_playerSprite</span><span class="o">-&gt;</span><span class="n">getContentSize</span><span class="p">().</span><span class="n">height</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">);</span>
+
+<span class="n">m_body</span> <span class="o">=</span> <span class="n">world</span><span class="o">-&gt;</span><span class="n">CreateBody</span><span class="p">(</span><span class="o">&amp;</span><span class="n">bodyDef</span><span class="p">);</span>
+<span class="n">b2Fixture</span> <span class="o">*</span><span class="n">fixture</span> <span class="o">=</span> <span class="n">m_body</span><span class="o">-&gt;</span><span class="n">CreateFixture</span><span class="p">(</span><span class="o">&amp;</span><span class="n">shapeBoundingBox</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">);</span>
+<span class="n">fixture</span><span class="o">-&gt;</span><span class="n">SetFriction</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<p>Además de crear la geometría de colisión del <em>sprite</em>, es importante saber cuándo estamos pisando suelo y cuándo estamos en el aire, para determinar así si podemos saltar o no. Para ello podemos utilizar un sensor añadido bajo los pies del personaje:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">b2CircleShape</span> <span class="n">shapeSensor</span><span class="p">;</span>
+<span class="n">shapeSensor</span><span class="p">.</span><span class="n">m_radius</span> <span class="o">=</span> <span class="n">GROUND_TEST_RADIUS</span><span class="p">;</span>
+<span class="n">shapeSensor</span><span class="p">.</span><span class="n">m_p</span> <span class="o">=</span> <span class="n">b2Vec2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">m_playerSprite</span><span class="o">-&gt;</span><span class="n">getContentSize</span><span class="p">().</span><span class="n">height</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">);</span>
+
+<span class="n">m_groundTest</span> <span class="o">=</span> <span class="n">m_body</span><span class="o">-&gt;</span><span class="n">CreateFixture</span><span class="p">(</span><span class="o">&amp;</span><span class="n">shapeSensor</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">);</span>
+<span class="n">m_groundTest</span><span class="o">-&gt;</span><span class="n">SetSensor</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<p>Al marcar esta forma circular como <em>sensor</em>, no causará reacción de colisión con el suelo pero si que detectará cuando está solapado con él. De esta forma podremos saber si estamos sobre una superficie o en el aire. Podemos comprobar las colisiones de nuestro cuerpo con el siguiente código:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">bool</span> <span class="nf">checkGrounded</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">b2ContactEdge</span> <span class="o">*</span><span class="n">edge</span> <span class="o">=</span> <span class="n">m_body</span><span class="o">-&gt;</span><span class="n">GetContactList</span><span class="p">();</span>
+    <span class="k">while</span> <span class="p">(</span> <span class="n">edge</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">edge</span><span class="o">-&gt;</span><span class="n">contact</span><span class="o">-&gt;</span><span class="n">GetFixtureA</span><span class="p">()</span><span class="o">==</span><span class="n">m_groundTest</span> <span class="o">||</span>
+             <span class="n">edge</span><span class="o">-&gt;</span><span class="n">contact</span><span class="o">-&gt;</span><span class="n">GetFixtureB</span><span class="p">()</span><span class="o">==</span><span class="n">m_groundTest</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">edge</span> <span class="o">=</span> <span class="n">edge</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>Con este método obtenemos todos los contactos existentes con el cuerpo de nuestro personaje, y filtramos sólo aquellos que se producen con el sensor (<code>m_groundTest</code>). En caso de existir alguno, es que estamos pisando sobre alguna superficie.</p>
+<p>Podríamos implementar el salto aplicando una velocidad vertical (<code>m_jump</code>) y conservando la velocidad horizontal del personaje. Haremos esto sólo cuando el personaje esté sobre una superficie sólida:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">checkGrounded</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">m_body</span><span class="o">-&gt;</span><span class="n">SetLinearVelocity</span><span class="p">(</span><span class="n">b2Vec2</span><span class="p">(</span><span class="n">m_body</span><span class="o">-&gt;</span><span class="n">GetLinearVelocity</span><span class="p">().</span><span class="n">x</span><span class="p">,</span> <span class="n">m_jump</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>Para mover el personaje a izquierda o derecha lo único que deberemos hacer es establecer su velocidad en <em>x</em> a partir del valor del eje horizontal de mando, conservando su velocidad vertical (determinada por la fuerza de la gravedad):</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">m_body</span><span class="o">-&gt;</span><span class="n">SetLinearVelocity</span><span class="p">(</span><span class="n">b2Vec2</span><span class="p">(</span><span class="n">m_horizontalAxis</span> <span class="o">*</span> <span class="n">m_vel</span> <span class="o">/</span> <span class="n">PTM_RATIO</span><span class="p">,</span>
+                                 <span class="n">m_body</span><span class="o">-&gt;</span><span class="n">GetLinearVelocity</span><span class="p">().</span><span class="n">y</span><span class="p">));</span>
+</pre></div>
+</td></tr></table>
+
+<p>Con esto ya tendremos nuestro <em>sprite</em> en movimiento utilizando el motor de físicas. Ya sólo quedaría controlar las animaciones de nuestro personaje, aunque esto ya no es responsabilidad del motor de físicas. Por ejemplo, deberemos hacer que mire en la dirección en la que estemos moviendo el mando:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">m_horizontalAxis</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">m_playerSprite</span><span class="o">-&gt;</span><span class="n">isFlippedX</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">m_playerSprite</span><span class="o">-&gt;</span><span class="n">setFlippedX</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">m_horizontalAxis</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">m_playerSprite</span><span class="o">-&gt;</span><span class="n">isFlippedX</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">m_playerSprite</span><span class="o">-&gt;</span><span class="n">setFlippedX</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>Si queremos controlar la velocidad de la animación de fotogramas en función de la velocidad a la que estemos moviendo el personaje podemos añadir una acción de tipo <code>Speed</code>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">Animate</span><span class="o">*</span> <span class="n">actionAnimate</span> <span class="o">=</span> <span class="n">Animate</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="n">AnimationCache</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getAnimation</span><span class="p">(</span><span class="s">&quot;animAndar&quot;</span><span class="p">));</span>
+<span class="n">RepeatForever</span><span class="o">*</span> <span class="n">actionRepeat</span> <span class="o">=</span> <span class="n">RepeatForever</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="n">actionAnimate</span><span class="p">);</span>
+<span class="n">m_actionAndar</span> <span class="o">=</span> <span class="n">Speed</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="n">actionRepeat</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<p>Con esta acción podremos controlar la velocidad a la que se reproduce la animación en cada momento con:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">fabsf</span><span class="p">(</span><span class="n">m_horizontalAxis</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Paramos al personaje</span>
+    <span class="n">m_actionAndar</span><span class="o">-&gt;</span><span class="n">setSpeed</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">);</span>
+    <span class="n">m_playerSprite</span><span class="o">-&gt;</span><span class="n">setSpriteFrame</span><span class="p">(</span><span class="s">&quot;idle.png&quot;</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// Establecemos la velocidad de la animación</span>
+    <span class="n">m_actionAndar</span><span class="o">-&gt;</span><span class="n">setSpeed</span><span class="p">(</span><span class="n">fabsf</span><span class="p">(</span><span class="n">m_horizontalAxis</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<h2 id="depuracion-de-las-fisicas">Depuración de las físicas<a class="headerlink" href="#depuracion-de-las-fisicas" title="Permanent link">&para;</a></h2>
+<p>Dado que los cuerpos físicos se tratan de forma independiente de los nodos gráficos, a veces resulta conveniente poder visualizar qué ocurre en el mundo físico para poder depurar de forma correcta el comportamiento de las entidades de nuestro juego.</p>
+<p>El motor Box2D nos ofrece facilidades para hacer esto. La clase <code>b2World</code> ofrece la funcionalidad de "dibujar" los objetos del mundo físico, como las formas de las <em>fixtures</em>, los AABB, o los centros de masas de los objetos.</p>
+<p>Para poder dibujar estos contenidos deberemos proporcionar a Box2D una clase que le indique cómo dibujar cada elemento con nuestro motor gráfico (en nuestro caso Cocos2d-x). Esta clase deberá heredar de <code>b2Draw</code>, y deberá implementar una serie de métodos en los que indicaremos cómo dibujar diferentes primitivas gráficas (círculos, rectángulos, polilíneas, etc). Afortunadamente, Cocos2d-x cuenta con el nodo de tipo <code>DrawNode</code> que nos facilitará dibujar dichas primitivas. A continuación mostrarmos un ejemplo de implementación de una clase que nos permita depurar la física de Box2D en Cocos2d-x:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">CocosDebugDraw</span> <span class="o">:</span> <span class="k">public</span> <span class="n">b2Draw</span>
+<span class="p">{</span>
+    <span class="n">float32</span> <span class="n">mRatio</span><span class="p">;</span>
+    <span class="n">cocos2d</span><span class="o">::</span><span class="n">DrawNode</span> <span class="o">*</span><span class="n">mNode</span><span class="p">;</span>
+
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">CocosDebugDraw</span><span class="p">();</span>
+    <span class="n">CocosDebugDraw</span><span class="p">(</span> <span class="n">float32</span> <span class="n">ratio</span> <span class="p">);</span>
+    <span class="o">~</span><span class="n">CocosDebugDraw</span><span class="p">();</span>
+
+    <span class="n">cocos2d</span><span class="o">::</span><span class="n">Node</span><span class="o">*</span> <span class="n">GetNode</span><span class="p">();</span>
+    <span class="kt">void</span> <span class="nf">Clear</span><span class="p">();</span>
+
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">DrawPolygon</span><span class="p">(</span><span class="k">const</span> <span class="n">b2Vec2</span><span class="o">*</span> <span class="n">vertices</span><span class="p">,</span> <span class="kt">int</span> <span class="n">vertexCount</span><span class="p">,</span> <span class="k">const</span> <span class="n">b2Color</span><span class="o">&amp;</span> <span class="n">color</span><span class="p">);</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">DrawSolidPolygon</span><span class="p">(</span><span class="k">const</span> <span class="n">b2Vec2</span><span class="o">*</span> <span class="n">vertices</span><span class="p">,</span> <span class="kt">int</span> <span class="n">vertexCount</span><span class="p">,</span> <span class="k">const</span> <span class="n">b2Color</span><span class="o">&amp;</span> <span class="n">color</span><span class="p">);</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">DrawCircle</span><span class="p">(</span><span class="k">const</span> <span class="n">b2Vec2</span><span class="o">&amp;</span> <span class="n">center</span><span class="p">,</span> <span class="n">float32</span> <span class="n">radius</span><span class="p">,</span> <span class="k">const</span> <span class="n">b2Color</span><span class="o">&amp;</span> <span class="n">color</span><span class="p">);</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">DrawSolidCircle</span><span class="p">(</span><span class="k">const</span> <span class="n">b2Vec2</span><span class="o">&amp;</span> <span class="n">center</span><span class="p">,</span> <span class="n">float32</span> <span class="n">radius</span><span class="p">,</span> <span class="k">const</span> <span class="n">b2Vec2</span><span class="o">&amp;</span> <span class="n">axis</span><span class="p">,</span> <span class="k">const</span> <span class="n">b2Color</span><span class="o">&amp;</span> <span class="n">color</span><span class="p">);</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">DrawSegment</span><span class="p">(</span><span class="k">const</span> <span class="n">b2Vec2</span><span class="o">&amp;</span> <span class="n">p1</span><span class="p">,</span> <span class="k">const</span> <span class="n">b2Vec2</span><span class="o">&amp;</span> <span class="n">p2</span><span class="p">,</span> <span class="k">const</span> <span class="n">b2Color</span><span class="o">&amp;</span> <span class="n">color</span><span class="p">);</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">DrawTransform</span><span class="p">(</span><span class="k">const</span> <span class="n">b2Transform</span><span class="o">&amp;</span> <span class="n">xf</span><span class="p">);</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">DrawPoint</span><span class="p">(</span><span class="k">const</span> <span class="n">b2Vec2</span><span class="o">&amp;</span> <span class="n">p</span><span class="p">,</span> <span class="n">float32</span> <span class="n">size</span><span class="p">,</span> <span class="k">const</span> <span class="n">b2Color</span><span class="o">&amp;</span> <span class="n">color</span><span class="p">);</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">DrawString</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">string</span><span class="p">,</span> <span class="p">...);</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">DrawAABB</span><span class="p">(</span><span class="n">b2AABB</span><span class="o">*</span> <span class="n">aabb</span><span class="p">,</span> <span class="k">const</span> <span class="n">b2Color</span><span class="o">&amp;</span> <span class="n">color</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">CocosDebugDraw</span><span class="o">::</span><span class="n">CocosDebugDraw</span><span class="p">()</span>
+<span class="o">:</span> <span class="n">mRatio</span><span class="p">(</span> <span class="mf">1.0f</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">mNode</span> <span class="o">=</span> <span class="n">DrawNode</span><span class="o">::</span><span class="n">create</span><span class="p">();</span>
+    <span class="n">mNode</span><span class="o">-&gt;</span><span class="n">retain</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="n">CocosDebugDraw</span><span class="o">::</span><span class="n">CocosDebugDraw</span><span class="p">(</span> <span class="n">float32</span> <span class="n">ratio</span> <span class="p">)</span>
+<span class="o">:</span> <span class="n">mRatio</span><span class="p">(</span> <span class="n">ratio</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">mNode</span> <span class="o">=</span> <span class="n">DrawNode</span><span class="o">::</span><span class="n">create</span><span class="p">();</span>
+    <span class="n">mNode</span><span class="o">-&gt;</span><span class="n">retain</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="n">CocosDebugDraw</span><span class="o">::~</span><span class="n">CocosDebugDraw</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">mNode</span><span class="o">-&gt;</span><span class="n">release</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">CocosDebugDraw</span><span class="o">::</span><span class="n">Clear</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">mNode</span><span class="o">-&gt;</span><span class="n">clear</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="n">Node</span><span class="o">*</span> <span class="n">CocosDebugDraw</span><span class="o">::</span><span class="n">GetNode</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">mNode</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">CocosDebugDraw</span><span class="o">::</span><span class="n">DrawPolygon</span><span class="p">(</span><span class="k">const</span> <span class="n">b2Vec2</span><span class="o">*</span> <span class="n">old_vertices</span><span class="p">,</span> <span class="kt">int</span> <span class="n">vertexCount</span><span class="p">,</span> <span class="k">const</span> <span class="n">b2Color</span><span class="o">&amp;</span> <span class="n">color</span><span class="p">)</span>
+<span class="p">{</span>
+
+    <span class="n">Vec2</span> <span class="o">*</span><span class="n">vertices</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Vec2</span><span class="p">[</span><span class="n">vertexCount</span><span class="p">];</span>
+    <span class="k">for</span><span class="p">(</span> <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">vertexCount</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">vertices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Vec2</span><span class="p">(</span><span class="n">old_vertices</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">x</span> <span class="o">*</span> <span class="n">mRatio</span><span class="p">,</span> <span class="n">old_vertices</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">y</span> <span class="o">*</span> <span class="n">mRatio</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">mNode</span><span class="o">-&gt;</span><span class="n">drawPoly</span><span class="p">(</span><span class="n">vertices</span><span class="p">,</span> <span class="n">vertexCount</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="n">Color4F</span><span class="p">(</span><span class="n">color</span><span class="p">.</span><span class="n">r</span><span class="p">,</span> <span class="n">color</span><span class="p">.</span><span class="n">g</span><span class="p">,</span> <span class="n">color</span><span class="p">.</span><span class="n">b</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">));</span>
+
+    <span class="k">delete</span><span class="p">[]</span> <span class="n">vertices</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">CocosDebugDraw</span><span class="o">::</span><span class="n">DrawSolidPolygon</span><span class="p">(</span><span class="k">const</span> <span class="n">b2Vec2</span><span class="o">*</span> <span class="n">old_vertices</span><span class="p">,</span> <span class="kt">int</span> <span class="n">vertexCount</span><span class="p">,</span> <span class="k">const</span> <span class="n">b2Color</span><span class="o">&amp;</span> <span class="n">color</span><span class="p">)</span>
+<span class="p">{</span>
+
+    <span class="n">Vec2</span> <span class="o">*</span><span class="n">vertices</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Vec2</span><span class="p">[</span><span class="n">vertexCount</span><span class="p">];</span>
+    <span class="k">for</span><span class="p">(</span> <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">vertexCount</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">vertices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Vec2</span><span class="p">(</span><span class="n">old_vertices</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">x</span> <span class="o">*</span> <span class="n">mRatio</span><span class="p">,</span> <span class="n">old_vertices</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">y</span> <span class="o">*</span> <span class="n">mRatio</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">mNode</span><span class="o">-&gt;</span><span class="n">drawSolidPoly</span><span class="p">(</span><span class="n">vertices</span><span class="p">,</span> <span class="n">vertexCount</span><span class="p">,</span> <span class="n">Color4F</span><span class="p">(</span><span class="n">color</span><span class="p">.</span><span class="n">r</span><span class="p">,</span> <span class="n">color</span><span class="p">.</span><span class="n">g</span><span class="p">,</span> <span class="n">color</span><span class="p">.</span><span class="n">b</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">));</span>
+
+    <span class="k">delete</span><span class="p">[]</span> <span class="n">vertices</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">CocosDebugDraw</span><span class="o">::</span><span class="n">DrawCircle</span><span class="p">(</span><span class="k">const</span> <span class="n">b2Vec2</span><span class="o">&amp;</span> <span class="n">center</span><span class="p">,</span> <span class="n">float32</span> <span class="n">radius</span><span class="p">,</span> <span class="k">const</span> <span class="n">b2Color</span><span class="o">&amp;</span> <span class="n">color</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">mNode</span><span class="o">-&gt;</span><span class="n">drawCircle</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="n">center</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">mRatio</span><span class="p">,</span> <span class="n">center</span><span class="p">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">mRatio</span><span class="p">),</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">mRatio</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">16.0f</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">,</span> <span class="n">Color4F</span><span class="p">(</span><span class="n">color</span><span class="p">.</span><span class="n">r</span><span class="p">,</span> <span class="n">color</span><span class="p">.</span><span class="n">g</span><span class="p">,</span> <span class="n">color</span><span class="p">.</span><span class="n">b</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">CocosDebugDraw</span><span class="o">::</span><span class="n">DrawSolidCircle</span><span class="p">(</span><span class="k">const</span> <span class="n">b2Vec2</span><span class="o">&amp;</span> <span class="n">center</span><span class="p">,</span> <span class="n">float32</span> <span class="n">radius</span><span class="p">,</span> <span class="k">const</span> <span class="n">b2Vec2</span><span class="o">&amp;</span> <span class="n">axis</span><span class="p">,</span> <span class="k">const</span> <span class="n">b2Color</span><span class="o">&amp;</span> <span class="n">color</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">mNode</span><span class="o">-&gt;</span><span class="n">drawSolidCircle</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="n">center</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">mRatio</span><span class="p">,</span> <span class="n">center</span><span class="p">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">mRatio</span><span class="p">),</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">mRatio</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">16.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">,</span> <span class="n">Color4F</span><span class="p">(</span><span class="n">color</span><span class="p">.</span><span class="n">r</span><span class="p">,</span> <span class="n">color</span><span class="p">.</span><span class="n">g</span><span class="p">,</span> <span class="n">color</span><span class="p">.</span><span class="n">b</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">CocosDebugDraw</span><span class="o">::</span><span class="n">DrawSegment</span><span class="p">(</span><span class="k">const</span> <span class="n">b2Vec2</span><span class="o">&amp;</span> <span class="n">p1</span><span class="p">,</span> <span class="k">const</span> <span class="n">b2Vec2</span><span class="o">&amp;</span> <span class="n">p2</span><span class="p">,</span> <span class="k">const</span> <span class="n">b2Color</span><span class="o">&amp;</span> <span class="n">color</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">mNode</span><span class="o">-&gt;</span><span class="n">drawSegment</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="n">p1</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">mRatio</span><span class="p">,</span> <span class="n">p1</span><span class="p">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">mRatio</span><span class="p">),</span> <span class="n">Vec2</span><span class="p">(</span><span class="n">p2</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">mRatio</span> <span class="p">,</span> <span class="n">p2</span><span class="p">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">mRatio</span><span class="p">),</span> <span class="mf">1.0f</span><span class="p">,</span> <span class="n">Color4F</span><span class="p">(</span><span class="n">color</span><span class="p">.</span><span class="n">r</span><span class="p">,</span> <span class="n">color</span><span class="p">.</span><span class="n">g</span><span class="p">,</span> <span class="n">color</span><span class="p">.</span><span class="n">b</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">CocosDebugDraw</span><span class="o">::</span><span class="n">DrawTransform</span><span class="p">(</span><span class="k">const</span> <span class="n">b2Transform</span><span class="o">&amp;</span> <span class="n">xf</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">b2Vec2</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">xf</span><span class="p">.</span><span class="n">p</span><span class="p">,</span> <span class="n">p2</span><span class="p">;</span>
+    <span class="k">const</span> <span class="n">float32</span> <span class="n">k_axisScale</span> <span class="o">=</span> <span class="mf">0.4f</span><span class="p">;</span>
+    <span class="n">p2</span> <span class="o">=</span> <span class="n">p1</span> <span class="o">+</span> <span class="n">k_axisScale</span> <span class="o">*</span> <span class="n">xf</span><span class="p">.</span><span class="n">q</span><span class="p">.</span><span class="n">GetXAxis</span><span class="p">();</span>
+    <span class="n">DrawSegment</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">b2Color</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
+
+    <span class="n">p2</span> <span class="o">=</span> <span class="n">p1</span> <span class="o">+</span> <span class="n">k_axisScale</span> <span class="o">*</span> <span class="n">xf</span><span class="p">.</span><span class="n">q</span><span class="p">.</span><span class="n">GetYAxis</span><span class="p">();</span>
+    <span class="n">DrawSegment</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span><span class="n">b2Color</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">CocosDebugDraw</span><span class="o">::</span><span class="n">DrawPoint</span><span class="p">(</span><span class="k">const</span> <span class="n">b2Vec2</span><span class="o">&amp;</span> <span class="n">p</span><span class="p">,</span> <span class="n">float32</span> <span class="n">size</span><span class="p">,</span> <span class="k">const</span> <span class="n">b2Color</span><span class="o">&amp;</span> <span class="n">color</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">mNode</span><span class="o">-&gt;</span><span class="n">drawPoint</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">mRatio</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">mRatio</span><span class="p">),</span> <span class="n">size</span> <span class="o">*</span> <span class="n">mRatio</span><span class="p">,</span> <span class="n">Color4F</span><span class="p">(</span><span class="n">color</span><span class="p">.</span><span class="n">r</span><span class="p">,</span> <span class="n">color</span><span class="p">.</span><span class="n">g</span><span class="p">,</span> <span class="n">color</span><span class="p">.</span><span class="n">b</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">CocosDebugDraw</span><span class="o">::</span><span class="n">DrawString</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">string</span><span class="p">,</span> <span class="p">...)</span>
+<span class="p">{</span>
+    <span class="c1">// No soportado</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">CocosDebugDraw</span><span class="o">::</span><span class="n">DrawAABB</span><span class="p">(</span><span class="n">b2AABB</span><span class="o">*</span> <span class="n">aabb</span><span class="p">,</span> <span class="k">const</span> <span class="n">b2Color</span><span class="o">&amp;</span> <span class="n">color</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">mNode</span><span class="o">-&gt;</span><span class="n">drawRect</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="n">aabb</span><span class="o">-&gt;</span><span class="n">lowerBound</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">mRatio</span><span class="p">,</span> <span class="n">aabb</span><span class="o">-&gt;</span><span class="n">lowerBound</span><span class="p">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">mRatio</span><span class="p">),</span> <span class="n">Vec2</span><span class="p">(</span><span class="n">aabb</span><span class="o">-&gt;</span><span class="n">upperBound</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">mRatio</span><span class="p">,</span> <span class="n">aabb</span><span class="o">-&gt;</span><span class="n">upperBound</span><span class="p">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">mRatio</span><span class="p">),</span> <span class="n">Color4F</span><span class="p">(</span><span class="n">color</span><span class="p">.</span><span class="n">r</span><span class="p">,</span> <span class="n">color</span><span class="p">.</span><span class="n">g</span><span class="p">,</span> <span class="n">color</span><span class="p">.</span><span class="n">b</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>Una vez definida dicha clase, la añadiremos al mundo físico (<code>b2World</code>):</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">m_world</span> <span class="o">=</span> <span class="k">new</span> <span class="n">b2World</span><span class="p">(</span><span class="n">b2Vec2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">10</span><span class="p">));</span>
+
+<span class="n">m_debugDraw</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CocosDebugDraw</span><span class="p">(</span><span class="n">PTM_RATIO</span><span class="p">);</span>
+<span class="n">m_world</span><span class="o">-&gt;</span><span class="n">SetDebugDraw</span><span class="p">(</span><span class="n">m_debugDraw</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<p>Será importante tras esto indicar qué tipos de elementos del motor físico queremos que se muestre en la capa de depuración:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">uint32</span> <span class="n">flags</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">flags</span> <span class="o">+=</span> <span class="n">b2Draw</span><span class="o">::</span><span class="n">e_shapeBit</span><span class="p">;</span>
+<span class="n">flags</span> <span class="o">+=</span> <span class="n">b2Draw</span><span class="o">::</span><span class="n">e_jointBit</span><span class="p">;</span>
+<span class="n">flags</span> <span class="o">+=</span> <span class="n">b2Draw</span><span class="o">::</span><span class="n">e_aabbBit</span><span class="p">;</span>
+<span class="n">flags</span> <span class="o">+=</span> <span class="n">b2Draw</span><span class="o">::</span><span class="n">e_pairBit</span><span class="p">;</span>
+<span class="n">flags</span> <span class="o">+=</span> <span class="n">b2Draw</span><span class="o">::</span><span class="n">e_centerOfMassBit</span><span class="p">;</span>
+
+<span class="n">m_debugDraw</span><span class="o">-&gt;</span><span class="n">SetFlags</span><span class="p">(</span><span class="n">flags</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<p>Tras esto, añadiremos el nodo de depuración a nuestra escena. Haremos que quede por delante del resto de capas:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">m_node</span><span class="o">-&gt;</span><span class="n">addChild</span><span class="p">(</span><span class="n">m_debugDraw</span><span class="o">-&gt;</span><span class="n">GetNode</span><span class="p">(),</span><span class="mi">9999</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<p>Lo último que deberemos hacer es que en cada iteración, tras actualizar el estado del mundo físico, redibujaremos la capa de depuración:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">Mundo</span><span class="o">::</span><span class="n">update</span><span class="p">(</span><span class="kt">float</span> <span class="n">delta</span><span class="p">){</span>
+    <span class="n">m_world</span><span class="o">-&gt;</span><span class="n">ClearForces</span><span class="p">();</span>
+    <span class="n">m_world</span><span class="o">-&gt;</span><span class="n">Step</span><span class="p">(</span><span class="mf">1.0f</span><span class="o">/</span><span class="mf">60.0f</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+
+    <span class="n">m_debugDraw</span><span class="o">-&gt;</span><span class="n">Clear</span><span class="p">();</span>
+    <span class="n">m_world</span><span class="o">-&gt;</span><span class="n">DrawDebugData</span><span class="p">();</span>
+
+    <span class="c1">// ...        </span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<h2 id="gestion-de-fisicas-con-physicseditor">Gestión de físicas con PhysicsEditor<a class="headerlink" href="#gestion-de-fisicas-con-physicseditor" title="Permanent link">&para;</a></h2>
+<p>Hasta ahora hemos visto que es sencillo crear con Box 2D formas rectangulares y circulares, pero si
+tenemos objetos más complejos la tarea se complicará notablemente. Tendremos que definir la forma
+del objeto mediante un polígono, pero definir este polígono en código es una tarea altamente
+tediosa.</p>
+<p>Podemos hacer esto de forma bastante más sencilla con herramientas como <strong>Physics Editor</strong>.
+Se trata de una aplicación de pago, pero podemos obtener de forma gratuita una versión limitada. La aplicación
+puede descargarse de:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="p">.</span><span class="n">codeandweb</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">physicseditor</span>
+</pre></div>
+</td></tr></table>
+
+<p>Con esta herramienta podremos abrir determinados <em>sprites</em>, y obtener de forma automática su
+contorno. Cuenta con una herramienta similar a la "varita mágica" de Photoshop, con la que podremos
+hacer que sea la propia aplicación la que determine el contorno de nuestros <em>sprites</em>. A
+continuación vemos el entorno de la herramienta con el contorno que ha detectado automáticamente
+para nuestro <em>sprite</em>:</p>
+<p><img alt="Entorno de Physics Editor" src="imagenes/pe/pe_entorno.jpg" /></p>
+<p>En el lateral derecho podemos seleccionar el formato en el que queremos exportar el contorno detectado.
+En nuestro caso utilizaremos el formato de Box 2D genérico (se exporta como <code>plist</code>). También
+debemos especificar el <em>ratio</em> de píxeles a metros que queremos utilizar en nuestra aplicación
+(<em>PTM-Ratio</em>).</p>
+<p>En dicho panel también podemos establecer una serie de propiedades de la forma (<em>fixture</em>) que estamos
+definiendo (densidad, fricción, etc).</p>
+<p>Una vez establecidos los datos anteriores podemos exportar el contorno del objeto pulsando el botón
+<em>Publish</em>. Con esto generaremos un fichero <code>plist</code> que podremos importar desde nuestro
+juego Cocos2D. Para ello necesitaremos añadir la clase <code>GB2ShapeCache</code> a nuestro proyecto.
+Esta clase viene incluida en el instalador de Physics Editor (tenemos tanto versión para Cocos2D como
+para Cocos2D-X).</p>
+<p>Para utilizar las formas definidas primero deberemos cargar el contenido del fichero <code>plist</code>
+en la caché de formas mediante la clase anterior:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;GB2ShapeCache-x.h&quot;</span><span class="cp"></span>
+
+<span class="p">...</span>
+
+<span class="n">GB2ShapeCache</span><span class="o">::</span><span class="n">sharedGB2ShapeCache</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">addShapesWithFile</span><span class="p">(</span><span class="s">&quot;formas.plist&quot;</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<p>Una vez cargadas las formas en la caché, podremos asignar las propiedades de las <em>fixtures</em>
+definidas a nuestros objetos de Box2D:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">b2Body</span> <span class="o">*</span><span class="n">body</span> <span class="o">=</span> <span class="p">...</span> <span class="c1">// Inicializar body</span>
+
+<span class="n">GB2ShapeCache</span><span class="o">::</span><span class="n">sharedGB2ShapeCache</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">addFixturesToBody</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="s">&quot;roca&quot;</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<!--
+> Es importante utilizar en este editor la versión básica de nuestros _sprites_
+(no la versión HD), para así obtener las coordenadas de las formas en puntos. Al
+tratarse las coordenadas como puntos, será suficiente con hacer una única versión de este fichero.
+ -->
+
+<h2 id="referencias">Referencias<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="http://www.gamasutra.com/blogs/JuanBelonPerez/20130826/198897/How_to_create_2D_Physics_Games_with_Box2D_Library.php">(Gamasutra) How to create 2D Physics Games with Box2D library</a></li>
+</ul>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="unity.html" title="Unity" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Anterior
+                </span>
+                Unity
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="mandos.html" title="Controles del videojuego" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Siguiente
+                </span>
+                Controles del videojuego
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="assets/javascripts/application.245445c6.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"."}})</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>
