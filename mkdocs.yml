@@ -1,30 +1,35 @@
-site_name: VPDM - Cocos2d-x
+site_name: Videojuegos para Dispositivos Móviles
 use_directory_urls: false
 
 plugins:
     - search
-    - pdf-export:
-        combined: true
+#    - pdf-export:
+#        combined: true
 
 nav:
-- Introducción: 'index.md'
-- Videojuegos para móviles: 'videojuegos_para_moviles.md'
-- El motor Cocos2d-x: 'introduccion_a_cocos2d-x.md'
-- Sprites y colisiones: 'sprites_e_interaccion.md'
-- Escenario y fondos: 'escenario_y_fondos.md'
-- Motor de físicas: 'motor_de_fisicas.md'
+- Presentación: 'index.md'
+- Introducción a los videojuegos móviles: 'videojuegos_para_moviles.md'
+- Fundamentos de los motores: 
+    - Escena y nodos: 'fundamentos-motores.md'
+    - Físicas: 'motor_de_fisicas.md'
+    - _Sprites_: 'sprites_e_interaccion.md'
+    - Fondo y _scroll_: 'escenario_y_fondos.md'
+- Motores para  móviles:
+    - SpriteKit: 'spritekit.md'
+    - SceneKit: 'scenekit.md'
+    - Cocos2d-x: 'cocos2d-x.md'
+    - Unity: 'unity.md'
+    - Box2D: 'box2d.md'
 - Controles del videojuego: 'mandos.md'
-- Adaptación a móviles: 'adaptacion_a_moviles.md'
-- Servicios y redes sociales para juegos: 'redes_sociales.md'
-- Motor Unity: 'unity.md'
-- Tecnologías nativas: 'nativo.md'
+- Adaptación a diferentes dispositivos: 'adaptacion_a_moviles.md'
+- Logros y marcadores: 'redes_sociales.md'
 
 theme:
     language: es
     name: 'material'
     palette:
-        primary: 'Teal'
-        accent: 'Teal'
+        primary: 'Indigo'
+        accent: 'Indigo'
     font:
         text: 'Roboto'
         code: 'Roboto Mono'

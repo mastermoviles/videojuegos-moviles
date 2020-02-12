@@ -4,7 +4,7 @@ Los dispositivos actuales cuentan con una elevada potencia gráfica, comparable 
 
 # Compatibilidad
 
-El código fuente proporcionado en este libro ha sido probado con la libreria _Cocos2d-x_ versión **3.17**
+El código fuente proporcionado en este libro ha sido probado con la libreria _Cocos2d-x_ versión **4.0** y Xcode **11**.
 
 # Copyright
 

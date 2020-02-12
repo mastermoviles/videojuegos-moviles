@@ -30,31 +30,41 @@ En la actualidad las plataformas Android e iOS son el principal mercado de video
   
 
 
-## Motores para videojuegos
+## El motor del videojuego
 
 Normalmente los juegos consisten en una serie de niveles. Cada vez que superemos un nivel, entraremos en uno nuevo en el que se habrá incrementado la dificultad, y posiblemente encontremos algún elemento nuevo, como nuevos tipos de enemigos y nuevos poderes a utilizar, pero la mecánica del juego en esencia será la misma. 
 
-Por este motivo, en el desarrollo de videojuegos es conveniente que el código fuente resulte lo más genérico y reutilizable posible, llevando la definición de los niveles a ficheros de datos (por ejemplo con formato xml o json), que contendrán la estructura del escenario, los enemigos que aparecerán en él, y otros elementos con los que podamos interactuar. De esta forma, cada vez que iniciemos un nuevo nivel, la cargarán los datos del fichero del nivel, y se aplicará sobre ellos la mecánica genérica del juego. Este código genérico capaz de leer, interpretar y reproducir los niveles de nuestro juego es lo que conoceremos como **motor del juego**.
+Por este motivo, en el desarrollo de videojuegos es conveniente que el código fuente resulte lo más genérico y reutilizable posible, llevando la definición de los niveles a ficheros de datos (por ejemplo con formato _xml_ o _json_), que contendrán la estructura del escenario, los enemigos que aparecerán en él, y otros elementos con los que podamos interactuar. De esta forma, cada vez que iniciemos un nuevo nivel, la cargarán los datos del fichero del nivel, y se aplicará sobre ellos la mecánica genérica del juego. Este código genérico capaz de leer, interpretar y reproducir los niveles de nuestro juego es lo que conoceremos como **motor del juego**.
 
 Entre los ficheros de datos que podrá cargar nuestro motor (recursos conocidos habitualmente como **assets**) encontramos por ejemplo los gráficos del juego, fuentes, _clips_ de audio, la estructura de cada nivel, e incluso _scripts_ (programas en lenguajes de alto nivel que definen el comportamiento de las entidades del juego). 
 
 En muchas ocasiones encontramos motores desarrollados para implementar un videojuego concreto. En estos casos, podremos añadir nuevos contenidos a nuestro juego (niveles, personajes, etc) añadiendo nuevos ficheros de datos que lea el motor sin tener que modificar el fuente. Sin embargo, conforme ha ido evolucionando la tecnología han ido apareciendo motores genéricos pensados para poder crear cualquier tipo de videojuego (o casi cualquiera). En estos casos ya no se lleva a los "datos" simplemente los contenidos del juego, sino también el comportamiento del mismo (normalmente mediante _scripting_). 
 
 El uso de este tipo de motores nos proporcionará una serie de ventajas:
+
 * **Independencia del _hardware_**: Esto es de especial importancia en el caso de las plataformas móviles. Si contamos con un motor genérico implementado para diferentes plataformas (Android, iOS, Windows Phone), podremos crear nuestro juego una única vez sobre dicho motor (con los tipos de ficheros de datos que soporte), y exportarlo a todas las plataformas soportadas.
 * **Mejora del flujo de trabajo en el equipo de desarrollo**: Cada miembro del equipo de desarrollo trabajará sobre sus propios _assets_: el diseñador del juego con los datos de los niveles; el artista gráfico con las texturas, modelos, y animaciones 3D; músicos y técnicos de sonido con _clips_ de audio; y programadores con _scripts_. El motor se encargará de integrar todos estos elementos en el juego.
 * **Centrarnos en lo que hace nuestro juego diferente**: El contar con estos motores nos permitirá crear juegos complejos centrándonos en el diseño y contenidos del juego, sin tener que implementar nosotros el motor genérico. Es decir, nos centramos en aquello que hace a nuestros juego distinto a los demás (contenidos), y no en aquello que es común a todos los juegos (motor).
 * **Menor coste de desarrollo y _time to market_**: Evitar tener que implementar el motor a bajo nivel supondrá un notable ahorro en el coste del desarrollo, especialmente conforme el _hardware_ se hace más complejo, y nos permitirá llegar más rápidamente al mercado. 
 
-## Motores y librerías para el desarrollo de videojuegos para móviles
 
-Encontramos diferentes motores y librerías que nos permiten exportar videojuegos a distintas plataformas móviles. Vamos a realizar una revisión de las principales tecnologías disponibles que agruparemos en tres diferentes categorías:
+## Tecnologías para el desarrollo de videojuegos para móviles
+
+Encontramos diferentes motores y librerías que nos permiten crear videojuegos para distintas plataformas móviles. Vamos a realizar una revisión de las principales tecnologías disponibles que agruparemos en tres diferentes categorías:
 
 * **Motores completos**: Motores completos que nos permitirán crear casi cualquier tipo de videojuego (2D y 3D) mediante sus propias herramientas de creación de contenidos. En estos casos la programación suele hacerse mediante lenguajes de _script_. En este grupo encontramos motores como **Unreal Engine 4** o **Unity**.
 * **Herramientas de creación de videojuegos**: Herramientas visuales que nos permiten crear videojuegos de forma sencilla, en muchos casos sin la necesidad de saber programar. En estas herramientas suele estar más restringido el tipo de juegos que se pueden realizar, limitándose normalmente a juegos 2D. Dentro de este grupo encontramos herramientas como **Game Maker: Studio**, **Construct2** y **Gamesalad**.
 * **Frameworks para el desarrollo de videojuegos**: En este grupo encontramos librerías multiplataforma (normalmente _Open Source_) orientadas al desarrollo de videojuegos. No cuentan con las herramientas de creación de contenidos de los casos anteriores, sino que casi todo lo tendremos que hacer mediante programación, pero nos permitirán escribir el juego una única vez y portarlo a diferentes plataformas móviles. En este grupo destacamos los _frameworks_ multiplataforma **Cocos2d-x** (desarrollo en C++) y **libgdx** (desarrollo en Java). Además, dentro de este grupo también encontramos los _frameworks_ nativos de la plataforma iOS **SpriteKit** (juegos 2D) y **SceneKit** (juegos 3D).
 
 A continuación veremos más detalles de cada uno de los motores anteriores.
+
+
+
+### Game Maker: Studio
+
+Se trata de una herramienta para crear juegos 2D sencillos. Cuenta con una herramienta visual que simplifica la creación de contenidos, y que nos permite crear videojuegos incluso sin necesidad de programar. Permite generar juegos para Windows de forma gratuita, pero para exportar a otras plataformas como Android o iOS deberemos adquirir una licencia de pago.
+
+Encontramos opciones similartes, como el motor Construct2 (en este caso la herramienta está sólo para Windows), o Gamesalad (que cuenta con una licencia de pago mensual).
 
 
 ### Unreal Engine 4
@@ -64,21 +74,17 @@ Con este motor se han creado videojuegos como los juegos de la saga _Gears of Wa
 Tiene un lenguaje de _scripting_ visual (_blueprints_) y también nos permite incorporar componentes en C++. Los videojuegos desarrollados con UE4 pueden empaquetarse como aplicaciones Android o iOS (además de PC, Mac, y videoconsolas como PS4 y Xbox One), y podemos distribuirlos en la App Store y en Google Play Market teniendo que pagar a Epic Games sólo un porcentaje de los _royalties_ en caso de que superemos cierto nivel de ganancias.
 
 
+
 ### Unity
 
 Nos permite crear videojuegos para un gran número de plataformas (entre ellas iOS, Android y Windows Phone). En este caso tenemos un motor capaz de realizar juegos tanto 3D como 2D, y resulta más accesible para desarrolladores noveles que el motor anterior. Además, permite realizar videojuegos de tamaño algo más reducido. 
 
 A partir de Unity 5 existe una versión gratuita que podemos utilizar siempre que no superemos cierto nivel de ganancias anuales como particular o empresa. Esta versión incluye todas las funcionalidades del motor. Los juegos realizados con este motor podrán publicarse de forma comercial libres de _royalties_. 
 
-### Game Maker: Studio
-
-Se trata de una herramienta para crear juegos 2D sencillos. Cuenta con una herramienta visual que simplifica la creación de contenidos, y que nos permite crear videojuegos incluso sin necesidad de programar. Permite generar juegos para Windows de forma gratuita, pero para exportar a otras plataformas como Android o iOS deberemos adquirir una licencia de pago.
-
-Encontramos opciones similartes, como el motor Construct2 (en este caso la herramienta está sólo para Windows), o Gamesalad (que cuenta con una licencia de pago mensual).
 
 ### Cocos2d-x
 
-A parte de los motores anteriores, que incorporan sus propias herramientas con las que podemos crear videojuegos de forma visual de forma independiente a la plataformas, también encontramos motores Open Source más sencillos que podemos utilizar para determinadas plataformas concretas. En este caso, no solemos contar con herramientas visuales completas para la creación del videojuego, como es el caso de los anteriores, sino simplemente con _frameworks_ y librerías que nos ayudarán a implementar los videojuegos, aislándonos de las capas de más bajo nivel como OpenGL o OpenAL, y ofreciéndonos un marco que nos simplificará la implementación del videojuego. 
+Aparte de los motores anteriores, que incorporan sus propias herramientas con las que podemos crear videojuegos de forma visual de forma independiente a la plataformas, también encontramos motores Open Source más sencillos que podemos utilizar para determinadas plataformas concretas. En este caso, no solemos contar con herramientas visuales completas para la creación del videojuego, como es el caso de los anteriores, sino simplemente con _frameworks_ y librerías que nos ayudarán a implementar los videojuegos, aislándonos de las capas de más bajo nivel como OpenGL (Metal en caso de iOS si utilizamos _Cocos2d-x 4.0_ o superior) o OpenAL, y ofreciéndonos un marco que nos simplificará la implementación del videojuego. 
 
 Uno de estos motores es **Cocos2d-x**, que nos permite crear en C++ videojuegos para las principales plataformas móviles (iOS, Android, Windows Phone, Blackberry, etc).
 
@@ -89,9 +95,17 @@ Una opción similar es libgdx. En este caso se programa en lenguaje Java, y para
 Estos motores tienen como ventaja el acceso al código fuente del motor, en el que puede participar la comunidad, y también generan un tamaño de paquete más reducido que motores más complejos como Unity o sobre todo UE4.
 
 
-### SpriteKit y SceneKit
+### Tecnologías nativas: SpriteKit y SceneKit
 
-De forma alternativa, en iOS contamos con dos _frameworks_ nativos de la plataforma orientados a la creación de videojuegos: **SpriteKit** y **SceneKit**, para juegos 2D y 3D respectivamente. Al ser nativos, nos permitirán crear videojuegos optimizados para esta plataforma y reducir el tamaño del paquete de la aplicación, pero sólo podrán ser utilizados en iOS.
+Aunque el uso de motores multiplataforma nos aporta una gran cantidad de ventajas, es algunos casos nos podría interesar desarrollar videojuegos utilizando las tecnologías nativas de la plataforma. Una posible razón para hacer esto es la de conseguir reducir el tamaño de la aplicación lo máximo posible, lo cual puede ser conveniente en juegos sencillos que no necesiten un motor complejo.
+
+La tecnología nativa para desarrollo de videojuegos que podemos encontrar en las principales plataformas móviles es **OpenGL ES**. Se trata de una librería de bajo nivel, sobre la que tendremos que construir nuestro propio motor adaptado a las necesidades de nuestro videojuego. 
+
+En el momento de la escritura de este texto, OpenGL ES es la única opción nativa en el caso de **Android**, recomendándose utilizar el **NDK** para la implementación de nuestro propio motor del videojuego, y así poderlo optimizar al máximo.
+
+En **Windows Phone** encontraremos también la API nativa **XNA**. Contamos con el entorno XNA Game Studio dedicado al desarrollo de videojuegos en la plataforma de Microsoft.
+
+Sin embargo, la plataforma que mayor número de opciones nativas nos ofrece es la de Apple. En **iOS**, además de **OpenGL ES**, encontramos **Metal**, una librería gráfica similar a bajo nivel optimizada para esta plataforma. A parte de las opciones a bajo nivel, tenemos también dos librerías de alto nivel para el desarrollo de videojuegos 2D y 3D respectivamente: **SpriteKit** y **SceneKit**. Al ser nativos, nos permitirán crear videojuegos optimizados para esta plataforma y reducir el tamaño del paquete de la aplicación, pero sólo podrán ser utilizados en iOS.
 
 
 
@@ -104,7 +118,7 @@ Vamos a revisar a continuación los principales aspectos que tendremos que tener
 
 * **Limitaciones de la memoria**. En los primeros dispositivos (Java ME) la memoría suponía una gran limitación, ya que en algunos dispositivos contábamos con tan solo 128kb para todo el juego. Con el avance de la tecnología esta limitación se ha ido atenuando y hoy en día ya no supone algo crítico. Sin embargo, deberemos llevar especial cuidado con la memoria de vídeo. Por este motivo será importante seleccionar un formato de textura adecuado (el más compacto que cumpla con las necesidades para el videojuego), y será común comprimir las texturas. También es importante empaquetar nuestros gráficos de forma óptima para así aprovechar al máximo el espacio de las texturas. Encontraremos herramientas como Texture Packer que se encargan de realizar esta tarea.
 * **Tamaño de la aplicación**. Los videojuegos para plataformas de sobremesa habitualmente ocupan varios gigas. En un móvil la distribución de juegos siempre es digital, por lo que deberemos reducir este tamaño en la medida de lo posible, tanto para evitar tener que descargar un paquete demasiado grande a través de la limitada conexión del móvil, como para evitar que ocupe demasiado espacio en la memoria de almacenamiento del dispositivo (que en algunos dispositivos es escaso). Para poder descargar un juego vía conexión de datos no debería exceder los 20Mb, por lo que será recomendable conseguir empaquetarlo en un espacio menor, para que los usuarios puedan acceder a él sin necesidad de disponer de Wi-Fi. Esto nos dará una importante ventaja competitiva. Para esto es importante hacer una buena elección del motor a utilizar. Motores complejos como Unity 5 generan paquetes con un tamaño mínimo de unas 20Mb, mientras que otros motores como Cocos2d-x nos permitirían tener juegos a partir de unas 5Mb. Si nuestro juego no necesita gráficos 3D ni otras de las características que sólo se encuentren en Unity, puede ser conveniente seleccionar un motor más sencillo como Cocos2d-x.
-* **Capacidad de procesamiento**. La CPU y GPU de los móviles en muchas ocasiones es más limitada que la de plataformas de sobremesa. Es importante que los juegos vayan de forma fluida, por lo que antes de distribuirlos deberemos probarlos en diferentes móviles reales para asegurarnos de que funcione bien, ya que muchas veces los emuladores funcionarán a velocidades distintas. Es conveniente empezar desarrollando un código claro y limpio, y posteriormente optimizarlo. Para optimizar el juego deberemos identificar el lugar donde tenemos el cuello de botella, que podría ser en el procesamiento, o en el dibujado de los gráficos. En el segundo caso podemos ajustar en el motor la calidad de los gráficos para cada plataforma.
+* **Capacidad de procesamiento**. La CPU y GPU de los móviles en muchas ocasiones es más limitada que la de plataformas de sobremesa, y muy variable entre disintos dispositivos. Es importante que los juegos vayan de forma fluida, por lo que antes de distribuirlos deberemos probarlos en diferentes móviles reales para asegurarnos de que funcione bien, ya que muchas veces los emuladores funcionarán a velocidades distintas. Es conveniente empezar desarrollando un código claro y limpio, y posteriormente optimizarlo. Para optimizar el juego deberemos identificar el lugar donde tenemos el cuello de botella, que podría ser en el procesamiento, o en el dibujado de los gráficos. En el segundo caso podemos ajustar en el motor la calidad de los gráficos para cada plataforma.
 * **Pantalla reducida**. Deberemos tener esto en cuenta en los 
 juegos, y hacer que todos los objetos se vean correctamente. Podemos utilizar _zoom_ en determinadas zonas para poder visualizar mejor los objetos de la escena. Deberemos cuidar que todos los elementos de la interfaz puedan visualizarse correctamente y que tengan un tamaño adecuado para interactuar con ellos. Los botones u otros elementos con los que podamos interactuar en la pantalla táctil tendrán que tener al menos el tamaño de la yema del dedo. 
 * **Diferente interfaz de entrada**. Actualmente los móviles no suelen tener teclado, y en aquellos que lo tienen este teclado es muy pequeño. Deberemos intentar proporcionar un manejo cómodo, adaptado a la interfaz de entrada con la que cuenta el móvil,
