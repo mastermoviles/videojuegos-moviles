@@ -12,8 +12,8 @@ nav:
 - Fundamentos de los motores: 
     - Escena y nodos: 'fundamentos-motores.md'
     - Físicas: 'motor_de_fisicas.md'
-    - _Sprites_: 'sprites_e_interaccion.md'
-    - Fondo y _scroll_: 'escenario_y_fondos.md'
+    - Sprites: 'sprites_e_interaccion.md'
+    - Fondo y scroll: 'escenario_y_fondos.md'
 - Motores para  móviles:
     - SpriteKit: 'spritekit.md'
     - SceneKit: 'scenekit.md'
