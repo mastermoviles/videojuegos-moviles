@@ -188,7 +188,7 @@ Además, tambien tiene una propiedad `anchorPoint`, cuyo valor por defecto es `(
 * `(1.0, 1.0)` es la esquina superior derecha del _sprite_.
 
 
-### Acciones
+## Acciones
 
 Los nodos de la escena nos permiten ejecutar acciones, que modifican las propiedades del nodos (como su posición o rotación) a lo largo del tiempo. Estas acciones se definen como objetos de la clase `SKAction`.
 
@@ -227,3 +227,90 @@ nodo.run(accionRepite)
 De esta forma dicho nodo reproducirá la conducta especificada por la acción. 
 
 Podremos parar todas las acciones de un nodo con `removeAllActions()`. También podemos añadir una acción con una clave (_key_) que posteriormente nos permitirá parar únicamente dicha acción, o podemos ejecutar una acción proporcionando un bloque de código que se ejecutará cuando la acción se complete.
+
+
+## Físicas
+
+La librería SpriteKit integra su propio motor de físicas. Los distintos elementos de este motor de físicas vienen representados por las siguientes clases:
+
+|Clase          |Descripción    |
+|----           |------         |
+|`SKPhysicsWorld` |El mundo físico en el que se producirá la simulación, que estará contenido dentro de la escena (`SKScene`), en su propiedad `physicsWorld`     |
+|`SKPhysicsBody`  |Los cuerpos físicos estarán vinculados a cada nodo (`SKNode`), en su propiedad `physicsBody`.      |
+|`SKPhysicsJoint` |Nos permitirá establecer uniones entre diferentes cuerpos físicos (`SKPhysicsBody`)     |
+
+Como podemos ver, el motor físico está totalmente integrado dentro de los elementos básicos de SpriteKit: `SKScene` y `SKNode`. 
+
+* Para que un nodo pase a estar controlado por el motor de físicas, simplemente deberemos añadir un objeto `SKPhysicsBody` a su propiedad `physicsBody`.
+* Si queremos modificar propiedades generales del mundo físico, podemos acceder a él en la propiedad `physicsWorld` de nuestra escena.
+
+Vamos a ver con más detalle como utilizar el motor de físicas de SpriteKit.
+
+### El mundo físico
+
+Desde la clase de nuestra escena, podemos acceder al mundo físico con:
+
+```swift
+scene.physicsWorld
+```
+
+A partir de este objeto, general de la escena, podremos controlar la gravedad del mundo, añadir uniones entre cuerpos, o comprobar colisiones como veremos más adelante.
+
+
+### Creación de un cuerpo físico
+
+Para utilizar el motor de físicas, lo primero que deberemos hacer es crear un cuerpo físico. Por ejemplo, podemos añadir un cuerpo físico a nuestro _sprite_ de la siguiente forma:
+
+```swift
+let lata = SKSpriteNode(texture: texturaLata)
+lata.physicsBody = SKPhysicsBody(
+    rectangleOf: CGSize(width: lata.size.width,
+                        height: lata.size.height))
+```
+
+Podemos observar que al definir el cuerpo físico, debemos especificar su geometría de colisión en el constructor. Deberemos buscar una geometría **lo más sencilla posible**, que **se adapte de la mejor forma posible al _sprite_**. Podemos buscar entre los constructores de `SKPhysicsBody` el que resulte más adecuado.
+
+Para cuerpos estáticos o dinámicos, podemos utilizar las siguientes geometrías (de más sencillas a más complejas):
+
+* `circle`
+* `rectangle`
+* `poligon`
+* `bodies` (cuerpo compuesto por varios cuerpos) 
+
+Además, tenemos las siguientes geometrías que al ser de mayor complejidad (permite formas cóncavas) sólo pueden ser utilizadas en cuerpos estáticos:
+
+* `edge`
+* `edgeLoop`
+* `edgeChain`
+
+
+### Propiedades de los cuerpos físicos
+
+Además de su forma, los cuerpos físicos tienen una serie de propiedades que podemos configurar:
+
+|Propiedad          |Descripción    |
+|----           |------         |
+|`isDynamic` |Establece si es **dinámico** o **estático** (SpriteKit no incluye el tipo _kinematic_) |
+|`mass`  |Masa del cuerpo (en $kg$)   |
+|`density` |De forma alternativa, podemos especificar la masa mediante la densidad ($kg/m^2$)  |
+|`friction`  |Coeficiente de fricción de la superficie |
+|`restitution`  |Coeficiente de restitución (rebote) |
+|`linearDamping`  |Resistencia al aire lineal |
+|`angularDamping`  |Resistencia al aire angular   |
+
+
+### Uniones
+
+Podemos establecer uniones entre cuerpos con diferentes subclases de `SKPhysicsJoint`:
+
+* `SKPhysicsJointFixed`: Unión "solida" entre dos objetos, como si estuvieran pegados en un determinado punto.
+* `SKPhysicsJointLimit`: Union de tipo "cuerda". Habrá una distancia máxima entre dos cuerpos.
+* `SKPhysicsJointPin`: Los puntos quedan "clavados" entre si en un punto determinado, pudiendo rotar alrededor de dicho punto.
+* `SKPhysicsJointSliding`: Unión de tipo "rail". Los dos cuerpos pueden deslizarse a lo largo de un eje determinado.
+* `SKPhysicsJointSpring`: Unión de tipo "resorte". Es como si un muelle uniese los dos cuerpos, con un determinado coeficiente de elasticidad.
+
+### Colisiones
+
+
+
+### Layering
