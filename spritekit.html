@@ -404,9 +404,64 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#acciones" title="Acciones" class="md-nav__link">
     Acciones
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fisicas" title="Físicas" class="md-nav__link">
+    Físicas
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#el-mundo-fisico" title="El mundo físico" class="md-nav__link">
+    El mundo físico
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creacion-de-un-cuerpo-fisico" title="Creación de un cuerpo físico" class="md-nav__link">
+    Creación de un cuerpo físico
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#propiedades-de-los-cuerpos-fisicos" title="Propiedades de los cuerpos físicos" class="md-nav__link">
+    Propiedades de los cuerpos físicos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uniones" title="Uniones" class="md-nav__link">
+    Uniones
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colisiones" title="Colisiones" class="md-nav__link">
+    Colisiones
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#layering" title="Layering" class="md-nav__link">
+    Layering
   </a>
   
 </li>
@@ -619,9 +674,64 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#acciones" title="Acciones" class="md-nav__link">
     Acciones
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fisicas" title="Físicas" class="md-nav__link">
+    Físicas
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#el-mundo-fisico" title="El mundo físico" class="md-nav__link">
+    El mundo físico
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creacion-de-un-cuerpo-fisico" title="Creación de un cuerpo físico" class="md-nav__link">
+    Creación de un cuerpo físico
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#propiedades-de-los-cuerpos-fisicos" title="Propiedades de los cuerpos físicos" class="md-nav__link">
+    Propiedades de los cuerpos físicos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uniones" title="Uniones" class="md-nav__link">
+    Uniones
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colisiones" title="Colisiones" class="md-nav__link">
+    Colisiones
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#layering" title="Layering" class="md-nav__link">
+    Layering
   </a>
   
 </li>
@@ -807,7 +917,7 @@
 <li><code>(0.5, 0.5)</code> es el centro del <em>sprite</em>.</li>
 <li><code>(1.0, 1.0)</code> es la esquina superior derecha del <em>sprite</em>.</li>
 </ul>
-<h3 id="acciones">Acciones<a class="headerlink" href="#acciones" title="Permanent link">&para;</a></h3>
+<h2 id="acciones">Acciones<a class="headerlink" href="#acciones" title="Permanent link">&para;</a></h2>
 <p>Los nodos de la escena nos permiten ejecutar acciones, que modifican las propiedades del nodos (como su posición o rotación) a lo largo del tiempo. Estas acciones se definen como objetos de la clase <code>SKAction</code>.</p>
 <p>Dentro de <code>SKAction</code> encontramos númerosos métodos factoría para crear diferentes tipos de acciones. Por ejemplo, tenemos acciones para mover un nodo a una posición o rotarlo a un cierto ángulo:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
@@ -845,6 +955,120 @@
 
 <p>De esta forma dicho nodo reproducirá la conducta especificada por la acción. </p>
 <p>Podremos parar todas las acciones de un nodo con <code>removeAllActions()</code>. También podemos añadir una acción con una clave (<em>key</em>) que posteriormente nos permitirá parar únicamente dicha acción, o podemos ejecutar una acción proporcionando un bloque de código que se ejecutará cuando la acción se complete.</p>
+<h2 id="fisicas">Físicas<a class="headerlink" href="#fisicas" title="Permanent link">&para;</a></h2>
+<p>La librería SpriteKit integra su propio motor de físicas. Los distintos elementos de este motor de físicas vienen representados por las siguientes clases:</p>
+<table>
+<thead>
+<tr>
+<th>Clase</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SKPhysicsWorld</code></td>
+<td>El mundo físico en el que se producirá la simulación, que estará contenido dentro de la escena (<code>SKScene</code>), en su propiedad <code>physicsWorld</code></td>
+</tr>
+<tr>
+<td><code>SKPhysicsBody</code></td>
+<td>Los cuerpos físicos estarán vinculados a cada nodo (<code>SKNode</code>), en su propiedad <code>physicsBody</code>.</td>
+</tr>
+<tr>
+<td><code>SKPhysicsJoint</code></td>
+<td>Nos permitirá establecer uniones entre diferentes cuerpos físicos (<code>SKPhysicsBody</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Como podemos ver, el motor físico está totalmente integrado dentro de los elementos básicos de SpriteKit: <code>SKScene</code> y <code>SKNode</code>. </p>
+<ul>
+<li>Para que un nodo pase a estar controlado por el motor de físicas, simplemente deberemos añadir un objeto <code>SKPhysicsBody</code> a su propiedad <code>physicsBody</code>.</li>
+<li>Si queremos modificar propiedades generales del mundo físico, podemos acceder a él en la propiedad <code>physicsWorld</code> de nuestra escena.</li>
+</ul>
+<p>Vamos a ver con más detalle como utilizar el motor de físicas de SpriteKit.</p>
+<h3 id="el-mundo-fisico">El mundo físico<a class="headerlink" href="#el-mundo-fisico" title="Permanent link">&para;</a></h3>
+<p>Desde la clase de nuestra escena, podemos acceder al mundo físico con:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">scene</span><span class="p">.</span><span class="n">physicsWorld</span>
+</pre></div>
+</td></tr></table>
+
+<p>A partir de este objeto, general de la escena, podremos controlar la gravedad del mundo, añadir uniones entre cuerpos, o comprobar colisiones como veremos más adelante.</p>
+<h3 id="creacion-de-un-cuerpo-fisico">Creación de un cuerpo físico<a class="headerlink" href="#creacion-de-un-cuerpo-fisico" title="Permanent link">&para;</a></h3>
+<p>Para utilizar el motor de físicas, lo primero que deberemos hacer es crear un cuerpo físico. Por ejemplo, podemos añadir un cuerpo físico a nuestro <em>sprite</em> de la siguiente forma:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">lata</span> <span class="p">=</span> <span class="bp">SKSpriteNode</span><span class="p">(</span><span class="n">texture</span><span class="p">:</span> <span class="n">texturaLata</span><span class="p">)</span>
+<span class="n">lata</span><span class="p">.</span><span class="n">physicsBody</span> <span class="p">=</span> <span class="bp">SKPhysicsBody</span><span class="p">(</span>
+    <span class="n">rectangleOf</span><span class="p">:</span> <span class="bp">CGSize</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="n">lata</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">width</span><span class="p">,</span>
+                        <span class="n">height</span><span class="p">:</span> <span class="n">lata</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">height</span><span class="p">))</span>
+</pre></div>
+</td></tr></table>
+
+<p>Podemos observar que al definir el cuerpo físico, debemos especificar su geometría de colisión en el constructor. Deberemos buscar una geometría <strong>lo más sencilla posible</strong>, que <strong>se adapte de la mejor forma posible al <em>sprite</em></strong>. Podemos buscar entre los constructores de <code>SKPhysicsBody</code> el que resulte más adecuado.</p>
+<p>Para cuerpos estáticos o dinámicos, podemos utilizar las siguientes geometrías (de más sencillas a más complejas):</p>
+<ul>
+<li><code>circle</code></li>
+<li><code>rectangle</code></li>
+<li><code>poligon</code></li>
+<li><code>bodies</code> (cuerpo compuesto por varios cuerpos) </li>
+</ul>
+<p>Además, tenemos las siguientes geometrías que al ser de mayor complejidad (permite formas cóncavas) sólo pueden ser utilizadas en cuerpos estáticos:</p>
+<ul>
+<li><code>edge</code></li>
+<li><code>edgeLoop</code></li>
+<li><code>edgeChain</code></li>
+</ul>
+<h3 id="propiedades-de-los-cuerpos-fisicos">Propiedades de los cuerpos físicos<a class="headerlink" href="#propiedades-de-los-cuerpos-fisicos" title="Permanent link">&para;</a></h3>
+<p>Además de su forma, los cuerpos físicos tienen una serie de propiedades que podemos configurar:</p>
+<table>
+<thead>
+<tr>
+<th>Propiedad</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>isDynamic</code></td>
+<td>Establece si es <strong>dinámico</strong> o <strong>estático</strong> (SpriteKit no incluye el tipo <em>kinematic</em>)</td>
+</tr>
+<tr>
+<td><code>mass</code></td>
+<td>Masa del cuerpo (en <span><span class="MathJax_Preview">kg</span><script type="math/tex">kg</script></span>)</td>
+</tr>
+<tr>
+<td><code>density</code></td>
+<td>De forma alternativa, podemos especificar la masa mediante la densidad (<span><span class="MathJax_Preview">kg/m^2</span><script type="math/tex">kg/m^2</script></span>)</td>
+</tr>
+<tr>
+<td><code>friction</code></td>
+<td>Coeficiente de fricción de la superficie</td>
+</tr>
+<tr>
+<td><code>restitution</code></td>
+<td>Coeficiente de restitución (rebote)</td>
+</tr>
+<tr>
+<td><code>linearDamping</code></td>
+<td>Resistencia al aire lineal</td>
+</tr>
+<tr>
+<td><code>angularDamping</code></td>
+<td>Resistencia al aire angular</td>
+</tr>
+</tbody>
+</table>
+<h3 id="uniones">Uniones<a class="headerlink" href="#uniones" title="Permanent link">&para;</a></h3>
+<p>Podemos establecer uniones entre cuerpos con diferentes subclases de <code>SKPhysicsJoint</code>:</p>
+<ul>
+<li><code>SKPhysicsJointFixed</code>: Unión "solida" entre dos objetos, como si estuvieran pegados en un determinado punto.</li>
+<li><code>SKPhysicsJointLimit</code>: Union de tipo "cuerda". Habrá una distancia máxima entre dos cuerpos.</li>
+<li><code>SKPhysicsJointPin</code>: Los puntos quedan "clavados" entre si en un punto determinado, pudiendo rotar alrededor de dicho punto.</li>
+<li><code>SKPhysicsJointSliding</code>: Unión de tipo "rail". Los dos cuerpos pueden deslizarse a lo largo de un eje determinado.</li>
+<li><code>SKPhysicsJointSpring</code>: Unión de tipo "resorte". Es como si un muelle uniese los dos cuerpos, con un determinado coeficiente de elasticidad.</li>
+</ul>
+<h3 id="colisiones">Colisiones<a class="headerlink" href="#colisiones" title="Permanent link">&para;</a></h3>
+<h3 id="layering">Layering<a class="headerlink" href="#layering" title="Permanent link">&para;</a></h3>
                 
                   
                 
