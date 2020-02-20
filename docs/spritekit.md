@@ -188,46 +188,6 @@ Además, tambien tiene una propiedad `anchorPoint`, cuyo valor por defecto es `(
 * `(1.0, 1.0)` es la esquina superior derecha del _sprite_.
 
 
-## Acciones
-
-Los nodos de la escena nos permiten ejecutar acciones, que modifican las propiedades del nodos (como su posición o rotación) a lo largo del tiempo. Estas acciones se definen como objetos de la clase `SKAction`.
-
-Dentro de `SKAction` encontramos númerosos métodos factoría para crear diferentes tipos de acciones. Por ejemplo, tenemos acciones para mover un nodo a una posición o rotarlo a un cierto ángulo:
-
-```swift
-let accionMoverFinal = SKAction.move(to: CGPoint(x: 200, y: 200), duration: 2.0)
-let accionRotarFinal = SKAction.rotate(toAngle: 3.14, duration: 1.0)
-let accionMoverInicio = SKAction.move(to: CGPoint(x: 100, y: 100), duration: 2.0)
-let accionRotarInicio = SKAction.rotate(toAngle: 0.0, duration: 1.0)
-```
-
-En estas acciones se indica la posición o ángulo destino a la que se moverá el nodo, y el tiempo que tardará en hacerlo (en segundo).
-
-Existen también otros muchos tipos de acciones para modificar otras propiedades como la escala, la textura, el color o el control de audio.
-
-También encontramos acciones que nos permiten combinar otras acciones, o repetirlas:
-
-```swift
-let accionSecuencia = SKAction.sequence(
-    [accionMoverFinal, 
-     accionRotarFinal, 
-     accionMoverInicio, 
-     accionRotarInicio])
-let accionRepite = SKAction.repeatForever(accionSecuencia)
-```
-
-Con esta última acción podemos especificar por ejemplo el movimiento de "patrulla" de un enemigo, que se moverá contínuamente entre los puntos `(100, 100)` y `(200, 200)`.
-
-Podemos ejecutar cualquiera de las acciones anteriores sobre cualquier nodo, utilizando el método `run(:)` de la clase `SKNode`:
-
-```swift
-nodo.run(accionRepite)
-```
-
-De esta forma dicho nodo reproducirá la conducta especificada por la acción. 
-
-Podremos parar todas las acciones de un nodo con `removeAllActions()`. También podemos añadir una acción con una clave (_key_) que posteriormente nos permitirá parar únicamente dicha acción, o podemos ejecutar una acción proporcionando un bloque de código que se ejecutará cuando la acción se complete.
-
 
 ## Físicas
 
@@ -393,7 +353,19 @@ Una vez definido el _delegado de contactos_, deberemos añadirlo como _delegado_
 self.physicsWorld.contactDelegate = self
 ```
 
-// ### Layering
+### Layering
+
+SpriteKit nos permite filtrar qué cuerpos colisionan con otros mediante una serie de máscaras binarias:
+
+* `categoryBitMask` nos permite definir diferentes categorías de objetos. Cada bit de la máscara representa una categoría, por ejemplo:
+```swift
+let personajeCategoryMask : UInt32 = 0b0001 // 1 
+let enemigosCategoryMask : UInt32 =  0b0010 // 2 
+let balasCategoryMask : UInt32 =     0b0100 // 4
+```
+* `collisionBitMask` nos indica con qué categorías de cuerpos podremos colisionar. Por ejemplo, si a los enemigos les damos un valor de `0b0011`, el enemigo colisionará con nuestro personaje y otros enemigos, pero será atravesado por las balas. Si a las balas les damos un valor `0b0000` atravesarán tanto al jugador y a los enemigos como otras balas. 
+* `contactTestBitMask` nos indica con qué categorías de cuerpos nos notificará los contactos en el _listener de contactos_. Por ejemplo, si a las balas les damos un valor `0b0011` nos notificará cuando _toquen_ a un enemigo o a un personaje, y así podremos "matarlo". Si al personaje le damos un valor `0b0010`, nos avisará únicamente cuando nos toque un enemigo.
+
 
 ### Uniones
 
@@ -426,3 +398,77 @@ self.physicsWorld.remove(pinJoint)
 ```
 
 
+
+
+## Acciones
+
+Nos permiten programar el comportamiento de los nodos de la escena, de forma que realicen una serie de acciones de forma automática durante el tiempo que dure su ejecución. 
+
+Todas las acciones se crean mediante métodos de `SKAction`, y en casi todas ellas deberemos especificar el tiempo que durará la acción. Por ejemplo:
+
+```swift
+let accion = SKAction.fadeIn(withDuration: 1.0)
+````
+
+Esta acción hará un fundido de entrada (desde transparente hasta opaco) durante 1 segundo en el nodo en el que la ejecutemos. Ejecutaremos la acción sobre un nodo con:
+
+```swift
+ node.run(accion)
+```
+
+Podemos también detener todas las acciones que esté ejecutando un nodo con:
+
+```swift
+ node.removeAllActions()
+```
+
+Si queremos detener una acción concreta, deberemos ejecutarla con una clave que nos permita identificarla, y posteriormente detenerla a partir de dicha clave:
+
+```swift
+node.run(accion, withKey: "fundido")
+
+...
+
+node.removeAction(forKey: "fundido")
+```
+
+### Cambios en propiedades de los objetos
+
+Dentro de `SKAction` encontramos númerosos métodos factoría para crear diferentes tipos de acciones. Por ejemplo, tenemos acciones para mover un nodo a una posición o rotarlo a un cierto ángulo:
+
+```swift
+let accionMoverFinal = SKAction.move(to: CGPoint(x: 200, y: 200), duration: 2.0)
+let accionRotarFinal = SKAction.rotate(toAngle: 3.14, duration: 1.0)
+let accionMoverInicio = SKAction.move(to: CGPoint(x: 100, y: 100), duration: 2.0)
+let accionRotarInicio = SKAction.rotate(toAngle: 0.0, duration: 1.0)
+```
+
+En estas acciones se indica la posición o ángulo destino a la que se moverá el nodo, y el tiempo que tardará en hacerlo (en segundos).
+
+Existen también acciones que nos permiten modificar la escala o la opacidad de un nodo, o incluso actuar sobre las físicas.
+
+
+### Composición de acciones
+
+Podemos crear acciones que se creen a partir de la combinación de varias acciones:
+
+* `sequence`. Combina varias acciones en secuencia. La duración de la escena resultante será la suma de la duración de todas las acciones contenidas.
+* `group`. Combina varias acciones en paralelo. La acción resultante terminará cuando termine la más larga de las acciones que contenga.
+
+Por ejemplo, podemos crear una secuencia con las acciones anteriores:
+
+```swift
+let accionSecuencia = SKAction.sequence(
+    [accionMoverFinal, 
+     accionRotarFinal, 
+     accionMoverInicio, 
+     accionRotarInicio])
+```
+
+Además, podemos hacer que una acción se repita:
+
+```swift
+let accionRepite = SKAction.repeatForever(accionSecuencia)
+```
+
+Con esta última acción podemos especificar por ejemplo el movimiento de "patrulla" de un enemigo, que se moverá contínuamente entre los puntos `(100, 100)` y `(200, 200)`.
