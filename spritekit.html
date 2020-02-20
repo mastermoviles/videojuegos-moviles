@@ -446,8 +446,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#uniones" title="Uniones" class="md-nav__link">
-    Uniones
+  <a href="#fuerzas-e-impulsos" title="Fuerzas e impulsos" class="md-nav__link">
+    Fuerzas e impulsos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#busqueda-de-cuerpos" title="Búsqueda de cuerpos" class="md-nav__link">
+    Búsqueda de cuerpos
   </a>
   
 </li>
@@ -460,8 +467,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#layering" title="Layering" class="md-nav__link">
-    Layering
+  <a href="#uniones" title="Uniones" class="md-nav__link">
+    Uniones
   </a>
   
 </li>
@@ -716,8 +723,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#uniones" title="Uniones" class="md-nav__link">
-    Uniones
+  <a href="#fuerzas-e-impulsos" title="Fuerzas e impulsos" class="md-nav__link">
+    Fuerzas e impulsos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#busqueda-de-cuerpos" title="Búsqueda de cuerpos" class="md-nav__link">
+    Búsqueda de cuerpos
   </a>
   
 </li>
@@ -730,8 +744,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#layering" title="Layering" class="md-nav__link">
-    Layering
+  <a href="#uniones" title="Uniones" class="md-nav__link">
+    Uniones
   </a>
   
 </li>
@@ -991,7 +1005,12 @@
 </pre></div>
 </td></tr></table>
 
-<p>A partir de este objeto, general de la escena, podremos controlar la gravedad del mundo, añadir uniones entre cuerpos, o comprobar colisiones como veremos más adelante.</p>
+<p>Una de las propiedades del mundo físico que podemos modificar es la <strong>gravedad</strong>, que se aplicará sobre todos los cuerpos del mundo:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kc">self</span><span class="p">.</span><span class="n">physicsWorld</span><span class="p">.</span><span class="n">gravity</span> <span class="p">=</span> <span class="bp">CGVector</span><span class="p">(</span><span class="n">dx</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">dy</span><span class="p">:</span> <span class="o">-</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<p>A partir de este objeto, general de la escena, además de controlar la gravedad del mundo, podremos añadir uniones entre cuerpos o comprobar colisiones como veremos más adelante.</p>
 <h3 id="creacion-de-un-cuerpo-fisico">Creación de un cuerpo físico<a class="headerlink" href="#creacion-de-un-cuerpo-fisico" title="Permanent link">&para;</a></h3>
 <p>Para utilizar el motor de físicas, lo primero que deberemos hacer es crear un cuerpo físico. Por ejemplo, podemos añadir un cuerpo físico a nuestro <em>sprite</em> de la siguiente forma:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
@@ -1007,17 +1026,26 @@
 <p>Podemos observar que al definir el cuerpo físico, debemos especificar su geometría de colisión en el constructor. Deberemos buscar una geometría <strong>lo más sencilla posible</strong>, que <strong>se adapte de la mejor forma posible al <em>sprite</em></strong>. Podemos buscar entre los constructores de <code>SKPhysicsBody</code> el que resulte más adecuado.</p>
 <p>Para cuerpos estáticos o dinámicos, podemos utilizar las siguientes geometrías (de más sencillas a más complejas):</p>
 <ul>
-<li><code>circle</code></li>
-<li><code>rectangle</code></li>
-<li><code>poligon</code></li>
-<li><code>bodies</code> (cuerpo compuesto por varios cuerpos) </li>
+<li><code>circle</code>. Se crea a partir de su <strong>radio</strong>.</li>
+<li><code>rectangle</code>. Se crea a partir de sus dimensiones (<code>CGSize</code>)</li>
+<li><code>poligon</code>. Se crea a partir de una polilínea cerrada (<code>CGPath</code>)</li>
+<li><code>texture</code>. Se crea a partir de la <strong>textura</strong> de un <em>sprite</em>. Se generará de forma automática un polígono convexo que se ajuste de forma aproximada al <em>sprite</em>, buscando un compromiso entre eficiencia y exactitud. </li>
+<li><code>bodies</code>. Cuerpo compuesto por <strong>varios cuerpos</strong>. De estos cuerpos sólo cogerá <em>sus formas</em>, para generar una nueva forma resultado de su unión. Las propiedades del cuerpo resultante serán las establecidas en el padre, ignorando las de los cuerpos hijo. </li>
 </ul>
-<p>Además, tenemos las siguientes geometrías que al ser de mayor complejidad (permite formas cóncavas) sólo pueden ser utilizadas en cuerpos estáticos:</p>
+<p>Todas las formas anteriores suponen regiones <strong>solidas</strong>. Además, tenemos las siguientes geometrías basadas en aristas (sin relleno), que al ser de mayor complejidad (podremos tener formas cóncavas) sólo pueden ser utilizadas en cuerpos estáticos:</p>
 <ul>
-<li><code>edge</code></li>
-<li><code>edgeLoop</code></li>
-<li><code>edgeChain</code></li>
+<li><code>edge</code>. Se crea a partir de sus dos puntos extremo (<code>CGPoint</code>).</li>
+<li><code>edgeLoop</code>. Se puede crear a partir de un rectángulo (<code>CGRect</code>) o de una polilínea cerrada (<code>CGPath</code>). La primera forma será más eficiente.</li>
+<li><code>edgeChain</code>. Se puede crear a partir de una polilínea abierta (<code>CGPath</code>)</li>
 </ul>
+<p>Por ejemplo, es habitual definir los límites de la escena como un cuerpo con geometría <code>edgeLoop</code> de la siguiente forma:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kc">self</span><span class="p">.</span><span class="n">physicsBody</span> <span class="p">=</span> <span class="bp">SKPhysicsBody</span><span class="p">(</span><span class="n">edgeLoopFrom</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">frame</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<blockquote>
+<p>Ten en cuenta que estos límites no pueden ser de tipo <code>rectangle</code> porque dicha forma es <strong>sólida</strong>, y para poder tener contenido dentro de la escena necesitamos que sea <em>hueco</em>.</p>
+</blockquote>
 <h3 id="propiedades-de-los-cuerpos-fisicos">Propiedades de los cuerpos físicos<a class="headerlink" href="#propiedades-de-los-cuerpos-fisicos" title="Permanent link">&para;</a></h3>
 <p>Además de su forma, los cuerpos físicos tienen una serie de propiedades que podemos configurar:</p>
 <table>
@@ -1034,11 +1062,7 @@
 </tr>
 <tr>
 <td><code>mass</code></td>
-<td>Masa del cuerpo (en <span><span class="MathJax_Preview">kg</span><script type="math/tex">kg</script></span>)</td>
-</tr>
-<tr>
-<td><code>density</code></td>
-<td>De forma alternativa, podemos especificar la masa mediante la densidad (<span><span class="MathJax_Preview">kg/m^2</span><script type="math/tex">kg/m^2</script></span>)</td>
+<td>Masa del cuerpo (en <span><span class="MathJax_Preview">kg</span><script type="math/tex">kg</script></span>). De forma alternativa, podemos especificar la masa mediante la densidad (<code>density</code>, en <span><span class="MathJax_Preview">kg/m^2</span><script type="math/tex">kg/m^2</script></span>) y el área (<code>area</code>, dada en <span><span class="MathJax_Preview">m^2</span><script type="math/tex">m^2</script></span>).</td>
 </tr>
 <tr>
 <td><code>friction</code></td>
@@ -1058,6 +1082,78 @@
 </tr>
 </tbody>
 </table>
+<h3 id="fuerzas-e-impulsos">Fuerzas e impulsos<a class="headerlink" href="#fuerzas-e-impulsos" title="Permanent link">&para;</a></h3>
+<p>Podemos aplicar fuerzas o impulsos sobre los <strong>cuerpos dinámicos</strong>. En el siguiente caso, se aplicarán en su centro de masas, lo cual producirá únicamente una aceleración lineal:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">body</span><span class="p">.</span><span class="n">applyForce</span><span class="p">(</span><span class="bp">CGVector</span><span class="p">(</span><span class="n">dx</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">dy</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">))</span>
+<span class="n">body</span><span class="p">.</span><span class="n">applyImpulse</span><span class="p">(</span><span class="bp">CGVector</span><span class="p">(</span><span class="n">dx</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">dy</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">))</span>
+</pre></div>
+</td></tr></table>
+
+<p>SpriteKit nos permitirá aplicarlos también en cualquier otro punto del cuerpo, lo cual producirá tanto una aceleración lineal como angular:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">body</span><span class="p">.</span><span class="n">applyForce</span><span class="p">(</span><span class="bp">CGVector</span><span class="p">(</span><span class="n">dx</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">dy</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">),</span> <span class="n">at</span><span class="p">:</span> <span class="bp">CGPoint</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">))</span>
+<span class="n">body</span><span class="p">.</span><span class="n">applyImpulse</span><span class="p">(</span><span class="bp">CGVector</span><span class="p">(</span><span class="n">dx</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">dy</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">),</span> <span class="n">at</span><span class="p">:</span> <span class="bp">CGPoint</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">))</span>
+</pre></div>
+</td></tr></table>
+
+<p>También tenemos la opción de aplicar un par de fuerzas (<em>torque</em>), para así producir únicamente aceleración angular:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">body</span><span class="p">.</span><span class="n">applyTorque</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<p>Además, se podrá modificar directamente tanto la velocidad lineal como angular. Esto es útil por ejemplo si queremos parar un cuerpo, o darle una velocidad inicial:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">body</span><span class="p">.</span><span class="n">velocity</span> <span class="p">=</span> <span class="bp">CGVector</span><span class="p">(</span><span class="n">dx</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">dy</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">body</span><span class="p">.</span><span class="n">angularVelocity</span> <span class="p">=</span> <span class="mf">0.5</span>
+</pre></div>
+</td></tr></table>
+
+<h3 id="busqueda-de-cuerpos">Búsqueda de cuerpos<a class="headerlink" href="#busqueda-de-cuerpos" title="Permanent link">&para;</a></h3>
+<p>Existe diferentes formas de buscar cuerpos en determinadas regiones del mundo.</p>
+<p><strong>Búsqueda por punto</strong>. Nos dice si hay algún cuerpo en un punto determinado:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kc">self</span><span class="p">.</span><span class="n">physicsWorld</span><span class="p">.</span><span class="n">body</span><span class="p">(</span><span class="n">at</span><span class="p">:</span> <span class="n">punto</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<p><strong>Búsqueda por área</strong>. Similar al anterior, pero comprueba si hay algún cuerpo dentro de un área rectangular:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kc">self</span><span class="p">.</span><span class="n">physicsWorld</span><span class="p">.</span><span class="n">body</span><span class="p">(</span><span class="k">in</span><span class="p">:</span> <span class="n">rectangulo</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<p><strong>Trazado de rayos</strong>. Este es un <em>test</em> habitual en los motores de física, y nos permite comprobar si hay algún cuerpo a lo largo de una línea. Es útil por ejemplo para implementar disparos, y comprobar si en la trayectoria de un disparo hay algún objeto que debamos destruir. </p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kc">self</span><span class="p">.</span><span class="n">physicsWorld</span><span class="p">.</span><span class="n">body</span><span class="p">(</span><span class="n">alongRayStart</span><span class="p">:</span> <span class="n">puntoInicio</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span> <span class="n">puntoFin</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<p>Todos los métodos anteriores nos proporcionan el primer cuerpo que encuentren en la zona de búsqueda. Tambinén contamos con una variante de dichos métodos (<code>enumerateBodies</code>) que nos devolverá la lista de todos los cuerpos que encuentre en la zona correspondiente.</p>
+<h3 id="colisiones">Colisiones<a class="headerlink" href="#colisiones" title="Permanent link">&para;</a></h3>
+<p>Será habitual necesitar conocer cuándo se produce una colisión o contacto entre cuerpos (por ejemplo, si un proyectil impacta contra una estructura, aplicar daño a dicha estructura). Para tener constancia de dichos contactos deberemos implementar un <em>delegado de contactos</em> que adopte el protocolo <code>SKPhysicsContactDelegate</code>. Podemos adoptar dicho delegado en la propia clase de nuestra escena. </p>
+<p>Tras esto, podremos definir los métodos <code>didBegin(:)</code> y <code>didEnd(:)</code>, a los que avisará cuando comience y cuando finalice un contacto entre cuerpos:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nf">didBegin</span><span class="p">(</span><span class="kc">_</span> <span class="n">contact</span><span class="p">:</span> <span class="bp">SKPhysicsContact</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">contact</span><span class="p">.</span><span class="n">bodyA</span><span class="p">.</span><span class="n">node</span><span class="p">?.</span><span class="n">name</span><span class="p">==</span><span class="s">&quot;campana&quot;</span> <span class="o">||</span>
+       <span class="n">contact</span><span class="p">.</span><span class="n">bodyB</span><span class="p">.</span><span class="n">node</span><span class="p">?.</span><span class="n">name</span><span class="p">==</span><span class="s">&quot;campana&quot;</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">reproduceSonidoCamapana</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>Hay que destacar que en la colisión siempre intervendrán dos cuerpos: <code>bodyA</code> y <code>bodyB</code>, y que el orden en el que pueden venir es arbitrario, por lo que habrá que tener en cuenta cualquier posibilidad. </p>
+<p>Además, del contacto también nos indicará el <strong>punto</strong> en el que se ha producido, la <strong>normal</strong> a la superficie de contacto, y el <strong>impulso</strong> del contacto, es decir, la reacción necesaria para mantener los cuerpos separados. Dicho impulso se puede tomar como una medida relacionada con la energía de la colisión, que podría ser utilizada para saber cuánto daño debemos aplicar.</p>
+<p>Una vez definido el <em>delegado de contactos</em>, deberemos añadirlo como <em>delegado</em> en el mundo físico:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kc">self</span><span class="p">.</span><span class="n">physicsWorld</span><span class="p">.</span><span class="n">contactDelegate</span> <span class="p">=</span> <span class="kc">self</span>
+</pre></div>
+</td></tr></table>
+
+<p>// ### Layering</p>
 <h3 id="uniones">Uniones<a class="headerlink" href="#uniones" title="Permanent link">&para;</a></h3>
 <p>Podemos establecer uniones entre cuerpos con diferentes subclases de <code>SKPhysicsJoint</code>:</p>
 <ul>
@@ -1067,8 +1163,24 @@
 <li><code>SKPhysicsJointSliding</code>: Unión de tipo "rail". Los dos cuerpos pueden deslizarse a lo largo de un eje determinado.</li>
 <li><code>SKPhysicsJointSpring</code>: Unión de tipo "resorte". Es como si un muelle uniese los dos cuerpos, con un determinado coeficiente de elasticidad.</li>
 </ul>
-<h3 id="colisiones">Colisiones<a class="headerlink" href="#colisiones" title="Permanent link">&para;</a></h3>
-<h3 id="layering">Layering<a class="headerlink" href="#layering" title="Permanent link">&para;</a></h3>
+<p>Por ejemplo, podemos crear una unión de tipo <em>pin</em> de la siguiente forma:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">pinJoint</span> <span class="p">=</span> <span class="bp">SKPhysicsJointPin</span><span class="p">.</span><span class="n">joint</span><span class="p">(</span><span class="n">withBodyA</span><span class="p">:</span> <span class="n">corcho</span><span class="p">.</span><span class="n">physicsBody</span><span class="p">,</span>
+                                       <span class="n">bodyB</span><span class="p">:</span> <span class="n">poster</span><span class="p">.</span><span class="n">physicsBody</span><span class="p">,</span> 
+                                       <span class="n">anchor</span><span class="p">:</span> <span class="n">posicionPin</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<p>Una vez definida la unión e indicados los dos cuerpos que unirá, debemos añadirla al mundo:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kc">self</span><span class="p">.</span><span class="n">physicsWorld</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">pinJoint</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<p>De la misma forma, podemos <em>desconectar</em> los cuerpos eliminando la unión del mundo:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kc">self</span><span class="p">.</span><span class="n">physicsWorld</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">pinJoint</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
                 
                   
                 
