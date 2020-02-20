@@ -254,7 +254,15 @@ Desde la clase de nuestra escena, podemos acceder al mundo físico con:
 scene.physicsWorld
 ```
 
-A partir de este objeto, general de la escena, podremos controlar la gravedad del mundo, añadir uniones entre cuerpos, o comprobar colisiones como veremos más adelante.
+Una de las propiedades del mundo físico que podemos modificar es la **gravedad**, que se aplicará sobre todos los cuerpos del mundo:
+
+```swift
+self.physicsWorld.gravity = CGVector(dx: 0, dy: -10)
+```
+
+A partir de este objeto, general de la escena, además de controlar la gravedad del mundo, podremos añadir uniones entre cuerpos o comprobar colisiones como veremos más adelante.
+
+
 
 
 ### Creación de un cuerpo físico
@@ -272,17 +280,25 @@ Podemos observar que al definir el cuerpo físico, debemos especificar su geomet
 
 Para cuerpos estáticos o dinámicos, podemos utilizar las siguientes geometrías (de más sencillas a más complejas):
 
-* `circle`
-* `rectangle`
-* `poligon`
-* `bodies` (cuerpo compuesto por varios cuerpos) 
+* `circle`. Se crea a partir de su **radio**.
+* `rectangle`. Se crea a partir de sus dimensiones (`CGSize`)
+* `poligon`. Se crea a partir de una polilínea cerrada (`CGPath`)
+* `texture`. Se crea a partir de la **textura** de un _sprite_. Se generará de forma automática un polígono convexo que se ajuste de forma aproximada al _sprite_, buscando un compromiso entre eficiencia y exactitud. 
+* `bodies`. Cuerpo compuesto por **varios cuerpos**. De estos cuerpos sólo cogerá _sus formas_, para generar una nueva forma resultado de su unión. Las propiedades del cuerpo resultante serán las establecidas en el padre, ignorando las de los cuerpos hijo. 
 
-Además, tenemos las siguientes geometrías que al ser de mayor complejidad (permite formas cóncavas) sólo pueden ser utilizadas en cuerpos estáticos:
+Todas las formas anteriores suponen regiones **solidas**. Además, tenemos las siguientes geometrías basadas en aristas (sin relleno), que al ser de mayor complejidad (podremos tener formas cóncavas) sólo pueden ser utilizadas en cuerpos estáticos:
 
-* `edge`
-* `edgeLoop`
-* `edgeChain`
+* `edge`. Se crea a partir de sus dos puntos extremo (`CGPoint`).
+* `edgeLoop`. Se puede crear a partir de un rectángulo (`CGRect`) o de una polilínea cerrada (`CGPath`). La primera forma será más eficiente.
+* `edgeChain`. Se puede crear a partir de una polilínea abierta (`CGPath`)
 
+Por ejemplo, es habitual definir los límites de la escena como un cuerpo con geometría `edgeLoop` de la siguiente forma:
+
+```swift
+self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
+```
+
+> Ten en cuenta que estos límites no pueden ser de tipo `rectangle` porque dicha forma es **sólida**, y para poder tener contenido dentro de la escena necesitamos que sea _hueco_.
 
 ### Propiedades de los cuerpos físicos
 
@@ -291,13 +307,93 @@ Además de su forma, los cuerpos físicos tienen una serie de propiedades que po
 |Propiedad          |Descripción    |
 |----           |------         |
 |`isDynamic` |Establece si es **dinámico** o **estático** (SpriteKit no incluye el tipo _kinematic_) |
-|`mass`  |Masa del cuerpo (en $kg$)   |
-|`density` |De forma alternativa, podemos especificar la masa mediante la densidad ($kg/m^2$)  |
+|`mass`  |Masa del cuerpo (en $kg$). De forma alternativa, podemos especificar la masa mediante la densidad (`density`, en $kg/m^2$) y el área (`area`, dada en $m^2$).  |
 |`friction`  |Coeficiente de fricción de la superficie |
 |`restitution`  |Coeficiente de restitución (rebote) |
 |`linearDamping`  |Resistencia al aire lineal |
 |`angularDamping`  |Resistencia al aire angular   |
 
+### Fuerzas e impulsos
+
+Podemos aplicar fuerzas o impulsos sobre los **cuerpos dinámicos**. En el siguiente caso, se aplicarán en su centro de masas, lo cual producirá únicamente una aceleración lineal:
+
+```swift
+body.applyForce(CGVector(dx: 1.0, dy: 1.0))
+body.applyImpulse(CGVector(dx: 1.0, dy: 1.0))
+```
+
+SpriteKit nos permitirá aplicarlos también en cualquier otro punto del cuerpo, lo cual producirá tanto una aceleración lineal como angular:
+
+```swift
+body.applyForce(CGVector(dx: 1.0, dy: 1.0), at: CGPoint(x: 0.0, y: 0.05))
+body.applyImpulse(CGVector(dx: 1.0, dy: 1.0), at: CGPoint(x: 0.0, y: 0.05))
+```
+
+También tenemos la opción de aplicar un par de fuerzas (_torque_), para así producir únicamente aceleración angular:
+
+```swift
+body.applyTorque(0.5)
+```
+
+Además, se podrá modificar directamente tanto la velocidad lineal como angular. Esto es útil por ejemplo si queremos parar un cuerpo, o darle una velocidad inicial:
+
+```swift
+body.velocity = CGVector(dx: 1.0, dy: 1.0)
+body.angularVelocity = 0.5
+```
+
+
+### Búsqueda de cuerpos 
+
+Existe diferentes formas de buscar cuerpos en determinadas regiones del mundo.
+
+**Búsqueda por punto**. Nos dice si hay algún cuerpo en un punto determinado:
+
+```swift
+self.physicsWorld.body(at: punto)
+```
+
+**Búsqueda por área**. Similar al anterior, pero comprueba si hay algún cuerpo dentro de un área rectangular:
+
+```swift
+self.physicsWorld.body(in: rectangulo)
+```
+
+**Trazado de rayos**. Este es un _test_ habitual en los motores de física, y nos permite comprobar si hay algún cuerpo a lo largo de una línea. Es útil por ejemplo para implementar disparos, y comprobar si en la trayectoria de un disparo hay algún objeto que debamos destruir. 
+
+```swift
+self.physicsWorld.body(alongRayStart: puntoInicio, end: puntoFin)
+```
+
+Todos los métodos anteriores nos proporcionan el primer cuerpo que encuentren en la zona de búsqueda. Tambinén contamos con una variante de dichos métodos (`enumerateBodies`) que nos devolverá la lista de todos los cuerpos que encuentre en la zona correspondiente.
+
+### Colisiones
+
+Será habitual necesitar conocer cuándo se produce una colisión o contacto entre cuerpos (por ejemplo, si un proyectil impacta contra una estructura, aplicar daño a dicha estructura). Para tener constancia de dichos contactos deberemos implementar un _delegado de contactos_ que adopte el protocolo `SKPhysicsContactDelegate`. Podemos adoptar dicho delegado en la propia clase de nuestra escena. 
+
+Tras esto, podremos definir los métodos `didBegin(:)` y `didEnd(:)`, a los que avisará cuando comience y cuando finalice un contacto entre cuerpos:
+
+```swift
+func didBegin(_ contact: SKPhysicsContact) {
+    if(contact.bodyA.node?.name=="campana" ||
+       contact.bodyB.node?.name=="campana")
+    {
+        reproduceSonidoCamapana()
+    }
+}
+```
+
+Hay que destacar que en la colisión siempre intervendrán dos cuerpos: `bodyA` y `bodyB`, y que el orden en el que pueden venir es arbitrario, por lo que habrá que tener en cuenta cualquier posibilidad. 
+
+Además, del contacto también nos indicará el **punto** en el que se ha producido, la **normal** a la superficie de contacto, y el **impulso** del contacto, es decir, la reacción necesaria para mantener los cuerpos separados. Dicho impulso se puede tomar como una medida relacionada con la energía de la colisión, que podría ser utilizada para saber cuánto daño debemos aplicar.
+
+Una vez definido el _delegado de contactos_, deberemos añadirlo como _delegado_ en el mundo físico:
+
+```swift
+self.physicsWorld.contactDelegate = self
+```
+
+// ### Layering
 
 ### Uniones
 
@@ -309,8 +405,24 @@ Podemos establecer uniones entre cuerpos con diferentes subclases de `SKPhysicsJ
 * `SKPhysicsJointSliding`: Unión de tipo "rail". Los dos cuerpos pueden deslizarse a lo largo de un eje determinado.
 * `SKPhysicsJointSpring`: Unión de tipo "resorte". Es como si un muelle uniese los dos cuerpos, con un determinado coeficiente de elasticidad.
 
-### Colisiones
+Por ejemplo, podemos crear una unión de tipo _pin_ de la siguiente forma:
+
+```swift
+let pinJoint = SKPhysicsJointPin.joint(withBodyA: corcho.physicsBody,
+                                       bodyB: poster.physicsBody, 
+                                       anchor: posicionPin)
+```
+
+Una vez definida la unión e indicados los dos cuerpos que unirá, debemos añadirla al mundo:
+
+```swift
+self.physicsWorld.add(pinJoint)
+```
+
+De la misma forma, podemos _desconectar_ los cuerpos eliminando la unión del mundo:
+
+```swift
+self.physicsWorld.remove(pinJoint)
+```
 
 
-
-### Layering
