@@ -50,11 +50,46 @@ cocos new MiJuego   -p es.ua.dccia
                     -d MisProyectosCocos
 ```
 
-Esto nos creará un proyecto (carpeta) `MiJuego` en la subcarpeta `MisProyectosCocos` del directorio donde nos encontremos. El lenguaje utilizado será C++ (`-l cpp`). La plantilla del nuevo proyecto será la misma para todos los sistema soportados. Por ejemplo, si queremos
-trabajar con la versión de iOS, dentro del directorio de nuestro proyecto entraremos en la
-subcarpeta `proj.ios_mac` y abriremos el proyecto Xcode. Todas las plataformas
-comparten los mismos directorio de clases (`Classes`) y recursos (`Resources`) 
-de nuestro juego. Sólo cambian los ficheros de configuración del proyecto que los "envuelve".
+Esto nos creará un proyecto (carpeta) `MiJuego` en la subcarpeta `MisProyectosCocos` del directorio donde nos encontremos. El lenguaje utilizado será C++ (`-l cpp`). 
+
+Dentro del directorio generado encontraremos los siguientes directorios:
+
+* `Classes`: Código fuente C++ de nuestro juego
+* `Resources`: Recursos y _assets_ del videojuego (_sprites_, efectos de sonido, fuentes, ficheros de datos, etc)
+
+El contenido de los dos directorios anteriores será común para **todas las plataformas** soportadas por Cocos2d-x. Será en ellas donde introduciremos los distintos componentes del videojuego. Además, encontraremos una serie de carpetas adicionales con recursos propios de cada plataforma específica:
+
+* `proj.ios_mac`: Recursos para las versiones iOS y Mac basadas en el entorno Xcode. 
+* `proj.android`: Recursos para la plataforma Android (entorno Android Studio)
+* `proj.linux`: Recursos para la compilación para Linux (se compila desde línea de comando)
+* `proj.win32`: Recursos para la compilación para Windows (proyecto Visual Studio)
+
+En **Xcode 3.X** dentro de los directorios anteriores encontraremos un proyecto que podremos abrir con el IDE correspondiente a cada plataforma, y que podremos utilizar para desarrollar y probar el juego. 
+
+Sin embargo, en **Xcode 4.X** tendremos que generar el proyecto para algunas de las plataformas (iOS, Mac, Windows). 
+
+```bash
+# Generación del proyecto Xcode para MacOS
+mkdir mac-build && cd mac-build
+cmake .. -GXcode
+
+# Generación del proyecto Visual Studio para Windows
+mkdir win32-build && cd win32-build
+cmake .. -G"Visual Studio 15 2017" -Tv141
+
+# Generación del proyecto Xcode para iOS 
+mkdir ios-build && cd ios-build
+cmake .. -GXcode -DCMAKE_SYSTEM_NAME=iOS -DCMAKE_OSX_SYSROOT=iphoneos
+```
+
+Puedes ver la [documentación de Cmake en Cocos2d-x 4.0](https://github.com/cocos2d/cocos2d-x/tree/v4/cmake) para más detalles. 
+
+Para compilar con Android Studio es necesario [instalar Ninja](https://ninja-build.org).
+
+
+Tenemos también la opción de compilar y ejecutar el proyecto desde la consola con el comando `cocos`. Puedes ver la [documentación de la herramienta de consola de Cocos](https://docs.cocos.com/cocos2d-x/v4/manual/en/editors_and_tools/cocosCLTool.html) para más información.
+
+
 
 Podremos de esta forma crear un nuevo proyecto que contendrá la base para implementar un videojuego
 que utilice las librerías de Cocos2d-x. 
