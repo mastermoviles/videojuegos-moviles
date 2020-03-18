@@ -976,11 +976,48 @@ Deberemos proporcionar la siguiente información:</p>
 </pre></div>
 </td></tr></table>
 
-<p>Esto nos creará un proyecto (carpeta) <code>MiJuego</code> en la subcarpeta <code>MisProyectosCocos</code> del directorio donde nos encontremos. El lenguaje utilizado será C++ (<code>-l cpp</code>). La plantilla del nuevo proyecto será la misma para todos los sistema soportados. Por ejemplo, si queremos
-trabajar con la versión de iOS, dentro del directorio de nuestro proyecto entraremos en la
-subcarpeta <code>proj.ios_mac</code> y abriremos el proyecto Xcode. Todas las plataformas
-comparten los mismos directorio de clases (<code>Classes</code>) y recursos (<code>Resources</code>) 
-de nuestro juego. Sólo cambian los ficheros de configuración del proyecto que los "envuelve".</p>
+<p>Esto nos creará un proyecto (carpeta) <code>MiJuego</code> en la subcarpeta <code>MisProyectosCocos</code> del directorio donde nos encontremos. El lenguaje utilizado será C++ (<code>-l cpp</code>). </p>
+<p>Dentro del directorio generado encontraremos los siguientes directorios:</p>
+<ul>
+<li><code>Classes</code>: Código fuente C++ de nuestro juego</li>
+<li><code>Resources</code>: Recursos y <em>assets</em> del videojuego (<em>sprites</em>, efectos de sonido, fuentes, ficheros de datos, etc)</li>
+</ul>
+<p>El contenido de los dos directorios anteriores será común para <strong>todas las plataformas</strong> soportadas por Cocos2d-x. Será en ellas donde introduciremos los distintos componentes del videojuego. Además, encontraremos una serie de carpetas adicionales con recursos propios de cada plataforma específica:</p>
+<ul>
+<li><code>proj.ios_mac</code>: Recursos para las versiones iOS y Mac basadas en el entorno Xcode. </li>
+<li><code>proj.android</code>: Recursos para la plataforma Android (entorno Android Studio)</li>
+<li><code>proj.linux</code>: Recursos para la compilación para Linux (se compila desde línea de comando)</li>
+<li><code>proj.win32</code>: Recursos para la compilación para Windows (proyecto Visual Studio)</li>
+</ul>
+<p>En <strong>Xcode 3.X</strong> dentro de los directorios anteriores encontraremos un proyecto que podremos abrir con el IDE correspondiente a cada plataforma, y que podremos utilizar para desarrollar y probar el juego. </p>
+<p>Sin embargo, en <strong>Xcode 4.X</strong> tendremos que generar el proyecto para algunas de las plataformas (iOS, Mac, Windows). </p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1"># Generación del proyecto Xcode para MacOS</span>
+mkdir mac-build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> mac-build
+cmake .. -GXcode
+
+<span class="c1"># Generación del proyecto Visual Studio para Windows</span>
+mkdir win32-build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> win32-build
+cmake .. -G<span class="s2">&quot;Visual Studio 15 2017&quot;</span> -Tv141
+
+<span class="c1"># Generación del proyecto Xcode para iOS </span>
+mkdir ios-build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ios-build
+cmake .. -GXcode -DCMAKE_SYSTEM_NAME<span class="o">=</span>iOS -DCMAKE_OSX_SYSROOT<span class="o">=</span>iphoneos
+</pre></div>
+</td></tr></table>
+
+<p>Puedes ver la <a href="https://github.com/cocos2d/cocos2d-x/tree/v4/cmake">documentación de Cmake en Cocos2d-x 4.0</a> para más detalles. </p>
+<p>Para compilar con Android Studio es necesario <a href="https://ninja-build.org">instalar Ninja</a>.</p>
+<p>Tenemos también la opción de compilar y ejecutar el proyecto desde la consola con el comando <code>cocos</code>. Puedes ver la <a href="https://docs.cocos.com/cocos2d-x/v4/manual/en/editors_and_tools/cocosCLTool.html">documentación de la herramienta de consola de Cocos</a> para más información.</p>
 <p>Podremos de esta forma crear un nuevo proyecto que contendrá la base para implementar un videojuego
 que utilice las librerías de Cocos2d-x. 
 El elemento central de este motor es un <em>singleton</em> de tipo <code>Director</code>, al que 

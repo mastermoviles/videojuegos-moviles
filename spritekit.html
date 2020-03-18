@@ -410,13 +410,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#acciones" title="Acciones" class="md-nav__link">
-    Acciones
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#fisicas" title="Físicas" class="md-nav__link">
     Físicas
   </a>
@@ -467,8 +460,42 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#layering" title="Layering" class="md-nav__link">
+    Layering
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#uniones" title="Uniones" class="md-nav__link">
     Uniones
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acciones" title="Acciones" class="md-nav__link">
+    Acciones
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cambios-en-propiedades-de-los-objetos" title="Cambios en propiedades de los objetos" class="md-nav__link">
+    Cambios en propiedades de los objetos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#composicion-de-acciones" title="Composición de acciones" class="md-nav__link">
+    Composición de acciones
   </a>
   
 </li>
@@ -687,13 +714,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#acciones" title="Acciones" class="md-nav__link">
-    Acciones
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#fisicas" title="Físicas" class="md-nav__link">
     Físicas
   </a>
@@ -744,8 +764,42 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#layering" title="Layering" class="md-nav__link">
+    Layering
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#uniones" title="Uniones" class="md-nav__link">
     Uniones
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acciones" title="Acciones" class="md-nav__link">
+    Acciones
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cambios-en-propiedades-de-los-objetos" title="Cambios en propiedades de los objetos" class="md-nav__link">
+    Cambios en propiedades de los objetos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#composicion-de-acciones" title="Composición de acciones" class="md-nav__link">
+    Composición de acciones
   </a>
   
 </li>
@@ -931,44 +985,6 @@
 <li><code>(0.5, 0.5)</code> es el centro del <em>sprite</em>.</li>
 <li><code>(1.0, 1.0)</code> es la esquina superior derecha del <em>sprite</em>.</li>
 </ul>
-<h2 id="acciones">Acciones<a class="headerlink" href="#acciones" title="Permanent link">&para;</a></h2>
-<p>Los nodos de la escena nos permiten ejecutar acciones, que modifican las propiedades del nodos (como su posición o rotación) a lo largo del tiempo. Estas acciones se definen como objetos de la clase <code>SKAction</code>.</p>
-<p>Dentro de <code>SKAction</code> encontramos númerosos métodos factoría para crear diferentes tipos de acciones. Por ejemplo, tenemos acciones para mover un nodo a una posición o rotarlo a un cierto ángulo:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">accionMoverFinal</span> <span class="p">=</span> <span class="bp">SKAction</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="bp">CGPoint</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mi">200</span><span class="p">),</span> <span class="n">duration</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">)</span>
-<span class="kd">let</span> <span class="nv">accionRotarFinal</span> <span class="p">=</span> <span class="bp">SKAction</span><span class="p">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">toAngle</span><span class="p">:</span> <span class="mf">3.14</span><span class="p">,</span> <span class="n">duration</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">)</span>
-<span class="kd">let</span> <span class="nv">accionMoverInicio</span> <span class="p">=</span> <span class="bp">SKAction</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="bp">CGPoint</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mi">100</span><span class="p">),</span> <span class="n">duration</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">)</span>
-<span class="kd">let</span> <span class="nv">accionRotarInicio</span> <span class="p">=</span> <span class="bp">SKAction</span><span class="p">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">toAngle</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">duration</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">)</span>
-</pre></div>
-</td></tr></table>
-
-<p>En estas acciones se indica la posición o ángulo destino a la que se moverá el nodo, y el tiempo que tardará en hacerlo (en segundo).</p>
-<p>Existen también otros muchos tipos de acciones para modificar otras propiedades como la escala, la textura, el color o el control de audio.</p>
-<p>También encontramos acciones que nos permiten combinar otras acciones, o repetirlas:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">accionSecuencia</span> <span class="p">=</span> <span class="bp">SKAction</span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">accionMoverFinal</span><span class="p">,</span> 
-     <span class="n">accionRotarFinal</span><span class="p">,</span> 
-     <span class="n">accionMoverInicio</span><span class="p">,</span> 
-     <span class="n">accionRotarInicio</span><span class="p">])</span>
-<span class="kd">let</span> <span class="nv">accionRepite</span> <span class="p">=</span> <span class="bp">SKAction</span><span class="p">.</span><span class="n">repeatForever</span><span class="p">(</span><span class="n">accionSecuencia</span><span class="p">)</span>
-</pre></div>
-</td></tr></table>
-
-<p>Con esta última acción podemos especificar por ejemplo el movimiento de "patrulla" de un enemigo, que se moverá contínuamente entre los puntos <code>(100, 100)</code> y <code>(200, 200)</code>.</p>
-<p>Podemos ejecutar cualquiera de las acciones anteriores sobre cualquier nodo, utilizando el método <code>run(:)</code> de la clase <code>SKNode</code>:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">nodo</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">accionRepite</span><span class="p">)</span>
-</pre></div>
-</td></tr></table>
-
-<p>De esta forma dicho nodo reproducirá la conducta especificada por la acción. </p>
-<p>Podremos parar todas las acciones de un nodo con <code>removeAllActions()</code>. También podemos añadir una acción con una clave (<em>key</em>) que posteriormente nos permitirá parar únicamente dicha acción, o podemos ejecutar una acción proporcionando un bloque de código que se ejecutará cuando la acción se complete.</p>
 <h2 id="fisicas">Físicas<a class="headerlink" href="#fisicas" title="Permanent link">&para;</a></h2>
 <p>La librería SpriteKit integra su propio motor de físicas. Los distintos elementos de este motor de físicas vienen representados por las siguientes clases:</p>
 <table>
@@ -1153,7 +1169,20 @@
 </pre></div>
 </td></tr></table>
 
-<p>// ### Layering</p>
+<h3 id="layering">Layering<a class="headerlink" href="#layering" title="Permanent link">&para;</a></h3>
+<p>SpriteKit nos permite filtrar qué cuerpos colisionan con otros mediante una serie de máscaras binarias:</p>
+<ul>
+<li><code>categoryBitMask</code> nos permite definir diferentes categorías de objetos. Cada bit de la máscara representa una categoría, por ejemplo:
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">personajeCategoryMask</span> <span class="p">:</span> <span class="nb">UInt32</span> <span class="p">=</span> <span class="mb">0b0001</span> <span class="c1">// 1 </span>
+<span class="kd">let</span> <span class="nv">enemigosCategoryMask</span> <span class="p">:</span> <span class="nb">UInt32</span> <span class="p">=</span>  <span class="mb">0b0010</span> <span class="c1">// 2 </span>
+<span class="kd">let</span> <span class="nv">balasCategoryMask</span> <span class="p">:</span> <span class="nb">UInt32</span> <span class="p">=</span>     <span class="mb">0b0100</span> <span class="c1">// 4</span>
+</pre></div>
+</td></tr></table></li>
+<li><code>collisionBitMask</code> nos indica con qué categorías de cuerpos podremos colisionar. Por ejemplo, si a los enemigos les damos un valor de <code>0b0011</code>, el enemigo colisionará con nuestro personaje y otros enemigos, pero será atravesado por las balas. Si a las balas les damos un valor <code>0b0000</code> atravesarán tanto al jugador y a los enemigos como otras balas. </li>
+<li><code>contactTestBitMask</code> nos indica con qué categorías de cuerpos nos notificará los contactos en el <em>listener de contactos</em>. Por ejemplo, si a las balas les damos un valor <code>0b0011</code> nos notificará cuando <em>toquen</em> a un enemigo o a un personaje, y así podremos "matarlo". Si al personaje le damos un valor <code>0b0010</code>, nos avisará únicamente cuando nos toque un enemigo.</li>
+</ul>
 <h3 id="uniones">Uniones<a class="headerlink" href="#uniones" title="Permanent link">&para;</a></h3>
 <p>Podemos establecer uniones entre cuerpos con diferentes subclases de <code>SKPhysicsJoint</code>:</p>
 <ul>
@@ -1181,6 +1210,83 @@
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kc">self</span><span class="p">.</span><span class="n">physicsWorld</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">pinJoint</span><span class="p">)</span>
 </pre></div>
 </td></tr></table>
+
+<h2 id="acciones">Acciones<a class="headerlink" href="#acciones" title="Permanent link">&para;</a></h2>
+<p>Nos permiten programar el comportamiento de los nodos de la escena, de forma que realicen una serie de acciones de forma automática durante el tiempo que dure su ejecución. </p>
+<p>Todas las acciones se crean mediante métodos de <code>SKAction</code>, y en casi todas ellas deberemos especificar el tiempo que durará la acción. Por ejemplo:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">accion</span> <span class="p">=</span> <span class="bp">SKAction</span><span class="p">.</span><span class="n">fadeIn</span><span class="p">(</span><span class="n">withDuration</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="p">````</span>
+
+<span class="n">Esta</span> <span class="n">acción</span> <span class="n">hará</span> <span class="n">un</span> <span class="n">fundido</span> <span class="n">de</span> <span class="n">entrada</span> <span class="p">(</span><span class="n">desde</span> <span class="n">transparente</span> <span class="n">hasta</span> <span class="n">opaco</span><span class="p">)</span> <span class="n">durante</span> <span class="mi">1</span> <span class="n">segundo</span> <span class="n">en</span> <span class="n">el</span> <span class="n">nodo</span> <span class="n">en</span> <span class="n">el</span> <span class="n">que</span> <span class="n">la</span> <span class="n">ejecutemos</span><span class="p">.</span> <span class="n">Ejecutaremos</span> <span class="n">la</span> <span class="n">acción</span> <span class="n">sobre</span> <span class="n">un</span> <span class="n">nodo</span> <span class="n">con</span><span class="p">:</span>
+
+<span class="p">```</span><span class="n">swift</span>
+ <span class="n">node</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">accion</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<p>Podemos también detener todas las acciones que esté ejecutando un nodo con:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> <span class="n">node</span><span class="p">.</span><span class="n">removeAllActions</span><span class="p">()</span>
+</pre></div>
+</td></tr></table>
+
+<p>Si queremos detener una acción concreta, deberemos ejecutarla con una clave que nos permita identificarla, y posteriormente detenerla a partir de dicha clave:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">node</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">accion</span><span class="p">,</span> <span class="n">withKey</span><span class="p">:</span> <span class="s">&quot;fundido&quot;</span><span class="p">)</span>
+
+<span class="p">...</span>
+
+<span class="n">node</span><span class="p">.</span><span class="n">removeAction</span><span class="p">(</span><span class="n">forKey</span><span class="p">:</span> <span class="s">&quot;fundido&quot;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<h3 id="cambios-en-propiedades-de-los-objetos">Cambios en propiedades de los objetos<a class="headerlink" href="#cambios-en-propiedades-de-los-objetos" title="Permanent link">&para;</a></h3>
+<p>Dentro de <code>SKAction</code> encontramos númerosos métodos factoría para crear diferentes tipos de acciones. Por ejemplo, tenemos acciones para mover un nodo a una posición o rotarlo a un cierto ángulo:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">accionMoverFinal</span> <span class="p">=</span> <span class="bp">SKAction</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="bp">CGPoint</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mi">200</span><span class="p">),</span> <span class="n">duration</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">accionRotarFinal</span> <span class="p">=</span> <span class="bp">SKAction</span><span class="p">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">toAngle</span><span class="p">:</span> <span class="mf">3.14</span><span class="p">,</span> <span class="n">duration</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">accionMoverInicio</span> <span class="p">=</span> <span class="bp">SKAction</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="bp">CGPoint</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mi">100</span><span class="p">),</span> <span class="n">duration</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">accionRotarInicio</span> <span class="p">=</span> <span class="bp">SKAction</span><span class="p">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">toAngle</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">duration</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<p>En estas acciones se indica la posición o ángulo destino a la que se moverá el nodo, y el tiempo que tardará en hacerlo (en segundos).</p>
+<p>Existen también acciones que nos permiten modificar la escala o la opacidad de un nodo, o incluso actuar sobre las físicas.</p>
+<h3 id="composicion-de-acciones">Composición de acciones<a class="headerlink" href="#composicion-de-acciones" title="Permanent link">&para;</a></h3>
+<p>Podemos crear acciones que se creen a partir de la combinación de varias acciones:</p>
+<ul>
+<li><code>sequence</code>. Combina varias acciones en secuencia. La duración de la escena resultante será la suma de la duración de todas las acciones contenidas.</li>
+<li><code>group</code>. Combina varias acciones en paralelo. La acción resultante terminará cuando termine la más larga de las acciones que contenga.</li>
+</ul>
+<p>Por ejemplo, podemos crear una secuencia con las acciones anteriores:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">accionSecuencia</span> <span class="p">=</span> <span class="bp">SKAction</span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">accionMoverFinal</span><span class="p">,</span> 
+     <span class="n">accionRotarFinal</span><span class="p">,</span> 
+     <span class="n">accionMoverInicio</span><span class="p">,</span> 
+     <span class="n">accionRotarInicio</span><span class="p">])</span>
+</pre></div>
+</td></tr></table>
+
+<p>Además, podemos hacer que una acción se repita:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">accionRepite</span> <span class="p">=</span> <span class="bp">SKAction</span><span class="p">.</span><span class="n">repeatForever</span><span class="p">(</span><span class="n">accionSecuencia</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<p>Con esta última acción podemos especificar por ejemplo el movimiento de "patrulla" de un enemigo, que se moverá contínuamente entre los puntos <code>(100, 100)</code> y <code>(200, 200)</code>.</p>
                 
                   
                 
