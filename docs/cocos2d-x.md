@@ -2,233 +2,245 @@
 
 Uno de los motores más conocidos y utilizados para desarrollo de videojuegos para
 dispositivos móviles es **Cocos2D**. Existe gran
-cantidad de juegos para iOS implementados con este motor. Aunque inicialmente se trataba de un motor escrito en Objective-C únicamente para iOS, actualmente contamos con **Cocos2d-x** 
-(http://www.cocos2d-x.org) que es la versión multiplataforma de este motor. El juego se desarrolla con C++, y puede ser
-portado directamente a distintos tipos de dispositivos (Android, iOS, Windows Phone, etc). 
+cantidad de juegos para iOS implementados con este motor. Aunque inicialmente se trataba de un motor escrito en Objective-C únicamente para iOS, actualmente contamos con [Cocos2d-x](https://www.cocos.com/en/) que es la versión multiplataforma de este motor. 
 
-Vamos a comenzar estudiando la forma de crear los diferentes componentes de un videojuego mediante el motor Cocos2d-x. 
+El juego se desarrolla con C++, y puede ser portado directamente a distintos tipos de dispositivos (Android, iOS, y plataformas de escritorio). 
+
+Vamos a comenzar viendo cómo instalar el motor Cocos2d-x y crear un nuevo proyecto con él. 
 
 ## Instalación de Cocos2d-x
 
-Existen dos formas de instalar Cocos2d-x: 
+Si entramos en la [página web de Cocos](https://www.cocos.com/en/), veremos que ofrecen dos productos principales:
 
-* Instalar únicamente el _framework_, con lo que tendremos todo el código fuente de la librería y comandos del terminal para crear nuevos proyectos que la utilicen
-* Instalar todo el _kit_ de herramientas de Cocos, que nos proporciona una interfaz para la creación de nuevos proyectos, una herramienta visual para la creación de escenas (_Cocos Studio_), y la posibilidad de utilizar una versión precompilada de la librería, lo cual ahorrará mucho tiempo de compilación en nuestro proyecto. 
+* **Cocos**. Herramienta visual de creación de videojuegos. Podremos introducir _scripts_ con lenguajes como Javacript o LUA.
+* **Cocos2d-x**. _Framework_ escrito en C++ para el desarrollo de videojuegos. El videojuego se implementará en clases C++, y dentro de ellas tendremos la opción de cargar contenidos creados con la herramienta anterior o con otras herramientas de terceros.
 
-Elegiremos la primera opción si queremos modificar el código de la librería y hacer alguna contribución al proyecto, mientras que en otros casos sería más conveniente utilizar la segunda.
-
-### Creación del proyecto con Cocos
-
-Si instalamos el _kit_ completo de herramientas, contaremos con la herramienta _Cocos_ que nos permitirá crear un nuevo proyecto multiplataforma con esta librería, y gestionar los proyectos existentes.
-
-!["Herramienta Cocos"](imagenes/cocos/cocos-projects.png)
-
-Al crear un nuevo proyecto nos dejará elegir:
-
-* **Nombre del proyecto**. 
-* **Ruta del directorio de proyectos**. Ruta del disco donde se almacenará el proyecto Cocos2d-x. Será un directorio con el nombre indicado en el campo anterior.
-* **Tipo de motor**. Podemos elegir si queremos que nuestro proyecto integre los fuentes de la librería de Cocos2d-x, o sólo los binarios. Con la primera opción la compilación será más lenta, pero nos permitirá hacer cambios en la librería si es necesario.
-* **Lenguaje de desarrollo**. Además de C++, podremos también crear videojuegos mediante lenguajes de _script_ como Lua o Javascript.
-* **Editor**. Nos permite indicar si queremos utilizar _Cocos Studio_ para la edición visual de las escenas.
-* **SDKs**. Nos permite incluir _plugins_ adicionales para integrar servicios nativos de la plataforma o servicios de terceros, como por ejemplo redes sociales o analíticas.
-
-!["Nuevo proyecto con Cocos"](imagenes/cocos/cocos-new-project.png)
+Nos decantaremos por la segunda opción, para crear videojuegos en C++. Veremos que la API de este motor es muy similar a la que encontramos en motores como SpriteKit y SceneKit, en este caso centrada en contenido 2D.
 
 
-### Creación del proyecto desde la terminal
+### Instalación de Cocos2d-x
 
-Tanto si tenemos el _kit_ completo como sólo el _framework_, tendremos la opción de crear un nuevo proyecto desde la terminal. 
+Para instalar Cocos2d-x simplemente deberemos:
 
-Al descargar y descomprimir Cocos2d-x, veremos en el directorio raiz de la libreria un script llamado `setup.py`. Este hay que ejecutarlo una vez después de haber descomprimido la libreria (si utilizamos el instalador esto se hará de forma automática). Este mismo script nos introducira en nuestro fichero `~/.profile` las rutas necesarias para utilizar la libreria desde línea de comandos. De manera manual podríamos cargar dichas variables mediante el comando  `source ~/.profile`, pero eso se realizará de manera automática cada vez que abramos una nueva terminal. 
+1. **[Descargar](https://www.cocos.com/en/cocos2dx) y descomprimir** Cocos2d-x en el directorio donde queramos tenerlo instalado.
+2. En un _Terminal_, ir al directorio donde hayamos descomprimido el motor y ejecutar:
+    ```bash
+    ./setup.py
+    ```
+3. Nos preguntará por las rutas donde tengamos instalado `ANDROID_SDK` y `ANDROID_NDK`. Estas rutas en macOS por defecto son las siguientes, aunque podría cambiar:
+    ```bash
+    ANDROID_SDK=~/Library/Android/sdk/
+    ANDROID_NDK=~/Library/Android/sdk/ndk-bundle/
+    ````
+
 
 De esta manera tendremos acceso a un script llamado `cocos`que permite entre otras cosas crear la plantilla para un nuevo proyecto Cocos2d-x multiplataforma. 
+
 Deberemos proporcionar la siguiente información:
 
 ```bash
-cocos new MiJuego   -p es.ua.dccia 
+cocos new MiJuego   -p es.ua.eps.MiJuego
                     -l cpp
-                    -d MisProyectosCocos
 ```
 
-Esto nos creará un proyecto (carpeta) `MiJuego` en la subcarpeta `MisProyectosCocos` del directorio donde nos encontremos. El lenguaje utilizado será C++ (`-l cpp`). 
+Esto nos creará un proyecto (carpeta) `MiJuego` en el directorio donde nos encontremos, con _bundle ID_ `es.ua.eps.MiJuego`. El lenguaje utilizado será C++ (`-l cpp`). 
 
 Dentro del directorio generado encontraremos los siguientes directorios:
 
 * `Classes`: Código fuente C++ de nuestro juego
 * `Resources`: Recursos y _assets_ del videojuego (_sprites_, efectos de sonido, fuentes, ficheros de datos, etc)
 
-El contenido de los dos directorios anteriores será común para **todas las plataformas** soportadas por Cocos2d-x. Será en ellas donde introduciremos los distintos componentes del videojuego. Además, encontraremos una serie de carpetas adicionales con recursos propios de cada plataforma específica:
+El contenido de los dos directorios anteriores será común para **todas las plataformas** soportadas por Cocos2d-x. Será en ellos donde introduciremos los distintos componentes del videojuego. 
+
+Además, encontraremos una serie de carpetas adicionales con recursos propios de cada plataforma específica:
 
 * `proj.ios_mac`: Recursos para las versiones iOS y Mac basadas en el entorno Xcode. 
 * `proj.android`: Recursos para la plataforma Android (entorno Android Studio)
 * `proj.linux`: Recursos para la compilación para Linux (se compila desde línea de comando)
 * `proj.win32`: Recursos para la compilación para Windows (proyecto Visual Studio)
 
-En **Xcode 3.X** dentro de los directorios anteriores encontraremos un proyecto que podremos abrir con el IDE correspondiente a cada plataforma, y que podremos utilizar para desarrollar y probar el juego. 
+![Organización del proyecto](imagenes/cocos/cocos_directorios.png)
 
-Sin embargo, en **Xcode 4.X** tendremos que generar el proyecto para algunas de las plataformas (iOS, Mac, Windows). 
+
+
+#### Configuración CMake
+
+Para la construcción de los proyectos se utiliza la herramienta [CMake](https://cmake.org), por lo que es necesario tenerla instalada. 
+
+Encontramos además en la raíz del proyecto un fichero `CMakeLists.txt` en el que se indica la forma de construir el proyecto multiplataforma. En dicho fichero simplemente tendremos que actualizar la lista de clases a compilar. En la plantilla veremos un bloque como el siguiente:
+
+```
+# add cross-platforms source files and header files 
+list(APPEND GAME_SOURCE
+     Classes/AppDelegate.cpp
+     Classes/HelloWorldScene.cpp
+     )
+list(APPEND GAME_HEADER
+     Classes/AppDelegate.h
+     Classes/HelloWorldScene.h
+     )
+```
+
+Deberemos ir actualizando este bloque conforme añadamos o eliminemos clases de nuestro proyecto.
+
+#### Compilación en línea de comando
+
+Tenemos también la opción de compilar y ejecutar el proyecto desde la consola con el comando `cocos`. 
+
+Por ejemplo, si queremos compilar el proyecto para la plataforma macOS, desde el directorio del proyecto podemos hacer:
+
+```bash
+cocos compile -p mac
+```
+
+Podemos también ejecutar el proyecto en dicha plataforma con:
+
+```bash
+cocos run -p mac
+```
+
+En este caso previamente lo compilará, si fuera necesario. 
+
+Podemos compilar y ejecutar para el resto de plataformas disponibles.  Puedes ver la [documentación de la herramienta de consola de Cocos](https://docs.cocos.com/cocos2d-x/v4/manual/en/editors_and_tools/cocosCLTool.html) para más información.
+
+Esta forma de trabajar en línea de comando será la habitual si estamos en **entorno Linux** y queremos probar el proyecto como aplicación de escritorio Linux. 
+
+Pero tenemos la opción de trabajar en otros entornos, como Android Studio (para probar en **Android**), Xcode (para probar en **iOS** y **Mac**) y Visual Studio (para probar en **Windows**). 
+
+Podremos elegir el entorno de desarrollo que nos resulte más conveniente. Hemos de destacar que podremos cambiar de uno a otro sin problemas, ya que el código que introduzcamos estará siempre en carpetas compartidas por todas las plataformas. Podremos elegir el entorno en el que nos encontremos más cómodos, y utilizar el resto sólo cuando queramos hacer pruebas en plataformas específicas.
+
+A continuación vamos a ver cómo trabajar con cada entorno.
+
+
+#### Proyecto Android
+
+Desde Android Studio podremos abrir directamente el proyecto que se encuentra en el directorio `proj.android`. 
+
+Podremos construir y ejecutar el proyecto directamenter desde Android Studio, aunque para que la construcción funcione debemos [tener instalado el sistema de construcción Ninja](https://ninja-build.org). En caso contrario, obtendremos un error durante el proceso de construcción. 
+
+#### Proyecto iOS / Mac
+
+En **Cocos2d-x 3.X**, dentro del directorio `proj.ios_mac` encontraremos un proyecto Xcode que podremos abrir directamente con este IDE. 
+
+Sin embargo, en **Cocos2d-x 4.X** será necesario generar un proyecto para las plataformas iOS y Mac utilizando la herramienta CMake:
 
 ```bash
 # Generación del proyecto Xcode para MacOS
 mkdir mac-build && cd mac-build
 cmake .. -GXcode
 
-# Generación del proyecto Visual Studio para Windows
-mkdir win32-build && cd win32-build
-cmake .. -G"Visual Studio 15 2017" -Tv141
-
 # Generación del proyecto Xcode para iOS 
 mkdir ios-build && cd ios-build
 cmake .. -GXcode -DCMAKE_SYSTEM_NAME=iOS -DCMAKE_OSX_SYSROOT=iphoneos
 ```
 
-Puedes ver la [documentación de Cmake en Cocos2d-x 4.0](https://github.com/cocos2d/cocos2d-x/tree/v4/cmake) para más detalles. 
-
-Para compilar con Android Studio es necesario [instalar Ninja](https://ninja-build.org).
+Una vez creado el proyecto (directorio `mac-build` o `ios-build`) podremos abrirlo con Xcode y trabajar de forma normal con este entorno. 
 
 
-Tenemos también la opción de compilar y ejecutar el proyecto desde la consola con el comando `cocos`. Puedes ver la [documentación de la herramienta de consola de Cocos](https://docs.cocos.com/cocos2d-x/v4/manual/en/editors_and_tools/cocosCLTool.html) para más información.
+#### Proyecto Windows
+
+Tenemos también la opción de trabajar en Windows con Visual Studio. Al igual que en el caso de Xcode, con **Cocos2d-x 3.X** disponemos de dicho proyecto directamente, pero en **Cocos2d-x 4.X** deberemos generarlo con:
+
+```bash
+# Generación del proyecto Visual Studio para Windows
+mkdir win32-build && cd win32-build
+cmake .. -G"Visual Studio 15 2017" -Tv141
+
+```
+
+Puedes ver la [documentación de CMake en Cocos2d-x 4.0](https://docs.cocos.com/cocos2d-x/v4/manual/en/installation/CMake-Guide.html) para más detalles. 
 
 
 
-Podremos de esta forma crear un nuevo proyecto que contendrá la base para implementar un videojuego
-que utilice las librerías de Cocos2d-x. 
-El elemento central de este motor es un _singleton_ de tipo `Director`, al que 
-podemos acceder de la siguiente forma:
+
+## Organización del motor
+
+En el apartado anterior hemos visto cómo crear un nuevo proyecto Cocos2d-x. Vamos ahora a ver cómo están estructuradas las clases de esto motor.
+
+### El _singleton_ `Director`
+
+El **elemento central del motor** es un _singleton_ de tipo `Director`, al que podemos acceder de la siguiente forma:
 
 ```cpp
 Director::getInstance()
 ```
 
+El **director** será el encargado de gestionar toda la ejecución del juego, y entre sus funciones se encuentran:
 
-## Tipos de datos
-
-Como hemos comentado, Cocos2d-x proviene del motor Cocos2d para iOS. Este motor estaba 
-implementado en Objective-C, sobre la API Cocoa Touch, y por lo tanto estaba muy vinculado
-a sus tipos de datos. 
-
-Por este motivo Cocos2d-x implementa sus propios tipos de datos equivalentes a los de 
-Cocoa Touch para poder trabajar de la misma forma. Vamos a ver cuáles son estos tipos de datos.
-
-Por un lado tenemos la clase `Ref`. Todos los objetos de la librería
-heredan en última instancia de esta clase. En ella se define por ejemplo el mecanismo de
-gestión de memoria que utilizan todos los objetos de la librería.
-
-Tenemos una serie de colecciones como `Vector<>`, `Map<>` especiales de Cocos2d-x que tienen en cuenta su modelo particular de memoria, pero con los que podremos utilizar la sintaxis de C++ para este tipo de colecciones. También tenemos los tipos `Value`, `ValueVector` y `ValueMap` para la representación de estructuras de datos, que nos permiten por ejemplo cargar ficheros `.plist` de forma automática. El primero de ellos es un _wrapper_ que permite almacenar tipos básicos (`bool`, `int`, `string`, etc) o complejos, mientras que los otros dos representan las listas y diccionarios respectivamente.
-
-Encontramos también una serie de tipos de datos geométricos: `Point`, 
-`Rect` y `Size`. Estos tipos de datos incorporan también algunas
-operaciones, por ejemplo para comprobar si dos rectángulos intersectan.
+* Tiene una **escena activa**, y permite realizar transiciones a otras escenar, representadas todas ellas con la clase `Scene`.
+* Gestiona el **ciclo del juego**, actualizando y _renderizando_ la escena activa en cada iteración. Sólo se actualizará y se mostrará la escena que esté actualmente activa.
 
 
-## Escena 2D
+### Creación de escenas
 
-En Cocos2D cada pantalla se representa mediante un objeto de tipo `Scene`.
-  En la pantalla del juego se dibujarán todos los elementos necesarios (fondos, _sprites_, etc) para construir 
-  la escena del juego. De esta manera tendremos el fondo, nuestro personaje, los 
-  enemigos y otros objetos que aparezcan durante el juego, además de marcadores 
-  con el número de vidas, puntuación, etc. Todos estos elementos se representan
-  en Cocos2D como nodos del tipo `Node`. La escena se compondrá de una
-  serie de nodos organizados de forma jerárquica. Entre estos nodos podemos encontrar
-  diferentes tipos de elementos para construir la interfaz del videojuego, como etiquetas
-  de texto, menús, _sprites_, fondos, etc. Otro de estos tipos de nodos son las capas.
+En Cocos2d-x la escena se representa con la clase `Scene`, y contendrá un árbol de nodos, los cuales están representados por la clase `Node`. La propia escena es un nodo (`Scene` es subclase de `Node`), y tendrá como papel siempre hacer de nodo raíz del árbol de nodos de la escena.
 
-La escena se podrá componer de una o varias capas. Los _sprites_ y fondos 
-  pueden organizarse en diferentes capas para construir la escena. Todas las capas 
-  podrán moverse o cambiar de posición, para mover de esta forma 
-  todo su contenido en la pantalla. Pondremos varios elementos en una misma capa
-  cuando queramos poder moverlos de forma conjunta.
-
-Las capas en Cocos2D se representan mediante la clase `Layer` o `Node` (en las últimas versiones del motor las diferencias entre ambas clases son mínimas, y se recomienda organizar el juego mediante nodos). Las escenas
-podrán componerse de una o varias capas, y estas capas contendrán los distintos nodos
-a mostrar en pantalla, que podrían ser a su vez otras capas. Es decir, la escena
-se representará como un grafo, en el que tenemos una jerarquía de nodos, en la que
-determinados nodos, como es el caso de la escena o las capas, podrán contener otros nodos.
-Este tipo de representación se conoce como **escena 2D**.
-
-![Grafo de la escena 2D](imagenes/juegos/cocos2d_scene2d.jpg)
-
-
-
-Normalmente para cada pantalla del juego tendremos una capa principal, y encapsularemos
-el funcionamiento de dicha pantalla en una subclase de `Layer`, por ejemplo:
+Antes de entrar a estudiar el árbol de la escena, vamos a ver cómo crear una escena. Para crear cada escena (pantalla) del videojuego, crearemos una clase que herede de `Scene`, como la que vemos a continuación (fichero `.h`):
 
 ```cpp
-class MenuPrincipal : public cocos2d::Layer
-{
+// MenuScene.h
+
+class MenuScene : public cocos2d::Scene {
 public:
+    static cocos2d::Scene* createScene();
+
     virtual bool init();
     
-    static cocos2d::Scene* scene();
-    
-    CREATE_FUNC(MenuPrincipal);
+    CREATE_FUNC(MenuScene);
 };
 ```
 
-Crearemos la escena a partir de su capa principal. Todos los nodos, incluyendo
-la escena, se instanciarán mediante el método de factoría `create`. 
-Este método de factoría se genera de forma estática con la macro `CREATE_FUNC`, por
-ese motivo está declarada en la interfaz de clase anterior. Podemos añadir
-un nodo como hijo de otro nodo con el método `addChild`:
+Todos los objetos de Cocos2d-x se instanciarán mediante un método `create`, incluyendo la escena. Este _método factoría_ se genera de forma estática con la macro `CREATE_FUNC`, por ese motivo está declarada en la clase anterior. 
+
+Ya en la implementación de la clase (fichero `.cpp`), podemos implementar el método estático `createScene` que hemos declarado anteriormente de la siguiente forma:
 
 ```cpp
-Scene* MenuPrincipal::scene()
+// MenuScene.cpp
+
+Scene* MenuScene::createScene()
 {
-    Scene *scene = Scene::create();
-    MenuPrincipal *layer = MenuPrincipal::create();
-    scene->addChild(layer, 0);    
-    return scene;
+    return MenuScene::create();
 }
 ```
 
-Cuando instanciamos un nodo mediante el método de factoría `create`, llamará
-a su método `init` para inicializarse. Si sobrescribimos dicho método en la capa
-podremos definir la forma en la que se inicializa:
+Recordamos que podemos utilizar este método `create` porque lo hemos declarado previamente con `CREATE_FUNC`. Dicho método instanciará la clase y reservará memoria para el nuevo objeto, sin que tengamos que hacerlo nosotros, pero para inicializarlo llamará al método `init()` donde nosotros podremos indicar la forma en la que se inicializan nuestros objetos. Este método tendrá habitualmente la siguiente forma:
 
 ```cpp
-bool MenuPrincipal::init()
+bool MenuScene::init()
 {
-    // Inicializar primero la superclase
-    if ( !Layer::init() )
+    if ( !Scene::init() )
     {
         return false;
     }
- 
-    // Inicializar componentes de la capa
-    ...
-
-	return true;
+    // Inicializar componentes de la escena
+    
+    return true;
 }
 ```
 
-El orden en el que se mostrarán las capas es lo que se conoce como orden Z, 
-  que indica la profundidad de esta capa en la escena. La primera capa será 
-  la más cercana al punto de vista del usuario, mientras que la última 
-  será la más lejana. Por lo tanto, las primeras capas que añadamos 
-  quedarán por delante de las siguientes capas. Este orden Z se puede controlar
-  mediante la propiedad `zOrder` de los nodos.
+Lo primero que hacemos es inicializar la superclase (en nuestro caso `Scene`). Si todo va bien, inicializaremos todos los componentes de la escena (etiquetas, menús, _sprites_, etc) y los añadiremos al árbol de nodos.
+
+Más adelante veremos cómo crear estos nodos, pero antes vamos a ver cómo cambiar la escena que se muestra en el motor.
 
 
+### Transiciones entre escenas
 
-## Transiciones entre escenas
-
-Mostraremos la escena inicial del juego con el método `runWithScene` del director:
+Al ejecutar el motor deberemos indicar la escena que mostraremos inicialmente como escena activa. Esto lo haremos con el método `runWithScene` del director:
 
 ```cpp
 Director::getInstance()->runWithScene(MenuPrincipal::scene());
 ```
 
-Con esto pondremos en marcha el motor del juego mostrando la escena indicada. Si el motor
-ya está en marcha y queremos cambiar de escena, deberemos hacerlo con el método
-`replaceScene`:
+Con esto pondremos en marcha el motor del juego mostrando la escena indicada. Si el motor ya está en marcha y queremos cambiar de escena, deberemos hacerlo con el método `replaceScene`:
 
 ```cpp
-Director::getInstance()->replaceScene(Puntuaciones::scene());
+Director::getInstance()->replaceScene(Creditos::scene());
 ```
 
-También podemos implementar transiciones entre escenas de forma animada utilizando como escena
-una serie de clases todas ellas con prefijo `Transition-`, que heredan de `TransitionScene`,
-que a su vez hereda de `Scene`. Podemos mostrar una transición animada reemplazando la
+También podemos implementar transiciones entre escenas de forma animada utilizando como escena una serie de clases todas ellas con prefijo `Transition*`, que heredan de `TransitionScene`,
+y que a su vez hereda de `Scene`. 
+
+Podemos mostrar una transición animada reemplazando la
 escena actual por una escena de transición:
 
 ```cpp
@@ -238,27 +250,151 @@ TransitionCrossFade *transition =
 Director::getInstance()->replaceScene(transition);
 ```
 
-Podemos observar que la escena de transición se construye a partir de la duración de la 
-transición, y de la escena que debe mostrarse una vez finalice la transición.
+Podemos observar que la escena de transición se construye a partir de la duración de la transición, y de la escena que debe mostrarse una vez finalice la transición.
 
 
+### Árbol de la escena
+
+El contenido de la escena se definirá como un árbol de nodos, todos ellos subclases de `Node`. Entre las subclases encontramos:
+
+* `Scene`: Hará siempre de nodo raíz del árbol.
+* `Label`: Etiquetas de texto
+* `Sprite`: Personajes y otros elementos que podremos mover por pantalla y animar.
+* `TMXTiledMap`: Mapa que podremos utilizar para el fondo del escenario.
+* `Layer`: Nodo que implementa eventos de la pantalla táctil y al que podremos añadir contenido como hijos.
+
+![Árbol de la escena](imagenes/cocos/cocos_arbol.png)
+
+Podemos añadir un nodo como hijo de cualquier nodo de la escena con:
+
+```cpp
+_fondo->addChild(_personaje);
+```
+
+Al añadirlo podemos también especificar el _orden Z_ del nodo (orden de dibujado entre sus hermanos). También podremos establecer o modificar este orden mediante el método `setLocalZOrder()`.
+
+Podremos eliminar un nodo de la escena eliminandolo de su padre:
+
+```cpp
+_personaje->removeFromParent();
+```
+
+También podremos buscar un nodo dado su nombre, o listar todos los hijos de un determinado nodo:
+
+```cpp
+_fondo->getChildByName(“personaje”);
+_fondo->getChildren();
+```
+
+
+### Tipos de datos
+
+Como hemos comentado, Cocos2d-x proviene del motor Cocos2d para iOS. Este motor estaba  implementado en Objective-C, sobre la API Cocoa Touch, y por lo tanto estaba muy vinculado a sus tipos de datos. 
+
+Por este motivo Cocos2d-x implementa sus propios tipos de datos equivalentes a los de Cocoa Touch para poder trabajar de la misma forma. Vamos a ver cuáles son estos tipos de datos.
+
+Por un lado tenemos la clase `Ref`. Todos los objetos de la librería
+heredan en última instancia de esta clase. En ella se define por ejemplo el mecanismo de gestión de memoria que utilizan todos los objetos de la librería.
+
+Tenemos una serie de colecciones como `Vector<>`, `Map<>` especiales de Cocos2d-x que tienen en cuenta su modelo particular de memoria, pero con los que podremos utilizar la sintaxis de C++ para este tipo de colecciones. También tenemos los tipos `Value`, `ValueVector` y `ValueMap` para la representación de estructuras de datos, que nos permiten por ejemplo cargar ficheros `.plist` de forma automática. El primero de ellos es un _wrapper_ que permite almacenar tipos básicos (`bool`, `int`, `string`, etc) o complejos, mientras que los otros dos representan las listas y diccionarios respectivamente.
+
+Encontramos también una serie de tipos de datos geométricos: `Point`, 
+`Rect` y `Size`. Estos tipos de datos incorporan también algunas
+operaciones, por ejemplo para comprobar si dos rectángulos intersectan.
+
+
+
+
+## Gestión de la memoria
+
+La memoria en Cocos2d-x se gestiona mediante cuenta de referencias, siguiendo el mismo mecanismo de gestión de memoria que se utilizaba antiguamente en iOS. 
+
+### Contador de referencias
+
+Este mecanismo consiste en que los objetos de la librería (todos  derivan en última instancia de `Ref`) tienen un contador de referencias que existen hacia ellos.  Cuando el contador de referencias llegue a cero, el objeto se eliminará de memoria.
+
+Podemos incrementar el número de referencias sobre un objeto llamando a su método  `retain`, y decrementarlo llamando a `release`. En caso de que al hacer `release` el contador de referencias llegue a `0`, el objeto será eliminado inmediatamente de la memoria.
+
+Existe un tercer método para manipular dicho contador de referencias: `autorelease`. Dicho método no decrementa el contador inmediatamente, sino que deja programado el decremento para el final del ciclo actual del juego. Es decir, podremos seguir utilizando el objeto mientras dure el ciclo, pero al final de éste, si el contador llegase a cero, se eliminará el objeto. 
+
+Deberemos asegurarnos de que el número de llamadas a `retain` sobre un objeto sea igual al número de llamadas a `release` / `autorelease`. Si el primero fuese superior al segundo,  entonces tendríamos una fuga de memoria. Si fuese inferior tendríamos un error de acceso a memoria cuando intentemos decrementar las referencias de un objeto que ha sido ya liberado. 
+
+### Quien retiene, debe liberar
+
+Si no organizamos bien el código de gestión de memoria puede ser complicado garantizar que el número de llamadas a`retain` y a `release` / `autorelease` esté equilibrado. Para evitar este problema la regla fundamental es que quien incremente el número de referencias (`retain`) será responsable de decrementarlo (`release` /  `autorelease`). Vemos a continuación con mayor detalle las implicaciones que esta regla tiene en el uso de la librería:
+
+Cuando instanciamos un objeto con el método factoría `create`, éste método lo inicializa con una referencia, pero él mismo es responsable de eliminarla. Si lo hiciese antes de devolver el objeto, éste se eliminaría de la memoria antes de que alguien pudiera usarlo, mientras que si no lo hace en ese momento ya no tendrá más oportunidades de liberarlo. Para solucionar este problema hará uso del método `autorelease`, dejando programado que la referencia se librere automáticamente cuando termine el ciclo actual. De esta forma, el código que haya llamado a `create` tendrá la oportunidad de retener el objeto recibido, y entonces se mantendría en memoria, pero si nadie lo retuviese sería eliminado al final del ciclo.
+
+### Estructuras de Cocos2d-x
+
+Cuando añadimos un nodo como hijo de otro en la escena 2D, o cuando se añade un objeto a otras estructuras como los tipos `Vector` o `Map` de Cocos2d-x, o alguna de las cachés de objetos que gestiona el motor, estas estructuras se encargarán de retener el objeto en memoria, y cuando se elimine de ellas lo liberarán. 
+
+Es decir, podemos por ejemplo crear un nodo con `create` y en ese momento añadirlo como hijo a otro con `addChild`, y no tendremos que preocuparnos de retenerlo ni de liberarlo nosotros. El propio grafo de la escena será el encargado de gestionar la memoria en este caso.
+
+```
+Node *nodo = Node::create();
+this->addChild(nodo);
+```
+
+Esta será la forma más habitual de trabajar, y que hará que la gestión de la memoria sea totalmente transparente, sin tener que hacer nada nosotros.
+
+### Referencias fuertes
+
+Si queremos guardar un nodo como campo de nuestro objeto con una **referencia fuerte** hacia él, tras instanciarlo con  `create` deberemos reternarlo con `retain` para que no se libere automáticamente. De esta forma, aunque no estuviera retenido por otros objetos, nosotros lo mantendremos en memoria.
+
+```cpp
+// .h
+
+private:
+    cocos2d::Node *_hud;
+
+// .cpp
+
+Game::init() {
+    ...
+
+    _hud = Node::create();
+    _hud->retain();
+}
+```
+
+Como lo hemos retenido, nosotros seremos responsables de liberarlo, por lo que  deberemos llamar a `release` sobre dicho campo cuando nuestro objeto sea destruido (en el destructor de la clase), o cuando vayamos a cambiar el valor del campo y el antiguo deba ser liberado. 
+
+```cpp
+// .cpp
+
+Game::~Game() {
+    if(_hud!=NULL) {
+        _hud->release();
+        _hud = NULL;
+    }
+}
+```
+
+Es recomendable, como vemos en el código anterior, poner a `NULL` el objeto cuando lo hayamos liberado, para así saber que ya está liberado y evitar liberar dos veces por error. Hay una macro de Cocos2d-x que implementa este comportamiento. El siguiente código sería equivalente al anterior, pero usando dicha macro:
+
+```cpp
+// .cpp
+
+Game::~Game() {
+    CC_SAFE_RELEASE_NULL(_hud);
+}
+```
 
 
 ## Interfaz de usuario
 
-Encontramos distintos tipos de nodos que podemos añadir a la escena para crear nuestra interfaz de
-usuario, como por ejemplo menús y etiquetas de texto, que nos pueden servir por ejemplo para mostrar
+Encontramos distintos tipos de nodos que podemos añadir a la escena para crear nuestra interfaz de usuario, como por ejemplo menús y etiquetas de texto, que nos pueden servir por ejemplo para mostrar
 el marcador de puntuación, o el mensaje _Game Over_. 
 
-Tenemos dos formas alternativas de crear una etiqueta de texto:
+### Etiquetas
 
+Tenemos dos formas alternativas de crear una etiqueta de texto:
 
 * Utilizar una fuente _TrueType_ predefinida.
 * Crear nuestro propio tipo de fuente _bitmap_.
 
-
-La primera opción es la más sencilla, ya que podemos crear la cadena directamente a partir de un tipo
-de fuente ya existen y añadirla a la escena con `addChild` (por ejemplo añadiéndola como hija
+La primera opción es la más sencilla, ya que podemos crear la cadena directamente a partir de un tipo de fuente ya existen y añadirla a la escena con `addChild` (por ejemplo añadiéndola como hija
 de la capa principal de la escena). Se define mediante la clase `LabelTTF`:
 
 ```cpp
@@ -281,8 +417,7 @@ this->addChild(label);
 
 ![Herramienta Hiero Font Tool](imagenes/juegos/herramientas_hiero.jpg)
 
-
-
+### Menús
 
 Por otro lado, también podemos crear menús de opciones. Normalmente en la pantalla principal del juego
 siempre encontraremos un menú con todas las opciones que nos ofrece dicho juego. Los menús se crean con
@@ -327,50 +462,6 @@ añadimos el menú a la escena.
 
 
 
-
-
-## Gestión de la memoria
-
-La memoria en Cocos2d-x se gestiona mediante cuenta de referencias, siguiendo el mismo
-mecanismo de gestión de memoria que utiliza Cocos2d al estar implementado en Objective-C. 
-Este mecanismo consiste en que los objetos de la librería (todos aquellos derivan de
-`Ref`) tienen un contador de referencias que existen hacia ellos. 
-Cuando el contador de referencias llegue a cero, el objeto se eliminará de memoria.
-
-Al instanciar un objeto (con `new`) el objeto se crea con 1 referencia.
-Podemos incrementar el número de referencias sobre un objeto llamando a su método 
-`retain`, y decrementarlo llamando a `release`. Deberemos asegurarnos
-de que el número de llamadas a `new`/`retain` sobre un objeto sea
-igual al número de llamadas a `release`. Si el primero fuese superior al segundo, 
-entonces tendríamos una fuga de memoria. Si fuese inferior tendríamos un error de acceso a 
-memoria cuando intentemos decrementar las referencias de un objeto que ha sido ya liberado. 
-Si no organizamos bien el código de gestión de memoria puede ser complicado garantizar que
-el número de llamadas esté equilibrado. Para evitar este problema la regla fundamental es
-que la unidad que incremente el número de referencias (`new`/`retain`) 
-será responsable de decrementarlo (`release`). Vemos a continuación con mayor
-detalle las implicaciones que esta regla tiene en el uso de la librería:
-
-
-* Cuando instanciamos un nodo con el método factoría `create` este método
-crea una referencia, pero él mismo es responsable de eliminarla. Para conseguir esto
-lo que hace es dejar programado que la referencia se librere automáticamente cuando
-termine la llamada de la función en la que estamos. Es decir, si nadie retiene el objeto
-que nos ha devuelto el objeto será eliminado de memoria automáticamente.
-
-* Cuando añadimos un nodo como hijo de otro en la escena 2D, o cuando se añade a otras 
-estructuras como el director, o alguna de las cachés de objetos que gestiona el motor, estas
-estructuras se encargar de retener el objeto en memoria, y cuando se elimine de ellas 
-lo liberarán. Es decir, podemos por ejemplo crear un nodo con `create` 
-y en ese momento añadirlo como hijo a otro con `addChild`, y no tendremos 
-que preocuparnos de retenerlo ni de liberarlo. El propio grafo de la escena será
-el encargado de gestionar la memoria.
-
-* Si queremos guardar un nodo como campo de nuestro objeto, tras instanciarlo con 
-`create` deberemos reternarlo con `retain` para que no se
-libere automáticamente. Nosotros seremos responsables de liberarlo, por lo que 
-deberemos llamar a `release` sobre dicho campo cuando nuestro objeto
-sea destruido, o cuando vayamos a cambiar el valor del campo y el antiguo deba ser
-liberado. 
 
 
 
@@ -852,7 +943,7 @@ rotación, escalado), e incluso podríamos crear nuestras propias acciones media
    
       
 
-## Escenario de tipo mosaico
+## _Tilemaps_
 
 Hasta el momento hemos visto cómo crear los diferentes elementos dinámicos (_sprites_) de
 nuestro juego, como por ejemplo nuestro personaje, los enemigos, o los disparos. Pero todos estos elementos
