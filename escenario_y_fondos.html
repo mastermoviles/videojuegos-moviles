@@ -534,17 +534,19 @@ normalmente se moverán sobre un escenario. </p>
 <p>Para evitar este problema lo que haremos normalmente en este tipo de juegos es construir el fondo como un mosaico (<em>tilemap</em>).</p>
 <h2 id="tilemaps"><em>Tilemaps</em><a class="headerlink" href="#tilemaps" title="Permanent link">&para;</a></h2>
 <p>Los mapas construidos mediante <em>tilemaps</em> se componen de una serie de piezas que combinaremos formando un mosaico.</p>
-<p>Para ello, en primer lugar deberemos crear una imagen con las piezas básicas que vamos a necesitar para nuestro fondo (lo que se conoce como <em>tileset</em>). Esta será una imagen de pequeñas dimensiones, ya que simplemente contiene piezas que posteriormente reutilizaremos. A partir de dichas piezas construiremos el mosaico que será nuestro <em>tilemap</em></p>
+<p>Para ello, en primer lugar deberemos crear una imagen con las piezas básicas que vamos a necesitar para nuestro fondo (lo que se conoce como <em>tileset</em>). Esta será una imagen de pequeñas dimensiones, ya que simplemente contiene piezas que posteriormente reutilizaremos. A partir de dichas piezas construiremos el mosaico que será nuestro <em>tilemap</em>.</p>
+<p>Mostramos a contionuación como ejemplo el <em>tileset</em> "Desert", creado por <a href="https://opengameart.org/users/beast">MrBeast</a> y obtenido de <a href="https://opengameart.org/content/desert-tileset-0">OpenGameArt.org</a>.</p>
+<p><img alt="Tileset &quot;desert&quot;" src="imagenes/juegos/desert_tileset.png" /></p>
 <p>Encontramos herramientas que nos permiten hacer esto de forma sencilla, siendo <strong>Tiled</strong> (http://www.mapeditor.org) la más conocida.  Con esta herramienta podremos proporcionar una textura con las distintas piezas con las que construiremos el mosaico (<em>tileset</em>), y combinar estas piezas de forma visual para 
 construir nuestros mapas.</p>
 <p><img alt="Herramienta Tiled Map Editor" src="imagenes/juegos/herramientas_tiled.jpg" /></p>
 <p>En primer lugar debemos proporcionar una imagen con un conjunto de patrones (<em>Mapa &gt; Nuevo conjunto de patrones</em>).</p>
 <p>Deberemos indicar el ancho y alto de cada "pieza" (<em>tile</em>), para que así sea capaz de particionar la imagen y obtener de ella los diferentes patrones con los que construir el mapa. Una vez cargados estos patrones, podremos seleccionar cualquiera de ellos
 y asignarlo a las diferentes celdas del mapa.</p>
-<p><img alt="Patrones para crear el mosaico" src="imagenes/juegos/fondo_matriz.gif" /></p>
+<p><img alt="Patrones para crear el mosaico" src="imagenes/juegos/desert_tiles.png" /></p>
 <p>El resultado se guardará en un fichero de tipo <code>.tmx</code>, basado en XML, que la mayor parte de motores 2D son capaces de leer. </p>
-<p>Las dimesiones del mapa serán <em>(columnas<em>ancho)x(filas</em>alto)</em>, siendo <em>ancho x alto</em> las dimensiones de cada <em>tile</em>, y <em>columnas x filas</em> el número de celdas que tiene el mapa. </p>
-<p><img alt="Ejemplo de fondo construido con los elementos anteriores" src="imagenes/juegos/ej_fondo.gif" /></p>
+<p>Las dimesiones del mapa serán <span><span class="MathJax_Preview">(columnas \cdot ancho) \times (filas \cdot alto)</span><script type="math/tex">(columnas \cdot ancho) \times (filas \cdot alto)</script></span>, siendo <span><span class="MathJax_Preview">ancho \times alto</span><script type="math/tex">ancho \times alto</script></span> las dimensiones de cada <em>tile</em>, y <span><span class="MathJax_Preview">columnas \times filas</span><script type="math/tex">columnas \times filas</script></span> el número de celdas que tiene el mapa. </p>
+<p><img alt="Ejemplo de fondo construido con los elementos anteriores" src="imagenes/juegos/desert_tilemap.png" /></p>
 <p>Hemos visto la creación básica de un escenario con <em>Tiled Map Editor</em>, pero esta herramienta nos da más facilidades para la creación de los fondos. En el caso anterior hemos visto como crear el fondo a partir de una única capa de mosaico, pero podemos hacer que nuestros fondos se compongan de varias capas. </p>
 <p>En el panel de la derecha de la herramienta vemos la lista de capas, y podemos añadir nuevas capas. Al añadir una nueva capa, nos preguntará si queremos una nueva capa de patrones o de objetos. </p>
 <ul>
@@ -555,6 +557,7 @@ y asignarlo a las diferentes celdas del mapa.</p>
 <h3 id="capas-de-patrones">Capas de patrones<a class="headerlink" href="#capas-de-patrones" title="Permanent link">&para;</a></h3>
 <p>Como hemos indicado anteriormente, las capas de patrones nos permiten definir el aspecto del nivel mediante un mosaico, utilizando un conjunto de patrones para fijar el contenido de cada celda del mosaico.</p>
 <p>Cada capa se define como una matriz, en la que en cada posición se indica un número entero que identifica el <em>tile</em> que ocupará dicha celda. Este identificador de cada <em>tile</em> es lo que se conoce como <em>gid</em>. Dentro del <em>tileset</em>, cada <em>tile</em> se identificará por un <em>gid</em> único, empezando a contar desde <code>1</code> (normalmente se asignan de forma secuencial siguiendo el orden en el que están en el conjunto de patrones). De esta forma, cuando en la matriz de la capa tenemos un <code>0</code> como <em>gid</em>, quiere decir que esa celda está <strong>vacía</strong>, mientras que si tiene otro valor, dicho valor representa el identificador del <em>patrón</em> correspondiente.</p>
+<p><img alt="GIDs de los tiles" src="imagenes/juegos/desert_gids.png" /></p>
 <p>Cuando creamos varias capas de patrones, será importante fijar su orden, ya que las capas que estén al frente taparán a las que estén atrás. Este orden viene determinado por el orden en el que las capas
 aparecen en la lista del panel derecho. Las capas al comienzo de la lista quedarán por delante de las demás. Podemos cambiar el orden de las capas en esta lista mediante los botones con las flechas hacia arriba y hacia abajo para conseguir situar cada una de ellas en la profundidad adecuada.</p>
 <p><img alt="Capas del escenario" src="imagenes/tiled/tiled_capas.jpg" /></p>
