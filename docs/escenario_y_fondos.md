@@ -14,7 +14,11 @@ Para evitar este problema lo que haremos normalmente en este tipo de juegos es c
 
 Los mapas construidos mediante _tilemaps_ se componen de una serie de piezas que combinaremos formando un mosaico.
 
-Para ello, en primer lugar deberemos crear una imagen con las piezas básicas que vamos a necesitar para nuestro fondo (lo que se conoce como _tileset_). Esta será una imagen de pequeñas dimensiones, ya que simplemente contiene piezas que posteriormente reutilizaremos. A partir de dichas piezas construiremos el mosaico que será nuestro _tilemap_
+Para ello, en primer lugar deberemos crear una imagen con las piezas básicas que vamos a necesitar para nuestro fondo (lo que se conoce como _tileset_). Esta será una imagen de pequeñas dimensiones, ya que simplemente contiene piezas que posteriormente reutilizaremos. A partir de dichas piezas construiremos el mosaico que será nuestro _tilemap_.
+
+Mostramos a contionuación como ejemplo el _tileset_ "Desert", creado por [MrBeast](https://opengameart.org/users/beast) y obtenido de [OpenGameArt.org](https://opengameart.org/content/desert-tileset-0).
+
+![Tileset "desert"](imagenes/juegos/desert_tileset.png)
 
 
 
@@ -29,15 +33,15 @@ En primer lugar debemos proporcionar una imagen con un conjunto de patrones (_Ma
 Deberemos indicar el ancho y alto de cada "pieza" (_tile_), para que así sea capaz de particionar la imagen y obtener de ella los diferentes patrones con los que construir el mapa. Una vez cargados estos patrones, podremos seleccionar cualquiera de ellos
 y asignarlo a las diferentes celdas del mapa.
 
-![Patrones para crear el mosaico](imagenes/juegos/fondo_matriz.gif)
+![Patrones para crear el mosaico](imagenes/juegos/desert_tiles.png)
 
 
 
 El resultado se guardará en un fichero de tipo `.tmx`, basado en XML, que la mayor parte de motores 2D son capaces de leer. 
 
-Las dimesiones del mapa serán _(columnas*ancho)x(filas*alto)_, siendo _ancho x alto_ las dimensiones de cada _tile_, y _columnas x filas_ el número de celdas que tiene el mapa. 
+Las dimesiones del mapa serán $(columnas \cdot ancho) \times (filas \cdot alto)$, siendo $ancho \times alto$ las dimensiones de cada _tile_, y $columnas \times filas$ el número de celdas que tiene el mapa. 
   
-![Ejemplo de fondo construido con los elementos anteriores](imagenes/juegos/ej_fondo.gif)
+![Ejemplo de fondo construido con los elementos anteriores](imagenes/juegos/desert_tilemap.png)
 
 
 
@@ -56,6 +60,9 @@ Vamos a ver cada uno de estos tipos de capas con más detenimiento.
 Como hemos indicado anteriormente, las capas de patrones nos permiten definir el aspecto del nivel mediante un mosaico, utilizando un conjunto de patrones para fijar el contenido de cada celda del mosaico.
 
 Cada capa se define como una matriz, en la que en cada posición se indica un número entero que identifica el _tile_ que ocupará dicha celda. Este identificador de cada _tile_ es lo que se conoce como _gid_. Dentro del _tileset_, cada _tile_ se identificará por un _gid_ único, empezando a contar desde `1` (normalmente se asignan de forma secuencial siguiendo el orden en el que están en el conjunto de patrones). De esta forma, cuando en la matriz de la capa tenemos un `0` como _gid_, quiere decir que esa celda está **vacía**, mientras que si tiene otro valor, dicho valor representa el identificador del _patrón_ correspondiente.
+
+![GIDs de los tiles](imagenes/juegos/desert_gids.png)
+
 
 Cuando creamos varias capas de patrones, será importante fijar su orden, ya que las capas que estén al frente taparán a las que estén atrás. Este orden viene determinado por el orden en el que las capas
 aparecen en la lista del panel derecho. Las capas al comienzo de la lista quedarán por delante de las demás. Podemos cambiar el orden de las capas en esta lista mediante los botones con las flechas hacia arriba y hacia abajo para conseguir situar cada una de ellas en la profundidad adecuada.
