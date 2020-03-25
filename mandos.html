@@ -536,6 +536,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#controles-fisicos-en-ios-nativo" title="Controles físicos en iOS nativo" class="md-nav__link">
+    Controles físicos en iOS nativo
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -744,6 +751,13 @@
           <li class="md-nav__item">
   <a href="#controladores-fisicos-en-cocos2d-x" title="Controladores físicos en Cocos2d-x" class="md-nav__link">
     Controladores físicos en Cocos2d-x
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controles-fisicos-en-ios-nativo" title="Controles físicos en iOS nativo" class="md-nav__link">
+    Controles físicos en iOS nativo
   </a>
   
 </li>
@@ -3014,9 +3028,7 @@
 <img alt="Nyko Playpad" src="imagenes/mandos/nyko-playpad.png" /></p>
 <h4>Controladores iCade</h4>
 <p>Estos controladores no utilizan la API oficial, ya que salieron a la venta antes de que ésta existiese. Se comportan como un teclado <em>bluetooth</em>, por lo que para utilizarlos simplemente deberemos conocer a qué tecla está mapeado cada botón. Está diseñado para ser utilizado con el iPad, pero puede utilizarse en cualquier dispositivo móvil que lo reconozca como teclado <em>bluetooth</em>.</p>
-<p>En los siguientes enlaces se puede encontrar documentación para integrar estos controladores en nuestras aplicaciones:</p>
-<p>http://www.ionaudio.com/downloads/ION%20Arcade%20Dev%20Resource%20v1.5.pdf</p>
-<p>http://www.raywenderlich.com/8618/adding-icade-support-to-your-game</p>
+<p>En el <a href="http://www.raywenderlich.com/8618/adding-icade-support-to-your-game">este enlace</a> se puede encontrar documentación para integrar estos controladores en nuestras aplicaciones.</p>
 <p><img alt="iCade" src="imagenes/mandos/icade.jpg" /></p>
 <h3 id="controladores-fisicos-en-cocos2d-x">Controladores físicos en Cocos2d-x<a class="headerlink" href="#controladores-fisicos-en-cocos2d-x" title="Permanent link">&para;</a></h3>
 <p>Cocos2d-x soporta tanto los mandos oficiales de Android como los oficiales de iOS, ofreciéndonos una API única para utilizarlos en cualquiera de estas plataformas. </p>
@@ -3225,6 +3237,136 @@ También será necesario que en nuestro dispositivo Android descarguemos los <em
 <h4>Configuración de mandos para iOS</h4>
 <p>En el caso de iOS, para que nuestro proyecto soporte los mandos oficiales aparecidos a partir de iOS 7, tendremos que añadir el <em>framework</em> <code>GameController.Framework</code> a nuestro proyecto.</p>
 <p>Además, será importante que en nuestro proyecto llamemos a <code>Controller::startDiscoveryController()</code> para que inicie la búsqueda de mandos y establezca una conexión con ellos, tal como hemos indicado anteriormente.</p>
+<h3 id="controles-fisicos-en-ios-nativo">Controles físicos en iOS nativo<a class="headerlink" href="#controles-fisicos-en-ios-nativo" title="Permanent link">&para;</a></h3>
+<p>En iOS nativo podemos incorporar mandos físicos utilizando el <em>framework</em> <code>GameController</code>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">GameController</span>
+</pre></div>
+</td></tr></table>
+
+<h4>Conexión de los mandos</h4>
+<p>Desde la aplicación podemos iniciar el descubrimiento de mandos, para así <strong>conectar nuevos</strong> dispositivos:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="bp">GCController</span><span class="p">.</span><span class="n">startWirelessControllerDiscovery</span> <span class="p">{</span>
+    <span class="c1">// Proceso de descubrimiento completado</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>Sin embargo, lo más habitual será que el usuario tenga ya los mandos conectados al móvil, por lo que podemos directamente consultar la lista de mandos conectados, sin tener que descubrir mandos nuevos. Podemos <strong>consultar la lista de mandos conectados</strong> con:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="bp">GCController</span><span class="p">.</span><span class="n">controllers</span><span class="p">()</span>
+</pre></div>
+</td></tr></table>
+
+<p>Esto deberemos hacerlo una vez inicializada la aplicación. Por ejemplo, un lugar donde se podría hacer es en <code>viewDidAppear</code>, si lo hacemos antes es posible que no encontremos ningún mando en la lista. </p>
+<p>A cada mando le daremos un índice (jugador 1, jugador 2, etc). Algunos mandos tienen un LED que indican a que jugador corresponde, con esto activaríamos dicho LED. Por ejemplo, podemos obtener el primer mando de la lista y asignarlo como mando del primer jugador:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kc">self</span><span class="p">.</span><span class="n">gameController</span> <span class="p">=</span> <span class="bp">GCController</span><span class="p">.</span><span class="n">controllers</span><span class="p">().</span><span class="bp">first</span>
+<span class="kc">self</span><span class="p">.</span><span class="n">gameController</span><span class="p">?.</span><span class="n">playerIndex</span> <span class="p">=</span> <span class="p">.</span><span class="n">index1</span>
+</pre></div>
+</td></tr></table>
+
+<h4>Perfiles de mandos</h4>
+<p>En iOS encontrados dos tipos (perfiles) de mandos distintos que podemos utilizar:</p>
+<ul>
+<li><em>Micro Gamepad</em>: Se trata del controlador de Siri, un mando reducido con un panel direccional táctil y dos botones.</li>
+<li><em>Extended Gamepad</em>: Mando de tipo <em>videoconsola</em>. Encontramos mandos específicos para móvil (dispositivos MFi - <em>Made For iOS</em>), o podremos conectar también mandos _bluetooth de videoconsolas actuales (PS4 y Xbox One).</li>
+</ul>
+<p>Según el tipo de mando que queramos utilizar, obtendremos un perfil u otro. Cada perfil tendrá una serie de botones (representados por la clase <code>CGControllerButtonInput</code>) y controles direccionales (representados por <code>CGControllerDirectionPad</code>)</p>
+<p>En caso del <em>Micro Gamepad</em>, obtendremos el perfil con:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">profile</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">gameController</span><span class="p">?.</span><span class="n">microGamepad</span>
+</pre></div>
+</td></tr></table>
+
+<p>Dicho perfil contiene:</p>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Clase</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Un pad direccional analógico (touchpad)</td>
+<td><code>CGControllerDirectionPad</code></td>
+</tr>
+<tr>
+<td>Dos botones (A, X)</td>
+<td><code>CGControllerButtonInput</code></td>
+</tr>
+</tbody>
+</table>
+<p>En el caso de los <em>Extended Gamepads</em>, obtendremos el perfil con:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">profile</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">gameController</span><span class="p">?.</span><span class="n">extendedGamepad</span>
+</pre></div>
+</td></tr></table>
+
+<p>Dentro de dicho perfil encontraremos:</p>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Clase</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Un pad direccional digital</td>
+<td><code>CGControllerDirectionPad</code></td>
+</tr>
+<tr>
+<td>Dos sticks analógicos (<em>thumbsticks</em>)</td>
+<td><code>CGControllerDirectionPad</code></td>
+</tr>
+<tr>
+<td>Dos gatillos analógicos (<em>triggers</em>)</td>
+<td><code>CGControllerButtonInput</code></td>
+</tr>
+<tr>
+<td>Dos botones superiores digitales (<em>shoulders</em>)</td>
+<td><code>CGControllerButtonInput</code></td>
+</tr>
+<tr>
+<td>Cuatro botones digitales frontales</td>
+<td><code>CGControllerButtonInput</code></td>
+</tr>
+</tbody>
+</table>
+<h4>Lectura de los controles</h4>
+<p>En el caso de los botones, podemos leer su valor (<code>value</code>) como un <code>Float</code> de <code>0</code> a <code>1</code>. Esto es útil para los <em>triggers</em> analógicos, que pueden tener diferente grado de pulsación:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">gameController</span><span class="p">?.</span><span class="n">extendedGamepad</span><span class="p">?.</span><span class="n">buttonA</span><span class="p">.</span><span class="n">value</span>
+</pre></div>
+</td></tr></table>
+
+<p>Aunque lo más habitual será tener botones digitales y necesitar únicamente saber si está pulsado o no, lo cual podemos conocer con la propiedad <code>isPressed</code> de tipo <code>Bool</code>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">gameController</span><span class="p">?.</span><span class="n">extendedGamepad</span><span class="p">?.</span><span class="n">buttonA</span><span class="p">.</span><span class="n">isPressed</span>
+</pre></div>
+</td></tr></table>
+
+<p>También nos puede interesar saber cuándo el botón cambia de estado de pulsación, por ejemplo para saber el momento en el que hemos pulsado el botón. Esto podemos hacerlo con un <em>handler</em> como el siguiente:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kc">self</span><span class="p">.</span><span class="n">gameController</span><span class="p">?.</span><span class="n">extendedGamepad</span><span class="p">?.</span><span class="n">buttonA</span><span class="p">.</span><span class="n">valueChangedHandler</span> <span class="p">=</span> <span class="p">{(</span><span class="n">button</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">pressed</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">pressed</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">actionButton</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>En el caso de los controles direccionales, podemos leer sus propiedades <code>xAxis</code> y <code>yAxis</code> para conocer el estado del eje horizontal y vertical respectivamente. Estos ejes tomarán valores entre <code>-1</code> y <code>1</code>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">if</span> <span class="kd">let</span> <span class="nv">profile</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">gameController</span><span class="p">?.</span><span class="n">extendedGamepad</span> <span class="p">{</span>
+    <span class="n">vel</span> <span class="p">=</span> <span class="n">profile</span><span class="p">.</span><span class="n">leftThumbstick</span><span class="p">.</span><span class="n">xAxis</span><span class="p">.</span><span class="n">value</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>Para el caso de control direccional digital, tendremos también las propiedades <code>left</code>, <code>right</code>, <code>up</code> y <code>down</code> que se comportarán como botones, y nos permitirán saber si dichas direcciones están pulsadas o no.</p>
                 
                   
                 
