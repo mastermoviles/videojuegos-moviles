@@ -30,14 +30,14 @@ de los _sprites_, dispuestos en forma de mosaico.
 
 Podemos crear estos _sprite sheets_ de forma manual, aunque encontramos herramientas que nos facilitarán enórmemente este trabajo, como:
 
-* **TexturePacker** (http://www.texturepacker.com). Se trata de una herramienta muy completa, que cuenta con una versión básica gratuita,y opciones adicionales de pago. Además de organizar los _sprites_ de forma óptima en el espacio de una textura OpenGL, nos permite optimizar el formato de la textura. Esta herramienta permite generar los _sprite sheets_ en varios formatos reconocidos por los diferentes
+* [**TexturePacker**](http://www.texturepacker.com). Se trata de una herramienta muy completa, que cuenta con una versión básica gratuita,y opciones adicionales de pago. Además de organizar los _sprites_ de forma óptima en el espacio de una textura OpenGL, nos permite optimizar el formato de la textura. Esta herramienta permite generar los _sprite sheets_ en varios formatos reconocidos por los diferentes
 motores de videojuegos, como por ejemplo Unity, SpriteKit, Cocos2d-x,y libgdx.
 
     ![Herramienta TexturePacker](imagenes/juegos/texturas_packer.jpg)
 
-* **FreeTexturePacker** (http://free-tex-packer.com). Se trata de una buena alternativa _open source_ a la aplicación anterior. 
+* [**FreeTexturePacker**](http://free-tex-packer.com). Se trata de una buena alternativa _open source_ a la aplicación anterior. 
 
-* **Shoebox** (https://renderhjs.net/shoebox/). Conjunto de herramientas gratuito desarrollado en Adobe Air, de ayuda para el desarrollo de videojuegos, entre las que se encuentra la generación de _sprite sheets_.
+* [**Shoebox**](https://renderhjs.net/shoebox/). Conjunto de herramientas gratuito desarrollado en Adobe Air, de ayuda para el desarrollo de videojuegos, entre las que se encuentra la generación de _sprite sheets_.
 
 Con estas herramientas simplemente tendremos que arrastrar sobre ellas el conjunto de imágenes con los distintos fotogramas de nuestros _sprites_, y nos generarán una textura optimizada para OpenGL con todos ellos dispuestos en forma de mosaico. Cuando almacenemos esta textura generada, normalmente se guardará un fichero
 `.png` con la textura, y un fichero de metadatos que contendrá información sobre los distintos fotogramas que contiene la textura, y la región que ocupa cada uno de ellos.

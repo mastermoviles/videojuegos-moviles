@@ -1432,11 +1432,8 @@ Encontramos en Android diferentes mandos que soportan el estándar definido en e
 
 Estos controladores no utilizan la API oficial, ya que salieron a la venta antes de que ésta existiese. Se comportan como un teclado _bluetooth_, por lo que para utilizarlos simplemente deberemos conocer a qué tecla está mapeado cada botón. Está diseñado para ser utilizado con el iPad, pero puede utilizarse en cualquier dispositivo móvil que lo reconozca como teclado _bluetooth_.
 
-En los siguientes enlaces se puede encontrar documentación para integrar estos controladores en nuestras aplicaciones:
+En el [este enlace](http://www.raywenderlich.com/8618/adding-icade-support-to-your-game) se puede encontrar documentación para integrar estos controladores en nuestras aplicaciones.
 
-http://www.ionaudio.com/downloads/ION%20Arcade%20Dev%20Resource%20v1.5.pdf
-
-http://www.raywenderlich.com/8618/adding-icade-support-to-your-game
 
 ![iCade](imagenes/mandos/icade.jpg)
 
@@ -1611,3 +1608,108 @@ En el caso de iOS, para que nuestro proyecto soporte los mandos oficiales aparec
 
 Además, será importante que en nuestro proyecto llamemos a `Controller::startDiscoveryController()` para que inicie la búsqueda de mandos y establezca una conexión con ellos, tal como hemos indicado anteriormente.
 
+### Controles físicos en iOS nativo
+
+En iOS nativo podemos incorporar mandos físicos utilizando el _framework_ `GameController`:
+
+```swift
+import GameController
+```
+
+#### Conexión de los mandos
+
+Desde la aplicación podemos iniciar el descubrimiento de mandos, para así **conectar nuevos** dispositivos:
+
+```swift
+GCController.startWirelessControllerDiscovery {
+    // Proceso de descubrimiento completado
+}
+```
+
+Sin embargo, lo más habitual será que el usuario tenga ya los mandos conectados al móvil, por lo que podemos directamente consultar la lista de mandos conectados, sin tener que descubrir mandos nuevos. Podemos **consultar la lista de mandos conectados** con:
+
+```swift
+GCController.controllers()
+```
+
+Esto deberemos hacerlo una vez inicializada la aplicación. Por ejemplo, un lugar donde se podría hacer es en `viewDidAppear`, si lo hacemos antes es posible que no encontremos ningún mando en la lista. 
+
+A cada mando le daremos un índice (jugador 1, jugador 2, etc). Algunos mandos tienen un LED que indican a que jugador corresponde, con esto activaríamos dicho LED. Por ejemplo, podemos obtener el primer mando de la lista y asignarlo como mando del primer jugador:
+
+```swift
+self.gameController = GCController.controllers().first
+self.gameController?.playerIndex = .index1
+```
+
+#### Perfiles de mandos
+
+En iOS encontrados dos tipos (perfiles) de mandos distintos que podemos utilizar:
+
+* _Micro Gamepad_: Se trata del controlador de Siri, un mando reducido con un panel direccional táctil y dos botones.
+* _Extended Gamepad_: Mando de tipo _videoconsola_. Encontramos mandos específicos para móvil (dispositivos MFi - _Made For iOS_), o podremos conectar también mandos _bluetooth de videoconsolas actuales (PS4 y Xbox One).
+
+Según el tipo de mando que queramos utilizar, obtendremos un perfil u otro. Cada perfil tendrá una serie de botones (representados por la clase `CGControllerButtonInput`) y controles direccionales (representados por `CGControllerDirectionPad`)
+
+En caso del _Micro Gamepad_, obtendremos el perfil con:
+
+```swift
+let profile = self.gameController?.microGamepad
+```
+
+Dicho perfil contiene:
+
+| Elemento          | Clase             |
+| ----              | ----              |
+| Un pad direccional analógico (touchpad) | `CGControllerDirectionPad`
+| Dos botones (A, X)                    | `CGControllerButtonInput`
+
+En el caso de los _Extended Gamepads_, obtendremos el perfil con:
+
+```swift
+let profile = self.gameController?.extendedGamepad
+```
+
+Dentro de dicho perfil encontraremos:
+
+| Elemento          | Clase             |
+| ----              | ----              |
+| Un pad direccional digital | `CGControllerDirectionPad`
+| Dos sticks analógicos (_thumbsticks_) | `CGControllerDirectionPad`
+| Dos gatillos analógicos (_triggers_) | `CGControllerButtonInput`
+| Dos botones superiores digitales (_shoulders_) | `CGControllerButtonInput`
+| Cuatro botones digitales frontales | `CGControllerButtonInput`
+
+
+#### Lectura de los controles
+
+En el caso de los botones, podemos leer su valor (`value`) como un `Float` de `0` a `1`. Esto es útil para los _triggers_ analógicos, que pueden tener diferente grado de pulsación:
+
+```swift
+gameController?.extendedGamepad?.buttonA.value
+```
+
+Aunque lo más habitual será tener botones digitales y necesitar únicamente saber si está pulsado o no, lo cual podemos conocer con la propiedad `isPressed` de tipo `Bool`:
+
+```swift
+gameController?.extendedGamepad?.buttonA.isPressed
+```
+
+También nos puede interesar saber cuándo el botón cambia de estado de pulsación, por ejemplo para saber el momento en el que hemos pulsado el botón. Esto podemos hacerlo con un _handler_ como el siguiente:
+
+```swift
+self.gameController?.extendedGamepad?.buttonA.valueChangedHandler = {(button, value, pressed) in
+    if(pressed) {
+        self.actionButton()
+    }
+}
+```
+
+En el caso de los controles direccionales, podemos leer sus propiedades `xAxis` y `yAxis` para conocer el estado del eje horizontal y vertical respectivamente. Estos ejes tomarán valores entre `-1` y `1`:
+
+```swift
+if let profile = self.gameController?.extendedGamepad {
+    vel = profile.leftThumbstick.xAxis.value
+}
+```
+
+Para el caso de control direccional digital, tendremos también las propiedades `left`, `right`, `up` y `down` que se comportarán como botones, y nos permitirán saber si dichas direcciones están pulsadas o no.
