@@ -171,7 +171,7 @@ etiq.text = "Super Mobile Game"
 
 Este tipo de nodos nos permitirá cambiar además el tipo de fuente, su color, o la alineación del texto.
 
-#### Sprites
+### Sprites
 
 El tipo de nodo más importante en un videojuego es el _sprite_, que representa aquellas entidades que aparecen en la escena (personajes, objetos, etc), y que se muestran como una imagen o una animación. Podemos crear un _sprite_ a partir del nombre de la imagen que queremos que muestre:
 
