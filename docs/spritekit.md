@@ -77,6 +77,29 @@ override func viewDidLoad() {
 
 Hemos de recordar que el constructor de la escena toma como parámetro el nombre del fichero `.sks` de la escena a cargar, omitiendo la extensión. 
 
+> El método `presentScene` toma un parámetro opcional `transition` que nos permitirá realizar diferentes tipos de transiciones animadas entre escenas.
+
+
+
+### Escalado de la escena
+
+Cuando definimos una escena `.sks` en el editor visual de escena de Xcode, se le dará a dicha escena unas dimensiones (ancho, alto) predeterminadas en puntos. Al presentar dicha escena en un dispositivo real, por defecto se mostrará con tu tamaño en puntos original y centrada en pantalla. Como las dimensiones en puntos de cada dispositivo pueden variar, esto podrá provocar que la escena pueda no coincidir con el tamaño de la pantalla, pudiendo por ejemplo quedar elementos de la escena fueta de pantalla. 
+
+Para evitar esto, podemos establecer diferentes estrategias de escalado de la escena mediante su propiedad `scaleMode`. Por ejemplo:
+
+```swift
+scene.scaleMode = .aspectFit
+```
+
+Con la propiedad anterior, la escena se escala manteniendo su relación de aspecto (no se deforma), y haciendo que todo el contenido de la escena quede dentro de pantalla, aunque puede ser necesario añadir "bandas negras" si la relación de aspecto de la escena no coincide con la de la pantalla. 
+
+Otra opción es `aspectFill`, que al igual que la anterior, mantiene la relación de aspecto, pero en este caso llena toda la pantalla, pudiendo quedar alguna parte de la escena fuera de ella si tienen diferente relación de aspecto. 
+
+Con `fill`se escala la escena de forma que se ajuste a pantalla sin dejar "bandas negras" ni contenido fuera de pantalla,  pero sin mantener la relación de aspecto. 
+
+Por último, con `resizeFill`, en lugar de escalar la escena para ajustarla a pantalla, lo que hace es cambiar sus dimensiones intrínsecas, de forma que la escena pase a tener como dimensiones el tamaño exacto de la pantalla. En este caso, al cambiar sus dimensiones, puede que los elementos que hayamos introducido en el editor visual queden fuera de las nuevas dimensiones, por lo que deberíamos reubicar todos los elementos en tiempo de ejecución para tener en cuenta las dimensiones reales de la escena. 
+
+También podemos establecer el tamaño de la escena desde código son su propiedad `size`. De esta forma, podemos combinar estrategias de escalado con un cambio de tamaño intrínseco de la escena, para así por ejemplo conseguir que escale manteniendo relación de aspecto y al mismo tiempo modificar una de sus dimensiones para que no aparezcan "bandas negras" ni quede parte de la escena fuera de pantalla. 
 
 ### Ciclo de vida de la escena
 
