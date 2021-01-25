@@ -167,6 +167,15 @@ nodo.removeFromParent()
 
 Encontraremos también métodos y propiedades para conocer quién es el padre de un nodo, o moverlo a otro nodo padre, entre otras funciones.
 
+### Acceso a los nodos de la escena
+
+Los nodos del árbol de la escena pueden etiquetase con un _nombre_ (propiedad `name`). Al crear una escena con el editor visual, podemos asignar este nombre seleccionando el nodo correspondiente, e introduciendo el nombre en el campo _Name_ del Inspector de Atributos. De esta forma, posteriormente podremos acceder a dicho nodo desde el código Swift. Por ejemplo, si a un nodo de tipo la asignamos el nombre `nave`, desde el código podremos acceder a él de la siguiente forma:
+
+```swift
+let nave = childNode(withName: "nave")
+``
+
+
 ## Tipos de nodos
 
 Destacamos los siguiente tipos de nodos:
@@ -186,13 +195,19 @@ Un tipo de nodo fundamental es la etiqueta de texto (`SKLabelNode`) que nos perm
 let etiq = SKLabelNode()
 ```
 
-A parte de las propiedades generales de los nodos, la propiedad más importante de este tipo de nodo es `text`, que nos permite especificar el texto a mostrar por la etiqueta:
+Aparte de las propiedades generales de los nodos, la propiedad más importante de este tipo de nodo es `text`, que nos permite especificar el texto a mostrar por la etiqueta:
 
 ```swift
 etiq.text = "Super Mobile Game"
 ```
 
 Este tipo de nodos nos permitirá cambiar además el tipo de fuente, su color, o la alineación del texto.
+
+> Si queremos obtener desde el código un nodo de un tipo concreto que hayamos creado en el editor de la escena, podemos utilizar el operador `as` para convertirlo al tipo que corresponda. Por ejemplo, si tenemos un nodo de tipo etiqueta, podemos recuperarlo con el tipo correcto de la siguiente forma:
+
+```swift
+let scoreLabel = childNode(withName: "score") as? SKLabelNode
+```
 
 ### Sprites
 
