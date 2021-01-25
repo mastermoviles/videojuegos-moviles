@@ -173,7 +173,7 @@ Los nodos del árbol de la escena pueden etiquetase con un _nombre_ (propiedad `
 
 ```swift
 let nave = childNode(withName: "nave")
-``
+```
 
 
 ## Tipos de nodos
