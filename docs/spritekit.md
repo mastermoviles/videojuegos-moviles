@@ -113,6 +113,19 @@ Dentro de la clase de la escena, podemos sobrescribir cualquiera de los siguient
 Habitualmente aprovecharemos `didMove(to:)` para crear de forma programada el contenido de la escena (o parte de él). Este contenido se definirá como un árbol de nodos (objetos de tipo `SKNode` o de alguna de sus subclases).
 
 
+### Interacción con el usuario
+
+Además de los métodos anteriores, también podemos sobreescribir diferentes métodos de la escena para recibir directamente los eventos de la pantalla táctil. Estos métodos son los siguientes:
+
+```swift
+touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) 
+touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?)
+touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) 
+touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) 
+```
+
+> Estos métodos no solo están disponibles en la escena, sino que también podrían sobreescribirse para cualquier nodo de la escena, para así tratar sólo los eventos recibidos dentro de un nodos concreto. A continuación veremos cómo se forma en SpriteKit el árbol de la escena, y las principales propiedades de sus nodos. 
+
 
 ## Árbol de la escena
 
